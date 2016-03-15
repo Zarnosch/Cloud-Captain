@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 405322}
   - 33: {fileID: 3320764}
   - 23: {fileID: 2314750}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Torus001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 460498}
   - 33: {fileID: 3330392}
   - 23: {fileID: 2346964}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - 4: {fileID: 416534}
   - 33: {fileID: 3318470}
   - 23: {fileID: 2360368}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Object001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,8 +62,8 @@ GameObject:
   - 65: {fileID: 6521204}
   - 54: {fileID: 5438502}
   - 114: {fileID: 11469972}
-  m_Layer: 0
-  m_Name: teslaTower
+  m_Layer: 8
+  m_Name: TeslaTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ GameObject:
   - 4: {fileID: 423848}
   - 135: {fileID: 13576294}
   - 114: {fileID: 11497258}
-  m_Layer: 21
+  m_Layer: 8
   m_Name: BulletSpawner
   m_TagString: A
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 142192}
   m_LocalRotation: {x: 0.000000002852741, y: 0.9914449, z: -0.000000021668715, w: 0.1305262}
-  m_LocalPosition: {x: 0, y: 0.51683885, z: 0}
+  m_LocalPosition: {x: 0, y: 0.054, z: 0}
   m_LocalScale: {x: 0.72712874, y: 0.72712874, z: 0.72712874}
   m_Children: []
   m_Father: {fileID: 484072}
@@ -105,7 +105,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172000}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.5239999, z: 0}
+  m_LocalPosition: {x: 0, y: 1.061, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 484072}
@@ -117,7 +117,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.79, z: 0}
+  m_LocalPosition: {x: 0, y: 1.327, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 484072}
@@ -129,7 +129,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 158812}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.7211281, z: 0.0000000015639039}
+  m_LocalPosition: {x: 0, y: 1.258, z: 0.0000000015639039}
   m_LocalScale: {x: 0.7524738, y: 0.7524738, z: 0.7524738}
   m_Children: []
   m_Father: {fileID: 484072}
@@ -141,7 +141,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 177658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.215, y: -1.16, z: -9.97}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 416534}
@@ -160,10 +160,10 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7ce482b2d42d0b34c91bfe5848d1173a, type: 2}
+  - {fileID: 2100000, guid: 55cd6d4cf314f7d4c8ddb214fdc13bfa, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
+  m_UseLightProbes: 0
   m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
@@ -186,10 +186,10 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7ce482b2d42d0b34c91bfe5848d1173a, type: 2}
+  - {fileID: 2100000, guid: 292d77f4ff95269449b836da993dcaf3, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
+  m_UseLightProbes: 0
   m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
@@ -212,10 +212,10 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 7ce482b2d42d0b34c91bfe5848d1173a, type: 2}
+  - {fileID: 2100000, guid: c694977a7a706af4883c23e71453c27f, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
+  m_UseLightProbes: 0
   m_ReflectionProbeUsage: 1
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
@@ -275,7 +275,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.98, z: 0}
+  m_Center: {x: 0, y: 0.48, z: 0}
 --- !u!114 &11469972
 MonoBehaviour:
   m_ObjectHideFlags: 1
