@@ -85,92 +85,21 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &353576576
-Prefab:
+--- !u!1 &1034345014 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 158812, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
+  m_PrefabInternal: {fileID: 1784815846}
+--- !u!114 &1034345015
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 484072, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 4.43
-      objectReference: {fileID: 0}
-    - target: {fileID: 484072, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -1.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 484072, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -9.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 484072, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 484072, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 484072, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 484072, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 484072, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 177658, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_Name
-      value: TeslaTower
-      objectReference: {fileID: 0}
-    - target: {fileID: 182704, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_Layer
-      value: 22
-      objectReference: {fileID: 0}
-    - target: {fileID: 177658, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_Layer
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 172000, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_Layer
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 158812, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_Layer
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 142192, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_Layer
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 11497258, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: BulletPrefab
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 423848, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.99
-      objectReference: {fileID: 0}
-    - target: {fileID: 416534, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.72
-      objectReference: {fileID: 0}
-    - target: {fileID: 460498, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.92
-      objectReference: {fileID: 0}
-    - target: {fileID: 405322, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.28
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-  m_IsPrefabParent: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1034345014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33ea89778ea2c749bc4c61994f72a52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1203614675
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,15 +170,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 484072, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.76
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 484072, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.16
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 484072, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -9.97
+      value: -12.49
       objectReference: {fileID: 0}
     - target: {fileID: 484072, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
       propertyPath: m_LocalRotation.x
@@ -271,34 +200,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 177658, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_Name
-      value: TeslaTower
-      objectReference: {fileID: 0}
-    - target: {fileID: 142192, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_Layer
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 158812, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_Layer
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 172000, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_Layer
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 177658, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: m_Layer
-      value: 19
-      objectReference: {fileID: 0}
     - target: {fileID: 182704, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
       propertyPath: m_Layer
-      value: 21
+      value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 11497258, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
-      propertyPath: BulletPrefab
-      value: 
-      objectReference: {fileID: 161148, guid: b20c3e9732fdf5747b633a172188ca30, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
   m_IsPrefabParent: 0

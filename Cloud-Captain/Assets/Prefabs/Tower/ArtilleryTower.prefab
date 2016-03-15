@@ -14,7 +14,7 @@ GameObject:
   - 114: {fileID: 11424992}
   - 54: {fileID: 5480256}
   m_Layer: 19
-  m_Name: TestTower
+  m_Name: ArtilleryTower
   m_TagString: A
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
