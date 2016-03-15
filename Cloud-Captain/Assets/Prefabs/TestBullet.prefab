@@ -13,7 +13,7 @@ GameObject:
   - 23: {fileID: 2367058}
   - 114: {fileID: 11465338}
   - 54: {fileID: 5475838}
-  - 114: {fileID: 11400574}
+  - 114: {fileID: 11438416}
   m_Layer: 21
   m_Name: TestBullet
   m_TagString: Untagged
@@ -81,7 +81,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &11400574
+--- !u!114 &11438416
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -92,9 +92,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb40d46b13708841a4d44928cd31d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  lifeTime: 20
-  Speed: 10
+  damage: 1
+  Root: {fileID: 0}
+  lifeTime: 5
+  Speed: 5
 --- !u!114 &11465338
 MonoBehaviour:
   m_ObjectHideFlags: 1

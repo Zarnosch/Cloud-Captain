@@ -5,12 +5,22 @@ using System.Collections;
 public abstract class ABulletBehavior : MonoBehaviour 
 {
     public int damage;
+    public GameObject Root;
 
-    protected GameObject Target;
+    protected GameObject target;
+
+    void Start()
+    {
+        if (Root == null)
+            Root = gameObject;
+    }
 
     public void StartBullet(GameObject target)
     {
-        this.Target = target;
+        if (Root == null)
+            Root = gameObject;
+
+        this.target = target;
         OnSpawn();
     }
 

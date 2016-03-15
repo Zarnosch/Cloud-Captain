@@ -40,7 +40,9 @@ public class BulletSpawner : MonoBehaviour
 
     public void Attack(GameObject target)
     {
-        if (CanAttack)
+
+
+        if (CanAttack && BulletPrefab)
         {
             curAttackCooldown = attackCooldown;
 
