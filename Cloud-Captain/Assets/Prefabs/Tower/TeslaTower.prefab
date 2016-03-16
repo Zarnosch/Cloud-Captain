@@ -12,7 +12,7 @@ GameObject:
   - 23: {fileID: 2314750}
   m_Layer: 8
   m_Name: Torus001
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,9 +27,10 @@ GameObject:
   - 4: {fileID: 460498}
   - 33: {fileID: 3330392}
   - 23: {fileID: 2346964}
+  - 114: {fileID: 11424348}
   m_Layer: 8
   m_Name: Sphere001
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +47,7 @@ GameObject:
   - 23: {fileID: 2360368}
   m_Layer: 8
   m_Name: Object001
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,14 +65,14 @@ GameObject:
   - 114: {fileID: 11469972}
   m_Layer: 8
   m_Name: TeslaTower
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!1 &182704
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -79,9 +80,9 @@ GameObject:
   - 4: {fileID: 423848}
   - 135: {fileID: 13576294}
   - 114: {fileID: 11497258}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: BulletSpawner
-  m_TagString: A
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,12 +117,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182704}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.327, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
+  m_LocalScale: {x: 1.3752724, y: 1.3752722, z: 1.3752722}
   m_Children: []
-  m_Father: {fileID: 484072}
-  m_RootOrder: 3
+  m_Father: {fileID: 460498}
+  m_RootOrder: 0
 --- !u!4 &460498
 Transform:
   m_ObjectHideFlags: 1
@@ -130,8 +131,9 @@ Transform:
   m_GameObject: {fileID: 158812}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 1.258, z: 0.0000000015639039}
-  m_LocalScale: {x: 0.7524738, y: 0.7524738, z: 0.7524738}
-  m_Children: []
+  m_LocalScale: {x: 0.7271287, y: 0.7271287, z: 0.7271287}
+  m_Children:
+  - {fileID: 423848}
   m_Father: {fileID: 484072}
   m_RootOrder: 1
 --- !u!4 &484072
@@ -141,13 +143,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 177658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -12.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 416534}
   - {fileID: 460498}
   - {fileID: 405322}
-  - {fileID: 423848}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!23 &2314750
@@ -276,6 +277,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.48, z: 0}
+--- !u!114 &11424348
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 158812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33ea89778ea2c749bc4c61994f72a52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 4
+  heightFactor: 0.1
 --- !u!114 &11469972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -320,9 +334,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6d20ebefaf05d4da037ea253ffe9ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackCooldown: 0.5
+  targetType: 1
+  spawnMode: 1
+  AttachBulletToSpawner: 1
+  attackCooldown: 0.25
   BulletPrefab: {fileID: 161148, guid: b20c3e9732fdf5747b633a172188ca30, type: 2}
   BulletSpawnTransform: {fileID: 423848}
+  MinDistance: 0
+  RotateBulletToTarget: 0
+  BulletSpawned:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: VoidEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!135 &13576294
 SphereCollider:
   m_ObjectHideFlags: 1
