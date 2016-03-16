@@ -1,41 +1,82 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 [RequireComponent(typeof(LineRenderer))]
+[RequireComponent(typeof(CapsuleCollider))]
 public class BeamBullet : ABulletBehavior 
 {
-    public float visibleTime = 0.25f;
-    private float currentVisibleTime;
+    public float LineWidth = 0.33f;
+
+    [Range(0.0f, 1.0f)]
+    public float CapsulePercentLineWidth = 1.0f;
+
 
     private LineRenderer lineRenderer;
+    private CapsuleCollider myCollider;
+
+    private bool reEnableCollider = true;
 
     protected override void OnSpawn()
     {
-        currentVisibleTime = 0.0f;
-        lineRenderer = GetComponent<LineRenderer>();
 
-        lineRenderer.SetPosition(0, Root.transform.position);
+        gameObject.SetActive(true);
+
+        if(lineRenderer == null)
+            lineRenderer = GetComponent<LineRenderer>();
+
+        if (myCollider == null)
+            myCollider = GetComponent<CapsuleCollider>();
+
+        myCollider.radius = (LineWidth / 2.0f) * CapsulePercentLineWidth;
+        myCollider.center = Vector3.zero;
+        myCollider.direction = 2;
+
+        lineRenderer.SetWidth(LineWidth, LineWidth);
+
+        lineRenderer.SetPosition(0, spawnTransform.position);
         lineRenderer.SetPosition(1, target.transform.position);
+        UpdateCapsule();
 
-        Vector3 toTarget = target.transform.position - Root.transform.position;
-        float distance = toTarget.magnitude;
-
-        RaycastHit[] hits = Physics.RaycastAll(Root.transform.position, toTarget, distance);
-
-        for (int i = 0; i < hits.Length; i++)
-        {
-            Debug.Log("Hit: " + hits[i].collider.gameObject.name);
-        }
+        reEnableCollider = true;
 
     }
 
+
     void Update()
     {
-        currentVisibleTime += Time.deltaTime;
-
-        if (currentVisibleTime >= visibleTime)
+        if (target)
         {
-            Destroy(Root);
+            lineRenderer.SetPosition(0, spawnTransform.position);
+            lineRenderer.SetPosition(1, target.transform.position);
+
+            if (myCollider.enabled)
+                UpdateCapsule();
+
+            myCollider.enabled = false;
         }
+        else
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (target && reEnableCollider)
+        {
+
+            myCollider.enabled = true;
+            reEnableCollider = false;
+
+        }
+          
+    }
+
+    void UpdateCapsule()
+    {
+        myCollider.transform.position = spawnTransform.position + (target.transform.position - spawnTransform.position) / 2;
+        myCollider.transform.LookAt(spawnTransform.position);
+        myCollider.height = (spawnTransform.position - target.transform.position).magnitude;
     }
 }
