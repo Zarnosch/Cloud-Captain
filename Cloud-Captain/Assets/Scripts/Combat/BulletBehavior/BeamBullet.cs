@@ -43,6 +43,7 @@ public class BeamBullet : ABulletBehavior
 
         reEnableCollider = true;
 
+        Damage = Setting.TESLA_TOWER_DEFAULT_DAMAGE_PER_ATTACK;
     }
 
 

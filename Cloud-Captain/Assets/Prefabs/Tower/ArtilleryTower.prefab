@@ -46,6 +46,7 @@ GameObject:
   - 54: {fileID: 5471642}
   - 114: {fileID: 11457854}
   - 114: {fileID: 11434554}
+  - 114: {fileID: 11461764}
   m_Layer: 8
   m_Name: ArtilleryTower
   m_TagString: Player
@@ -282,6 +283,20 @@ MonoBehaviour:
     m_TypeName: HealthEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   RootObject: {fileID: 0}
   EditorHealth: 10
+--- !u!114 &11461764
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd90df6c20e54c84a8c0ede64ef5f98c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: {fileID: 11457854}
+  Spawner: {fileID: 11412660}
+  AttackRadiusSphere: {fileID: 13538584}
 --- !u!135 &13538584
 SphereCollider:
   m_ObjectHideFlags: 1
