@@ -6,7 +6,6 @@ public class Damager : MonoBehaviour
 {
     public int Damage;
 
-
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")

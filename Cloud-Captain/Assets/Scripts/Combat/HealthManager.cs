@@ -11,6 +11,7 @@ public class HealthManager : MonoBehaviour
     public int EditorHealth;
 
     private bool died = false;
+
     private int health = -1;
 
     void Start()
