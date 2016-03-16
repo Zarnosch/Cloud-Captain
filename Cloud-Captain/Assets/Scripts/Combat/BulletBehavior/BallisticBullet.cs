@@ -7,7 +7,7 @@ using System;
 public class BallisticBullet : ABulletBehavior {
 
     public float Speed = 25.0f;
-    public StartEmitters ExplosionPrefab;
+    public GameObject ExplosionPrefab;
 
     private Rigidbody myBody;
     private float totalTimeToTarget;
@@ -23,7 +23,6 @@ public class BallisticBullet : ABulletBehavior {
         float distanceXz = toTarget.magnitude;
 
         float distanceT = (totalDistance - minDistance) / (maxDistance - minDistance);
-
 
         totalTimeToTarget = ((1.0f - distanceT) * distanceXz * 5.0f + distanceT * Mathf.Pow(distanceXz, 1.5f)) / Speed;
 
@@ -79,8 +78,8 @@ public class BallisticBullet : ABulletBehavior {
 
         else
         {
-            GameObject obj = (GameObject)Instantiate(ExplosionPrefab.gameObject, transform.position, Quaternion.identity);
-            obj.GetComponent<StartEmitters>().Play();
+            //spawn explosion:
+            Instantiate(ExplosionPrefab.gameObject, transform.position, Quaternion.identity);
         }
     }
 
