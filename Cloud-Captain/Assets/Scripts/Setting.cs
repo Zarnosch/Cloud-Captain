@@ -176,54 +176,58 @@ public static class Setting
     /**
     ### Costs of buildings
     **/
-    public const int COST_RES_TOWER_ENERGY = 100;
-    public const int COST_RES_TOWER_MATTER = 100;
-    public const int COST_RES_TOWER_ENGINE = 0;
+    public static readonly Res COST_RES_TOWER = new Res(100, 100, 0);
 
-    public const int COST_RES_NEXUS_ENERGY = 1500;
-    public const int COST_RES_NEXUS_MATTER = 1500;
-    public const int COST_RES_NEXUS_ENGINE = 0;
+    public static readonly Res COST_RES_NEXUS = new Res(1500, 1500, 5);
 
-    public const int COST_RES_WORKSHOP_ENERGY = 400;
-    public const int COST_RES_WORKSHOP_MATTER = 400;
-    public const int COST_RES_WORKSHOP_ENGINE = 0;
+    public static readonly Res COST_RES_WORKSHOP = new Res(400, 400, 0);
 
-    public const int COST_RES_SHIPYARD_ENERGY = 400;
-    public const int COST_RES_SHIPYARD_MATTER = 400;
-    public const int COST_RES_SHIPYARD_ENGINE = 0;
+    public static readonly Res COST_RES_SHIPYARD = new Res(400, 400, 0);
 
-    public const int COST_RES_POWERPLANT_ENERGY = 200;
-    public const int COST_RES_POWERPLANT_MATTER = 200;
-    public const int COST_RES_POWERPLANT_ENGINE = 0;
+    public static readonly Res COST_RES_POWERPLANT = new Res(200, 200, 0);
 
-    public const int COST_RES_MINE_ENERGY = 200;
-    public const int COST_RES_MINE_MATTER = 200;
-    public const int COST_RES_MINE_ENGINE = 0;
+    public static readonly Res COST_RES_MINE = new Res(200, 200, 0);
 
-    public const int COST_RES_SETTLEMENT_ENERGY = 0;
-    public const int COST_RES_SETTLEMENT_MATTER = 0;
-    public const int COST_RES_SETTLEMENT_ENGINE = 0;
+    public static readonly Res COST_RES_SETTLEMENT = new Res(0, 0, 0);
+
 
     /**
-    ### Costs of ships
+    ### Ressource costs of ships
     **/
-    public const int COST_RES_SETTLESHIP_ENERGY = 750;
-    public const int COST_RES_SETTLESHIP_MATTER = 750;
-    public const int COST_RES_SETTLESHIP_ENGINE = 2;
+    public static readonly Res COST_SUPPLY_SETTLESHIP = new Res(750, 750, 2);
 
-    public const int COST_RES_SCOUTER_ENERGY = 250;
-    public const int COST_RES_SCOUTER_MATTER = 250;
-    public const int COST_RES_SCOUTER_ENGINE = 0;
+    public static readonly Res COST_SUPPLY_SCOUTER = new Res(250, 250, 0);
 
-    public const int COST_RES_SMALLSHIP_ENERGY = 400;
-    public const int COST_RES_SMALLSHIP_MATTER = 400;
-    public const int COST_RES_SMALLSHIP_ENGINE = 1;
+    public static readonly Res COST_SUPPLY_SMALLSHIP = new Res(400, 400, 1);
 
-    public const int COST_RES_MEDIUMSHIP_ENERGY = 800;
-    public const int COST_RES_MEDIUMSHIP_MATTER = 800;
-    public const int COST_RES_MEDIUMSHIP_ENGINE = 2;
+    public static readonly Res COST_SUPPLY_MEDIUMSHIP = new Res(800, 800, 2);
 
-    public const int COST_RES_BIGSHIP_ENERGY = 1200;
-    public const int COST_RES_BIGSHIP_MATTER = 1200;
-    public const int COST_RES_BIGSHIP_ENGINE = 3;
+    public static readonly Res COST_SUPPLY_BIGSHIP_ENERGY = new Res(1200, 1200, 3);
+
+    /**
+    ### Supply costs of ships
+    **/
+    public const int COST_RES_SETTLESHIP = 1;
+
+    public const int COST_RES_SCOUTER = 2;
+
+    public const int COST_RES_SMALLSHIP = 4;
+
+    public const int COST_RES_MEDIUMSHIP = 6;
+
+    public const int COST_RES_BIGSHIP_ENERGY = 8;
+
+    /**
+    ### Costs to produce one engine
+    **/
+    public static readonly Res COST_RES_ENGINE = new Res(250, 750, 0);
+
+
+    /********************************************* Supply */
+
+    public const int SUPPLY_MAX_OVERALL = 500;
+
+    public const int SUPPLY_MAX_START = 100;
+
+    public const int SUPPLY_PLUS_PER_NEXUS = 100;
 }
