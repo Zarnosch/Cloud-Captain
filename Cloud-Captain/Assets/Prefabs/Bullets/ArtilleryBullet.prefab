@@ -122,7 +122,7 @@ MonoBehaviour:
     m_TypeName: TransformEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
   Speed: 25
-  ExplosionPrefab: {fileID: 11497460, guid: 2b63b82423ac672448737fcedfd86969, type: 2}
+  ExplosionPrefab: {fileID: 147614, guid: 2391abbb72b2edc48b2136c743b46a1c, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

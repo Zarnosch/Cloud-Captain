@@ -41,10 +41,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39bf1a6325e3d4847b5f66e65f565609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletRoot: {fileID: 0}
-  SpawnTransform: {fileID: 0}
   Damage: 2
   KillOnImpact: 0
+  OnImpact:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: TransformEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   LineWidth: 0.33
   CapsulePercentLineWidth: 0.25
 --- !u!120 &12069210

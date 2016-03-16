@@ -8,10 +8,15 @@ public class StartEmitters : MonoBehaviour {
     public bool StartAwake = true;
     public bool RemoveOnEnd = false;
 
+    public GameObject ObjectToRemove;
+
     void Start()
     {
         if(StartAwake)
             Play();
+
+        if (ObjectToRemove == null)
+            ObjectToRemove = gameObject;
     }
 
     public void Play()
@@ -30,7 +35,7 @@ public class StartEmitters : MonoBehaviour {
             }
 
             if(RemoveOnEnd)
-                Destroy(gameObject, longestTime);
+                Destroy(ObjectToRemove, longestTime);
         }
     }
 

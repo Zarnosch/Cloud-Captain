@@ -56,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 179722}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.79, y: 0.51577497, z: -11.09}
+  m_LocalPosition: {x: 33.35, y: 0.51577497, z: -11.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 407750}
@@ -174,6 +174,10 @@ MonoBehaviour:
   BulletSpawnTransform: {fileID: 480462}
   MinDistance: 0
   RotateBulletToTarget: 1
+  BulletSpawned:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: VoidEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!135 &13517668
 SphereCollider:
   m_ObjectHideFlags: 1

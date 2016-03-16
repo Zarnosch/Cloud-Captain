@@ -342,6 +342,10 @@ MonoBehaviour:
   BulletSpawnTransform: {fileID: 423848}
   MinDistance: 0
   RotateBulletToTarget: 0
+  BulletSpawned:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: VoidEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!135 &13576294
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -15,7 +15,10 @@ public class BeamBullet : ABulletBehavior
     private LineRenderer lineRenderer;
     private CapsuleCollider myCollider;
 
+
     private bool reEnableCollider = true;
+
+
 
     protected override void OnSpawn()
     {
@@ -50,11 +53,13 @@ public class BeamBullet : ABulletBehavior
             lineRenderer.SetPosition(0, spawnTransform.position);
             lineRenderer.SetPosition(1, target.transform.position);
 
+
             if (myCollider.enabled)
                 UpdateCapsule();
 
             myCollider.enabled = false;
         }
+
         else
         {
             gameObject.SetActive(false);
@@ -79,4 +84,6 @@ public class BeamBullet : ABulletBehavior
         myCollider.transform.LookAt(spawnTransform.position);
         myCollider.height = (spawnTransform.position - target.transform.position).magnitude;
     }
+
+
 }
