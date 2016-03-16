@@ -10,10 +10,10 @@ GameObject:
   - 4: {fileID: 461458}
   - 120: {fileID: 12069210}
   - 114: {fileID: 11482994}
-  - 136: {fileID: 13678864}
-  m_Layer: 0
-  m_Name: Beam
-  m_TagString: Untagged
+  - 136: {fileID: 13623238}
+  m_Layer: 11
+  m_Name: TeslaBeam
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,9 +41,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39bf1a6325e3d4847b5f66e65f565609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  Root: {fileID: 0}
-  visibleTime: 0.25
+  BulletRoot: {fileID: 0}
+  SpawnTransform: {fileID: 0}
+  Damage: 2
+  KillOnImpact: 0
+  LineWidth: 0.33
+  CapsulePercentLineWidth: 0.25
 --- !u!120 &12069210
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -74,8 +77,8 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
   m_Parameters:
-    startWidth: 0.5
-    endWidth: 0.5
+    startWidth: 0.33
+    endWidth: 0.33
     m_StartColor:
       serializedVersion: 2
       rgba: 4294967295
@@ -83,14 +86,14 @@ LineRenderer:
       serializedVersion: 2
       rgba: 4294967295
   m_UseWorldSpace: 1
---- !u!136 &13678864
+--- !u!136 &13623238
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 161148}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 0
