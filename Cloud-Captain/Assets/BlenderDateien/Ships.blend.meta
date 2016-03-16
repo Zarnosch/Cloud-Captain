@@ -19,6 +19,10 @@ ModelImporter:
     100022: Segel1_003
     100024: //RootNode
     100026: Vordermast
+    100028: Cube
+    100030: Cylinder_000
+    100032: Hauptkanone_Sockel
+    100034: Hochsegel
     400000: Cylinder_002
     400002: Cylinder_003
     400004: Cylinder_004
@@ -33,6 +37,10 @@ ModelImporter:
     400022: Segel1_003
     400024: //RootNode
     400026: Vordermast
+    400028: Cube
+    400030: Cylinder_000
+    400032: Hauptkanone_Sockel
+    400034: Hochsegel
     2300000: Cylinder_002
     2300002: Cylinder_003
     2300004: Cylinder_004
@@ -46,6 +54,10 @@ ModelImporter:
     2300020: Segel1_002
     2300022: Segel1_003
     2300024: Vordermast
+    2300026: Cube
+    2300028: Cylinder_000
+    2300030: Hauptkanone_Sockel
+    2300032: Hochsegel
     3300000: Cylinder_002
     3300002: Cylinder_003
     3300004: Cylinder_004
@@ -59,6 +71,10 @@ ModelImporter:
     3300020: Segel1_002
     3300022: Segel1_003
     3300024: Vordermast
+    3300026: Cube
+    3300028: Cylinder_000
+    3300030: Hauptkanone_Sockel
+    3300032: Hochsegel
     4300000: Hintermast
     4300002: Cylinder_006
     4300004: Cylinder_007
@@ -72,6 +88,10 @@ ModelImporter:
     4300020: Segel1
     4300022: Cylinder_002
     4300024: Rumpf
+    4300026: Hochsegel
+    4300028: Hauptkanone_Sockel
+    4300030: Cube
+    4300032: Cylinder_000
     7400000: Default Take
     9500000: //RootNode
   materials:
