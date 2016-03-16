@@ -35,6 +35,8 @@ public class BallisticBullet : ABulletBehavior {
     {
         curFlightTime += Time.deltaTime;
 
+        bulletRoot.transform.LookAt(bulletRoot.transform.position + myBody.velocity);
+
         if(curFlightTime > totalTimeToTarget * 2.0f)
         {
             Destroy(bulletRoot);
