@@ -12,7 +12,7 @@ public class LinearMover : ABulletBehavior
     {
         myBody = GetComponent<Rigidbody>();
 
-        Vector3 direction = Target.transform.position - transform.position;
+        Vector3 direction = target.transform.position - transform.position;
         direction.Normalize();
 
         myBody.AddForce(direction * Speed, ForceMode.VelocityChange);
