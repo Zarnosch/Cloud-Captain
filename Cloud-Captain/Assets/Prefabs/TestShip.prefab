@@ -13,6 +13,7 @@ GameObject:
   - 23: {fileID: 2393308}
   - 114: {fileID: 11417006}
   - 54: {fileID: 5402394}
+  - 114: {fileID: 11470970}
   m_Layer: 9
   m_Name: TestShip
   m_TagString: Player
@@ -178,6 +179,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: VoidEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+--- !u!114 &11470970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 179722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8cef80ee603f0249b801feedb616199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Attacker: {fileID: 11452460}
 --- !u!135 &13517668
 SphereCollider:
   m_ObjectHideFlags: 1
