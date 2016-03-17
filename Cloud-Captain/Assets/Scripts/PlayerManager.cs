@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
 
 
     [ReadOnly]
-    public Res resources = new Res(0, 0, 0);
+    public Res resources = new Res(10, 10, 10);
 
 	// Use this for initialization
 	void Start () 
@@ -18,7 +18,11 @@ public class PlayerManager : MonoBehaviour
         Debug.Assert(!Instance, "Only one PlayerManager script is allowed in one scene!");
        
         Instance = this;
-	}
+
+        resources.Energy = Setting.START_ENERGY_AMOUNT;
+        resources.Matter = Setting.START_MATTER_AMOUNT;
+        resources.Engine = Setting.START_ENGINE_AMOUNT;
+    }
 
     public void ChangeResource(Res res)
     {

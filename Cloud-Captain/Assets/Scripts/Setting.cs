@@ -193,6 +193,11 @@ public static class Setting
 
     public const int SUPPLY_PLUS_PER_NEXUS = 100;
 
+
+    public const int START_ENERGY_AMOUNT = 10;
+    public const int START_MATTER_AMOUNT = 10;
+    public const int START_ENGINE_AMOUNT = 10;
+
     #region BUILDINGS
 
     #region POWER_PLANT
@@ -300,6 +305,8 @@ public static class Setting
 
     public static readonly Res SETTLEMENT_RES_COST  = new Res(0, 0, 0);
     public const int SETTLEMENT_DEFAULT_HEALTH      = 750;
+
+
 
     #endregion
 
