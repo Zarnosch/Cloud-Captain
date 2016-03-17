@@ -6,6 +6,8 @@ public class InitTeslaTower : MonoBehaviour
     public HealthManager Health;
     public SphereCollider AttackRangeSphere;
     public BulletSpawner Spawner;
+
+     
 	
     void Awake()
     {

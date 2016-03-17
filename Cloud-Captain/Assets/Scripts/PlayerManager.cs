@@ -22,7 +22,15 @@ public class PlayerManager : MonoBehaviour
 
     public void ChangeResource(Res res)
     {
+      
         resources += res;
+    }
+
+    public void ChangeResource(int matter, int energy, int engine)
+    {
+        resources.Matter += matter;
+        resources.Energy += energy;
+        resources.Engine += engine;
     }
 
     public Res GetResources()

@@ -17,6 +17,8 @@ public struct Res
         Engine = engine;
     }
 
+    
+
     public static Res operator *(Res left, int right)
     {
         return new Res(left.Matter * right, left.Energy * right, left.Engine * right);
@@ -39,5 +41,6 @@ public struct Res
     {
         return new Res(r1.Matter / r2.Matter, r1.Energy / r2.Energy, r1.Engine / r2.Engine);
     }
+
 
 }

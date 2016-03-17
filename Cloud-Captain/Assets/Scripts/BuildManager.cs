@@ -13,6 +13,8 @@ public class BuildManager : MonoBehaviour
     private GameObject ArtilleryTowerPrefab;
     [SerializeField]
     private GameObject PowerPlantPrefab;
+    [SerializeField]
+    private GameObject MinePrefab;
 
     #endregion
 

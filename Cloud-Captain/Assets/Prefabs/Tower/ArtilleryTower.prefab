@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 414800}
   - 33: {fileID: 3311644}
   - 23: {fileID: 2312970}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Torus001
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ GameObject:
   - 4: {fileID: 454348}
   - 135: {fileID: 13538584}
   - 114: {fileID: 11412660}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: BulletSpawner
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - 114: {fileID: 11457854}
   - 114: {fileID: 11434554}
   - 114: {fileID: 11461764}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: ArtilleryTower
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - 4: {fileID: 441474}
   - 33: {fileID: 3354640}
   - 23: {fileID: 2384852}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Object001
   m_TagString: Player
   m_Icon: {fileID: 0}

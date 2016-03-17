@@ -35,7 +35,7 @@ public abstract class ABulletBehavior : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.tag != bulletRoot.tag)
         {
             HealthManager health = other.GetComponent<HealthManager>();
 

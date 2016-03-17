@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 405322}
   - 33: {fileID: 3320764}
   - 23: {fileID: 2314750}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Torus001
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 33: {fileID: 3330392}
   - 23: {fileID: 2346964}
   - 114: {fileID: 11424348}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Sphere001
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - 4: {fileID: 416534}
   - 33: {fileID: 3318470}
   - 23: {fileID: 2360368}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Object001
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   - 114: {fileID: 11469972}
   - 114: {fileID: 11476702}
   - 114: {fileID: 11472616}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: TeslaTower
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -82,7 +82,7 @@ GameObject:
   - 4: {fileID: 423848}
   - 135: {fileID: 13576294}
   - 114: {fileID: 11497258}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: BulletSpawner
   m_TagString: Player
   m_Icon: {fileID: 0}

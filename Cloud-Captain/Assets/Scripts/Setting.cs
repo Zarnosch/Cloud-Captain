@@ -153,16 +153,6 @@ public static class Setting
     public const int UPGARDE_REPAIR_PER_SEC = 3;
 
     /// <summary>
-    /// speedup for Mine
-    /// </summary>
-    public const int UPGARDE_MINE_SPEEDUP_PER_SEC = 2;
-
-    /// <summary>
-    /// speedup for Powerplant
-    /// </summary>
-    public const int UPGARDE_POWERPLANT_SPEEDUP_PER_SEC = 2;
-
-    /// <summary>
     /// the additional damage a tower or ship does with this upgrade
     /// </summary>
     public const int UPGARDE_DAMAGE = 25;
@@ -235,65 +225,45 @@ public static class Setting
 
     #region POWER_PLANT
     /********************************************* POWER_PLANT */
-    //X
-    public const int POWER_PLANT_DEFAULT_ENERGY_GAIN = 5;
-    //X
+
     public const float POWER_PLANT_DEFAULT_ENERGY_GAIN_COOLDOWN = 5.0f;
+    public const int POWER_PLANT_DEFAULT_ENERGY_GAIN            = 5;
 
     #endregion
 
 
     #region MINE
-    /********************************************* POWER_PLANT */
-    //X
-    public const int MINE_DEFAULT_MATTER_GAIN = 5;
-    //X
-    public const float MINE_DEFAULT_MATTER_GAIN_COOLDOWN = 5.0f;
+    /********************************************* MINE */
+
+    public const float MINE_DEFAULT_MATTER_GAIN_COOLDOWN    = 5.0f;
+    public const int MINE_DEFAULT_MATTER_GAIN               = 5;
 
     #endregion
 
-    /******************************************************/
-    /********************************************* COMBAT */
-    /******************************************************/
-
-    // //X means the variable is used and is applied correctly
 
     #region TESLA_TOWER
-
     /********************************************* TESLA_TOWER */
-    //X
-    /// <summary> The starting health of a tesla tower. </summary>
-    public const int TESLA_TOWER_DEFAULT_HEALTH = 100;
-    //X
-    /// <summary>The radius in which a tesla tower is able to attack ships: </summary>
-    public const float TESLA_TOWER_DEFAULT_ATTACK_RADIUS = 7.0f;
-    //X
-    /// <summary>The time (in seconds) until the next damage will be caused by tesla towers.  </summary>
-    public const float TESLA_TOWER_DEFAULT_ATTACK_COOLDOWN = 0.5f;
-    //X
-    /// <summary>The damage that is caused every attack</summary>
-    public const int TESLA_TOWER_DEFAULT_DAMAGE_PER_ATTACK = 2;
+
+    public const float TESLA_TOWER_DEFAULT_ATTACK_COOLDOWN  = 0.5f;
+    public const float TESLA_TOWER_DEFAULT_ATTACK_RADIUS    = 7.0f;
+    public const int TESLA_TOWER_DEFAULT_DAMAGE_PER_ATTACK  = 2;
+    public const int TESLA_TOWER_DEFAULT_HEALTH             = 100;
 
     #endregion
+
 
     #region ARTILLERY_TOWER
     /********************************************* ARTILLERY_TOWER */
-    //X
-    public const int ARTILLERY_TOWER_DEFAULT_HEALTH = 100;
-    //X
-    public const float ARTILLERY_TOWER_DEFAULT_ATTACK_RADIUS_MAX = 20.0f;
-    //X
-    public const float ARTILLERY_TOWER_DEFAULT_ATTACK_RADIUS_MIN = 10.0f;
-    //X
-    public const float ARTILLERY_TOWER_DEFAULT_ATTACK_COOLDOWN = 2.5f;
-    //X
-    public const int ARTILLERY_TOWER_DEFAULT_DAMAGE_PER_ATTACK = 10;
-    //X
-    public const float ARTILLERY_TOWER_DEFAULT_BULLET_SPEED = 25.0f;
-    //X
-    public const int ARTILLERY_TOWER_DEFAULT_AOE_DAMAGE = 10;
-    //X
-    public const float ARTILLERY_TOWER_DEFAULT_AOE_RADIUS = 1.5f;
+
+    public const float ARTILLERY_TOWER_DEFAULT_ATTACK_RADIUS_MAX    = 20.0f;
+    public const float ARTILLERY_TOWER_DEFAULT_ATTACK_RADIUS_MIN    = 10.0f;
+    public const float ARTILLERY_TOWER_DEFAULT_ATTACK_COOLDOWN      = 2.5f;
+    public const float ARTILLERY_TOWER_DEFAULT_BULLET_SPEED         = 25.0f;
+    public const float ARTILLERY_TOWER_DEFAULT_AOE_RADIUS           = 1.5f;
+    public const int ARTILLERY_TOWER_DEFAULT_DAMAGE_PER_ATTACK      = 10;
+    public const int ARTILLERY_TOWER_DEFAULT_AOE_DAMAGE             = 10;
+    public const int ARTILLERY_TOWER_DEFAULT_HEALTH                 = 100;
+
     #endregion
 
 }

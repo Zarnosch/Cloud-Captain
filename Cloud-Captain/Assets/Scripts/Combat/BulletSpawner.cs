@@ -75,7 +75,7 @@ public class BulletSpawner : MonoBehaviour
         if (targetType != TargetType.Both)
             canAttackLayer = target.layer == LayerMask.NameToLayer(targetType.ToString());
 
-        return target.tag == "Enemy" && canAttackLayer;
+        return target.tag != gameObject.tag && canAttackLayer;
     }
 
     public void Attack(GameObject target)
@@ -146,8 +146,9 @@ public class BulletSpawner : MonoBehaviour
             spawnedBullet = spawnedObject.GetComponent<ABulletBehavior>();
             Debug.Assert(spawnedBullet != null, "A spawned bullet needs an ABulletBehavior script!");
             spawnedBullet.StartBullet(target, BulletSpawnTransform, MinDistance, sphereCollider.radius);
+            spawnedBullet.tag = gameObject.tag;
 
-            if(AttachBulletToSpawner)
+            if (AttachBulletToSpawner)
                 spawnedBullet.transform.SetParent(gameObject.transform);
         }
 
