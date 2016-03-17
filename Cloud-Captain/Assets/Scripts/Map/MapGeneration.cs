@@ -18,8 +18,12 @@ public class MapGeneration : MonoBehaviour
     public int SmallIslandAmount;
     public int MidIsland1Amount;
     public int MidIsland2Amount;
-    public int BigIslandAmount;
     public int MirrorEdgeIslandsAmount;
+    private int BigIslandAmount = 1; // only one big island per side
+
+    // to prevent endless loops
+    public int MaxTries;
+    bool notWholeMapCreated = false;
 
     //Lists with positions of allready placed Islands
     List<Vector3> smallIslands;
@@ -31,14 +35,37 @@ public class MapGeneration : MonoBehaviour
 
     private GameObject rootObject;
 
+    // To check if Map is allready generated
+    bool allreadyGenerated;
+
     void Start()
     {
         if (generateLevelOnStart)
             GenerateWorld();
     }
 
+    public void DestroyWorld()
+    {
+        while(gameObject.transform.childCount > 0)
+        {
+            #if UNITY_EDITOR
+                DestroyImmediate(gameObject.transform.GetChild(0).gameObject);
+            #else
+                Destroy(gameObject.transform.GetChild(i)); 
+            #endif
+        }
+    }
+
     public void GenerateWorld()
     {
+        // To check if Map is allready generated
+        if (!allreadyGenerated)
+        {
+            DestroyWorld();
+        }
+        else
+            allreadyGenerated = true;
+
         smallIslands = new List<Vector3>();
         midIslands1 = new List<Vector3>();
         midIslands2 = new List<Vector3>();
@@ -67,6 +94,7 @@ public class MapGeneration : MonoBehaviour
     /// <param name="betweenAmount"> Amount of mid1 and 2 Islands on the mirror edge </param>
     void generateIslands(int smallAmount, int bigAmount, int mid1Amount, int mid2Amount, int betweenAmount)
     {
+        int maxTries = 0;
         //Generate Islands on one side
         for (int i = 0; i < smallAmount; i++)
         {
@@ -80,7 +108,17 @@ public class MapGeneration : MonoBehaviour
                     newObj.transform.SetParent(gameObject.transform);
 
             }
-            else i--;
+            else
+            {
+                i--;
+                maxTries++;
+                if(maxTries >= MaxTries)
+                {
+                    maxTries = 0;
+                    notWholeMapCreated = true;
+                    break;
+                }
+            }
         }
         for (int i = 0; i < bigAmount; i++)
         {
@@ -94,7 +132,17 @@ public class MapGeneration : MonoBehaviour
                 if (appendToGameObject)
                     newObj.transform.SetParent(gameObject.transform);
             }
-            else i--;
+            else
+            {
+                i--;
+                maxTries++;
+                if (maxTries >= MaxTries)
+                {
+                    maxTries = 0;
+                    notWholeMapCreated = true;
+                    break;
+                }
+            }
         }
         for (int i = 0; i < mid1Amount; i++)
         {
@@ -108,7 +156,17 @@ public class MapGeneration : MonoBehaviour
                 if (appendToGameObject)
                     newObj.transform.SetParent(gameObject.transform);
             }
-            else i--;
+            else
+            {
+                i--;
+                maxTries++;
+                if (maxTries >= MaxTries)
+                {
+                    maxTries = 0;
+                    notWholeMapCreated = true;
+                    break;
+                }
+            }
         }
         for (int i = 0; i < mid2Amount; i++)
         {
@@ -122,7 +180,17 @@ public class MapGeneration : MonoBehaviour
                 if (appendToGameObject)
                     newObj.transform.SetParent(gameObject.transform);
             }
-            else i--;
+            else
+            {
+                i--;
+                maxTries++;
+                if (maxTries >= MaxTries)
+                {
+                    maxTries = 0;
+                    notWholeMapCreated = true;
+                    break;
+                }
+            }
         }
 
         //Mirror all islands
@@ -170,7 +238,17 @@ public class MapGeneration : MonoBehaviour
                     if (appendToGameObject)
                         newObj.transform.SetParent(gameObject.transform);
                 }
-                else i--;
+                else
+                {
+                    i--;
+                    maxTries++;
+                    if (maxTries >= MaxTries)
+                    {
+                        maxTries = 0;
+                        notWholeMapCreated = true;
+                        break;
+                    }
+                }
             }
             else
             {
@@ -182,9 +260,21 @@ public class MapGeneration : MonoBehaviour
                     if (appendToGameObject)
                         newObj.transform.SetParent(gameObject.transform);
                 }
-                else i--;
+                else
+                {
+                    i--;
+                    maxTries++;
+                    if (maxTries >= MaxTries)
+                    {
+                        maxTries = 0;
+                        notWholeMapCreated = true;
+                        break;
+                    }
+                }
             }
         }
+
+        if(notWholeMapCreated) Debug.LogError("Could not create whole map. Check wether there is enough space for all islands.");
     }
 
     /// <summary>

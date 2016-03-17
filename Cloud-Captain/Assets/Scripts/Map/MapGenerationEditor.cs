@@ -14,5 +14,10 @@ public class MapGenerationEditor : Editor {
             MapGeneration generation = (MapGeneration)target;
             generation.GenerateWorld();
         }
+        if (GUILayout.Button("Destroy World"))
+        {
+            MapGeneration generation = (MapGeneration)target;
+            generation.DestroyWorld();
+        }
     }
 }
