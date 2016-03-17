@@ -18,7 +18,12 @@ public struct Res
         Engine = engine;
     }
 
-    
+
+    public override string ToString()
+    {
+        return string.Concat("Matter: ", Matter, ", Energy: ", Energy, ", Engine: ", Engine);
+    }
+
     public bool IsEnough(Res other)
     {
         return this.Matter >= other.Matter && this.Energy >= other.Energy && this.Engine >= other.Engine;

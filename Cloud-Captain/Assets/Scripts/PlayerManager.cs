@@ -10,8 +10,7 @@ public class PlayerManager : MonoBehaviour
 
 
     [ReadOnly]
-    [SerializeField]
-    private Res resources = new Res(0, 0, 0);
+    public Res resources = new Res(0, 0, 0);
 
 	// Use this for initialization
 	void Start () 
@@ -35,7 +34,7 @@ public class PlayerManager : MonoBehaviour
         resources.Energy = Mathf.Clamp(resources.Energy, 0, Setting.MAX_RES);
 
         resources.Engine += engine;
-        resources.Energy = Mathf.Clamp(resources.Engine, 0, Setting.MAX_RES);
+        resources.Engine = Mathf.Clamp(resources.Engine, 0, Setting.MAX_RES);
     }
 
     public Res GetResources()
