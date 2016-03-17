@@ -12,6 +12,15 @@ public class MapGeneration : MonoBehaviour
     public GameObject MidIsland1;
     public GameObject MidIsland2;
 
+    public float MapHeight;
+    public float MapWidth;
+    public float MirrorEdgeWidth;
+    public int SmallIslandAmount;
+    public int MidIsland1Amount;
+    public int MidIsland2Amount;
+    public int BigIslandAmount;
+    public int MirrorEdgeIslandsAmount;
+
     //Lists with positions of allready placed Islands
     List<Vector3> smallIslands;
     List<Vector3> midIslands1;
@@ -43,7 +52,7 @@ public class MapGeneration : MonoBehaviour
             MidIsland2.transform.lossyScale.x * Mathf.Max(MidIsland2.GetComponent<BoxCollider>().size.x, MidIsland2.GetComponent<BoxCollider>().size.z)
             };
 
-        generateIslands(20, 1, 10, 10, 5);     
+        generateIslands(SmallIslandAmount, BigIslandAmount, MidIsland1Amount, MidIsland2Amount, MirrorEdgeIslandsAmount);
     }
 
     /// <summary>
@@ -61,13 +70,13 @@ public class MapGeneration : MonoBehaviour
         //Generate Islands on one side
         for (int i = 0; i < smallAmount; i++)
         {
-            Vector3 pos = new Vector3(Random.Range(500, 10000), 0, Random.Range(-10000, 10000));
+            Vector3 pos = new Vector3(Random.Range(MapWidth / 2 + MirrorEdgeWidth / 2, MapWidth), 0, Random.Range(0, MapHeight));
             if (!islandCollision(pos, r[0]))
             {
                 GameObject newObj = (GameObject)Instantiate(SmallIsland, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
                 smallIslands.Add(pos);
 
-                if(appendToGameObject)
+                if (appendToGameObject)
                     newObj.transform.SetParent(gameObject.transform);
 
             }
@@ -75,10 +84,11 @@ public class MapGeneration : MonoBehaviour
         }
         for (int i = 0; i < bigAmount; i++)
         {
-            Vector3 pos = new Vector3(Random.Range(5000, 10000), 0, Random.Range(-5000, 5000));
+            // Positions in the middle 1/2 of the map
+            Vector3 pos = new Vector3(Random.Range(MapWidth * 0.75f, MapWidth), 0, Random.Range(MapHeight / 4, MapHeight * 0.75f));
             if (!islandCollision(pos, r[1]))
             {
-                GameObject newObj = (GameObject) Instantiate(BigIsland, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
+                GameObject newObj = (GameObject)Instantiate(BigIsland, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
                 bigIslands.Add(pos);
 
                 if (appendToGameObject)
@@ -88,7 +98,7 @@ public class MapGeneration : MonoBehaviour
         }
         for (int i = 0; i < mid1Amount; i++)
         {
-            Vector3 pos = new Vector3(Random.Range(500, 10000), 0, Random.Range(-10000, 10000));
+            Vector3 pos = new Vector3(Random.Range(MapWidth / 2 + MirrorEdgeWidth / 2, MapWidth), 0, Random.Range(0, MapHeight));
             if (!islandCollision(pos, r[2]))
             {
                 GameObject newObj = (GameObject)Instantiate(MidIsland1, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
@@ -102,7 +112,7 @@ public class MapGeneration : MonoBehaviour
         }
         for (int i = 0; i < mid2Amount; i++)
         {
-            Vector3 pos = new Vector3(Random.Range(500, 10000), 0, Random.Range(-10000, 10000));
+            Vector3 pos = new Vector3(Random.Range(MapWidth / 2 + MirrorEdgeWidth / 2, MapWidth), 0, Random.Range(0, MapHeight));
             if (!islandCollision(pos, r[3]))
             {
                 GameObject newObj = (GameObject)Instantiate(MidIsland2, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
@@ -118,37 +128,37 @@ public class MapGeneration : MonoBehaviour
         //Mirror all islands
         foreach (Vector3 island in smallIslands)
         {
-            GameObject newObj = (GameObject)Instantiate(SmallIsland, island * -1, Quaternion.Euler(270, Random.Range(0, 360), 0));
+            GameObject newObj = (GameObject)Instantiate(SmallIsland, new Vector3(MapWidth - island.x, island.y, MapHeight - island.z), Quaternion.Euler(270, Random.Range(0, 360), 0));
 
             if (appendToGameObject)
                 newObj.transform.SetParent(gameObject.transform);
         }
         foreach (Vector3 island in bigIslands)
         {
-            GameObject newObj = (GameObject)Instantiate(BigIsland, island * -1, Quaternion.Euler(270, Random.Range(0, 360), 0));
+            GameObject newObj = (GameObject)Instantiate(BigIsland, new Vector3(MapWidth - island.x, island.y, MapHeight - island.z), Quaternion.Euler(270, Random.Range(0, 360), 0));
 
             if (appendToGameObject)
                 newObj.transform.SetParent(gameObject.transform);
         }
         foreach (Vector3 island in midIslands1)
         {
-            GameObject newObj = (GameObject)Instantiate(MidIsland1, island * -1, Quaternion.Euler(270, Random.Range(0, 360), 0));
+            GameObject newObj = (GameObject)Instantiate(MidIsland1, new Vector3(MapWidth - island.x, island.y, MapHeight - island.z), Quaternion.Euler(270, Random.Range(0, 360), 0));
 
             if (appendToGameObject)
                 newObj.transform.SetParent(gameObject.transform);
         }
         foreach (Vector3 island in midIslands2)
         {
-            GameObject newObj = (GameObject)Instantiate(MidIsland2, island * -1, Quaternion.Euler(270, Random.Range(0, 360), 0));
+            GameObject newObj = (GameObject)Instantiate(MidIsland2, new Vector3(MapWidth - island.x, island.y, MapHeight - island.z), Quaternion.Euler(270, Random.Range(0, 360), 0));
 
             if (appendToGameObject)
                 newObj.transform.SetParent(gameObject.transform);
         }
-
+        
         //Generate Islands on the mirror edge
         for (int i = 0; i < betweenAmount; i++)
         {
-            Vector3 pos = new Vector3(Random.Range(-400, 400), 0, Random.Range(-10000, 10000));
+            Vector3 pos = new Vector3(Random.Range(MapWidth/2 - MirrorEdgeWidth/2, MapWidth / 2 + MirrorEdgeWidth / 2), 0, Random.Range(0, MapHeight));
             int rand = Random.Range(0, 2);
             if (rand == 0)
             {
