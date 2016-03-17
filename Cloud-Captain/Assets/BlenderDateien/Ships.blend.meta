@@ -23,6 +23,30 @@ ModelImporter:
     100030: Cylinder_000
     100032: Hauptkanone_Sockel
     100034: Hochsegel
+    100036: Cylinder
+    100038: Cylinder_001
+    100040: Cylinder_008
+    100042: Cylinder_009
+    100044: Cylinder_010
+    100046: Cylinder_011
+    100048: Cylinder_012
+    100050: Cylinder_013
+    100052: Cylinder_014
+    100054: Cylinder_015
+    100056: Cylinder_016
+    100058: Cylinder_017
+    100060: Cylinder_018
+    100062: Cylinder_019
+    100064: LeftCanon
+    100066: LeftCanons
+    100068: LeftReling
+    100070: MastVorne
+    100072: MGBoden
+    100074: RightCanon
+    100076: RightCanons
+    100078: RightReling
+    100080: Schie_rohre
+    100082: Segelverankerung
     400000: Cylinder_002
     400002: Cylinder_003
     400004: Cylinder_004
@@ -41,6 +65,30 @@ ModelImporter:
     400030: Cylinder_000
     400032: Hauptkanone_Sockel
     400034: Hochsegel
+    400036: Cylinder
+    400038: Cylinder_001
+    400040: Cylinder_008
+    400042: Cylinder_009
+    400044: Cylinder_010
+    400046: Cylinder_011
+    400048: Cylinder_012
+    400050: Cylinder_013
+    400052: Cylinder_014
+    400054: Cylinder_015
+    400056: Cylinder_016
+    400058: Cylinder_017
+    400060: Cylinder_018
+    400062: Cylinder_019
+    400064: LeftCanon
+    400066: LeftCanons
+    400068: LeftReling
+    400070: MastVorne
+    400072: MGBoden
+    400074: RightCanon
+    400076: RightCanons
+    400078: RightReling
+    400080: Schie_rohre
+    400082: Segelverankerung
     2300000: Cylinder_002
     2300002: Cylinder_003
     2300004: Cylinder_004
@@ -58,6 +106,30 @@ ModelImporter:
     2300028: Cylinder_000
     2300030: Hauptkanone_Sockel
     2300032: Hochsegel
+    2300034: Cylinder
+    2300036: Cylinder_001
+    2300038: Cylinder_008
+    2300040: Cylinder_009
+    2300042: Cylinder_010
+    2300044: Cylinder_011
+    2300046: Cylinder_012
+    2300048: Cylinder_013
+    2300050: Cylinder_014
+    2300052: Cylinder_015
+    2300054: Cylinder_016
+    2300056: Cylinder_017
+    2300058: Cylinder_018
+    2300060: Cylinder_019
+    2300062: LeftCanon
+    2300064: LeftCanons
+    2300066: LeftReling
+    2300068: MastVorne
+    2300070: MGBoden
+    2300072: RightCanon
+    2300074: RightCanons
+    2300076: RightReling
+    2300078: Schie_rohre
+    2300080: Segelverankerung
     3300000: Cylinder_002
     3300002: Cylinder_003
     3300004: Cylinder_004
@@ -75,6 +147,30 @@ ModelImporter:
     3300028: Cylinder_000
     3300030: Hauptkanone_Sockel
     3300032: Hochsegel
+    3300034: Cylinder
+    3300036: Cylinder_001
+    3300038: Cylinder_008
+    3300040: Cylinder_009
+    3300042: Cylinder_010
+    3300044: Cylinder_011
+    3300046: Cylinder_012
+    3300048: Cylinder_013
+    3300050: Cylinder_014
+    3300052: Cylinder_015
+    3300054: Cylinder_016
+    3300056: Cylinder_017
+    3300058: Cylinder_018
+    3300060: Cylinder_019
+    3300062: LeftCanon
+    3300064: LeftCanons
+    3300066: LeftReling
+    3300068: MastVorne
+    3300070: MGBoden
+    3300072: RightCanon
+    3300074: RightCanons
+    3300076: RightReling
+    3300078: Schie_rohre
+    3300080: Segelverankerung
     4300000: Hintermast
     4300002: Cylinder_006
     4300004: Cylinder_007
@@ -92,6 +188,30 @@ ModelImporter:
     4300028: Hauptkanone_Sockel
     4300030: Cube
     4300032: Cylinder_000
+    4300034: Cylinder_013
+    4300036: Cylinder_012
+    4300038: LeftReling
+    4300040: RightReling
+    4300042: RightCanons
+    4300044: Cylinder_019
+    4300046: Cylinder_018
+    4300048: Cylinder_017
+    4300050: Cylinder_016
+    4300052: Cylinder_015
+    4300054: Cylinder_014
+    4300056: LeftCanons
+    4300058: Cylinder_011
+    4300060: Cylinder_010
+    4300062: Cylinder_009
+    4300064: Cylinder_008
+    4300066: Cylinder_001
+    4300068: Cylinder
+    4300070: MGBoden
+    4300072: Schie_rohre
+    4300074: RightCanon
+    4300076: LeftCanon
+    4300078: Segelverankerung
+    4300080: MastVorne
     7400000: Default Take
     9500000: //RootNode
   materials:
