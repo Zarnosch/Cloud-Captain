@@ -100,6 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartAwake: 0
+  RemoveOnEnd: 0
+  ObjectToRemove: {fileID: 0}
 --- !u!198 &19808768
 ParticleSystem:
   m_ObjectHideFlags: 1

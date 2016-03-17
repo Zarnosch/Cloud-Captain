@@ -38,6 +38,8 @@ public static class Setting
 
     #region COMMON
 
+    public const float SHIP_FLIGHT_HEIGHT = 10.0f;
+
     public const float SHIP_BULLET_SPEED = 25.0f;
     public const float SHIP_RANGE_INCREASE = 1.1f;
     public const float SHIP_DAMAGE_INCREASE = 1.05f;
@@ -74,7 +76,7 @@ public static class Setting
     public const float MAX_SPEED_SCOUTER = 7f;
     public const float MAX_RANGE_SCOUTER = 50f;
     public const int MAX_DMG_SCOUTER = 10;
-    public const float SCOUTER_BUILD_TIME = 100.0f;
+    public const float SCOUTER_BUILD_TIME = 2.0f;
 
     #endregion
 

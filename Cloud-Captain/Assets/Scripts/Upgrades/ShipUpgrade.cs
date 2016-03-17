@@ -45,6 +45,8 @@ public class ShipUpgrade : Upgrade
         Health.maxHealth = baseHealth;
         ShipMove.speed = baseMoveSpeed;
         ShipMove.targetPosition = gameObject.transform.position;
+
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, Setting.SHIP_FLIGHT_HEIGHT, gameObject.transform.position.z);
     }
 
     protected override void OnUpgrade(EUpgrade upgrade)

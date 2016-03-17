@@ -25,20 +25,33 @@ public class ShipBuilder : MonoBehaviour
 
     public void BuildShip(BuildManager.ShipType type)
     {
+        InternBuildShip(type, true);
+    }
+
+    public void BuildShipNoCost(BuildManager.ShipType type)
+    {
+        InternBuildShip(type, false);
+    }
+
+    private void InternBuildShip(BuildManager.ShipType type, bool cost)
+    {
         if (CanBuild(type))
         {
             BuildManager.ShipInfo info = BuildManager.Instance.GetShipInfo(type);
 
-            if(PlayerManager.Instance.GetResources().IsEnough(info.price))
+            Res price = new Res(0, 0, 0);
+
+            if (cost)
+                price = info.price;
+
+            if (PlayerManager.Instance.GetResources().IsEnough(price))
             {
-                PlayerManager.Instance.ChangeResource(info.price * -1);
+                PlayerManager.Instance.ChangeResource(price * -1);
                 enqueuedShips.Enqueue(info);
             }
         }
     }
 
-
-	
     public bool CanBuild(BuildManager.ShipType type)
     {
         for (int i = 0; i < BuildableShips.Length; i++)
@@ -53,6 +66,11 @@ public class ShipBuilder : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            BuildShipNoCost(BuildManager.ShipType.Scout);
+        }
+
         if (isBuilding)
         {
             curBuildCooldown -= Time.deltaTime;
