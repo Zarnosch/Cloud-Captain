@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
+using System;
 
-public class Res
+//enables unity to show variable of Res in the inspector:
+[Serializable]
+public struct Res
 {
     public int Matter;
     public int Energy;
@@ -12,6 +15,11 @@ public class Res
         Matter = matter;
         Energy = energy;
         Engine = engine;
+    }
+
+    public static Res operator *(Res left, int right)
+    {
+        return new Res(left.Matter * right, left.Energy * right, left.Engine * right);
     }
 
     public static Res operator + (Res r1, Res r2)

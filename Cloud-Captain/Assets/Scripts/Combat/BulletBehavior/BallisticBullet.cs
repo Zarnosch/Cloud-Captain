@@ -13,6 +13,12 @@ public class BallisticBullet : ABulletBehavior {
     private float totalTimeToTarget;
     private float curFlightTime;
 
+    void Start()
+    {
+        Damage = Setting.ARTILLERY_TOWER_DEFAULT_DAMAGE_PER_ATTACK;
+        Speed = Setting.ARTILLERY_TOWER_DEFAULT_BULLET_SPEED;
+    }
+
     protected override void OnSpawn()
     {
         myBody = GetComponent<Rigidbody>();
@@ -34,6 +40,8 @@ public class BallisticBullet : ABulletBehavior {
     void Update()
     {
         curFlightTime += Time.deltaTime;
+
+        bulletRoot.transform.LookAt(bulletRoot.transform.position + myBody.velocity);
 
         if(curFlightTime > totalTimeToTarget * 2.0f)
         {

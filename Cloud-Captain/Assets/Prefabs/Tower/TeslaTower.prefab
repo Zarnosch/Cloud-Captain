@@ -63,6 +63,8 @@ GameObject:
   - 65: {fileID: 6521204}
   - 54: {fileID: 5438502}
   - 114: {fileID: 11469972}
+  - 114: {fileID: 11476702}
+  - 114: {fileID: 11472616}
   m_Layer: 8
   m_Name: TeslaTower
   m_TagString: Player
@@ -72,7 +74,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &182704
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -98,7 +100,7 @@ Transform:
   m_LocalScale: {x: 0.72712874, y: 0.72712874, z: 0.72712874}
   m_Children: []
   m_Father: {fileID: 484072}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &416534
 Transform:
   m_ObjectHideFlags: 1
@@ -117,12 +119,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182704}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0, z: 0}
-  m_LocalScale: {x: 1.3752724, y: 1.3752722, z: 1.3752722}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.258, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 460498}
-  m_RootOrder: 0
+  m_Father: {fileID: 484072}
+  m_RootOrder: 1
 --- !u!4 &460498
 Transform:
   m_ObjectHideFlags: 1
@@ -132,10 +134,9 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 1.258, z: 0.0000000015639039}
   m_LocalScale: {x: 0.7271287, y: 0.7271287, z: 0.7271287}
-  m_Children:
-  - {fileID: 423848}
+  m_Children: []
   m_Father: {fileID: 484072}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &484072
 Transform:
   m_ObjectHideFlags: 1
@@ -147,6 +148,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 416534}
+  - {fileID: 423848}
   - {fileID: 460498}
   - {fileID: 405322}
   m_Father: {fileID: 0}
@@ -185,7 +187,7 @@ MeshRenderer:
   m_GameObject: {fileID: 158812}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_Materials:
   - {fileID: 2100000, guid: 292d77f4ff95269449b836da993dcaf3, type: 2}
   m_SubsetIndices: 
@@ -321,8 +323,34 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: HealthEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  RootObject: {fileID: 0}
+  RootObject: {fileID: 177658}
   EditorHealth: 10
+--- !u!114 &11472616
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 424939ba6a045d34c847d85864812deb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: {fileID: 11469972}
+  AttackRangeSphere: {fileID: 13576294}
+  Spawner: {fileID: 11497258}
+--- !u!114 &11476702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8cef80ee603f0249b801feedb616199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Attacker: {fileID: 11497258}
 --- !u!114 &11497258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -339,7 +367,7 @@ MonoBehaviour:
   AttachBulletToSpawner: 1
   attackCooldown: 0.25
   BulletPrefab: {fileID: 161148, guid: b20c3e9732fdf5747b633a172188ca30, type: 2}
-  BulletSpawnTransform: {fileID: 423848}
+  BulletSpawnTransform: {fileID: 460498}
   MinDistance: 0
   RotateBulletToTarget: 0
   BulletSpawned:

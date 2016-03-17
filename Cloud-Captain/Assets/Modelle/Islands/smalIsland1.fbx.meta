@@ -1,25 +1,15 @@
 fileFormatVersion: 2
-guid: d249b6f54ad795b4f8fd21ff7cc10cc6
-timeCreated: 1458078846
+guid: 96bdb900a5cf60e4f95234e3840f705b
+timeCreated: 1458173256
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
-    100002: Icosphere
-    100004: SmalIsland1
     400000: //RootNode
-    400002: Icosphere
-    400004: SmalIsland1
-    2300000: Icosphere
-    2300002: SmalIsland1
-    2300004: //RootNode
-    3300000: Icosphere
-    3300002: SmalIsland1
-    3300004: //RootNode
-    4300000: Icosphere
-    4300002: SmalIsland1
-    4300004: BigIsland1
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: SmalIsland1
   materials:
     importMaterials: 1
     materialName: 0

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3c48981709e91ce44ab1fca512c37c25
-timeCreated: 1458056351
+guid: 9e9bb12d73ed43a49b91ec1587d2f598
+timeCreated: 1458173257
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Grid
+    4300000: BigIsland1
   materials:
     importMaterials: 1
     materialName: 0
