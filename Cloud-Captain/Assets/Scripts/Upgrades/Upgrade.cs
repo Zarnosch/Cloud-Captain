@@ -8,7 +8,7 @@ public abstract class Upgrade : MonoBehaviour
         /// <summary>Dont uses this as a upgrade.</summary>
         None,
 
-        Schild, Range, Life, ShipRepair, BuildingRepair, MovementSpeed, ProductionSpeed, Damage
+        Shild, Range, Life, ShipRepair, BuildingRepair, MovementSpeed, ProductionSpeed, Damage
     }
 
     /// <summary>Which upgrades can be used on a given object?</summary>
@@ -81,14 +81,18 @@ public abstract class Upgrade : MonoBehaviour
         return GetNumUsedUpgrades() < GetNumMaxUpgrades();
     }
 
+
+    protected abstract EUpgrade[] GetAvaibleUpgrades();
+
+    protected abstract void OnAwake();
+
     public abstract int GetNumMaxUpgrades();
 
     protected abstract void OnUpgrade(EUpgrade upgrade);
 
 
-    protected abstract EUpgrade[] GetAvaibleUpgrades();
 
-    protected abstract void OnAwake();
+
 
 
 

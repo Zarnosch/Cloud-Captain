@@ -12,6 +12,7 @@ GameObject:
   - 65: {fileID: 6525724}
   - 23: {fileID: 2342256}
   - 114: {fileID: 11441156}
+  - 114: {fileID: 11452964}
   m_Layer: 8
   m_Name: Nexus
   m_TagString: Player
@@ -87,6 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eda929f2e4aa3f418b26b31978a23da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RootObject: {fileID: 122860}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -107,10 +109,22 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: HealthEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  RootObject: {fileID: 122860}
-  EditorHealth: 10
   health: -1
   maxHealth: 0
+--- !u!114 &11452964
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33dda921b0325304cb7d0a1f47ee0fde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AvaibleUpgrades: 
+  UsedUpgrades: 
+  Health: {fileID: 11441156}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

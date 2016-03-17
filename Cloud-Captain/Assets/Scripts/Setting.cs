@@ -6,8 +6,6 @@ public static class Setting
 
     public const float BULLETSPEED = 0;
     
-
-
     /**
     #### Max upgrade slots for Buildings
     **/
@@ -117,11 +115,6 @@ public static class Setting
     public const int UPGARDE_REG_SHIELD_PER_SEC = 5;
 
     /// <summary>
-    /// the upgrade adds that much health to the building / ship
-    /// </summary>
-    public const int UPGARDE_PLUS_HEALTH = 600;
-
-    /// <summary>
     /// a ship heals with this amount buildings and other ships (only one per upgrade)
     /// </summary>
     public const int UPGARDE_REPAIR_PER_SEC = 3;
@@ -216,8 +209,6 @@ public static class Setting
     public const float TESLA_TOWER_UPGRADE_ATTACK_RADIUS_INCREASE   = 1.05f;
     public const float TESLA_TOWER_UPGRADE_HEALTH_INCREASE          = 1.05f;
 
-    //TODO: schild:
-
     #endregion
 
     #region ARTILLERY_TOWER
@@ -259,16 +250,20 @@ public static class Setting
     #region NEXUS
     /********************************************* NEXUS */
 
-    public static readonly Res NEXUS_RES_COS    = new Res(1500, 1500, 5);
-    public const int NEXUS_DEFAULT_HEALTH       = 1500;
+    public static readonly Res NEXUS_RES_COS            = new Res(1500, 1500, 5);
+    public const int NEXUS_DEFAULT_HEALTH               = 1500;
+
+    public const float NEXUS_UPGRADE_HEALTH_INCREASE    = 1.05f;
 
     #endregion
 
     #region SHIPYARD
     /********************************************* SHIPYARD */
 
-    public static readonly Res SHIPYARD_RES_COST    = new Res(400, 400, 0);
-    public const int SHIPYARD_DEFAULT_HEALTH        = 250;
+    public static readonly Res SHIPYARD_RES_COST            = new Res(400, 400, 0);
+    public const int SHIPYARD_DEFAULT_HEALTH                = 250;
+
+    public const float SHIPYARD_UPGRADE_HEALTH_INCREASE     = 1.05f;
 
     #endregion
 
