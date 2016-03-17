@@ -38,7 +38,7 @@ public static class Setting
 
     #region COMMON
 
-    public const float SHIP_BULLET_SPEED = 5.0f;
+    public const float SHIP_BULLET_SPEED = 25.0f;
     public const float SHIP_RANGE_INCREASE = 1.1f;
     public const float SHIP_DAMAGE_INCREASE = 1.05f;
     public const float SHIP_HEALTH_INCREASE = 1.05f;

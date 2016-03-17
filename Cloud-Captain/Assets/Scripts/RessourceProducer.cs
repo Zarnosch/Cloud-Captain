@@ -25,6 +25,7 @@ public class RessourceProducer : MonoBehaviour
         if (TimeToResGain <= 0.0f)
         {
             TimeToResGain = TimeToResGainCooldown;
+
             PlayerManager.Instance.ChangeResource(Res * ResGain);
         }
 
