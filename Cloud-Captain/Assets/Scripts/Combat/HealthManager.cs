@@ -4,26 +4,26 @@ using System.Collections;
 [RequireComponent(typeof(Collider))]
 public class HealthManager : MonoBehaviour 
 {
+    public GameObject RootObject;
+ 
+
     public HealthChangedEvent OnHealthChanged;
     public HealthEvent OnZeroHealth;
 
-    public GameObject RootObject;
-    public int EditorHealth;
+    [ReadOnly]
+    public int health = -1;
+    [ReadOnly]
+    public int maxHealth;
 
     private bool died = false;
 
-    public int health = -1;
-
-    public int maxHealth;
-   
 
     void Start()
     {
         if (RootObject == null)
             RootObject = gameObject;
 
-        health = EditorHealth;
-        maxHealth = EditorHealth;
+        health = maxHealth;
     }
 
     public int GetCurHealth()
@@ -34,6 +34,11 @@ public class HealthManager : MonoBehaviour
     public int GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    public float GetHealthPercent()
+    {
+        return (float)health / (float)maxHealth;
     }
 
     public bool IsDamaged()
@@ -47,8 +52,6 @@ public class HealthManager : MonoBehaviour
         {
             OnHealthChanged.Invoke(this, delta);
             health += delta;
-
-            EditorHealth = health;
 
             if (health <= 0 && !died)
             {
@@ -67,4 +70,15 @@ public class HealthManager : MonoBehaviour
         Destroy(manager.RootObject);
     }
 
+
+    public void SetMaxHealth(int health)
+    {
+        this.maxHealth = health;
+    }
+
+    public void SetCurAndMaxHealth(int health)
+    {
+        this.maxHealth = health;
+        this.health = health;
+    }
 }

@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 405322}
   - 33: {fileID: 3320764}
   - 23: {fileID: 2314750}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: Torus001
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ GameObject:
   - 33: {fileID: 3330392}
   - 23: {fileID: 2346964}
   - 114: {fileID: 11424348}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: Sphere001
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - 4: {fileID: 416534}
   - 33: {fileID: 3318470}
   - 23: {fileID: 2360368}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: Object001
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -60,12 +60,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 484072}
-  - 65: {fileID: 6521204}
   - 54: {fileID: 5438502}
+  - 136: {fileID: 13652616}
   - 114: {fileID: 11469972}
   - 114: {fileID: 11476702}
-  - 114: {fileID: 11472616}
-  m_Layer: 14
+  - 114: {fileID: 11465750}
+  m_Layer: 8
   m_Name: TeslaTower
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 142192}
   m_LocalRotation: {x: 0.000000002852741, y: 0.9914449, z: -0.000000021668715, w: 0.1305262}
-  m_LocalPosition: {x: 0, y: 0.054, z: 0}
+  m_LocalPosition: {x: 0, y: -0.812, z: 0}
   m_LocalScale: {x: 0.72712874, y: 0.72712874, z: 0.72712874}
   m_Children: []
   m_Father: {fileID: 484072}
@@ -107,8 +107,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172000}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.061, z: 0}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.195, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 484072}
@@ -120,7 +120,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182704}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.258, z: 0}
+  m_LocalPosition: {x: 0, y: 0.392, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 484072}
@@ -131,8 +131,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 158812}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.258, z: 0.0000000015639039}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.392, z: 0}
   m_LocalScale: {x: 0.7271287, y: 0.7271287, z: 0.7271287}
   m_Children: []
   m_Father: {fileID: 484072}
@@ -144,7 +144,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 177658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -12.49}
+  m_LocalPosition: {x: -1.1812544, y: 0, z: -8.37202}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 416534}
@@ -267,18 +267,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &6521204
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 177658}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.48, z: 0}
 --- !u!114 &11424348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -292,6 +280,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   heightFactor: 0.1
+--- !u!114 &11465750
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa9fb32e4b122b42aa01477182ba774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AvaibleUpgrades: 
+  UsedUpgrades: 
+  BulletSpawner: {fileID: 11497258}
+  RangeSphere: {fileID: 13576294}
+  Health: {fileID: 11469972}
 --- !u!114 &11469972
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -303,6 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eda929f2e4aa3f418b26b31978a23da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RootObject: {fileID: 177658}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -323,22 +328,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: HealthEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  RootObject: {fileID: 177658}
-  EditorHealth: 10
---- !u!114 &11472616
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 177658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 424939ba6a045d34c847d85864812deb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: {fileID: 11469972}
-  AttackRangeSphere: {fileID: 13576294}
-  Spawner: {fileID: 11497258}
+  health: -1
+  maxHealth: 0
 --- !u!114 &11476702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -368,12 +359,16 @@ MonoBehaviour:
   attackCooldown: 0.25
   BulletPrefab: {fileID: 161148, guid: b20c3e9732fdf5747b633a172188ca30, type: 2}
   BulletSpawnTransform: {fileID: 460498}
-  MinDistance: 0
   RotateBulletToTarget: 0
+  MinDistance: 0
   BulletSpawned:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: VoidEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  BulletDamage: 0
+  BulletSpeed: 0
+  SecondaryDamage: 0
+  SecondaryRange: 0
 --- !u!135 &13576294
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -386,6 +381,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 7.09
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &13652616
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177658}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.35
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.25, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+using System;
 
 [RequireComponent(typeof(SphereCollider))]
 public class BulletSpawner : MonoBehaviour 
@@ -15,10 +15,19 @@ public class BulletSpawner : MonoBehaviour
     public float attackCooldown;
     public GameObject BulletPrefab;
     public Transform BulletSpawnTransform;
-    public float MinDistance = 0.0f;
     public bool RotateBulletToTarget = false;
-
+    public float MinDistance = 0.0f;
     public VoidEvent BulletSpawned;
+
+    [ReadOnly]
+    public int BulletDamage;
+    [ReadOnly]
+    public float BulletSpeed;
+    [ReadOnly]
+    public int SecondaryDamage;
+    [ReadOnly]
+    public float SecondaryRange;
+
 
 
     private ABulletBehavior spawnedBullet;
@@ -50,9 +59,15 @@ public class BulletSpawner : MonoBehaviour
         else
         {
             if(currentTarget != null)
-                Attack(currentTarget);
+            {
+                if (!Attack(currentTarget))
+                {
+                    currentTarget = ChangeTarget();
+                }
+            }
+                
 
-            else if (potentialTargetsInArea.Count > 0)
+            else 
             {
                 while (potentialTargetsInArea.Count > 0 && potentialTargetsInArea[0] == null)
                 {
@@ -68,6 +83,11 @@ public class BulletSpawner : MonoBehaviour
         }
     }
 
+    private GameObject ChangeTarget()
+    {
+        return potentialTargetsInArea[UnityEngine.Random.Range(0, potentialTargetsInArea.Count)];
+    }
+
     private bool IsViableTargetObject(GameObject target)
     {
         bool canAttackLayer = true;
@@ -78,11 +98,11 @@ public class BulletSpawner : MonoBehaviour
         return target.tag != gameObject.tag && canAttackLayer;
     }
 
-    public void Attack(GameObject target)
+    public bool Attack(GameObject target)
     {
         if (!IsViableTargetObject(target))
         {
-            return;
+            return false;
         }
 
         else 
@@ -93,7 +113,7 @@ public class BulletSpawner : MonoBehaviour
 
             if(distance > sphereCollider.radius || distance < MinDistance)
             {
-                return;
+                return false;
             }
 
             //is the spawner ready to spawn bullets? (cooldown)
@@ -104,12 +124,13 @@ public class BulletSpawner : MonoBehaviour
                 if (spawnMode == SpawnMode.Instantiate || spawnedBullet == null)
                 {
                     InstantiateBulletPrefab(target);
+                    SendValuesToBullet(target);
                 }
                   
 
                 else if (spawnMode == SpawnMode.ReUse)
                 {
-                    spawnedBullet.StartBullet(target, BulletSpawnTransform, MinDistance, sphereCollider.radius);
+                    SendValuesToBullet(target);
                 }
 
                 if (RotateBulletToTarget)
@@ -119,6 +140,8 @@ public class BulletSpawner : MonoBehaviour
 
                 BulletSpawned.Invoke();
             }
+
+            return true;
         }
 
    
@@ -126,8 +149,12 @@ public class BulletSpawner : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if(IsViableTargetObject(collider.gameObject))
+        if (IsViableTargetObject(collider.gameObject))
+        {
             potentialTargetsInArea.Add(collider.gameObject);
+         
+        }
+ 
     }
 
     void OnTriggerExit(Collider collider)
@@ -144,13 +171,20 @@ public class BulletSpawner : MonoBehaviour
         {
             GameObject spawnedObject = (GameObject)Instantiate(BulletPrefab, BulletSpawnTransform.position, Quaternion.identity);
             spawnedBullet = spawnedObject.GetComponent<ABulletBehavior>();
-            Debug.Assert(spawnedBullet != null, "A spawned bullet needs an ABulletBehavior script!");
-            spawnedBullet.StartBullet(target, BulletSpawnTransform, MinDistance, sphereCollider.radius);
             spawnedBullet.tag = gameObject.tag;
+            Debug.Assert(spawnedBullet != null, "A spawned bullet needs an ABulletBehavior script!");
 
             if (AttachBulletToSpawner)
                 spawnedBullet.transform.SetParent(gameObject.transform);
         }
+
+    }
+
+    private void SendValuesToBullet(GameObject target)
+    {
+        spawnedBullet.SetSecondaryParameter(SecondaryRange, SecondaryDamage);
+
+        spawnedBullet.StartBullet(target.transform, BulletSpawnTransform, MinDistance, sphereCollider.radius, BulletSpeed, BulletDamage);
 
     }
 

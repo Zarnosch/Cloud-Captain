@@ -2,25 +2,52 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class RepairShips : MonoBehaviour {
+public class RepairShips : MonoBehaviour
+{
+
+    public enum RepairMode { SingleTarget, InRadius }
+
+    public RepairMode Mode = RepairMode.SingleTarget;
 
     private List<HealthManager> shipsHealthInRange = new List<HealthManager>();
     private List<HealthManager> damagedShips = new List<HealthManager>();
 
     private HealthManager currentFocus;
 
-    private float maxHealCooldown = 1.0f;
-    private float curHealCooldown = 1.0f;
-    private int healAmount = 1;
+    [ReadOnly]
+    public float maxHealCooldown = 1.0f;
+    [ReadOnly]
+    public float curHealCooldown = 1.0f;
+    [ReadOnly]
+    public int healAmount = 1;
+
+
+    void Start()
+    {
+        curHealCooldown = maxHealCooldown;
+    }
 
     public void Update()
     {
-
-        if(curHealCooldown > 0.0f)
+        if (curHealCooldown > 0.0f)
         {
             curHealCooldown -= Time.deltaTime;
         }
+     
+   
+        else
+        {
+            for (int i = 0; i < damagedShips.Count; i++)
+            {
+                damagedShips[i].ChangeHealth(healAmount);
+                curHealCooldown = maxHealCooldown;
+            }
+        }
+    }
 
+
+    void HealSingle()
+    {
         if (currentFocus && curHealCooldown <= 0.0f)
         {
 
@@ -29,14 +56,14 @@ public class RepairShips : MonoBehaviour {
                 currentFocus.ChangeHealth(healAmount);
                 curHealCooldown = maxHealCooldown;
             }
-             
+
             else
             {
                 damagedShips.Remove(currentFocus);
                 currentFocus = null;
             }
-            
- 
+
+
         }
 
         else
@@ -45,11 +72,9 @@ public class RepairShips : MonoBehaviour {
             {
                 currentFocus = damagedShips[0];
             }
-              
+
         }
-
     }
-
 
     void OnTriggerEnter(Collider other)
     {

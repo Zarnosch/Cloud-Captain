@@ -4,28 +4,46 @@ using System.Collections;
 
 public abstract class ABulletBehavior : MonoBehaviour 
 {
-    public int Damage = 0;
+
     public bool KillOnImpact = false;
 
     public TransformEvent OnImpact;
+
+    [ReadOnly]
+    public int damage = 0;
+    [ReadOnly]
+    public float bulletSpeed;
+    [ReadOnly]
+    public float secondaryRange;
+    [ReadOnly]
+    public int secondaryDamage;
 
     protected GameObject bulletRoot;
     protected Transform spawnTransform;
 
     protected float minDistance;
     protected float maxDistance;
-    protected GameObject target;
+    protected Transform targetTransform;
 
 
-    public void StartBullet(GameObject target, Transform spawnPoint, float minDist, float maxDist)
+    public void SetSecondaryParameter(float range, int damage)
+    {
+        this.secondaryRange = range;
+        this.secondaryDamage = damage;
+    }
+
+
+    public void StartBullet(Transform targetTransform, Transform spawnPoint, float minDist, float maxDist, float speed, int bulletDamage)
     {            
         if (bulletRoot == null)
             bulletRoot = gameObject;
 
         this.spawnTransform = spawnPoint;
-        this.target = target;
+        this.targetTransform = targetTransform;
         this.minDistance = minDist;
         this.maxDistance = maxDist;
+        this.bulletSpeed = speed;
+        this.damage = bulletDamage;
 
         OnSpawn();
     }
@@ -41,7 +59,7 @@ public abstract class ABulletBehavior : MonoBehaviour
 
             if (health != null)
             {
-                health.ChangeHealth(-Damage);
+                health.ChangeHealth(-damage);
                 OnImpact.Invoke(bulletRoot.transform);
 
                 if (KillOnImpact)

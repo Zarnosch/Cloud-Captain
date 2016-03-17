@@ -8,7 +8,8 @@ public class PlayerManager : MonoBehaviour
 
     public List<GameObject> selectedUnits;
 
-    //TODO: start resources:
+
+    [ReadOnly]
     [SerializeField]
     private Res resources = new Res(0, 0, 0);
 
@@ -22,15 +23,19 @@ public class PlayerManager : MonoBehaviour
 
     public void ChangeResource(Res res)
     {
-      
-        resources += res;
+        ChangeResource(res.Matter, res.Energy, res.Engine);
     }
 
     public void ChangeResource(int matter, int energy, int engine)
     {
         resources.Matter += matter;
+        resources.Matter = Mathf.Clamp(resources.Matter, 0, Setting.MAX_RES);
+
         resources.Energy += energy;
+        resources.Energy = Mathf.Clamp(resources.Energy, 0, Setting.MAX_RES);
+
         resources.Engine += engine;
+        resources.Energy = Mathf.Clamp(resources.Engine, 0, Setting.MAX_RES);
     }
 
     public Res GetResources()

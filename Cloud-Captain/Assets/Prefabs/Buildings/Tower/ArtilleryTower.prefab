@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 414800}
   - 33: {fileID: 3311644}
   - 23: {fileID: 2312970}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: Torus001
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -46,8 +46,8 @@ GameObject:
   - 54: {fileID: 5471642}
   - 114: {fileID: 11457854}
   - 114: {fileID: 11434554}
-  - 114: {fileID: 11461764}
-  m_Layer: 14
+  - 114: {fileID: 11475858}
+  m_Layer: 8
   m_Name: ArtilleryTower
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - 4: {fileID: 441474}
   - 33: {fileID: 3354640}
   - 23: {fileID: 2384852}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: Object001
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 174490}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.22, y: 0, z: -11.72}
+  m_LocalPosition: {x: -1.0187516, y: -0.45636773, z: -10.957672}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 441474}
@@ -232,12 +232,16 @@ MonoBehaviour:
   attackCooldown: 2
   BulletPrefab: {fileID: 134878, guid: a958cff2226f8e64389e5af8436b506a, type: 2}
   BulletSpawnTransform: {fileID: 454348}
-  MinDistance: 10
   RotateBulletToTarget: 0
+  MinDistance: 10
   BulletSpawned:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: VoidEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  BulletDamage: 0
+  BulletSpeed: 0
+  SecondaryDamage: 0
+  SecondaryRange: 0
 --- !u!114 &11434554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -261,6 +265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eda929f2e4aa3f418b26b31978a23da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RootObject: {fileID: 0}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -281,9 +286,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: HealthEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  RootObject: {fileID: 0}
-  EditorHealth: 10
---- !u!114 &11461764
+  health: -1
+  maxHealth: 0
+--- !u!114 &11475858
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -291,12 +296,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 174490}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd90df6c20e54c84a8c0ede64ef5f98c, type: 3}
+  m_Script: {fileID: 11500000, guid: 937050bca08312c4e859c6ee4d406afa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AvaibleUpgrades: 
+  UsedUpgrades: 
   Health: {fileID: 11457854}
-  Spawner: {fileID: 11412660}
-  AttackRadiusSphere: {fileID: 13538584}
+  AttackRadius: {fileID: 13538584}
+  BulletSpawner: {fileID: 11412660}
 --- !u!135 &13538584
 SphereCollider:
   m_ObjectHideFlags: 1
