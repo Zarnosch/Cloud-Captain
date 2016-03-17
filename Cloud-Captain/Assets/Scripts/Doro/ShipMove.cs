@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ShipMove : MonoBehaviour {
+
+	public float speed;
+	public float range;
+	public Vector3 targetPosition;
 
 	private Vector3 minRange;
 	private Vector3 maxRange;
@@ -33,13 +37,9 @@ public class ShipMove : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		//------Testing------
-
-		m_speed = 10f;
-		m_targetPosition = new Vector3 (20, 0, 20);
-		m_range = 5f;
-
-		//----------------------
+		m_speed = speed;
+		m_targetPosition = targetPosition;
+		m_range = range;
 
 		minRange = new Vector3 (m_targetPosition.x - m_range, 0, m_targetPosition.z - m_range);
 		maxRange = new Vector3 (m_targetPosition.x + m_range, 0, m_targetPosition.z + m_range);

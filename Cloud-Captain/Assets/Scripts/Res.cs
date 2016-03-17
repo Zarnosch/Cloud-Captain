@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 
 //enables unity to show variable of Res in the inspector:
+/// <summary>Order: Matter, Energy, Engine</summary>
 [Serializable]
 public struct Res
 {
@@ -15,6 +16,12 @@ public struct Res
         Matter = matter;
         Energy = energy;
         Engine = engine;
+    }
+
+    
+    public bool IsEnough(Res other)
+    {
+        return this.Matter >= other.Matter && this.Energy >= other.Energy && this.Engine >= other.Engine;
     }
 
     public static Res operator *(Res left, int right)
@@ -39,5 +46,6 @@ public struct Res
     {
         return new Res(r1.Matter / r2.Matter, r1.Energy / r2.Energy, r1.Engine / r2.Engine);
     }
+
 
 }

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class CameraMovement : MonoBehaviour {
@@ -6,10 +6,10 @@ public class CameraMovement : MonoBehaviour {
 
 	//-----------static
 	//Edges for the world
-	private float _worldEdgeLeft;
-	private float _worldEdgeRight;
-	private float _worldEdgeTop;
-	private float _worldEdgeBottom;
+	public float worldEdgeLeft;
+	public float worldEdgeRight;
+	public float worldEdgeTop;
+	public float worldEdgeBottom;
 
 	//Edges for starting movement
 	private float _moveEdgeRight;
@@ -19,8 +19,8 @@ public class CameraMovement : MonoBehaviour {
 
 	private Vector2 _cameraRect; // x = Width, y = Height
 	private Vector3 _cameraStartPos;
-	private float _cameraMoveSpeed;	//maxspeed for camera movement
-	private float _cameraEdgeSpeed; //how fast the speed increases at an edge
+	public float cameraMoveMaxSpeed;	//maxspeed for camera movement
+	public float cameraEdgeIncreaseSpeed; //how fast the speed increases at an edge
 
 
 	//------------variable
@@ -47,13 +47,6 @@ public class CameraMovement : MonoBehaviour {
 
 		camera = GetComponent<Camera> ();
 
-		_cameraStartPos = testStartPos;
-
-		_worldEdgeRight = testMaxRight;
-		_worldEdgeLeft = testMaxLeft;
-		_worldEdgeTop = testMaxTop;
-		_worldEdgeBottom = testMaxBottom;
-
 		_cameraRect.x = camera.pixelWidth;
 		_cameraRect.y = camera.pixelHeight;
 
@@ -63,12 +56,8 @@ public class CameraMovement : MonoBehaviour {
 		_moveEdgeTop = _cameraRect.y * 0.95f;
 		_moveEdgeBottom = _cameraRect.y * 0.05f;
 
-		//set Movementspeed (max value)
-		_cameraMoveSpeed = testSpeed;
-		_cameraEdgeSpeed = testEdgeSpeed;
-
 		//set camera to startpos
-		camera.transform.position = _cameraStartPos;
+		//camera.transform.position = _cameraStartPos;
 
 	}
 
@@ -81,30 +70,30 @@ public class CameraMovement : MonoBehaviour {
 
 		//move right
 		if (_mouseCurrentPos.x >= _moveEdgeRight) {
-			_smoothSpeed = (_moveEdgeRight - _mouseCurrentPos.x) *(-_cameraEdgeSpeed);
-			_cameraMovePos.x += _smoothSpeed * _cameraMoveSpeed * Time.deltaTime;
+			_smoothSpeed = (_moveEdgeRight - _mouseCurrentPos.x) *(-cameraEdgeIncreaseSpeed);
+			_cameraMovePos.x += _smoothSpeed * cameraMoveMaxSpeed * Time.deltaTime;
 		}
 
 		//move left
 		if (_mouseCurrentPos.x <= _moveEdgeLeft) {
-			_smoothSpeed = (_mouseCurrentPos.x - _moveEdgeLeft) *(-_cameraEdgeSpeed);
-			_cameraMovePos.x -= _smoothSpeed * _cameraMoveSpeed * Time.deltaTime;
+			_smoothSpeed = (_mouseCurrentPos.x - _moveEdgeLeft) *(-cameraEdgeIncreaseSpeed);
+			_cameraMovePos.x -= _smoothSpeed * cameraMoveMaxSpeed * Time.deltaTime;
 		}
 
 		//move up
 		if (_mouseCurrentPos.y >= _moveEdgeTop) {
-			_smoothSpeed = (_moveEdgeTop - _mouseCurrentPos.y) *(-_cameraEdgeSpeed);
-			_cameraMovePos.z += _smoothSpeed * _cameraMoveSpeed * Time.deltaTime;
+			_smoothSpeed = (_moveEdgeTop - _mouseCurrentPos.y) *(-cameraEdgeIncreaseSpeed);
+			_cameraMovePos.z += _smoothSpeed * cameraMoveMaxSpeed * Time.deltaTime;
 		}
 
 		//move down
 		if (_mouseCurrentPos.y <= _moveEdgeBottom) {
-			_smoothSpeed = (_mouseCurrentPos.y - _moveEdgeBottom) *(-_cameraEdgeSpeed);
-			_cameraMovePos.z -= _smoothSpeed * _cameraMoveSpeed * Time.deltaTime;
+			_smoothSpeed = (_mouseCurrentPos.y - _moveEdgeBottom) *(-cameraEdgeIncreaseSpeed);
+			_cameraMovePos.z -= _smoothSpeed * cameraMoveMaxSpeed * Time.deltaTime;
 		}
 
 		// proof worldedges
-		if (_cameraMovePos.x <= _worldEdgeRight && _cameraMovePos.x >= _worldEdgeLeft && _cameraMovePos.z <= _worldEdgeTop && _cameraMovePos.z >= _worldEdgeBottom) {
+		if (_cameraMovePos.x <= worldEdgeRight && _cameraMovePos.x >= worldEdgeLeft && _cameraMovePos.z <= worldEdgeTop && _cameraMovePos.z >= worldEdgeBottom) {
 			camera.transform.position = _cameraMovePos;
 		}
 
