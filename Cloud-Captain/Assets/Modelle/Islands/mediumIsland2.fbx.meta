@@ -6,10 +6,29 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: BigIsland1
+    100004: Icosphere
+    100006: Icosphere.001
+    100008: SmalIsland1
     400000: //RootNode
+    400002: BigIsland1
+    400004: Icosphere
+    400006: Icosphere.001
+    400008: SmalIsland1
     2300000: //RootNode
+    2300002: BigIsland1
+    2300004: Icosphere
+    2300006: Icosphere.001
+    2300008: SmalIsland1
     3300000: //RootNode
+    3300002: BigIsland1
+    3300004: Icosphere
+    3300006: Icosphere.001
+    3300008: SmalIsland1
     4300000: Icosphere.001
+    4300002: Icosphere
+    4300004: BigIsland1
+    4300006: SmalIsland1
   materials:
     importMaterials: 1
     materialName: 0
@@ -31,7 +50,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -53,7 +72,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []

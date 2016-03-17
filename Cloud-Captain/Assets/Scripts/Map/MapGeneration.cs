@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class MapGeneration : MonoBehaviour
 {
+    public bool generateLevelOnStart = false;
+    public bool appendToGameObject = false;
+
     public GameObject SmallIsland;
     public GameObject BigIsland;
     public GameObject MidIsland1;
@@ -17,8 +20,15 @@ public class MapGeneration : MonoBehaviour
     // Array with radius from all islands
     float[] r;
 
-    // Use this for initialization
+    private GameObject rootObject;
+
     void Start()
+    {
+        if (generateLevelOnStart)
+            GenerateWorld();
+    }
+
+    public void GenerateWorld()
     {
         smallIslands = new List<Vector3>();
         midIslands1 = new List<Vector3>();
@@ -33,13 +43,7 @@ public class MapGeneration : MonoBehaviour
             MidIsland2.transform.lossyScale.x * Mathf.Max(MidIsland2.GetComponent<BoxCollider>().size.x, MidIsland2.GetComponent<BoxCollider>().size.z)
             };
 
-        generateIslands(20, 1, 10, 10, 5);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        generateIslands(20, 1, 10, 10, 5);     
     }
 
     /// <summary>
@@ -60,8 +64,12 @@ public class MapGeneration : MonoBehaviour
             Vector3 pos = new Vector3(Random.Range(500, 10000), 0, Random.Range(-10000, 10000));
             if (!islandCollision(pos, r[0]))
             {
-                Instantiate(SmallIsland, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
+                GameObject newObj = (GameObject)Instantiate(SmallIsland, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
                 smallIslands.Add(pos);
+
+                if(appendToGameObject)
+                    newObj.transform.SetParent(gameObject.transform);
+
             }
             else i--;
         }
@@ -70,8 +78,11 @@ public class MapGeneration : MonoBehaviour
             Vector3 pos = new Vector3(Random.Range(5000, 10000), 0, Random.Range(-5000, 5000));
             if (!islandCollision(pos, r[1]))
             {
-                Instantiate(BigIsland, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
+                GameObject newObj = (GameObject) Instantiate(BigIsland, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
                 bigIslands.Add(pos);
+
+                if (appendToGameObject)
+                    newObj.transform.SetParent(gameObject.transform);
             }
             else i--;
         }
@@ -80,8 +91,12 @@ public class MapGeneration : MonoBehaviour
             Vector3 pos = new Vector3(Random.Range(500, 10000), 0, Random.Range(-10000, 10000));
             if (!islandCollision(pos, r[2]))
             {
-                Instantiate(MidIsland1, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
+                GameObject newObj = (GameObject)Instantiate(MidIsland1, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
                 midIslands1.Add(pos);
+
+
+                if (appendToGameObject)
+                    newObj.transform.SetParent(gameObject.transform);
             }
             else i--;
         }
@@ -90,8 +105,12 @@ public class MapGeneration : MonoBehaviour
             Vector3 pos = new Vector3(Random.Range(500, 10000), 0, Random.Range(-10000, 10000));
             if (!islandCollision(pos, r[3]))
             {
-                Instantiate(MidIsland2, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
+                GameObject newObj = (GameObject)Instantiate(MidIsland2, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
                 midIslands2.Add(pos);
+
+
+                if (appendToGameObject)
+                    newObj.transform.SetParent(gameObject.transform);
             }
             else i--;
         }
@@ -99,19 +118,31 @@ public class MapGeneration : MonoBehaviour
         //Mirror all islands
         foreach (Vector3 island in smallIslands)
         {
-            Instantiate(SmallIsland, island * -1, Quaternion.Euler(270, Random.Range(0, 360), 0));
+            GameObject newObj = (GameObject)Instantiate(SmallIsland, island * -1, Quaternion.Euler(270, Random.Range(0, 360), 0));
+
+            if (appendToGameObject)
+                newObj.transform.SetParent(gameObject.transform);
         }
         foreach (Vector3 island in bigIslands)
         {
-            Instantiate(BigIsland, island * -1, Quaternion.Euler(270, Random.Range(0, 360), 0));
+            GameObject newObj = (GameObject)Instantiate(BigIsland, island * -1, Quaternion.Euler(270, Random.Range(0, 360), 0));
+
+            if (appendToGameObject)
+                newObj.transform.SetParent(gameObject.transform);
         }
         foreach (Vector3 island in midIslands1)
         {
-            Instantiate(MidIsland1, island * -1, Quaternion.Euler(270, Random.Range(0, 360), 0));
+            GameObject newObj = (GameObject)Instantiate(MidIsland1, island * -1, Quaternion.Euler(270, Random.Range(0, 360), 0));
+
+            if (appendToGameObject)
+                newObj.transform.SetParent(gameObject.transform);
         }
         foreach (Vector3 island in midIslands2)
         {
-            Instantiate(MidIsland2, island * -1, Quaternion.Euler(270, Random.Range(0, 360), 0));
+            GameObject newObj = (GameObject)Instantiate(MidIsland2, island * -1, Quaternion.Euler(270, Random.Range(0, 360), 0));
+
+            if (appendToGameObject)
+                newObj.transform.SetParent(gameObject.transform);
         }
 
         //Generate Islands on the mirror edge
@@ -123,8 +154,11 @@ public class MapGeneration : MonoBehaviour
             {
                 if (!islandCollision(pos, r[2]))
                 {
-                    Instantiate(MidIsland1, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
+                    GameObject newObj = (GameObject)Instantiate(MidIsland1, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
                     midIslands1.Add(pos);
+
+                    if (appendToGameObject)
+                        newObj.transform.SetParent(gameObject.transform);
                 }
                 else i--;
             }
@@ -132,8 +166,11 @@ public class MapGeneration : MonoBehaviour
             {
                 if (!islandCollision(pos, r[3]))
                 {
-                    Instantiate(MidIsland2, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
+                    GameObject newObj = (GameObject)Instantiate(MidIsland2, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
                     midIslands2.Add(pos);
+
+                    if (appendToGameObject)
+                        newObj.transform.SetParent(gameObject.transform);
                 }
                 else i--;
             }

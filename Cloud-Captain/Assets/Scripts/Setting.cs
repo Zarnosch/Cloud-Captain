@@ -4,26 +4,19 @@ using System.Collections;
 public static class Setting
 {
 
-    public const float BULLETSPEED = 0;
+	public enum ObjectType 
+	{
+		// eco
+		Nexus, Settlement, PowerPlant, Mine, Shipyard, Workshop,
+		// tower
+		TeslaTower,ArtilleryTower,
+		// ships
+		Scouter, SettleShip, SmallShip, MediumShip, BigShip
+	}
+
     
-    /********************************************* Buildings */
-    /**
-    #### Max Health for Buildings
-    **/
-    public const int MAX_HEALTH_TOWER = 500;
-
-    public const int MAX_HEALTH_NEXUS = 1500;
-
-    public const int MAX_HEALTH_WORKSHOP = 250;
-
-    public const int MAX_HEALTH_SHIPYARD = 250;
-
-    public const int MAX_HEALTH_POWERPLANT = 150;
-
-    public const int MAX_HEALTH_MINE = 150;
-
-    public const int MAX_HEALTH_SETTLEMENT = 750;
-
+    
+    
     /**
     #### Max upgrade slots for Buildings
     **/
@@ -35,86 +28,93 @@ public static class Setting
 
     public const int MAX_SLOTS_SHIPYARD = 2;
 
-    public const int MAX_SLOTS_POWERPLANT = 2;
-
-    public const int MAX_SLOTS_MINE = 2;
+    public const int MAX_SLOTS_MINE_POWER_PLANT = 2;
 
     public const int MAX_SLOTS_SETTLEMENT = 0;
 
+    #region SHIPS
     /********************************************* Ships */
-    /**
-    #### Max Health for Ships
-    **/
-    public const int MAX_HEALTH_SETTLESHIP = 750;
 
-    public const int MAX_HEALTH_SCOUTER = 250;
 
-    public const int MAX_HEALTH_SMALLSHIP = 400;
+    #region COMMON
 
-    public const int MAX_HEALTH_MEDIUMSHIP = 800;
+    public const float SHIP_BULLET_SPEED = 5.0f;
+    public const float SHIP_RANGE_INCREASE = 1.1f;
+    public const float SHIP_DAMAGE_INCREASE = 1.05f;
+    public const float SHIP_HEALTH_INCREASE = 1.05f;
+    public const float SHIP_SPEED_INCREASE = 1.1f;
+    public const float SHIP_SHILD_INCREASE = 1.1f;
 
-    public const int MAX_HEALTH_BIGSHIP = 1200;
 
-    /**
-    #### Max MovementSpeed for Ships
-    **/
-    public const float MAX_SPEED_SETTLESHIP = 9f;
+    public const float SHIP_DEFAULT_REPAIR_COOLDOWN             = 5.0f;
+    public const int SHIP_DEFAULT_REPAIR_AMOUNT                 = 1;
+    public const float SHIP_UPGRADE_REPAIR_COOLDOWN_INCREASE    = 1.05f;
+    public const float SHIP_UPGRADE_REPAIR_AMOUNT_INCREASE      = 1.05f;
 
-    public const float MAX_SPEED_SCOUTER = 7f;
+    #endregion
 
-    public const float MAX_SPEED_SMALLSHIP = 5f;
+    #region SETTLESHIP
 
-    public const float MAX_SPEED_MEDIUMSHIP = 3.5f;
-
-    public const float MAX_SPEED_BIGSHIP = 2f;
-
-    /**
-    #### Max attack range for Ships
-    **/
-    public const float MAX_RANGE_SETTLESHIP = 0f;
-
-    public const float MAX_RANGE_SCOUTER = 50f;
-
-    public const float MAX_RANGE_SMALLSHIP = 60f;
-
-    public const float MAX_RANGE_MEDIUMSHIP = 60f;
-
-    public const float MAX_RANGE_BIGSHIP = 90f;
-
-    /**
-    #### Max damage per attack for Ships
-    **/
-    public const int MAX_DMG_SETTLESHIP = 0;
-
-    public const int MAX_DMG_SCOUTER = 10;
-
-    public const int MAX_DMG_SMALLSHIP = 40;
-
-    public const int MAX_DMG_MEDIUMSHIP = 60;
-
-    public const int MAX_DMG_BIGSHIP = 100;
-
-    /**
-    #### Max upgrade slots for Ships
-    **/
     public const int MAX_SLOTS_SETTLESHIP = 0;
+
+    public const int MAX_HEALTH_SETTLESHIP = 750;
+    public const float MAX_SPEED_SETTLESHIP = 9f;
+    public const float MAX_RANGE_SETTLESHIP = 0f;
+    public const int MAX_DMG_SETTLESHIP = 0;
+    public const float SETTLESHIP_BUILD_TIME = 100.0f;
+
+    #endregion
+
+
+    #region SCOUTER
 
     public const int MAX_SLOTS_SCOUTER = 1;
 
+    public const int MAX_HEALTH_SCOUTER = 250;
+    public const float MAX_SPEED_SCOUTER = 7f;
+    public const float MAX_RANGE_SCOUTER = 50f;
+    public const int MAX_DMG_SCOUTER = 10;
+    public const float SCOUTER_BUILD_TIME = 100.0f;
+
+    #endregion
+
+    #region SMALLSHIP
+
     public const int MAX_SLOTS_SMALLSHIP = 2;
+
+    public const int MAX_HEALTH_SMALLSHIP = 400;
+    public const float MAX_SPEED_SMALLSHIP = 5f;
+    public const float MAX_RANGE_SMALLSHIP = 60f;
+    public const int MAX_DMG_SMALLSHIP = 40;
+    public const float SMALLSHIP_BUILD_TIME = 100.0f;
+
+    #endregion
+
+    #region MEDIUMSHIP
 
     public const int MAX_SLOTS_MEDIUMSHIP = 4;
 
+    public const int MAX_HEALTH_MEDIUMSHIP = 800;
+    public const float MAX_SPEED_MEDIUMSHIP = 3.5f;
+    public const float MAX_RANGE_MEDIUMSHIP = 60f;
+    public const int MAX_DMG_MEDIUMSHIP = 60;
+    public const float MEDIUMSHIP_BUILD_TIME = 100.0f;
+
+    #endregion
+
+    #region BISSHIP
+
     public const int MAX_SLOTS_BIGSHIP = 6;
 
-    /**
-    #### Special things for buildings
-    **/
-    /// <summary>
-    /// a ship heals with this amount other ships
-    /// </summary>
-    public const int MAX_REPAIR_WORKSHOP_PER_SEC = 3;
+    public const int MAX_HEALTH_BIGSHIP = 1200;
+    public const float MAX_SPEED_BIGSHIP = 2f;
+    public const float MAX_RANGE_BIGSHIP = 90f;
+    public const int MAX_DMG_BIGSHIP = 100;
+    public const float BIGSHIP_BUILD_TIME = 100.0f;
 
+    #endregion
+
+    #endregion
 
     /********************************************* Islands */
     /**
@@ -132,6 +132,8 @@ public static class Setting
 
     public const int MAX_MATTER_BIG_ISLAND = 15000;
 
+
+
     /********************************************* Upgrades */
     /// <summary>
     /// Amount the ship or building gets with this upgrade
@@ -142,30 +144,6 @@ public static class Setting
     /// </summary>
     public const int UPGARDE_REG_SHIELD_PER_SEC = 5;
 
-    /// <summary>
-    /// the upgrade adds that much health to the building / ship
-    /// </summary>
-    public const int UPGARDE_PLUS_HEALTH = 600;
-
-    /// <summary>
-    /// a ship heals with this amount buildings and other ships (only one per upgrade)
-    /// </summary>
-    public const int UPGARDE_REPAIR_PER_SEC = 3;
-
-    /// <summary>
-    /// speedup for Mine
-    /// </summary>
-    public const int UPGARDE_MINE_SPEEDUP_PER_SEC = 2;
-
-    /// <summary>
-    /// speedup for Powerplant
-    /// </summary>
-    public const int UPGARDE_POWERPLANT_SPEEDUP_PER_SEC = 2;
-
-    /// <summary>
-    /// the additional damage a tower or ship does with this upgrade
-    /// </summary>
-    public const int UPGARDE_DAMAGE = 25;
 
     /********************************************* Costs - Eco */
     /// <summary>
@@ -174,48 +152,30 @@ public static class Setting
     public const int MAX_RES = 9999;
 
     /**
-    ### Costs of buildings
-    **/
-    public static readonly Res COST_RES_TOWER = new Res(100, 100, 0);
-
-    public static readonly Res COST_RES_NEXUS = new Res(1500, 1500, 5);
-
-    public static readonly Res COST_RES_WORKSHOP = new Res(400, 400, 0);
-
-    public static readonly Res COST_RES_SHIPYARD = new Res(400, 400, 0);
-
-    public static readonly Res COST_RES_POWERPLANT = new Res(200, 200, 0);
-
-    public static readonly Res COST_RES_MINE = new Res(200, 200, 0);
-
-    public static readonly Res COST_RES_SETTLEMENT = new Res(0, 0, 0);
-
-
-    /**
     ### Ressource costs of ships
     **/
-    public static readonly Res COST_SUPPLY_SETTLESHIP = new Res(750, 750, 2);
+    public static readonly Res COST_RES_SETTLESHIP = new Res(750, 750, 2);
 
-    public static readonly Res COST_SUPPLY_SCOUTER = new Res(250, 250, 0);
+    public static readonly Res COST_RES_SCOUTER = new Res(250, 250, 0);
 
-    public static readonly Res COST_SUPPLY_SMALLSHIP = new Res(400, 400, 1);
+    public static readonly Res COST_RES_SMALLSHIP = new Res(400, 400, 1);
 
-    public static readonly Res COST_SUPPLY_MEDIUMSHIP = new Res(800, 800, 2);
+    public static readonly Res COST_RES_MEDIUMSHIP = new Res(800, 800, 2);
 
-    public static readonly Res COST_SUPPLY_BIGSHIP_ENERGY = new Res(1200, 1200, 3);
+    public static readonly Res COST_RES_BIGSHIP = new Res(1200, 1200, 3);
 
     /**
     ### Supply costs of ships
     **/
-    public const int COST_RES_SETTLESHIP = 1;
+    public const int COST_SUPPLY_SETTLESHIP = 1;
 
-    public const int COST_RES_SCOUTER = 2;
+    public const int COST_SUPPLY_SCOUTER = 2;
 
-    public const int COST_RES_SMALLSHIP = 4;
+    public const int COST_SUPPLY_SMALLSHIP = 4;
 
-    public const int COST_RES_MEDIUMSHIP = 6;
+    public const int COST_SUPPLY_MEDIUMSHIP = 6;
 
-    public const int COST_RES_BIGSHIP_ENERGY = 8;
+    public const int COST_SUPPLY_BIGSHIP = 8;
 
     /**
     ### Costs to produce one engine
@@ -231,69 +191,118 @@ public static class Setting
 
     public const int SUPPLY_PLUS_PER_NEXUS = 100;
 
-
+    #region BUILDINGS
 
     #region POWER_PLANT
     /********************************************* POWER_PLANT */
-    //X
-    public const int POWER_PLANT_DEFAULT_ENERGY_GAIN = 5;
-    //X
-    public const float POWER_PLANT_DEFAULT_ENERGY_GAIN_COOLDOWN = 5.0f;
+
+    public static readonly Res POWERPLANT_REST_COST                     = new Res(200, 200, 0);
+
+    public const int POWER_PLANT_DEFAULT_HEALTH                         = 150;
+    public const float POWER_PLANT_DEFAULT_ENERGY_GAIN_COOLDOWN         = 5.0f;
+    public const int POWER_PLANT_DEFAULT_ENERGY_GAIN                    = 5;
+
+    public const float POWER_PLANT_UPGRADE_PRODUCTION_SPEED_INCREASE    = 1.05f;
+    public const float POWER_PLANT_UPGRADE_HEALTH_INCREASE              = 1.05f;
 
     #endregion
-
 
     #region MINE
-    /********************************************* POWER_PLANT */
-    //X
-    public const int MINE_DEFAULT_MATTER_GAIN = 5;
-    //X
-    public const float MINE_DEFAULT_MATTER_GAIN_COOLDOWN = 5.0f;
+    /********************************************* MINE */
+
+    public static readonly Res MINE_RES_COST                        = new Res(200, 200, 0);
+
+    public const int MINE_DEFAULT_HEALTH                            = 150;
+    public const float MINE_DEFAULT_MATTER_GAIN_COOLDOWN            = 5.0f;
+    public const int MINE_DEFAULT_MATTER_GAIN                       = 5;
+
+    public const float MINE_UPGRADE_PRODUCTION_SPEED_INCREASE       = 1.05f;
+    public const float MINE_UPGRADE_HEALTH_INCREASE                 = 1.05f;
 
     #endregion
 
-    /******************************************************/
-    /********************************************* COMBAT */
-    /******************************************************/
-
-    // //X means the variable is used and is applied correctly
-
     #region TESLA_TOWER
-
     /********************************************* TESLA_TOWER */
-    //X
-    /// <summary> The starting health of a tesla tower. </summary>
-    public const int TESLA_TOWER_DEFAULT_HEALTH = 100;
-    //X
-    /// <summary>The radius in which a tesla tower is able to attack ships: </summary>
-    public const float TESLA_TOWER_DEFAULT_ATTACK_RADIUS = 7.0f;
-    //X
-    /// <summary>The time (in seconds) until the next damage will be caused by tesla towers.  </summary>
-    public const float TESLA_TOWER_DEFAULT_ATTACK_COOLDOWN = 0.5f;
-    //X
-    /// <summary>The damage that is caused every attack</summary>
-    public const int TESLA_TOWER_DEFAULT_DAMAGE_PER_ATTACK = 2;
+
+    public static readonly Res TESLA_TOWER_RES_COST                 = new Res(100, 100, 0);
+
+    public const float TESLA_TOWER_DEFAULT_ATTACK_COOLDOWN          = 0.5f;
+    public const float TESLA_TOWER_DEFAULT_ATTACK_RADIUS            = 7.0f;
+    public const int TESLA_TOWER_DEFAULT_DAMAGE_PER_ATTACK          = 2;
+    public const int TESLA_TOWER_DEFAULT_HEALTH                     = 2;
+
+    public const float TESLA_TOWER_UPGRADE_DAMAGE_INCREASE          = 1.05f;
+    public const float TESLA_TOWER_UPGRADE_ATTACK_RADIUS_INCREASE   = 1.05f;
+    public const float TESLA_TOWER_UPGRADE_HEALTH_INCREASE          = 1.05f;
 
     #endregion
 
     #region ARTILLERY_TOWER
     /********************************************* ARTILLERY_TOWER */
-    //X
-    public const int ARTILLERY_TOWER_DEFAULT_HEALTH = 100;
-    //X
-    public const float ARTILLERY_TOWER_DEFAULT_ATTACK_RADIUS_MAX = 20.0f;
-    //X
-    public const float ARTILLERY_TOWER_DEFAULT_ATTACK_RADIUS_MIN = 10.0f;
-    //X
-    public const float ARTILLERY_TOWER_DEFAULT_ATTACK_COOLDOWN = 2.5f;
-    //X
-    public const int ARTILLERY_TOWER_DEFAULT_DAMAGE_PER_ATTACK = 10;
-    //X
-    public const float ARTILLERY_TOWER_DEFAULT_BULLET_SPEED = 25.0f;
-    //X
-    public const int ARTILLERY_TOWER_DEFAULT_AOE_DAMAGE = 10;
-    //X
-    public const float ARTILLERY_TOWER_DEFAULT_AOE_RADIUS = 1.5f;
+
+    public static readonly Res ARTILLERY_TOWER_RES_COST             = new Res(100, 100, 0);
+
+    public const float ARTILLERY_TOWER_DEFAULT_ATTACK_RADIUS_MAX    = 20.0f;
+    public const float ARTILLERY_TOWER_DEFAULT_ATTACK_RADIUS_MIN    = 10.0f;
+    public const float ARTILLERY_TOWER_DEFAULT_ATTACK_COOLDOWN      = 2.5f;
+    public const float ARTILLERY_TOWER_DEFAULT_BULLET_SPEED         = 25.0f;
+    public const float ARTILLERY_TOWER_DEFAULT_AOE_RADIUS           = 1.5f;
+    public const int ARTILLERY_TOWER_DEFAULT_DAMAGE_PER_ATTACK      = 10;
+    public const int ARTILLERY_TOWER_DEFAULT_AOE_DAMAGE             = 10;
+    public const int ARTILLERY_TOWER_DEFAULT_HEALTH                 = 100;
+
+    public const float ARTILLERY_TOWER_UPGRADE_DAMAGE_INCREASE      = 1.05f;
+    public const float ARTILLERY_TOWER_UPGRADE_AOE_DAMAGE_INCREASE  = 1.05f;
+    public const float ARTILLERY_TOWER_UPGRADE_MAX_RANGE_INCREASE   = 1.05f;
+    public const float ARTILLERY_TOWER_UPGRADE_HEALTH_INCREASE      = 1.05f;
+
     #endregion
+
+    #region WORKSHOP
+    /********************************************* WORKSHOP */
+
+    public static readonly Res WORKSHOP_RES_COST                    = new Res(400, 400, 0);
+
+    public const int WORKSHOP_DEFAULT_HEALTH                        = 250;
+    public const float WORKSHOP_DEFAULT_REPAIR_COOLDOWN             = 0.5f;
+    public const int WORKSHOP_DEFAULT_REPAIR_AMOUNT                 = 1;
+
+    public const float WORKSHOP_UPGRADE_REPAIR_AMOUNT_INCREASE      = 1.05f;
+    public const float WORKSHOP_UPGRADE_REPAIR_COOLDOWN_INCREASE    = 1.05f;
+    public const float WORKSHOP_UPGRADE_HEALTH_INCREASE             = 1.05f;
+
+    #endregion
+
+    #region NEXUS
+    /********************************************* NEXUS */
+
+    public static readonly Res NEXUS_RES_COS            = new Res(1500, 1500, 5);
+    public const int NEXUS_DEFAULT_HEALTH               = 1500;
+
+    public const float NEXUS_UPGRADE_HEALTH_INCREASE    = 1.05f;
+
+    #endregion
+
+    #region SHIPYARD
+    /********************************************* SHIPYARD */
+
+    public static readonly Res SHIPYARD_RES_COST            = new Res(400, 400, 0);
+    public const int SHIPYARD_DEFAULT_HEALTH                = 250;
+
+    public const float SHIPYARD_UPGRADE_HEALTH_INCREASE     = 1.05f;
+
+    #endregion
+
+    #region SETTLEMENT
+    /********************************************* SETTLEMENT */
+
+    public static readonly Res SETTLEMENT_RES_COST  = new Res(0, 0, 0);
+    public const int SETTLEMENT_DEFAULT_HEALTH      = 750;
+
+    #endregion
+
+    #endregion
+
+
 
 }
