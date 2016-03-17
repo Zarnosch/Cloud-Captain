@@ -150,11 +150,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
       propertyPath: MapHeight
-      value: 20000
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
       propertyPath: MapWidth
-      value: 20000
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
       propertyPath: MirrorEdgeWidth
@@ -179,6 +179,10 @@ Prefab:
     - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
       propertyPath: MirrorEdgeIslandsAmount
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
+      propertyPath: MaxTries
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
@@ -264,7 +268,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 948554530}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 6901.7, y: 12638, z: 4507.6}
+  m_LocalPosition: {x: 10547, y: 17277.17, z: 10156}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
