@@ -32,15 +32,15 @@ public class TeslaTowerUpgrade : Upgrade
         switch (upgrade)
         {
             case EUpgrade.Range:
-                RangeSphere.radius *= Setting.TESLA_TOWER_UPGRADE_ATTACK_RADIUS_INCREASE;
+                IncreaseRange(RangeSphere, Setting.TESLA_TOWER_UPGRADE_ATTACK_RADIUS_INCREASE);
                 break;
 
             case EUpgrade.Life:
-                Health.SetCurAndMaxHealth((int)(Health.GetMaxHealth() * Setting.TESLA_TOWER_UPGRADE_HEALTH_INCREASE));
+                IncreaseHealth(Health, Setting.TESLA_TOWER_UPGRADE_HEALTH_INCREASE);
                 break;
 
             case EUpgrade.Damage:
-                BulletSpawner.BulletDamage = (int)(BulletSpawner.BulletDamage * Setting.TESLA_TOWER_UPGRADE_DAMAGE_INCREASE);
+                IncreaseBulletDamage(BulletSpawner, Setting.TESLA_TOWER_UPGRADE_DAMAGE_INCREASE);
                 break;
 
             default:

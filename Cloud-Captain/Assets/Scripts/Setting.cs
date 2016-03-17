@@ -11,10 +11,11 @@ public static class Setting
 		// tower
 		TeslaTower,ArtilleryTower,
 		// ships
-		Scout, Settler, S1, S2, S4, S8
+		Scouter, SettleShip, SmallShip, MediumShip, BigShip
 	}
 
-    public const float BULLETSPEED = 0;
+    
+    
     
     /**
     #### Max upgrade slots for Buildings
@@ -31,72 +32,89 @@ public static class Setting
 
     public const int MAX_SLOTS_SETTLEMENT = 0;
 
+    #region SHIPS
     /********************************************* Ships */
-    /**
-    #### Max Health for Ships
-    **/
-    public const int MAX_HEALTH_SETTLESHIP = 750;
 
-    public const int MAX_HEALTH_SCOUTER = 250;
 
-    public const int MAX_HEALTH_SMALLSHIP = 400;
+    #region COMMON
 
-    public const int MAX_HEALTH_MEDIUMSHIP = 800;
+    public const float SHIP_BULLET_SPEED = 5.0f;
+    public const float SHIP_RANGE_INCREASE = 1.1f;
+    public const float SHIP_DAMAGE_INCREASE = 1.05f;
+    public const float SHIP_HEALTH_INCREASE = 1.05f;
+    public const float SHIP_SPEED_INCREASE = 1.1f;
+    public const float SHIP_SHILD_INCREASE = 1.1f;
 
-    public const int MAX_HEALTH_BIGSHIP = 1200;
 
-    /**
-    #### Max MovementSpeed for Ships
-    **/
-    public const float MAX_SPEED_SETTLESHIP = 9f;
+    public const float SHIP_DEFAULT_REPAIR_COOLDOWN             = 5.0f;
+    public const int SHIP_DEFAULT_REPAIR_AMOUNT                 = 1;
+    public const float SHIP_UPGRADE_REPAIR_COOLDOWN_INCREASE    = 1.05f;
+    public const float SHIP_UPGRADE_REPAIR_AMOUNT_INCREASE      = 1.05f;
 
-    public const float MAX_SPEED_SCOUTER = 7f;
+    #endregion
 
-    public const float MAX_SPEED_SMALLSHIP = 5f;
+    #region SETTLESHIP
 
-    public const float MAX_SPEED_MEDIUMSHIP = 3.5f;
-
-    public const float MAX_SPEED_BIGSHIP = 2f;
-
-    /**
-    #### Max attack range for Ships
-    **/
-    public const float MAX_RANGE_SETTLESHIP = 0f;
-
-    public const float MAX_RANGE_SCOUTER = 50f;
-
-    public const float MAX_RANGE_SMALLSHIP = 60f;
-
-    public const float MAX_RANGE_MEDIUMSHIP = 60f;
-
-    public const float MAX_RANGE_BIGSHIP = 90f;
-
-    /**
-    #### Max damage per attack for Ships
-    **/
-    public const int MAX_DMG_SETTLESHIP = 0;
-
-    public const int MAX_DMG_SCOUTER = 10;
-
-    public const int MAX_DMG_SMALLSHIP = 40;
-
-    public const int MAX_DMG_MEDIUMSHIP = 60;
-
-    public const int MAX_DMG_BIGSHIP = 100;
-
-    /**
-    #### Max upgrade slots for Ships
-    **/
     public const int MAX_SLOTS_SETTLESHIP = 0;
+
+    public const int MAX_HEALTH_SETTLESHIP = 750;
+    public const float MAX_SPEED_SETTLESHIP = 9f;
+    public const float MAX_RANGE_SETTLESHIP = 0f;
+    public const int MAX_DMG_SETTLESHIP = 0;
+    public const float SETTLESHIP_BUILD_TIME = 100.0f;
+
+    #endregion
+
+
+    #region SCOUTER
 
     public const int MAX_SLOTS_SCOUTER = 1;
 
+    public const int MAX_HEALTH_SCOUTER = 250;
+    public const float MAX_SPEED_SCOUTER = 7f;
+    public const float MAX_RANGE_SCOUTER = 50f;
+    public const int MAX_DMG_SCOUTER = 10;
+    public const float SCOUTER_BUILD_TIME = 100.0f;
+
+    #endregion
+
+    #region SMALLSHIP
+
     public const int MAX_SLOTS_SMALLSHIP = 2;
+
+    public const int MAX_HEALTH_SMALLSHIP = 400;
+    public const float MAX_SPEED_SMALLSHIP = 5f;
+    public const float MAX_RANGE_SMALLSHIP = 60f;
+    public const int MAX_DMG_SMALLSHIP = 40;
+    public const float SMALLSHIP_BUILD_TIME = 100.0f;
+
+    #endregion
+
+    #region MEDIUMSHIP
 
     public const int MAX_SLOTS_MEDIUMSHIP = 4;
 
+    public const int MAX_HEALTH_MEDIUMSHIP = 800;
+    public const float MAX_SPEED_MEDIUMSHIP = 3.5f;
+    public const float MAX_RANGE_MEDIUMSHIP = 60f;
+    public const int MAX_DMG_MEDIUMSHIP = 60;
+    public const float MEDIUMSHIP_BUILD_TIME = 100.0f;
+
+    #endregion
+
+    #region BISSHIP
+
     public const int MAX_SLOTS_BIGSHIP = 6;
 
+    public const int MAX_HEALTH_BIGSHIP = 1200;
+    public const float MAX_SPEED_BIGSHIP = 2f;
+    public const float MAX_RANGE_BIGSHIP = 90f;
+    public const int MAX_DMG_BIGSHIP = 100;
+    public const float BIGSHIP_BUILD_TIME = 100.0f;
+
+    #endregion
+
+    #endregion
 
     /********************************************* Islands */
     /**
@@ -114,6 +132,8 @@ public static class Setting
 
     public const int MAX_MATTER_BIG_ISLAND = 15000;
 
+
+
     /********************************************* Upgrades */
     /// <summary>
     /// Amount the ship or building gets with this upgrade
@@ -124,10 +144,6 @@ public static class Setting
     /// </summary>
     public const int UPGARDE_REG_SHIELD_PER_SEC = 5;
 
-    /// <summary>
-    /// a ship heals with this amount buildings and other ships (only one per upgrade)
-    /// </summary>
-    public const int UPGARDE_REPAIR_PER_SEC = 3;
 
     /********************************************* Costs - Eco */
     /// <summary>
@@ -138,28 +154,28 @@ public static class Setting
     /**
     ### Ressource costs of ships
     **/
-    public static readonly Res COST_SUPPLY_SETTLESHIP = new Res(750, 750, 2);
+    public static readonly Res COST_RES_SETTLESHIP = new Res(750, 750, 2);
 
-    public static readonly Res COST_SUPPLY_SCOUTER = new Res(250, 250, 0);
+    public static readonly Res COST_RES_SCOUTER = new Res(250, 250, 0);
 
-    public static readonly Res COST_SUPPLY_SMALLSHIP = new Res(400, 400, 1);
+    public static readonly Res COST_RES_SMALLSHIP = new Res(400, 400, 1);
 
-    public static readonly Res COST_SUPPLY_MEDIUMSHIP = new Res(800, 800, 2);
+    public static readonly Res COST_RES_MEDIUMSHIP = new Res(800, 800, 2);
 
-    public static readonly Res COST_SUPPLY_BIGSHIP_ENERGY = new Res(1200, 1200, 3);
+    public static readonly Res COST_RES_BIGSHIP = new Res(1200, 1200, 3);
 
     /**
     ### Supply costs of ships
     **/
-    public const int COST_RES_SETTLESHIP = 1;
+    public const int COST_SUPPLY_SETTLESHIP = 1;
 
-    public const int COST_RES_SCOUTER = 2;
+    public const int COST_SUPPLY_SCOUTER = 2;
 
-    public const int COST_RES_SMALLSHIP = 4;
+    public const int COST_SUPPLY_SMALLSHIP = 4;
 
-    public const int COST_RES_MEDIUMSHIP = 6;
+    public const int COST_SUPPLY_MEDIUMSHIP = 6;
 
-    public const int COST_RES_BIGSHIP_ENERGY = 8;
+    public const int COST_SUPPLY_BIGSHIP = 8;
 
     /**
     ### Costs to produce one engine
@@ -175,7 +191,7 @@ public static class Setting
 
     public const int SUPPLY_PLUS_PER_NEXUS = 100;
 
-
+    #region BUILDINGS
 
     #region POWER_PLANT
     /********************************************* POWER_PLANT */
@@ -285,18 +301,7 @@ public static class Setting
 
     #endregion
 
-
-
-
-
-
-
-
-
-
-
-
-
+    #endregion
 
 
 

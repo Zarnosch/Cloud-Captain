@@ -5,7 +5,7 @@ using System;
 public class WorkshopUpgrade : Upgrade {
 
     public HealthManager Health;
-    public RepairShips Repairer;
+    public Repairer Repairer;
 
     protected override EUpgrade[] GetAvaibleUpgrades()
     {
@@ -31,15 +31,13 @@ public class WorkshopUpgrade : Upgrade {
         switch (upgrade)
         {
             case EUpgrade.Life:
-                Repairer.maxHealCooldown *= Setting.WORKSHOP_UPGRADE_HEALTH_INCREASE;
+                IncreaseHealth(Health, Setting.WORKSHOP_UPGRADE_HEALTH_INCREASE);
                 break;
+
             case EUpgrade.ShipRepair:
 
                 Repairer.healAmount = (int)(Repairer.healAmount * Setting.WORKSHOP_UPGRADE_REPAIR_AMOUNT_INCREASE);
-
-                float reduction = Setting.WORKSHOP_UPGRADE_REPAIR_COOLDOWN_INCREASE - 1.0f;
-                Repairer.maxHealCooldown = Repairer.maxHealCooldown - reduction * Repairer.maxHealCooldown;
-         
+                ReduceFloat(ref Repairer.maxHealCooldown, Setting.WORKSHOP_UPGRADE_REPAIR_COOLDOWN_INCREASE);
                 break;
 
             default:

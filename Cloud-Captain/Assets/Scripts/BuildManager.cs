@@ -5,7 +5,9 @@ using System.Collections.Generic;
 [ExecuteInEditMode]
 public class BuildManager : MonoBehaviour
 {
-    public enum BuildObject { TeslaTower, ArtilleryTower, PowerPlant, Mine, Workshop, Shipyard, Nexus, Settlement }
+    public enum BuildingObject { TeslaTower, ArtilleryTower, PowerPlant, Mine, Workshop, Shipyard, Nexus, Settlement }
+    public enum ShipType { Settler, Scout, Small, Medium, Big }
+
     public static BuildManager Instance { get; private set; }
 
     #region Building prefabs
@@ -29,6 +31,27 @@ public class BuildManager : MonoBehaviour
 
     #endregion
 
+    #region Misc Prefabs
+
+    public GameObject BuildingRepairerPrefab;
+
+    #endregion
+
+    #region Ships
+
+    [SerializeField]
+    private GameObject SettleShipPrefab;
+    [SerializeField]
+    private GameObject ScoutShipPrefab;
+    [SerializeField]
+    private GameObject SmallShipPrefab;
+    [SerializeField]
+    private GameObject MediumShipPrefab;
+    [SerializeField]
+    private GameObject BigShipPrefab;
+
+    #endregion
+
     void Start()
     {
         Debug.Assert(!Instance, "Only one BuildManager script is allowed in the scene!");
@@ -38,9 +61,9 @@ public class BuildManager : MonoBehaviour
 
     }
 
-    public bool TryBuild(BuildObject obj, Transform position)
+    public bool TryPlaceBuilding(BuildingObject obj, Transform position)
     {
-        PriceInfo info = GetInfo(obj);
+        BuildingInfo info = GetBuildingInfo(obj);
 
         if (PlayerManager.Instance.GetResources().IsEnough(info.price))
         {
@@ -54,53 +77,92 @@ public class BuildManager : MonoBehaviour
         return false;
     }
 
-    public PriceInfo GetInfo(BuildObject obj)
+    public BuildingInfo GetBuildingInfo(BuildingObject obj)
     {
         switch (obj)
         {
 
-            case BuildObject.ArtilleryTower:
-                return new PriceInfo(Setting.ARTILLERY_TOWER_RES_COST, ArtilleryTowerPrefab);
+            case BuildingObject.ArtilleryTower:
+                return new BuildingInfo(Setting.ARTILLERY_TOWER_RES_COST, ArtilleryTowerPrefab);
 
-            case BuildObject.Mine:
-                return new PriceInfo(Setting.MINE_RES_COST, MinePrefab);
+            case BuildingObject.Mine:
+                return new BuildingInfo(Setting.MINE_RES_COST, MinePrefab);
 
-            case BuildObject.PowerPlant:
-                return new PriceInfo(Setting.POWERPLANT_REST_COST, PowerPlantPrefab);
+            case BuildingObject.PowerPlant:
+                return new BuildingInfo(Setting.POWERPLANT_REST_COST, PowerPlantPrefab);
 
-            case BuildObject.TeslaTower:
-                return new PriceInfo(Setting.TESLA_TOWER_RES_COST, TeslaTowerPrefab);
+            case BuildingObject.TeslaTower:
+                return new BuildingInfo(Setting.TESLA_TOWER_RES_COST, TeslaTowerPrefab);
 
-            case BuildObject.Workshop:
-                return new PriceInfo(Setting.WORKSHOP_RES_COST, WorkshopPrefab);
+            case BuildingObject.Workshop:
+                return new BuildingInfo(Setting.WORKSHOP_RES_COST, WorkshopPrefab);
 
-            case BuildObject.Shipyard:
-                return new PriceInfo(Setting.SHIPYARD_RES_COST, ShipyardPrefab);
+            case BuildingObject.Shipyard:
+                return new BuildingInfo(Setting.SHIPYARD_RES_COST, ShipyardPrefab);
 
-            case BuildObject.Nexus:
-                return new PriceInfo(Setting.NEXUS_RES_COS, NexusPrefab);
+            case BuildingObject.Nexus:
+                return new BuildingInfo(Setting.NEXUS_RES_COS, NexusPrefab);
 
-            case BuildObject.Settlement:
-                return new PriceInfo(Setting.SETTLEMENT_RES_COST, SettlementPrefab);
+            case BuildingObject.Settlement:
+                return new BuildingInfo(Setting.SETTLEMENT_RES_COST, SettlementPrefab);
 
             default:
-                return new PriceInfo();
+                return new BuildingInfo();
 
         }
     }
 
+    public ShipInfo GetShipInfo(ShipType type)
+    {
+        switch (type)
+        {
+            case ShipType.Scout:
+                return new ShipInfo(Setting.COST_RES_SCOUTER, ScoutShipPrefab, Setting.SCOUTER_BUILD_TIME);
+   
+            case ShipType.Small:
+                return new ShipInfo(Setting.COST_RES_SMALLSHIP, SmallShipPrefab, Setting.SMALLSHIP_BUILD_TIME);
+   
+            case ShipType.Medium:
+                return new ShipInfo(Setting.COST_RES_MEDIUMSHIP, MediumShipPrefab, Setting.MEDIUMSHIP_BUILD_TIME);
 
-    public struct PriceInfo
+            case ShipType.Big:
+                return new ShipInfo(Setting.COST_RES_BIGSHIP, BigShipPrefab, Setting.BIGSHIP_BUILD_TIME);
+
+            case ShipType.Settler:
+                return new ShipInfo(Setting.COST_RES_SETTLESHIP, SettleShipPrefab, Setting.SETTLESHIP_BUILD_TIME);
+
+            default:
+                return new ShipInfo();
+
+        }
+    }
+
+    public struct BuildingInfo
     {
         public GameObject prefab;
         public Res price;
 
-        public PriceInfo(Res price, GameObject prefab)
+        public BuildingInfo(Res price, GameObject prefab)
         {
             this.prefab = prefab;
             this.price = price;
         }
     }
+
+    public struct ShipInfo
+    {
+        public GameObject prefab;
+        public Res price;
+        public float buildTime;
+        
+        public ShipInfo(Res price, GameObject prefab, float buildTime)
+        {
+            this.prefab = prefab;
+            this.price = price;
+            this.buildTime = buildTime;
+        }
+    }
+
 
 
 

@@ -7,7 +7,6 @@ public class NexusUpgrade : Upgrade
     //TODO: movementspeed, shild
     public HealthManager Health;
 
-
     public override int GetNumMaxUpgrades()
     {
         return Setting.MAX_SLOTS_NEXUS;
@@ -30,8 +29,8 @@ public class NexusUpgrade : Upgrade
             case EUpgrade.Shild:
                 break;
             case EUpgrade.Life:
-                Health.SetCurAndMaxHealth((int)(Health.maxHealth * Setting.NEXUS_UPGRADE_HEALTH_INCREASE));
-            
+                IncreaseHealth(Health, Setting.NEXUS_UPGRADE_HEALTH_INCREASE);
+
                 break;
             case EUpgrade.MovementSpeed:
                 break;

@@ -29,14 +29,13 @@ public class MineUpgrade : Upgrade
     {
         switch (upgrade)
         {
-            case EUpgrade.Life:        
-                Health.SetCurAndMaxHealth((int)(Health.GetMaxHealth() * Setting.MINE_UPGRADE_HEALTH_INCREASE));
+            case EUpgrade.Life:
+                IncreaseHealth(Health, Setting.MINE_UPGRADE_HEALTH_INCREASE);
                 break;
 
             case EUpgrade.ProductionSpeed:
-
-                float reduction = Setting.MINE_UPGRADE_HEALTH_INCREASE - 1.0f;
-                Producer.TimeToResGainCooldown = Producer.TimeToResGainCooldown - (Producer.TimeToResGainCooldown * reduction);
+                ReduceFloat(ref Producer.TimeToResGainCooldown, Setting.MINE_UPGRADE_PRODUCTION_SPEED_INCREASE);
+           
                 break;
 
             default:
