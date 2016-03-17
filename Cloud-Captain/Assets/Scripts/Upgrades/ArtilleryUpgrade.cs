@@ -36,13 +36,13 @@ public class ArtilleryUpgrade : Upgrade
         switch (upgrade)
         {
             case EUpgrade.Range:
-                AttackRadius.radius *= Setting.ARTILLERY_TOWER_UPGRADE_MAX_RANGE_INCREASE;
+                IncreaseRange(AttackRadius, Setting.ARTILLERY_TOWER_UPGRADE_MAX_RANGE_INCREASE);
                 break;
             case EUpgrade.Life:
-                Health.SetCurAndMaxHealth((int)(Health.GetMaxHealth() * Setting.ARTILLERY_TOWER_UPGRADE_HEALTH_INCREASE));
+                IncreaseHealth(Health, Setting.ARTILLERY_TOWER_UPGRADE_HEALTH_INCREASE);
                 break;
             case EUpgrade.Damage:
-                BulletSpawner.BulletDamage = (int)(BulletSpawner.BulletDamage * Setting.ARTILLERY_TOWER_UPGRADE_DAMAGE_INCREASE);
+                IncreaseBulletDamage(BulletSpawner, Setting.ARTILLERY_TOWER_UPGRADE_DAMAGE_INCREASE);
                 BulletSpawner.SecondaryDamage = (int)(BulletSpawner.SecondaryDamage * Setting.ARTILLERY_TOWER_UPGRADE_AOE_DAMAGE_INCREASE);
                 break;
             default:

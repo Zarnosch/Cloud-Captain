@@ -2,12 +2,16 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class RepairShips : MonoBehaviour
+public class Repairer : MonoBehaviour
 {
 
+    public enum TargetRepairLayer { Ships, Buildings }
     public enum RepairMode { SingleTarget, InRadius }
 
-    public RepairMode Mode = RepairMode.SingleTarget;
+
+    private int targetLayerId;
+    public RepairMode Mode = RepairMode.InRadius;
+    public TargetRepairLayer TargetLayer = TargetRepairLayer.Ships;
 
     private List<HealthManager> shipsHealthInRange = new List<HealthManager>();
     private List<HealthManager> damagedShips = new List<HealthManager>();
@@ -25,6 +29,8 @@ public class RepairShips : MonoBehaviour
     void Start()
     {
         curHealCooldown = maxHealCooldown;
+
+        targetLayerId = LayerMask.NameToLayer(TargetLayer.ToString());
     }
 
     public void Update()
@@ -78,7 +84,7 @@ public class RepairShips : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag == gameObject.tag)
+        if (other.tag == gameObject.tag && other.gameObject.layer == targetLayerId)
         {
             HealthManager health = other.gameObject.GetComponent<HealthManager>();
 
@@ -97,7 +103,7 @@ public class RepairShips : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.tag == gameObject.tag)
+        if (other.tag == gameObject.tag && other.gameObject.layer == targetLayerId)
         {
             HealthManager health = other.gameObject.GetComponent<HealthManager>();
 

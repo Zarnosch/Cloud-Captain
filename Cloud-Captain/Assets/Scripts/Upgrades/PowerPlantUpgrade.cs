@@ -30,13 +30,12 @@ public class PowerPlantUpgrade : Upgrade
         switch (upgrade)
         {
             case EUpgrade.Life:
-                Health.SetCurAndMaxHealth((int)(Health.GetMaxHealth() * Setting.POWER_PLANT_UPGRADE_HEALTH_INCREASE));
+                IncreaseHealth(Health, Setting.POWER_PLANT_UPGRADE_HEALTH_INCREASE);
                 break;
 
             case EUpgrade.ProductionSpeed:
 
-                float reduction = Setting.POWER_PLANT_UPGRADE_PRODUCTION_SPEED_INCREASE - 1.0f;
-                Producer.TimeToResGainCooldown = Producer.TimeToResGainCooldown - (Producer.TimeToResGainCooldown * reduction);
+                ReduceFloat(ref Producer.TimeToResGainCooldown, Setting.POWER_PLANT_UPGRADE_PRODUCTION_SPEED_INCREASE);
                 break;
 
             default:

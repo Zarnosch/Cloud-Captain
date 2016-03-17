@@ -61,7 +61,7 @@ public class ShipMove : MonoBehaviour {
 
 	void moveShip(Vector3 targetPosition){
 
-		rigBody.isKinematic = false;
+		//rigBody.isKinematic = false;
 		m_targetPosition = targetPosition;
 		m_currentPosition = rigBody.transform.position;
 
@@ -77,7 +77,7 @@ public class ShipMove : MonoBehaviour {
 		if ( isInRangeX() && isInRangeZ() ) { 
 
 			rigBody.angularVelocity = new Vector3(0,0,0);
-			rigBody.isKinematic = true;
+		//	rigBody.isKinematic = true;
 
 		}
 

@@ -25,9 +25,10 @@ public abstract class Upgrade : MonoBehaviour
 
     void Awake()
     {
-        UsedUpgrades = new EUpgrade[GetNumMaxUpgrades()];
-        this.AvaibleUpgrades = GetAvaibleUpgrades();
         OnAwake();
+
+        this.UsedUpgrades = new EUpgrade[GetNumMaxUpgrades()];
+        this.AvaibleUpgrades = GetAvaibleUpgrades();
     }
 
 
@@ -56,7 +57,6 @@ public abstract class Upgrade : MonoBehaviour
 
                 engineCost++;
                 upgradeCount++;
-
             }
         }
     }
@@ -92,8 +92,49 @@ public abstract class Upgrade : MonoBehaviour
 
 
 
+    protected void IncreaseHealth(HealthManager health, float increase)
+    {
+        int newMaxHealth = (int)(health.maxHealth * increase);
 
+        if (health.IsDamaged())
+        {
+            health.SetMaxHealth(newMaxHealth);
+        }
 
+        else
+        {
+            health.SetCurAndMaxHealth(newMaxHealth);
+        }
+    }
 
+    protected void IncreaseRange(SphereCollider rangeSphere, float increase)
+    {
+        rangeSphere.radius *= increase;
+    }
+
+    protected void IncreaseBulletDamage(BulletSpawner spawner, float increase)
+    {
+        spawner.BulletDamage = (int)(spawner.BulletDamage * increase);
+    }
+
+    protected void ReduceFloat(ref float cooldown, float increase)
+    {
+        float reduction = increase - 1.0f;
+
+        cooldown = cooldown - (reduction * cooldown);
+    }
+
+    protected int GetNumUpgrades(EUpgrade upgrade)
+    {
+        int num = 0;
+
+        for (int i = 0; i < UsedUpgrades.Length; i++)
+        {
+            if (UsedUpgrades[i] == upgrade)
+                num++;
+        }
+
+        return num;
+    }
 
 }

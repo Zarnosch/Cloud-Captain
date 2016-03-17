@@ -5,6 +5,7 @@ using System;
 public class ShipyardUpgrade : Upgrade
 {
     public HealthManager Health;
+    public ShipBuilder Builder;
 
     public override int GetNumMaxUpgrades()
     {
@@ -29,7 +30,7 @@ public class ShipyardUpgrade : Upgrade
                 break;
             case EUpgrade.Life:
 
-                Health.SetCurAndMaxHealth((int)(Setting.SHIPYARD_UPGRADE_HEALTH_INCREASE * Health.maxHealth));
+                IncreaseHealth(Health, Setting.SHIPYARD_UPGRADE_HEALTH_INCREASE);
 
                 break;
             case EUpgrade.ProductionSpeed:

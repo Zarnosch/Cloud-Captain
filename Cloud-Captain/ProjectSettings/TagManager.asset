@@ -22,7 +22,7 @@ TagManager:
   - Buildingsite
   - Towersite
   - BulletSpawner
-  - ShipCollider
+  - RepairLayer
   - 
   - 
   - 
