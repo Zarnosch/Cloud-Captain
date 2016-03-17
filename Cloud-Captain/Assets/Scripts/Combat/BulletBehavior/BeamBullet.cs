@@ -38,20 +38,21 @@ public class BeamBullet : ABulletBehavior
         lineRenderer.SetWidth(LineWidth, LineWidth);
 
         lineRenderer.SetPosition(0, spawnTransform.position);
-        lineRenderer.SetPosition(1, target.transform.position);
+        lineRenderer.SetPosition(1, targetTransform.position);
         UpdateCapsule();
 
         reEnableCollider = true;
 
+        damage = Setting.TESLA_TOWER_DEFAULT_DAMAGE_PER_ATTACK;
     }
 
 
     void Update()
     {
-        if (target)
+        if (targetTransform)
         {
             lineRenderer.SetPosition(0, spawnTransform.position);
-            lineRenderer.SetPosition(1, target.transform.position);
+            lineRenderer.SetPosition(1, targetTransform.position);
 
 
             if (myCollider.enabled)
@@ -68,7 +69,7 @@ public class BeamBullet : ABulletBehavior
 
     void FixedUpdate()
     {
-        if (target && reEnableCollider)
+        if (targetTransform && reEnableCollider)
         {
 
             myCollider.enabled = true;
@@ -80,9 +81,9 @@ public class BeamBullet : ABulletBehavior
 
     void UpdateCapsule()
     {
-        myCollider.transform.position = spawnTransform.position + (target.transform.position - spawnTransform.position) / 2;
+        myCollider.transform.position = spawnTransform.position + (targetTransform.position - spawnTransform.position) / 2;
         myCollider.transform.LookAt(spawnTransform.position);
-        myCollider.height = (spawnTransform.position - target.transform.position).magnitude;
+        myCollider.height = (spawnTransform.position - targetTransform.position).magnitude;
     }
 
 

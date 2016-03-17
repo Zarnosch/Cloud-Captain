@@ -19,10 +19,10 @@ TagManager:
   - Ships
   - Islands
   - Bullets
-  - 
-  - 
-  - 
-  - 
+  - Buildingsite
+  - Towersite
+  - BulletSpawner
+  - RepairLayer
   - 
   - 
   - 

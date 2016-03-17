@@ -6,27 +6,29 @@ using System;
 [RequireComponent(typeof(Rigidbody))]
 public class BallisticBullet : ABulletBehavior {
 
-    public float Speed = 25.0f;
+
     public GameObject ExplosionPrefab;
 
     private Rigidbody myBody;
     private float totalTimeToTarget;
     private float curFlightTime;
 
+
     protected override void OnSpawn()
     {
+
         myBody = GetComponent<Rigidbody>();
 
-        Vector3 toTarget = target.transform.position - spawnTransform.position;
+        Vector3 toTarget = targetTransform.position - spawnTransform.position;
         float totalDistance = toTarget.magnitude;
         toTarget.y = 0.0f;
         float distanceXz = toTarget.magnitude;
 
         float distanceT = (totalDistance - minDistance) / (maxDistance - minDistance);
 
-        totalTimeToTarget = ((1.0f - distanceT) * distanceXz * 5.0f + distanceT * Mathf.Pow(distanceXz, 1.5f)) / Speed;
+        totalTimeToTarget = ((1.0f - distanceT) * distanceXz * 5.0f + distanceT * Mathf.Pow(distanceXz, 1.5f)) / bulletSpeed;
 
-        Vector3 result = calculateBestThrowSpeed(spawnTransform.position, target.transform.position, totalTimeToTarget);
+        Vector3 result = CalculateBestThrowSpeed(spawnTransform.position, targetTransform.position, totalTimeToTarget);
 
         myBody.AddForce(result, ForceMode.VelocityChange);
     }
@@ -35,6 +37,8 @@ public class BallisticBullet : ABulletBehavior {
     {
         curFlightTime += Time.deltaTime;
 
+        bulletRoot.transform.LookAt(bulletRoot.transform.position + myBody.velocity);
+
         if(curFlightTime > totalTimeToTarget * 2.0f)
         {
             Destroy(bulletRoot);
@@ -42,7 +46,7 @@ public class BallisticBullet : ABulletBehavior {
 
     }
 
-    private Vector3 calculateBestThrowSpeed(Vector3 origin, Vector3 target, float timeToTarget)
+    private Vector3 CalculateBestThrowSpeed(Vector3 origin, Vector3 target, float timeToTarget)
     {
         // calculate vectors
         Vector3 toTarget = target - origin;
@@ -79,7 +83,9 @@ public class BallisticBullet : ABulletBehavior {
         else
         {
             //spawn explosion:
-            Instantiate(ExplosionPrefab.gameObject, transform.position, Quaternion.identity);
+            GameObject obj = (GameObject)Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
+            obj.GetComponent<SphereCollider>().radius = secondaryRange;
+            obj.GetComponent<Damager>().Damage = secondaryDamage;
         }
     }
 
