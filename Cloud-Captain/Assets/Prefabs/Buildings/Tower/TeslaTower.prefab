@@ -65,6 +65,7 @@ GameObject:
   - 114: {fileID: 11469972}
   - 114: {fileID: 11476702}
   - 114: {fileID: 11465750}
+  - 114: {fileID: 11489566}
   m_Layer: 8
   m_Name: TeslaTower
   m_TagString: Player
@@ -342,6 +343,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attacker: {fileID: 11497258}
+--- !u!114 &11489566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 177658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ea4ab5cc38a4a6ea75b990e749cc74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectType: 6
 --- !u!114 &11497258
 MonoBehaviour:
   m_ObjectHideFlags: 1

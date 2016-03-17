@@ -13,6 +13,7 @@ GameObject:
   - 23: {fileID: 2338686}
   - 114: {fileID: 11411254}
   - 114: {fileID: 11421492}
+  - 114: {fileID: 11421528}
   m_Layer: 8
   m_Name: Shipyard
   m_TagString: Player
@@ -125,6 +126,18 @@ MonoBehaviour:
   AvaibleUpgrades: 
   UsedUpgrades: 
   Health: {fileID: 11411254}
+--- !u!114 &11421528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 181284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ea4ab5cc38a4a6ea75b990e749cc74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectType: 4
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

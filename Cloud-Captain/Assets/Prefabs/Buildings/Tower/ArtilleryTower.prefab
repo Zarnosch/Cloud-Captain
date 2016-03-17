@@ -47,6 +47,7 @@ GameObject:
   - 114: {fileID: 11457854}
   - 114: {fileID: 11434554}
   - 114: {fileID: 11475858}
+  - 114: {fileID: 11439360}
   m_Layer: 8
   m_Name: ArtilleryTower
   m_TagString: Player
@@ -254,6 +255,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Attacker: {fileID: 11412660}
+--- !u!114 &11439360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ea4ab5cc38a4a6ea75b990e749cc74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectType: 7
 --- !u!114 &11457854
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -7,9 +7,9 @@ public static class Setting
 	public enum ObjectType 
 	{
 		// eco
-		Nexus, Settlement, PowerPlant, Mine, Shipyard,
+		Nexus, Settlement, PowerPlant, Mine, Shipyard, Workshop,
 		// tower
-		AttackTower,DefenseTower,
+		TeslaTower,ArtilleryTower,
 		// ships
 		Scout, Settler, S1, S2, S4, S8
 	}
