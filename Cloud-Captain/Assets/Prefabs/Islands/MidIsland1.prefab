@@ -84,8 +84,7 @@ GameObject:
   - 23: {fileID: 2371238}
   - 54: {fileID: 5467150}
   - 65: {fileID: 6504434}
-  - 64: {fileID: 6434862}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MidIsland1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,8 +164,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 156894}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10000, y: 10000, z: 10000}
+  m_LocalPosition: {x: 45.1, y: 1.51, z: 0.6}
+  m_LocalScale: {x: 1200, y: 1200, z: 1200}
   m_Children:
   - {fileID: 466880}
   - {fileID: 477988}
@@ -528,18 +527,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
---- !u!64 &6434862
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 156894}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 1
-  m_Mesh: {fileID: 4300000, guid: d9f890251c7b14241b4b410f6d817642, type: 3}
 --- !u!65 &6504434
 BoxCollider:
   m_ObjectHideFlags: 1
