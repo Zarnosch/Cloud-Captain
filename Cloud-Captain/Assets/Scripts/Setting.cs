@@ -4,6 +4,16 @@ using System.Collections;
 public static class Setting
 {
 
+	public enum ObjectType 
+	{
+		// eco
+		Nexus, Settlement, PowerPlant, Mine, Shipyard,
+		// tower
+		AttackTower,DefenseTower,
+		// ships
+		Scout, Settler, S1, S2, S4, S8
+	}
+
     public const float BULLETSPEED = 0;
     
     /**
