@@ -13,7 +13,7 @@ public class PlayerManager : MonoBehaviour
     public Res resources = new Res(10, 10, 10);
 
 	// Use this for initialization
-	void Start () 
+	void Awake () 
     {
         Debug.Assert(!Instance, "Only one PlayerManager script is allowed in one scene!");
        
@@ -45,6 +45,17 @@ public class PlayerManager : MonoBehaviour
     {
         return resources;
     }
-	
+
+    public void SelectedListAdd(GameObject g)
+    {
+        selectedUnits.Add(g);
+    }
+
+    public void SelectedListClear()
+    {
+        selectedUnits.Clear();
+    }
+
+
 
 }

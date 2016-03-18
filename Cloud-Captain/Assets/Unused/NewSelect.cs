@@ -5,11 +5,14 @@ using System.Collections.Generic;
 public class NewSelect : MonoBehaviour
 {
 
+    public float flaechenInhaltFuerEinfachenKlick = 5;
+
 	public List<GameObject> buildingList = new List<GameObject>();
 	public List<GameObject> islandList = new List<GameObject>();
 	public List<GameObject> shipList = new List<GameObject>();
 
 	public bool newListEntry = false;
+    public bool newListIsEmpty = false;
 
 	PlayerManager playerInstance;
 
@@ -61,23 +64,36 @@ public class NewSelect : MonoBehaviour
 			z = (f.z - s.z) / 2 + s.z;
 		} else
 			z = (f.z + s.z) / 2;
+        float flaechenInhalt = Mathf.Abs(f.x - s.x) * Mathf.Abs(f.z - s.z);
+        if (flaechenInhalt < flaechenInhaltFuerEinfachenKlick)
+        {
+            if(firstRay == null || firstRay.transform.gameObject.layer == selectPlane)
+                playerInstance.SelectedListClear();
+            else
+            {
+                playerInstance.SelectedListClear();
+                playerInstance.SelectedListAdd(firstRay.transform.gameObject);
+            }
+            return;
+                
+        }
 		Vector3 mittelwert = new Vector3 (x, y, z);
 		Vector3 scaleVector = new Vector3 (Mathf.Abs (f.x - s.x), 10, Mathf.Abs (f.z - s.z));
-		figurePrefabClone = Instantiate (figurePrefab, mittelwert, Quaternion.identity) as GameObject;
-		figurePrefabClone.transform.localScale = scaleVector;
-		figurePrefabClone.gameObject.layer = building;
-		figurePrefabClone.GetComponent<SelectScript> ().newSelect = this;
+		//figurePrefabClone = Instantiate (figurePrefab, mittelwert, Quaternion.identity) as GameObject;
+  //      figurePrefabClone.transform.localScale = scaleVector;
+  //      figurePrefabClone.gameObject.layer = building;
+  //      figurePrefabClone.GetComponent<SelectScript>().newSelect = this;
+        //Destroy (figurePrefabClone, 0.5f);
+
+  //      figurePrefabClone = Instantiate (figurePrefab, mittelwert, Quaternion.identity) as GameObject;
+		//figurePrefabClone.transform.localScale = scaleVector;
+		//figurePrefabClone.gameObject.layer = island;
+		//figurePrefabClone.GetComponent<SelectScript> ().newSelect = this;
 		//Destroy (figurePrefabClone, 0.5f);
 
 		figurePrefabClone = Instantiate (figurePrefab, mittelwert, Quaternion.identity) as GameObject;
 		figurePrefabClone.transform.localScale = scaleVector;
-		figurePrefabClone.gameObject.layer = island;
-		figurePrefabClone.GetComponent<SelectScript> ().newSelect = this;
-		//Destroy (figurePrefabClone, 0.5f);
-
-		figurePrefabClone = Instantiate (figurePrefab, mittelwert, Quaternion.identity) as GameObject;
-		figurePrefabClone.transform.localScale = scaleVector;
-		figurePrefabClone.gameObject.layer = ship;
+		figurePrefabClone.gameObject.layer = selectPlane;
 		figurePrefabClone.GetComponent<SelectScript> ().newSelect = this;
 		//Destroy (figurePrefabClone, 0.5f);
 	}
@@ -113,29 +129,46 @@ public class NewSelect : MonoBehaviour
 	void Update ()
 	{
 		if (newListEntry) {
-			if (shipList.Count > 0) {
-				Debug.Log ("geht");
-				//shipList.CopyTo (playerInstance.selectedUnits); 
-				islandList.Clear ();
-				buildingList.Clear();
-			}
+            if (shipList.Count > 0) {
 
-			newListEntry = false;
+                playerInstance.selectedUnits.Clear();
+                foreach (var item in shipList)
+                {
+                    playerInstance.SelectedListAdd(item);
+                }
+
+                shipList.Clear();
+                islandList.Clear ();
+                buildingList.Clear();
+            }
+            else if (islandList.Count > 0)
+            {
+                playerInstance.SelectedListClear();
+                playerInstance.SelectedListAdd(islandList[0]);
+
+                //shipList.Clear();
+                islandList.Clear();
+                buildingList.Clear();
+            }
+            else if (buildingList.Count > 0)
+            {
+                playerInstance.SelectedListClear();
+                playerInstance.SelectedListAdd(buildingList[0]);
+
+                //shipList.Clear();
+                //islandList.Clear();
+                buildingList.Clear();
+            }
+            newListEntry = false;
 		}
-		foreach (var item in PlayerManager.Instance.selectedUnits) {
-			Debug.Log (item);
-		}
 
-//		if (Input.GetKeyDown ("d")) {
-//			foreach (var item in shipList) {
-//				Debug.Log (item);
-//			}
-//			foreach (var item in buildingList) {
-//				Debug.Log (item);
-//			}
-//		}
+        if (newListIsEmpty)
+        {
+            playerInstance.SelectedListClear();
+            newListIsEmpty = false;
+        }
 
-		if (Input.GetMouseButton (0)) {
+        if (Input.GetMouseButton (0)) {
 			if (mousePressed) {
 				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 				Vector3 second = new Vector3 (0, 0, 0);
@@ -152,18 +185,16 @@ public class NewSelect : MonoBehaviour
 
 		if (Input.GetMouseButtonDown (0)) {
 			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-			//Debug.Log (ray);
+            //Debug.Log (ray);
 
-			// Single RayCast
-//			RaycastHit hit;
-//			if (Physics.Raycast (ray, out hit)) {
-//				if (hit.collider.name != "Plane")
-//					firstRay = hit.collider;
-//				else
-//					firstRay = null;
-//			}
+            // Single RayCast
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                firstRay = hit.collider;
+            }
 
-			RaycastHit[] hits = Physics.RaycastAll (ray);
+            RaycastHit[] hits = Physics.RaycastAll (ray);
 			foreach (var item in hits) {
 				if (item.transform.gameObject.layer == selectPlane)
 					first = item.point;

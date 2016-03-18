@@ -20,17 +20,22 @@ public class SelectScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-//		box = gameObject.GetComponent<BoxCollider> ();
-		//newSelect = gameObject.GetComponentInParent<NewSelect>();
+        //		box = gameObject.GetComponent<BoxCollider> ();
+        //newSelect = gameObject.GetComponentInParent<NewSelect>();
+        
 		building = LayerMask.NameToLayer ("Buildings");
 		ship = LayerMask.NameToLayer ("Ships");
 		island = LayerMask.NameToLayer ("Islands");
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		if(frameCounter>frameCounterLimit)
-			Destroy (gameObject);
+        if (frameCounter > frameCounterLimit)
+        {
+            newSelect.newListIsEmpty = true;
+            Destroy(gameObject);
+        }
+			
 		frameCounter++;
 //		box.enabled = true;
 //		if (Input.GetKeyDown ("d")) {
@@ -40,21 +45,20 @@ public class SelectScript : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider coll){
-
-		if (coll.gameObject.layer == building) {
-			newSelect.buildingList.Add (coll.gameObject);
-			newSelect.newListEntry = true;
-		}
-		else if (coll.gameObject.layer == island) {
-			newSelect.islandList.Add (coll.gameObject);
+        if (coll.gameObject.layer == building){
+            newSelect.buildingList.Add(coll.gameObject);
+            newSelect.newListEntry = true;
+        }
+        else if (coll.gameObject.layer == island) {
+            newSelect.islandList.Add (coll.gameObject);
 			newSelect.newListEntry = true;
 		}
 		else if (coll.gameObject.layer == ship) {
-			newSelect.shipList.Add (coll.gameObject);
+            newSelect.shipList.Add (coll.gameObject);
 			newSelect.newListEntry = true;
 		}
-
-//		Debug.Log(coll.gameObject.layer);
+        //Debug.Log(LayerMask.NameToLayer("SelectPlane"));
+		//Debug.Log(coll.gameObject.layer);
 //		Debug.Log (newSelect);
 		Destroy (gameObject);
 
