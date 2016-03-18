@@ -18,5 +18,7 @@ public class CloudCamFollow : MonoBehaviour {
         if(Cam)
             gameObject.transform.position = new Vector3(Cam.gameObject.transform.position.x, yVal, Cam.gameObject.transform.position.z);
 
+
+        
     }
 }
