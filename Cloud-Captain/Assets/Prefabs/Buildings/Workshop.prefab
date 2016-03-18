@@ -14,6 +14,7 @@ GameObject:
   - 114: {fileID: 11407746}
   - 114: {fileID: 11467932}
   - 114: {fileID: 11438322}
+  - 114: {fileID: 11463224}
   m_Layer: 8
   m_Name: Workshop
   m_TagString: Player
@@ -57,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3767042, y: -0.4563675, z: -8.235206}
+  m_LocalPosition: {x: 288.51328, y: -56, z: 161.1623}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 457954}
@@ -154,6 +155,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 5
+--- !u!114 &11463224
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 130732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0404a59d487362b4a917638fed2d3760, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11467932
 MonoBehaviour:
   m_ObjectHideFlags: 1

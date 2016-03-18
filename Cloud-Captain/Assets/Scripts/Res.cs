@@ -7,6 +7,9 @@ using System;
 [Serializable]
 public struct Res
 {
+    public static Res Zero { get { return new Res(0, 0, 0); } }
+
+
     public int Matter;
     public int Energy;
     public int Engine;
@@ -51,6 +54,8 @@ public struct Res
     {
         return new Res(r1.Matter / r2.Matter, r1.Energy / r2.Energy, r1.Engine / r2.Engine);
     }
+
+
 
 
 }

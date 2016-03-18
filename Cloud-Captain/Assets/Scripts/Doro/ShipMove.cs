@@ -11,7 +11,8 @@ public class ShipMove : MonoBehaviour {
 	private Vector3 minRange;
 	private Vector3 maxRange;
 	private Vector3 oldTarget;
-	private bool reachedTarget;
+	[ReadOnly]
+	public bool reachedTarget;
 
 	private Rigidbody rigBody;
 
@@ -59,9 +60,9 @@ public class ShipMove : MonoBehaviour {
 	}
 
 	void FixedUpdate (){
-
+		if(!reachedTarget)
         //moveShip(new Vector3 (-20,0,-10));
-        move();
+        	move();
     }
 
 
@@ -70,7 +71,7 @@ public class ShipMove : MonoBehaviour {
 
 		reachedTarget = false;
         //move (target);
-        m_targetPosition = targetPosition;
+		m_targetPosition = target;
         m_targetPosition.y = shipHighY;
     }
 

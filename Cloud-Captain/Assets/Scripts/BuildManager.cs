@@ -56,13 +56,12 @@ public class BuildManager : MonoBehaviour
 
     #endregion
 
+
     void Awake()
     {
         Debug.Assert(!Instance, "Only one BuildManager script is allowed in the scene!");
 
         Instance = this;
-
-
     }
 
     public bool TryPlaceBuilding(BuildingObject obj, Transform position)
@@ -72,7 +71,6 @@ public class BuildManager : MonoBehaviour
         if (PlayerManager.Instance.GetResources().IsEnough(info.price))
         {
             Instantiate(info.prefab, position.position, position.rotation);
-
             PlayerManager.Instance.ChangeResource(info.price * -1);
 
             return true;
@@ -148,6 +146,8 @@ public class BuildManager : MonoBehaviour
         }
     }
 
+ 
+
     public struct BuildingInfo
     {
         public GameObject prefab;
@@ -173,9 +173,4 @@ public class BuildManager : MonoBehaviour
             this.buildTime = buildTime;
         }
     }
-
-
-
-
-	
 }

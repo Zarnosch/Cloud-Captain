@@ -194,7 +194,7 @@ public static class Setting
     ### Costs to produce one engine
     **/
     public static readonly Res COST_RES_ENGINE = new Res(250, 750, 0);
-
+    public const float MACHINE_PRODUCE_TIME = 10.0f;
 
     /********************************************* Supply */
 
@@ -324,5 +324,13 @@ public static class Setting
     #endregion
 
 
+
+    public const float PROGRESS_BAR_OFFSET_X = 0.0f;
+    public const float PROGRESS_BAR_OFFSET_Y = -1.0f;
+    public const float PROGRESS_BAR_OFFSET_Z = 0.0f;
+
+    public const float HEALTH_BAR_OFFSET_X = 0.0f;
+    public const float HEALTH_BAR_OFFSET_Y = -2.0f;
+    public const float HEALTH_BAR_OFFSET_Z = 0.0f;
 
 }
