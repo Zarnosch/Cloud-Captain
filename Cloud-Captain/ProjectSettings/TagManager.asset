@@ -29,6 +29,7 @@ TagManager:
   - IslandBulletTarget
   - SettlementSite
   - 
+  - WorldUI
   - 
   - 
   - 
@@ -42,4 +43,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: New Layer
+    uniqueID: 2247596649
     locked: 0

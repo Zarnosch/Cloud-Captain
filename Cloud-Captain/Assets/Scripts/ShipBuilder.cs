@@ -22,16 +22,24 @@ public class ShipBuilder : MonoBehaviour
 
     private Action<GameObject> queueChanged;
 
+    private GameObject progressBarGameObject;
+    private WorldSpaceBar progressBar;
+
     void Start()
     {
         if (SpawnPosition == null)
             SpawnPosition = gameObject.transform;
+
+
+        if (!progressBarGameObject)
+        {
+            progressBarGameObject = (GameObject)Instantiate(BuildManager.Instance.ProgressbarPrefab);
+            progressBar = progressBarGameObject.GetComponent<WorldSpaceBar>();
+
+            progressBarGameObject.SetActive(false);
+        }
     }
 
-    void Test(GameObject obj)
-    {
-        Debug.Log(obj.name);
-    }
 
     public void BuildShip(BuildManager.ShipType type)
     {
@@ -82,6 +90,8 @@ public class ShipBuilder : MonoBehaviour
         {
             curBuildCooldown -= Time.deltaTime;
 
+            progressBar.SetPercent(GetCurrentBuildPercent());
+
             if(curBuildCooldown <= 0.0f)
             {
                 Instantiate(enqueuedShips.Dequeue().prefab, SpawnPosition.transform.position, Quaternion.identity);
@@ -97,13 +107,28 @@ public class ShipBuilder : MonoBehaviour
             float reduction = 1.0f - buildReduction;
             curBuildCooldown = enqueuedShips.Peek().buildTime - (enqueuedShips.Peek().buildTime * reduction);
         }
+
     }
 
 
     private void QueueChanged()
     {
         if (queueChanged != null)
+        {
             queueChanged(this.gameObject);
+        }
+
+        if (enqueuedShips.Count == 0)
+        {
+            progressBarGameObject.SetActive(false);
+        }
+
+        else
+        {
+            progressBarGameObject.SetActive(true);
+
+        }
+            
     }
 
     public void AddQueueChangedListener(Action<GameObject> action)
@@ -115,5 +140,19 @@ public class ShipBuilder : MonoBehaviour
     {
         queueChanged -= action;
     }
+
+    public float GetCurrentBuildPercent()
+    {
+
+        if(enqueuedShips.Count > 0)
+        {
+            return curBuildCooldown / enqueuedShips.Peek().buildTime;
+        }
+
+        else
+            return 0.0f;
+
+    }
+
 
 }
