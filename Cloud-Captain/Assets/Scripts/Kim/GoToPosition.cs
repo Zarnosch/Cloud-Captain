@@ -27,7 +27,8 @@ public class GoToPosition : MonoBehaviour {
                     {
                         foreach (var selected in playerInstance.selectedUnits)
                         {
-                            selected.gameObject.GetComponent<ShipMove>().targetPosition = item.point;
+							Debug.Log (item.point);
+							selected.gameObject.GetComponent<ShipMove>().moveShip(item.point);
                             //selected.gameObject.GetComponent<ShipMove>().moveShip(new Vector3(20,20,20));
                         }
                     }

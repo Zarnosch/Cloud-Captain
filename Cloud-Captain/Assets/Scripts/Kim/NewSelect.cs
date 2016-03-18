@@ -4,8 +4,9 @@ using System.Collections.Generic;
 
 public class NewSelect : MonoBehaviour
 {
-
+	public float selectorPlaneHeight = 56;
     public float flaechenInhaltFuerEinfachenKlick = 5;
+	public float selectionHeightInEachDirection = 50;
 
 	public List<GameObject> buildingList = new List<GameObject>();
 	public List<GameObject> islandList = new List<GameObject>();
@@ -76,7 +77,7 @@ public class NewSelect : MonoBehaviour
                 
         }
 		Vector3 mittelwert = new Vector3 (x, y, z);
-		Vector3 scaleVector = new Vector3 (Mathf.Abs (f.x - s.x), 10, Mathf.Abs (f.z - s.z));
+		Vector3 scaleVector = new Vector3 (Mathf.Abs (f.x - s.x), selectionHeightInEachDirection, Mathf.Abs (f.z - s.z));
 		//figurePrefabClone = Instantiate (figurePrefab, mittelwert, Quaternion.identity) as GameObject;
   //      figurePrefabClone.transform.localScale = scaleVector;
   //      figurePrefabClone.gameObject.layer = building;
@@ -105,7 +106,7 @@ public class NewSelect : MonoBehaviour
 			x = (f.x - s.x) / 2 + s.x;
 		} else
 			x = (f.x + s.x) / 2;
-		y = f.y;
+		y = f.y+selectorPlaneHeight;
 		if (f.z < 0 && s.z > 0) {
 			z = (s.z - f.z) / 2 + f.z;
 		} else if (f.z > 0 && s.z < 0) {

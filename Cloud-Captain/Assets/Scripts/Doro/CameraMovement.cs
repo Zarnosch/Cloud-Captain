@@ -20,10 +20,10 @@ public class CameraMovement : MonoBehaviour {
 	private Vector2 _cameraRect; // x = Width, y = Height
 	private Vector3 _cameraStartPos;
 	private float edgeWidth;
-	public float cameraMoveMaxSpeed;	//maxspeed for camera movement
-	public float cameraEdgeIncreaseSpeed; //how fast the speed increases at an edge
+	public float cameraMoveSpeed = 0.4f;	//maxspeed for camera movement
+	public float cameraEdgeIncreaseSpeed = 0.2f; //how fast the speed increases at an edge
 	private float cameraHeight;
-	public float cameraHeightInfluence;
+	public float cameraHeightInfluence = 1f;
 
 	public bool allowMoving;
 	public bool allowScrolling;
@@ -34,7 +34,7 @@ public class CameraMovement : MonoBehaviour {
 	private float maxYRange;
 
 	public float currentScroll;
-	public float scrollSpeed;
+	public float scrollSpeed = 1f;
 	public float maxScrollSpeed;
 	public float minY;
 	public float maxY;
@@ -69,19 +69,17 @@ public class CameraMovement : MonoBehaviour {
 		maxYRange = maxY + rangeY;
 		minYRange = minY - rangeY;
 
+		allowMoving = true;
+		allowScrolling = true;
 	}
 
 	void Update () {
 
 		_cameraCurrentPos = camera.transform.position;
-		_mouseCurrentPos = Input.mousePosition;
-
 
 		if( Input.GetKeyDown("p")){
 			allowMoving = !allowMoving;
 		}
-		
-	
 
 		if (allowScrolling) {
 			scroll ();
@@ -135,33 +133,34 @@ public class CameraMovement : MonoBehaviour {
 
 		_mouseCurrentPos = Input.mousePosition;
 		_cameraMovePos = camera.transform.position;
-		cameraHeightInfluence = 0.1f;
-		cameraHeight = (camera.nearClipPlane * cameraHeightInfluence - camera.farClipPlane * cameraHeightInfluence);
+
+		cameraHeight = _cameraMovePos.y * cameraHeightInfluence;
+		//cameraHeight = (camera.nearClipPlane * cameraHeightInfluence - camera.farClipPlane * cameraHeightInfluence);
 		//cameraHeight = 1 +  (maxY - minY) / (_cameraMovePos.y - minY);
 		//cameraHeight = _cameraMovePos;
 		//move right
 		if (_mouseCurrentPos.x >= _moveEdgeRight) {
-			_smoothSpeedMove = (_moveEdgeRight - _mouseCurrentPos.x) *(-cameraEdgeIncreaseSpeed);
-			_cameraMovePos.x += _smoothSpeedMove * cameraMoveMaxSpeed * Time.deltaTime;
+			_smoothSpeedMove = (_moveEdgeRight - _mouseCurrentPos.x) * (-cameraEdgeIncreaseSpeed) * cameraHeight;
+			_cameraMovePos.x += _smoothSpeedMove * cameraMoveSpeed * Time.deltaTime;
 		}
 
 		//move left
 		if (_mouseCurrentPos.x <= _moveEdgeLeft) {
 			//_smoothSpeedMove = (_mouseCurrentPos.x - _moveEdgeLeft) *(-cameraEdgeIncreaseSpeed);
-			_smoothSpeedMove = (_mouseCurrentPos.x - _moveEdgeLeft) *(-cameraEdgeIncreaseSpeed);
-			_cameraMovePos.x -= _smoothSpeedMove * cameraMoveMaxSpeed * Time.deltaTime;
+			_smoothSpeedMove = (_mouseCurrentPos.x - _moveEdgeLeft) *(-cameraEdgeIncreaseSpeed) * cameraHeight;
+			_cameraMovePos.x -= _smoothSpeedMove * cameraMoveSpeed * Time.deltaTime;
 		}
 
 		//move up
 		if (_mouseCurrentPos.y >= _moveEdgeTop) {
-			_smoothSpeedMove = (_moveEdgeTop - _mouseCurrentPos.y) *(-cameraEdgeIncreaseSpeed);
-			_cameraMovePos.z += _smoothSpeedMove * cameraMoveMaxSpeed * Time.deltaTime;
+			_smoothSpeedMove = (_moveEdgeTop - _mouseCurrentPos.y) *(-cameraEdgeIncreaseSpeed) * cameraHeight;
+			_cameraMovePos.z += _smoothSpeedMove * cameraMoveSpeed * Time.deltaTime;
 		}
 
 		//move down
 		if (_mouseCurrentPos.y <= _moveEdgeBottom) {
-			_smoothSpeedMove = (_mouseCurrentPos.y - _moveEdgeBottom) *(-cameraEdgeIncreaseSpeed);
-			_cameraMovePos.z -= _smoothSpeedMove * cameraMoveMaxSpeed * Time.deltaTime;
+			_smoothSpeedMove = (_mouseCurrentPos.y - _moveEdgeBottom) *(-cameraEdgeIncreaseSpeed) * cameraHeight;
+			_cameraMovePos.z -= _smoothSpeedMove * cameraMoveSpeed * Time.deltaTime;
 		}
 
 		// proof worldedges

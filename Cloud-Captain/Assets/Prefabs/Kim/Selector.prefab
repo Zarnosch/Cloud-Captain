@@ -9,6 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 429306}
   - 114: {fileID: 11436332}
+  - 114: {fileID: 11460854}
+  - 114: {fileID: 11440086}
   m_Layer: 0
   m_Name: Selector
   m_TagString: Untagged
@@ -39,6 +41,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b5f7f61c01ffe4d8807222e9dd670e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectorPlaneHeight: 56
   flaechenInhaltFuerEinfachenKlick: 5
   buildingList: []
   islandList: []
@@ -47,6 +50,31 @@ MonoBehaviour:
   newListIsEmpty: 0
   figurePrefab: {fileID: 135060, guid: 3e7a36a32d541464c8a715ffbf3c4b0f, type: 2}
   preFigurePrefab: {fileID: 135514, guid: 1250fa6b3f97f57459296165c29aff26, type: 2}
+  methods: {fileID: 0}
+--- !u!114 &11440086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 164112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff945abcb0db494a8bb774b1b66615d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11460854
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 164112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32095bcf3c512e24d80a95e39ed7dab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerSelectItem: {fileID: 111306, guid: b5be46f0b7f20b44bb53f6e5c440e4d8, type: 2}
+  EnemySelectItem: {fileID: 156142, guid: 3347623ac05ca6e47851ad016e8d848d, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
