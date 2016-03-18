@@ -64,7 +64,7 @@ public class ShipMove : MonoBehaviour {
 
 	}
 
-	void moveShip(Vector3 targetPosition){
+	public void moveShip(Vector3 targetPosition){
 
 		rigBody.isKinematic = false;
 		m_targetPosition = targetPosition;
