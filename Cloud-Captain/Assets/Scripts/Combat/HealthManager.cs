@@ -36,6 +36,7 @@ public class HealthManager : MonoBehaviour
             healthBarGameObject.transform.SetParent(this.gameObject.transform);
 
             healthBar = healthBarGameObject.GetComponent<WorldSpaceBar>();
+			healthBar.SetPercent (GetHealthPercent());
         }
 
     }
