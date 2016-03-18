@@ -20,10 +20,10 @@ public class CameraMovement : MonoBehaviour {
 	private Vector2 _cameraRect; // x = Width, y = Height
 	private Vector3 _cameraStartPos;
 	private float edgeWidth;
-	public float cameraMoveSpeed;	//maxspeed for camera movement
-	public float cameraEdgeIncreaseSpeed; //how fast the speed increases at an edge
+	public float cameraMoveSpeed = 0.4f;	//maxspeed for camera movement
+	public float cameraEdgeIncreaseSpeed = 0.2f; //how fast the speed increases at an edge
 	private float cameraHeight;
-	public float cameraHeightInfluence;
+	public float cameraHeightInfluence = 1f;
 
 	public bool allowMoving;
 	public bool allowScrolling;
@@ -34,7 +34,7 @@ public class CameraMovement : MonoBehaviour {
 	private float maxYRange;
 
 	public float currentScroll;
-	public float scrollSpeed;
+	public float scrollSpeed = 1f;
 	public float maxScrollSpeed;
 	public float minY;
 	public float maxY;
@@ -69,6 +69,7 @@ public class CameraMovement : MonoBehaviour {
 		maxYRange = maxY + rangeY;
 		minYRange = minY - rangeY;
 
+		allowMoving = true;
 		allowScrolling = true;
 	}
 
@@ -134,7 +135,6 @@ public class CameraMovement : MonoBehaviour {
 		_cameraMovePos = camera.transform.position;
 
 		cameraHeight = _cameraMovePos.y * cameraHeightInfluence;
-		Debug.Log (cameraHeight);
 		//cameraHeight = (camera.nearClipPlane * cameraHeightInfluence - camera.farClipPlane * cameraHeightInfluence);
 		//cameraHeight = 1 +  (maxY - minY) / (_cameraMovePos.y - minY);
 		//cameraHeight = _cameraMovePos;
@@ -153,13 +153,13 @@ public class CameraMovement : MonoBehaviour {
 
 		//move up
 		if (_mouseCurrentPos.y >= _moveEdgeTop) {
-			_smoothSpeedMove = (_moveEdgeTop - _mouseCurrentPos.y) *(-cameraEdgeIncreaseSpeed) + cameraHeight;
+			_smoothSpeedMove = (_moveEdgeTop - _mouseCurrentPos.y) *(-cameraEdgeIncreaseSpeed) * cameraHeight;
 			_cameraMovePos.z += _smoothSpeedMove * cameraMoveSpeed * Time.deltaTime;
 		}
 
 		//move down
 		if (_mouseCurrentPos.y <= _moveEdgeBottom) {
-			_smoothSpeedMove = (_mouseCurrentPos.y - _moveEdgeBottom) *(-cameraEdgeIncreaseSpeed) + cameraHeight;
+			_smoothSpeedMove = (_mouseCurrentPos.y - _moveEdgeBottom) *(-cameraEdgeIncreaseSpeed) * cameraHeight;
 			_cameraMovePos.z -= _smoothSpeedMove * cameraMoveSpeed * Time.deltaTime;
 		}
 
