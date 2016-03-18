@@ -77,6 +77,13 @@ public class BuildManager : MonoBehaviour
         return false;
     }
 
+    public bool TryPlaceBuildingNoCost(BuildingObject obj, Transform position)
+    {
+        BuildingInfo info = GetBuildingInfo(obj);
+        Instantiate(info.prefab, position.position, position.rotation);
+        return true;
+    }
+
     public BuildingInfo GetBuildingInfo(BuildingObject obj)
     {
         switch (obj)

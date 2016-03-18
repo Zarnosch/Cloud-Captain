@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class ShipMove : MonoBehaviour {
@@ -59,25 +59,28 @@ public class ShipMove : MonoBehaviour {
 	}
 
 	void FixedUpdate (){
-		
-		moveShip(new Vector3 (-20,0,-10));
-	}
+
+        //moveShip(new Vector3 (-20,0,-10));
+        move();
+    }
 
 
-	public void moveShip (Vector3 target){
+	public void moveShip (Vector3 target)
+    {
 
 		reachedTarget = false;
-		move (target);
+        //move (target);
+        m_targetPosition = targetPosition;
+        m_targetPosition.y = shipHighY;
+    }
 
-	}
+    void move(){
 
-	void move(Vector3 targetPosition){
-
-		rigBody.isKinematic = false;
+		//rigBody.isKinematic = false;
         
-		m_targetPosition = targetPosition;
+		//m_targetPosition = targetPosition;
 		m_currentPosition = rigBody.transform.position;
-		m_targetPosition.y = shipHighY;
+		//m_targetPosition.y = shipHighY;
 
 	
 			// currentPosition is NOT in the range of the targetPositon
@@ -94,19 +97,27 @@ public class ShipMove : MonoBehaviour {
 				reachedTarget = true;
 
 				rigBody.angularVelocity = new Vector3 (0, 0, 0);
-				rigBody.isKinematic = true;
+				//rigBody.isKinematic = true;
 
 			}
 		
 	}
 
 	bool isInRangeX (){
-		return ( (m_currentPosition.x > minRange.x) && (m_currentPosition.x < maxRange.x) );
+
+        float xDist = targetPosition.x - gameObject.transform.position.x;
+
+        return xDist < range;
+
+		//return ( (m_currentPosition.x > minRange.x) && (m_currentPosition.x < maxRange.x) );
 	}
 
 	bool isInRangeZ (){
-		return ( (m_currentPosition.z > minRange.z) && (m_currentPosition.z < maxRange.z) );
-	}
+        //return ( (m_currentPosition.z > minRange.z) && (m_currentPosition.z < maxRange.z) );
+        float zDist = targetPosition.z - gameObject.transform.position.z;
+
+        return zDist < range;
+    }
 
 
 	void OnCollisionEnter(Collision collision) {

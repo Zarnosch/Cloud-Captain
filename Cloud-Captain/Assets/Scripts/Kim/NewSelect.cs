@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -162,7 +162,8 @@ public class NewSelect : MonoBehaviour
 
         if (newListIsEmpty)
         {
-            methods.SelectedListClear();
+            if(methods)
+                methods.SelectedListClear();
             newListIsEmpty = false;
         }
 

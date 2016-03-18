@@ -110,14 +110,14 @@ public class CameraMovement : MonoBehaviour {
 		//move right
 		if (_mouseCurrentPos.x >= _moveEdgeRight) {
 			_smoothSpeedMove = (_moveEdgeRight - _mouseCurrentPos.x) *(-cameraEdgeIncreaseSpeed);
-			_cameraMovePos.x += _smoothSpeedMove * cameraMoveMaxSpeed * Time.deltaTime * cameraHeight;
+			_cameraMovePos.x += _smoothSpeedMove * cameraMoveMaxSpeed * Time.deltaTime;
 		}
 
 		//move left
 		if (_mouseCurrentPos.x <= _moveEdgeLeft) {
 			//_smoothSpeedMove = (_mouseCurrentPos.x - _moveEdgeLeft) *(-cameraEdgeIncreaseSpeed);
 			_smoothSpeedMove = (_mouseCurrentPos.x - _moveEdgeLeft) *(-cameraEdgeIncreaseSpeed);
-			_cameraMovePos.x -= _smoothSpeedMove * cameraMoveMaxSpeed * Time.deltaTime * cameraHeight;
+			_cameraMovePos.x -= _smoothSpeedMove * cameraMoveMaxSpeed * Time.deltaTime;
 		}
 
 		//move up

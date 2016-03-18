@@ -90,10 +90,14 @@ public class BulletSpawner : MonoBehaviour
 
     private bool IsViableTargetObject(GameObject target)
     {
-        bool canAttackLayer = true;
+        bool canAttackLayer = target.layer == LayerMask.NameToLayer(targetType.ToString());
 
-        if (targetType != TargetType.Both)
-            canAttackLayer = target.layer == LayerMask.NameToLayer(targetType.ToString());
+        if (targetType == TargetType.Both)
+        {
+            canAttackLayer = target.layer == LayerMask.NameToLayer(TargetType.Buildings.ToString()) || target.layer == LayerMask.NameToLayer(TargetType.Ships.ToString());
+        }
+           
+
 
         return target.tag != gameObject.tag && canAttackLayer;
     }

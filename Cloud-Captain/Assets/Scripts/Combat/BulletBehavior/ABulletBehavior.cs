@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 
-public abstract class ABulletBehavior : MonoBehaviour 
+public abstract class ABulletBehavior : MonoBehaviour
 {
 
     public bool KillOnImpact = false;
@@ -34,7 +34,7 @@ public abstract class ABulletBehavior : MonoBehaviour
 
 
     public void StartBullet(Transform targetTransform, Transform spawnPoint, float minDist, float maxDist, float speed, int bulletDamage)
-    {            
+    {
         if (bulletRoot == null)
             bulletRoot = gameObject;
 
@@ -53,7 +53,20 @@ public abstract class ABulletBehavior : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag != bulletRoot.tag)
+       // Debug.Log(other.name + ", " + LayerMask.LayerToName(other.gameObject.layer) + ", " + other.tag);
+
+        //AKA: islands
+        if (other.tag == "Neutral")
+        {
+            OnImpact.Invoke(bulletRoot.transform);
+
+            if (KillOnImpact)
+            {
+                Destroy(bulletRoot);
+            }
+        }
+
+        else if (other.tag != bulletRoot.tag)
         {
             HealthManager health = other.GetComponent<HealthManager>();
 
@@ -67,22 +80,12 @@ public abstract class ABulletBehavior : MonoBehaviour
                     Destroy(bulletRoot);
                 }
 
+
+            }
+        }
+
       
-            }
-        }
 
-        //AKA: islands
-        else if(other.tag == "Neutral")
-        {
-            OnImpact.Invoke(bulletRoot.transform);
-
-            if (KillOnImpact)
-            {
-                Destroy(bulletRoot);
-            }
-        }
     }
-
-
 
 }

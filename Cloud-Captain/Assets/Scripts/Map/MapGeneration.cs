@@ -7,6 +7,8 @@ public class MapGeneration : MonoBehaviour
     public bool generateLevelOnStart = false;
     public bool appendToGameObject = false;
 
+    public SyncMap Syncer;
+
     public GameObject SmallIsland;
     public GameObject BigIsland;
     public GameObject MidIsland1;
@@ -80,6 +82,9 @@ public class MapGeneration : MonoBehaviour
             };
 
         generateIslands(SmallIslandAmount, BigIslandAmount, MidIsland1Amount, MidIsland2Amount, MirrorEdgeIslandsAmount);
+
+        if (Syncer)
+            Syncer.Sync();
     }
 
     /// <summary>
@@ -101,7 +106,7 @@ public class MapGeneration : MonoBehaviour
             Vector3 pos = new Vector3(Random.Range(MapWidth / 2 + MirrorEdgeWidth / 2, MapWidth), 0, Random.Range(0, MapHeight));
             if (!islandCollision(pos, r[0]))
             {
-                GameObject newObj = (GameObject)Instantiate(SmallIsland, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
+                GameObject newObj = InternCreate(SmallIsland, pos);
                 smallIslands.Add(pos);
 
                 if (appendToGameObject)
@@ -126,11 +131,8 @@ public class MapGeneration : MonoBehaviour
             Vector3 pos = new Vector3(Random.Range(MapWidth * 0.75f, MapWidth), 0, Random.Range(MapHeight / 4, MapHeight * 0.75f));
             if (!islandCollision(pos, r[1]))
             {
-                GameObject newObj = (GameObject)Instantiate(BigIsland, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
+                InternCreate(BigIsland, pos);
                 bigIslands.Add(pos);
-
-                if (appendToGameObject)
-                    newObj.transform.SetParent(gameObject.transform);
             }
             else
             {
@@ -149,7 +151,7 @@ public class MapGeneration : MonoBehaviour
             Vector3 pos = new Vector3(Random.Range(MapWidth / 2 + MirrorEdgeWidth / 2, MapWidth), 0, Random.Range(0, MapHeight));
             if (!islandCollision(pos, r[2]))
             {
-                GameObject newObj = (GameObject)Instantiate(MidIsland1, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
+                GameObject newObj = InternCreate(MidIsland1, pos);
                 midIslands1.Add(pos);
 
 
@@ -173,12 +175,8 @@ public class MapGeneration : MonoBehaviour
             Vector3 pos = new Vector3(Random.Range(MapWidth / 2 + MirrorEdgeWidth / 2, MapWidth), 0, Random.Range(0, MapHeight));
             if (!islandCollision(pos, r[3]))
             {
-                GameObject newObj = (GameObject)Instantiate(MidIsland2, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
+                InternCreate(MidIsland2, pos);
                 midIslands2.Add(pos);
-
-
-                if (appendToGameObject)
-                    newObj.transform.SetParent(gameObject.transform);
             }
             else
             {
@@ -196,31 +194,20 @@ public class MapGeneration : MonoBehaviour
         //Mirror all islands
         foreach (Vector3 island in smallIslands)
         {
-            GameObject newObj = (GameObject)Instantiate(SmallIsland, new Vector3(MapWidth - island.x, island.y, MapHeight - island.z), Quaternion.Euler(270, Random.Range(0, 360), 0));
-
-            if (appendToGameObject)
-                newObj.transform.SetParent(gameObject.transform);
+            InternCreate(SmallIsland, new Vector3(MapWidth - island.x, island.y, MapHeight - island.z));
         }
         foreach (Vector3 island in bigIslands)
         {
-            GameObject newObj = (GameObject)Instantiate(BigIsland, new Vector3(MapWidth - island.x, island.y, MapHeight - island.z), Quaternion.Euler(270, Random.Range(0, 360), 0));
-
-            if (appendToGameObject)
-                newObj.transform.SetParent(gameObject.transform);
+            InternCreate(BigIsland, new Vector3(MapWidth - island.x, island.y, MapHeight - island.z));
         }
         foreach (Vector3 island in midIslands1)
         {
-            GameObject newObj = (GameObject)Instantiate(MidIsland1, new Vector3(MapWidth - island.x, island.y, MapHeight - island.z), Quaternion.Euler(270, Random.Range(0, 360), 0));
-
-            if (appendToGameObject)
-                newObj.transform.SetParent(gameObject.transform);
+            InternCreate(MidIsland1, new Vector3(MapWidth - island.x, island.y, MapHeight - island.z)); 
         }
         foreach (Vector3 island in midIslands2)
         {
-            GameObject newObj = (GameObject)Instantiate(MidIsland2, new Vector3(MapWidth - island.x, island.y, MapHeight - island.z), Quaternion.Euler(270, Random.Range(0, 360), 0));
+            InternCreate(MidIsland2, new Vector3(MapWidth - island.x, island.y, MapHeight - island.z));
 
-            if (appendToGameObject)
-                newObj.transform.SetParent(gameObject.transform);
         }
         
         //Generate Islands on the mirror edge
@@ -232,11 +219,8 @@ public class MapGeneration : MonoBehaviour
             {
                 if (!islandCollision(pos, r[2]))
                 {
-                    GameObject newObj = (GameObject)Instantiate(MidIsland1, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
+                    InternCreate(MidIsland1, pos);
                     midIslands1.Add(pos);
-
-                    if (appendToGameObject)
-                        newObj.transform.SetParent(gameObject.transform);
                 }
                 else
                 {
@@ -254,11 +238,8 @@ public class MapGeneration : MonoBehaviour
             {
                 if (!islandCollision(pos, r[3]))
                 {
-                    GameObject newObj = (GameObject)Instantiate(MidIsland2, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
+                    InternCreate(MidIsland2, pos); 
                     midIslands2.Add(pos);
-
-                    if (appendToGameObject)
-                        newObj.transform.SetParent(gameObject.transform);
                 }
                 else
                 {
@@ -275,6 +256,29 @@ public class MapGeneration : MonoBehaviour
         }
 
         if(notWholeMapCreated) Debug.LogError("Could not create whole map. Check wether there is enough space for all islands.");
+    }
+
+
+    private GameObject InternCreate(GameObject prefab, Vector3 pos)
+    {
+        GameObject newObj = (GameObject)Instantiate(prefab, pos, Quaternion.Euler(270, Random.Range(0, 360), 0));
+
+        if (appendToGameObject)
+            newObj.transform.SetParent(gameObject.transform);
+
+        BoxCollider box = newObj.GetComponent<BoxCollider>();
+        if (box)
+        {
+            #if UNITY_EDITOR
+                DestroyImmediate(box);
+            #else
+                Destroy(box);
+            #endif
+        }
+
+
+
+        return newObj;
     }
 
     /// <summary>
