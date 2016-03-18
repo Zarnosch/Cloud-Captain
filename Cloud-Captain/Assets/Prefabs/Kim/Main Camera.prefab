@@ -91,8 +91,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b5f7f61c01ffe4d8807222e9dd670e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flaechenInhaltFuerEinfachenKlick: 5
+  buildingList: []
+  islandList: []
+  shipList: []
+  newListEntry: 0
+  newListIsEmpty: 0
   figurePrefab: {fileID: 135060, guid: 3e7a36a32d541464c8a715ffbf3c4b0f, type: 2}
   preFigurePrefab: {fileID: 135514, guid: 1250fa6b3f97f57459296165c29aff26, type: 2}
+  methods: {fileID: 0}
 --- !u!124 &12461722
 Behaviour:
   m_ObjectHideFlags: 1

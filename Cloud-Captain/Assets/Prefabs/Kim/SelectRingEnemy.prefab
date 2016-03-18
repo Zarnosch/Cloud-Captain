@@ -12,7 +12,7 @@ GameObject:
   - 23: {fileID: 2397040}
   - 95: {fileID: 9509948}
   - 114: {fileID: 11480696}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: selectedEnemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 414358}
-  m_Layer: 0
+  - 114: {fileID: 11498696}
+  m_Layer: 17
   m_Name: SelectRingEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +47,7 @@ GameObject:
   - 23: {fileID: 2329806}
   - 95: {fileID: 9591238}
   - 114: {fileID: 11442692}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: selectedEnemy2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,6 +212,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3484e05cd2004c34485adc7228db6af1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11498696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c5a1424d0a6a54eb1b4835109ba85e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &100100000
