@@ -201,7 +201,6 @@ public class BulletSpawner : MonoBehaviour
             realTarget = pivot.Pivot;
 
         spawnedBullet.StartBullet(realTarget.transform, BulletSpawnTransform, MinDistance, sphereCollider.radius, BulletSpeed, BulletDamage);
-
     }
 
 
