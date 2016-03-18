@@ -21,10 +21,10 @@ TagManager:
   - Bullets
   - Buildingsite
   - Towersite
-  - 
-  - 
-  - 
-  - 
+  - BulletSpawner
+  - RepairLayer
+  - SelectPlane
+  - SelectChooser
   - 
   - 
   - 

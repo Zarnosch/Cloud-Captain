@@ -12,7 +12,9 @@ GameObject:
   - 65: {fileID: 6537560}
   - 23: {fileID: 2361086}
   - 114: {fileID: 11422878}
-  - 114: {fileID: 11481962}
+  - 114: {fileID: 11417194}
+  - 114: {fileID: 11414504}
+  - 114: {fileID: 11451854}
   m_Layer: 8
   m_Name: Mine
   m_TagString: Player
@@ -27,7 +29,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2, y: 0, z: -5.84}
+  m_LocalPosition: {x: 4.1328506, y: 2.5096717, z: -14.0403}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,6 +79,39 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11414504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e4595a3f7b992942adecb3e2575ea0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AvaibleUpgrades: 
+  UsedUpgrades: 
+  Health: {fileID: 11422878}
+  Producer: {fileID: 11417194}
+--- !u!114 &11417194
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d546bf71cb3d2e47ba2fd68e0e04c02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ResGain: 0
+  TimeToResGainCooldown: 0
+  TimeToResGain: 0
+  Res:
+    Matter: 0
+    Energy: 0
+    Engine: 0
 --- !u!114 &11422878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -88,6 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eda929f2e4aa3f418b26b31978a23da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  RootObject: {fileID: 183948}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -108,9 +144,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: HealthEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  RootObject: {fileID: 183948}
-  EditorHealth: 10
---- !u!114 &11481962
+  health: -1
+  maxHealth: 0
+--- !u!114 &11451854
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -118,10 +154,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 183948}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f18a30f54d3861348942c94fc5a91820, type: 3}
+  m_Script: {fileID: 11500000, guid: 30ea4ab5cc38a4a6ea75b990e749cc74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
+  ObjectType: 3
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
