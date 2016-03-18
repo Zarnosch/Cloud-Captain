@@ -836,17 +836,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 323b19ea8c1bc30429e7e4f9a4c9b73a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldEdgeLeft: -100
-  worldEdgeRight: 100
-  worldEdgeTop: 100
-  worldEdgeBottom: -100
-  cameraMoveMaxSpeed: 0.3
+  worldEdgeLeft: -1000
+  worldEdgeRight: 1000
+  worldEdgeTop: 1000
+  worldEdgeBottom: -1000
+  cameraMoveMaxSpeed: 0.03
   cameraEdgeIncreaseSpeed: 0.5
-  scrollSpeedCurrent: 2
-  scrollSpeedMax: 20
+  cameraHeight: 0
   currentScroll: 0
-  distance: 0
-  scrollMax: 10
+  scrollSpeed: 100
+  maxScrollSpeed: 100
   minY: -40
-  maxY: 40
+  maxY: 10000
   rangeY: 6
