@@ -36,8 +36,30 @@ public class ShipBuilder : MonoBehaviour
             progressBarGameObject = (GameObject)Instantiate(BuildManager.Instance.ProgressbarPrefab);
             progressBar = progressBarGameObject.GetComponent<WorldSpaceBar>();
 
-            progressBarGameObject.SetActive(false);
+            progressBarGameObject.transform.position = gameObject.transform.position + new Vector3(Setting.PROGRESS_BAR_OFFSET_X, Setting.PROGRESS_BAR_OFFSET_Y, Setting.PROGRESS_BAR_OFFSET_Z);
+
+            progressBarGameObject.transform.SetParent(gameObject.transform);
+
+            TryActivateBar();
+  
         }
+    }
+
+    private void TryActivateBar()
+    {
+        if (enqueuedShips.Count == 0)
+        {
+            if(progressBarGameObject.activeSelf)
+                progressBarGameObject.SetActive(false);
+        }
+
+        else
+        {
+            if(!progressBarGameObject.activeSelf)
+                progressBarGameObject.SetActive(true);
+
+        }
+
     }
 
 
@@ -124,16 +146,7 @@ public class ShipBuilder : MonoBehaviour
             queueChanged(this.gameObject);
         }
 
-        if (enqueuedShips.Count == 0)
-        {
-            progressBarGameObject.SetActive(false);
-        }
-
-        else
-        {
-            progressBarGameObject.SetActive(true);
-
-        }
+        TryActivateBar();
             
     }
 

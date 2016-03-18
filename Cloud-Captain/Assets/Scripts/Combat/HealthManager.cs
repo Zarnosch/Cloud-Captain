@@ -31,12 +31,14 @@ public class HealthManager : MonoBehaviour
         {
             healthBarGameObject = (GameObject)Instantiate(BuildManager.Instance.HealthbarPrefab);
 
-            healthBarGameObject.transform.position = gameObject.transform.position + new Vector3(0.0f, -5.0f, 0.0f);
+            healthBarGameObject.transform.position = gameObject.transform.position + new Vector3(Setting.HEALTH_BAR_OFFSET_X, Setting.HEALTH_BAR_OFFSET_Y, Setting.HEALTH_BAR_OFFSET_Z);
 
             healthBarGameObject.transform.SetParent(this.gameObject.transform);
 
             healthBar = healthBarGameObject.GetComponent<WorldSpaceBar>();
 			healthBar.SetPercent (GetHealthPercent());
+
+            TryActivate();
         }
 
     }
@@ -78,6 +80,7 @@ public class HealthManager : MonoBehaviour
             else if (health > maxHealth)
                 health = maxHealth;
 
+            TryActivate();
             healthBar.SetPercent(GetHealthPercent());
         }
     }
@@ -97,5 +100,19 @@ public class HealthManager : MonoBehaviour
     {
         this.maxHealth = health;
         this.health = health;
+    }
+
+    private void TryActivate()
+    {
+        if (!IsDamaged())
+        {
+            if (healthBarGameObject.activeSelf)
+                healthBarGameObject.SetActive(false);
+        }
+
+        else if (!healthBarGameObject.activeSelf)
+        {
+            healthBarGameObject.SetActive(true);
+        }
     }
 }

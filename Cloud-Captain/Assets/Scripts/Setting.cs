@@ -325,4 +325,12 @@ public static class Setting
 
 
 
+    public const float PROGRESS_BAR_OFFSET_X = 0.0f;
+    public const float PROGRESS_BAR_OFFSET_Y = -1.0f;
+    public const float PROGRESS_BAR_OFFSET_Z = 0.0f;
+
+    public const float HEALTH_BAR_OFFSET_X = 0.0f;
+    public const float HEALTH_BAR_OFFSET_Y = -2.0f;
+    public const float HEALTH_BAR_OFFSET_Z = 0.0f;
+
 }
