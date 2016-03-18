@@ -9,6 +9,8 @@ public class ShipMove : MonoBehaviour {
 
 	private Vector3 minRange;
 	private Vector3 maxRange;
+	private Vector3 oldTarget;
+	private bool reachedTarget;
 
 	private Rigidbody rigBody;
 
@@ -38,11 +40,14 @@ public class ShipMove : MonoBehaviour {
 	void Start () {
 
 		m_speed = speed;
-		m_targetPosition = targetPosition;
+		m_targetPosition = new Vector3(0,0,0);
 		m_range = range;
 
 		minRange = new Vector3 (m_targetPosition.x - m_range, 0, m_targetPosition.z - m_range);
 		maxRange = new Vector3 (m_targetPosition.x + m_range, 0, m_targetPosition.z + m_range);
+
+		oldTarget = m_targetPosition;
+		reachedTarget = true;
 
 		rigBody = gameObject.GetComponent<Rigidbody> ();
 		rigBody.velocity = new Vector3(0,0,0);
@@ -55,7 +60,7 @@ public class ShipMove : MonoBehaviour {
 
 	void FixedUpdate (){
 
-		moveShip (m_targetPosition);
+		moveShip (targetPosition);
 
 	}
 
@@ -65,22 +70,32 @@ public class ShipMove : MonoBehaviour {
 		m_targetPosition = targetPosition;
 		m_currentPosition = rigBody.transform.position;
 
-		// currentPosition is NOT in the range of the targetPositon
-		if ( !isInRangeX() || !isInRangeZ() ) {
+		if (!reachedTarget) {
+			// currentPosition is NOT in the range of the targetPositon
+			if (!isInRangeX () || !isInRangeZ ()) {
 
-			gameObject.transform.LookAt (m_targetPosition);
-			rigBody.MovePosition(transform.position + transform.forward * Time.deltaTime * m_speed );
+				gameObject.transform.LookAt (m_targetPosition);
+				rigBody.MovePosition (transform.position + transform.forward * Time.deltaTime * m_speed);
 
+			}
+
+			// currentPosition is in the range of the targetPosition
+			if (isInRangeX () && isInRangeZ ()) { 
+
+				reachedTarget = true;
+				oldTarget = m_targetPosition;
+
+				rigBody.angularVelocity = new Vector3 (0, 0, 0);
+				rigBody.isKinematic = true;
+
+			}
 		}
 
-		// currentPosition is in the range of the targetPosition
-		if ( isInRangeX() && isInRangeZ() ) { 
-
-			rigBody.angularVelocity = new Vector3(0,0,0);
-			rigBody.isKinematic = true;
-
+		if (reachedTarget) {
+			if (!oldTarget.Equals(m_targetPosition)) {
+				reachedTarget = false;
+			} 
 		}
-
 	}
 
 	bool isInRangeX (){
