@@ -6,7 +6,7 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance { get; private set; }
 
-    public List<GameObject> selectedUnits;
+    public List<GameObject> selectedUnits = new List<GameObject>();
 
 
     [ReadOnly]

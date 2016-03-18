@@ -67,7 +67,8 @@ public class ShipMove : MonoBehaviour {
 
 	public void moveShip(Vector3 targetPosition){
 
-		rigBody.isKinematic = false;
+		//rigBody.isKinematic = false;
+        
 		m_targetPosition = targetPosition;
 		m_currentPosition = rigBody.transform.position;
 		m_targetPosition.y = shipHighY;
@@ -87,8 +88,10 @@ public class ShipMove : MonoBehaviour {
 				reachedTarget = true;
 				oldTarget = m_targetPosition;
 
+                rigBody.transform.Rotate(0, 180, 0);
+
 				rigBody.angularVelocity = new Vector3 (0, 0, 0);
-				rigBody.isKinematic = true;
+				//rigBody.isKinematic = true;
 
 			}
 		}
