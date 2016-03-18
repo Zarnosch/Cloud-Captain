@@ -16,21 +16,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &131634
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 495604}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!4 &407314
 Transform:
   m_ObjectHideFlags: 1
@@ -40,21 +25,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 495604}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
---- !u!4 &495604
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 131634}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 407314}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!114 &11468112
 MonoBehaviour:
@@ -67,10 +39,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bf9feab16e21b64ca363c83706a632f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  generateLevelOnStart: 1
+  appendToGameObject: 1
+  WaterfallOn: 1
+  Syncer: {fileID: 0}
   SmallIsland: {fileID: 176402, guid: 41b949648b8f76b49b9653c934cc2808, type: 2}
   BigIsland: {fileID: 139558, guid: 73f706c5388dacb43982cc70e245de92, type: 2}
   MidIsland1: {fileID: 156894, guid: 1655c525e9bd7494489272a0d4fe1595, type: 2}
   MidIsland2: {fileID: 117210, guid: cd49dfd88a0796f4d8ce1d878360508a, type: 2}
+  BuildingSite: {fileID: 195280, guid: f1070b505dd6460468fe1089e7f18653, type: 2}
+  TowerSite: {fileID: 120426, guid: 7479c7f6fbc1700448fce696e4c703fd, type: 2}
+  SettlementSite: {fileID: 191452, guid: 33e149c83361ca44d8219ae8b830356c, type: 2}
+  Waterfall: {fileID: 190828, guid: ac2d36320863d604a9dbc530ed2758c2, type: 2}
+  MapHeight: 1000
+  MapWidth: 1000
+  MirrorEdgeWidth: 100
+  SmallIslandAmount: 20
+  MidIsland1Amount: 5
+  MidIsland2Amount: 5
+  MirrorEdgeIslandsAmount: 5
+  MaxTries: 200
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -6,6 +6,7 @@ public class MapGeneration : MonoBehaviour
 {
     public bool generateLevelOnStart = false;
     public bool appendToGameObject = false;
+    public bool WaterfallOn = true;
 
     public SyncMap Syncer;
 
@@ -17,6 +18,8 @@ public class MapGeneration : MonoBehaviour
     public GameObject BuildingSite;
     public GameObject TowerSite;
     public GameObject SettlementSite;
+
+    public GameObject Waterfall;
 
     public float MapHeight;
     public float MapWidth;
@@ -52,7 +55,7 @@ public class MapGeneration : MonoBehaviour
 
     public void DestroyWorld()
     {
-        while(gameObject.transform.childCount > 0)
+        while (gameObject.transform.childCount > 0)
         {
             destroyChild(gameObject.transform.GetChild(0));
         }
@@ -113,7 +116,7 @@ public class MapGeneration : MonoBehaviour
             {
                 i--;
                 maxTries++;
-                if(maxTries >= MaxTries)
+                if (maxTries >= MaxTries)
                 {
                     maxTries = 0;
                     notWholeMapCreated = true;
@@ -194,18 +197,18 @@ public class MapGeneration : MonoBehaviour
         }
         foreach (Vector3 island in midIslands1)
         {
-            InternCreate(MidIsland1, new Vector3(MapWidth - island.x, island.y, MapHeight - island.z)); 
+            InternCreate(MidIsland1, new Vector3(MapWidth - island.x, island.y, MapHeight - island.z));
         }
         foreach (Vector3 island in midIslands2)
         {
             InternCreate(MidIsland2, new Vector3(MapWidth - island.x, island.y, MapHeight - island.z));
 
         }
-        
+
         //Generate Islands on the mirror edge
         for (int i = 0; i < betweenAmount; i++)
         {
-            Vector3 pos = new Vector3(Random.Range(MapWidth/2 - MirrorEdgeWidth/2, MapWidth / 2 + MirrorEdgeWidth / 2), 0, Random.Range(0, MapHeight));
+            Vector3 pos = new Vector3(Random.Range(MapWidth / 2 - MirrorEdgeWidth / 2, MapWidth / 2 + MirrorEdgeWidth / 2), 0, Random.Range(0, MapHeight));
             int rand = Random.Range(0, 2);
             if (rand == 0)
             {
@@ -230,7 +233,7 @@ public class MapGeneration : MonoBehaviour
             {
                 if (!islandCollision(pos, r[3]))
                 {
-                    InternCreate(MidIsland2, pos); 
+                    InternCreate(MidIsland2, pos);
                     midIslands2.Add(pos);
                 }
                 else
@@ -249,7 +252,9 @@ public class MapGeneration : MonoBehaviour
 
         SetBuildingSites();
 
-        if(notWholeMapCreated) Debug.LogError("Could not create whole map. Check wether there is enough space for all islands.");
+        if(WaterfallOn)generateWaterfall();
+
+        if (notWholeMapCreated) Debug.LogError("Could not create whole map. Check wether there is enough space for all islands.");
     }
 
 
@@ -263,11 +268,11 @@ public class MapGeneration : MonoBehaviour
         BoxCollider box = newObj.GetComponent<BoxCollider>();
         if (box)
         {
-            #if UNITY_EDITOR
-                DestroyImmediate(box);
-            #else
+#if UNITY_EDITOR
+            DestroyImmediate(box);
+#else
                 Destroy(box);
-            #endif
+#endif
         }
 
         return newObj;
@@ -283,14 +288,14 @@ public class MapGeneration : MonoBehaviour
             Transform mapChild = gameObject.transform.GetChild(i);
             if (mapChild.gameObject.layer == 10) // 10 is the layer of islands
             {
-                for(int j = 0; j < mapChild.transform.childCount; j++)
+                for (int j = 0; j < mapChild.transform.childCount; j++)
                 {
                     Transform child = mapChild.transform.GetChild(0);
-                    if(child.gameObject.layer == 12)
+                    if (child.gameObject.layer == 12)
                     {
                         GameObject newChild = (GameObject)Instantiate(BuildingSite, child.position, child.rotation);
                         newChild.transform.SetParent(mapChild);
-                            
+
                         destroyChild(child);
                     }
                     else if (child.gameObject.layer == 13)
@@ -312,11 +317,35 @@ public class MapGeneration : MonoBehaviour
 
     private void destroyChild(Transform child)
     {
-        #if UNITY_EDITOR
-            DestroyImmediate(child.gameObject);
-        #else
+#if UNITY_EDITOR
+        DestroyImmediate(child.gameObject);
+#else
             Destroy(child.gameObject); 
-        #endif
+#endif
+    }
+
+    private void generateWaterfall()
+    {
+        GameObject water;
+        for (int i = -50; i < MapWidth+50; i += (int)Waterfall.transform.lossyScale.x * 7)
+        {
+            water = (GameObject)Instantiate(Waterfall, new Vector3(-50, 50, i), Quaternion.Euler(10, -90, 0));
+            if (appendToGameObject)
+                water.transform.SetParent(gameObject.transform);
+            water = (GameObject)Instantiate(Waterfall, new Vector3(MapWidth + 50, 50, i), Quaternion.Euler(10, 90, 0));
+            if (appendToGameObject)
+                water.transform.SetParent(gameObject.transform);
+        }
+        
+        for (int i = -50; i < MapHeight+50; i += (int)Waterfall.transform.lossyScale.x * 7)
+        {
+            water = (GameObject)Instantiate(Waterfall, new Vector3(i, 50, MapHeight+50), Quaternion.Euler(10, 0, 0));
+            if (appendToGameObject)
+                water.transform.SetParent(gameObject.transform);
+            water = (GameObject)Instantiate(Waterfall, new Vector3(i, 50, -50), Quaternion.Euler(10, 180, 0));
+            if (appendToGameObject)
+                water.transform.SetParent(gameObject.transform);
+        }
     }
 
     /// <summary>
