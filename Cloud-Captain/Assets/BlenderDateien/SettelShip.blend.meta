@@ -1,0 +1,195 @@
+fileFormatVersion: 2
+guid: fa95da401697c8f4a87272660f3b8655
+timeCreated: 1458324591
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: LeftReling
+    100002: LeftReling_001
+    100004: NurbsPath_000
+    100006: NurbsPath_001
+    100008: NurbsPath_002
+    100010: NurbsPath_003
+    100012: NurbsPath_004
+    100014: NurbsPath_005
+    100016: NurbsPath_006
+    100018: NurbsPath_007
+    100020: NurbsPath_008
+    100022: NurbsPath_009
+    100024: NurbsPath_010
+    100026: NurbsPath_011
+    100028: NurbsPath_012
+    100030: NurbsPath_013
+    100032: NurbsPath_014
+    100034: NurbsPath_015
+    100036: Rumpf
+    100038: Schornstein
+    100040: //RootNode
+    100042: Sphere_000
+    100044: Sphere_001
+    100046: Sphere_002
+    100048: Sphere_003
+    400000: LeftReling
+    400002: LeftReling_001
+    400004: NurbsPath_000
+    400006: NurbsPath_001
+    400008: NurbsPath_002
+    400010: NurbsPath_003
+    400012: NurbsPath_004
+    400014: NurbsPath_005
+    400016: NurbsPath_006
+    400018: NurbsPath_007
+    400020: NurbsPath_008
+    400022: NurbsPath_009
+    400024: NurbsPath_010
+    400026: NurbsPath_011
+    400028: NurbsPath_012
+    400030: NurbsPath_013
+    400032: NurbsPath_014
+    400034: NurbsPath_015
+    400036: Rumpf
+    400038: Schornstein
+    400040: //RootNode
+    400042: Sphere_000
+    400044: Sphere_001
+    400046: Sphere_002
+    400048: Sphere_003
+    2300000: LeftReling
+    2300002: LeftReling_001
+    2300004: NurbsPath_000
+    2300006: NurbsPath_001
+    2300008: NurbsPath_002
+    2300010: NurbsPath_003
+    2300012: NurbsPath_004
+    2300014: NurbsPath_005
+    2300016: NurbsPath_006
+    2300018: NurbsPath_007
+    2300020: NurbsPath_008
+    2300022: NurbsPath_009
+    2300024: NurbsPath_010
+    2300026: NurbsPath_011
+    2300028: NurbsPath_012
+    2300030: NurbsPath_013
+    2300032: NurbsPath_014
+    2300034: NurbsPath_015
+    2300036: Rumpf
+    2300038: Schornstein
+    2300040: Sphere_000
+    2300042: Sphere_001
+    2300044: Sphere_002
+    2300046: Sphere_003
+    3300000: LeftReling
+    3300002: LeftReling_001
+    3300004: NurbsPath_000
+    3300006: NurbsPath_001
+    3300008: NurbsPath_002
+    3300010: NurbsPath_003
+    3300012: NurbsPath_004
+    3300014: NurbsPath_005
+    3300016: NurbsPath_006
+    3300018: NurbsPath_007
+    3300020: NurbsPath_008
+    3300022: NurbsPath_009
+    3300024: NurbsPath_010
+    3300026: NurbsPath_011
+    3300028: NurbsPath_012
+    3300030: NurbsPath_013
+    3300032: NurbsPath_014
+    3300034: NurbsPath_015
+    3300036: Rumpf
+    3300038: Schornstein
+    3300040: Sphere_000
+    3300042: Sphere_001
+    3300044: Sphere_002
+    3300046: Sphere_003
+    4300000: Schornstein
+    4300002: LeftReling_001
+    4300004: Sphere_003
+    4300006: NurbsPath_015
+    4300008: NurbsPath_014
+    4300010: NurbsPath_013
+    4300012: NurbsPath_012
+    4300014: Sphere_002
+    4300016: NurbsPath_011
+    4300018: NurbsPath_010
+    4300020: NurbsPath_009
+    4300022: NurbsPath_008
+    4300024: Sphere_001
+    4300026: NurbsPath_007
+    4300028: NurbsPath_006
+    4300030: NurbsPath_005
+    4300032: NurbsPath_004
+    4300034: Sphere_000
+    4300036: NurbsPath_003
+    4300038: NurbsPath_002
+    4300040: NurbsPath_001
+    4300042: NurbsPath_000
+    4300044: LeftReling
+    4300046: Rumpf
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
