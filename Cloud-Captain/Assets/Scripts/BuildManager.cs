@@ -35,6 +35,10 @@ public class BuildManager : MonoBehaviour
 
     public GameObject BuildingRepairerPrefab;
 
+    public GameObject HealthbarPrefab;
+
+    public GameObject ProgressbarPrefab;
+
     #endregion
 
     #region Ships
@@ -52,7 +56,7 @@ public class BuildManager : MonoBehaviour
 
     #endregion
 
-    void Start()
+    void Awake()
     {
         Debug.Assert(!Instance, "Only one BuildManager script is allowed in the scene!");
 
