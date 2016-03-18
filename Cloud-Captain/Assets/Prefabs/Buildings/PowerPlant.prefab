@@ -15,6 +15,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &104386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 436632}
+  m_Layer: 8
+  m_Name: AttackPivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &114492
 GameObject:
   m_ObjectHideFlags: 1
@@ -80,6 +95,7 @@ GameObject:
   - 114: {fileID: 11402534}
   - 114: {fileID: 11413668}
   - 114: {fileID: 11481978}
+  - 114: {fileID: 11479696}
   m_Layer: 8
   m_Name: PowerPlant
   m_TagString: Player
@@ -116,6 +132,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 492702}
   m_RootOrder: 3
+--- !u!4 &436632
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104386}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.04, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 469762}
+  m_RootOrder: 1
 --- !u!4 &443204
 Transform:
   m_ObjectHideFlags: 1
@@ -147,10 +175,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 146210}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 60.57, y: 0.21, z: 281.93}
+  m_LocalPosition: {x: 59.22, y: -1.13, z: 173.3}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 492702}
+  - {fileID: 436632}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &492702
@@ -405,6 +434,18 @@ MonoBehaviour:
     m_TypeName: HealthEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   health: -1
   maxHealth: 0
+--- !u!114 &11479696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac02ff5093ce0ef4fa7ee46f960af3f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pivot: {fileID: 104386}
 --- !u!114 &11481978
 MonoBehaviour:
   m_ObjectHideFlags: 1

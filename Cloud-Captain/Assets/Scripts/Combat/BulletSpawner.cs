@@ -29,6 +29,10 @@ public class BulletSpawner : MonoBehaviour
     public float SecondaryRange;
 
 
+    public float GetAttackRange()
+    {
+        return sphereCollider.radius;
+    }
 
     private ABulletBehavior spawnedBullet;
     private List<GameObject> potentialTargetsInArea;
@@ -104,6 +108,7 @@ public class BulletSpawner : MonoBehaviour
 
     public bool Attack(GameObject target)
     {
+
         if (!IsViableTargetObject(target))
         {
             return false;
@@ -188,8 +193,14 @@ public class BulletSpawner : MonoBehaviour
     {
         spawnedBullet.SetSecondaryParameter(SecondaryRange, SecondaryDamage);
 
-        spawnedBullet.StartBullet(target.transform, BulletSpawnTransform, MinDistance, sphereCollider.radius, BulletSpeed, BulletDamage);
+        GameObject realTarget = target;
 
+        AttackPivot pivot = target.GetComponent<AttackPivot>();
+
+        if (pivot)
+            realTarget = pivot.Pivot;
+
+        spawnedBullet.StartBullet(realTarget.transform, BulletSpawnTransform, MinDistance, sphereCollider.radius, BulletSpeed, BulletDamage);
     }
 
 

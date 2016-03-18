@@ -1,9 +1,12 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class ShipBuilder : MonoBehaviour
 {
+
+
     public BuildManager.ShipType[] BuildableShips;
     public Transform SpawnPosition;
 
@@ -17,10 +20,17 @@ public class ShipBuilder : MonoBehaviour
  
     public Queue<BuildManager.ShipInfo> enqueuedShips = new Queue<BuildManager.ShipInfo>();
 
+    private Action<GameObject> queueChanged;
+
     void Start()
     {
         if (SpawnPosition == null)
             SpawnPosition = gameObject.transform;
+    }
+
+    void Test(GameObject obj)
+    {
+        Debug.Log(obj.name);
     }
 
     public void BuildShip(BuildManager.ShipType type)
@@ -48,6 +58,7 @@ public class ShipBuilder : MonoBehaviour
             {
                 PlayerManager.Instance.ChangeResource(price * -1);
                 enqueuedShips.Enqueue(info);
+                QueueChanged();
             }
         }
     }
@@ -66,10 +77,6 @@ public class ShipBuilder : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            BuildShipNoCost(BuildManager.ShipType.Scout);
-        }
 
         if (isBuilding)
         {
@@ -77,6 +84,7 @@ public class ShipBuilder : MonoBehaviour
 
             if(curBuildCooldown <= 0.0f)
             {
+                QueueChanged();
                 Instantiate(enqueuedShips.Dequeue().prefab, SpawnPosition.transform.position, Quaternion.identity);
                 isBuilding = false;
             }
@@ -90,4 +98,22 @@ public class ShipBuilder : MonoBehaviour
             curBuildCooldown = enqueuedShips.Peek().buildTime - (enqueuedShips.Peek().buildTime * reduction);
         }
     }
+
+
+    private void QueueChanged()
+    {
+        if (queueChanged != null)
+            queueChanged(this.gameObject);
+    }
+
+    public void AddQueueChangedListener(Action<GameObject> action)
+    {
+        queueChanged += action;
+    }
+
+    public void RemoveQueueChangedListener(Action<GameObject> action)
+    {
+        queueChanged -= action;
+    }
+
 }

@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66359b2543346ad4994066b1053731f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuildableShips: 0100000002000000030000000400000000000000
+  BuildableShips: 01000000020000000300000004000000
   SpawnPosition: {fileID: 0}
   curBuildCooldown: 0
   buildReduction: 1
