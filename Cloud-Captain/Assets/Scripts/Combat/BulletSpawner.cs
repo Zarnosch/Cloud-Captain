@@ -29,6 +29,10 @@ public class BulletSpawner : MonoBehaviour
     public float SecondaryRange;
 
 
+    public float GetAttackRange()
+    {
+        return sphereCollider.radius;
+    }
 
     private ABulletBehavior spawnedBullet;
     private List<GameObject> potentialTargetsInArea;
