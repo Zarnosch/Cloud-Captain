@@ -29,6 +29,10 @@ public class BulletSpawner : MonoBehaviour
     public float SecondaryRange;
 
 
+    public float GetAttackRange()
+    {
+        return sphereCollider.radius;
+    }
 
     private ABulletBehavior spawnedBullet;
     private List<GameObject> potentialTargetsInArea;
@@ -104,6 +108,7 @@ public class BulletSpawner : MonoBehaviour
 
     public bool Attack(GameObject target)
     {
+
         if (!IsViableTargetObject(target))
         {
             return false;
