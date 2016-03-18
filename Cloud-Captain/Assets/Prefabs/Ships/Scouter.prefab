@@ -15,6 +15,7 @@ GameObject:
   - 114: {fileID: 11408002}
   - 114: {fileID: 11439566}
   - 114: {fileID: 11492638}
+  - 114: {fileID: 11452446}
   m_Layer: 9
   m_Name: Scouter
   m_TagString: Player
@@ -68,6 +69,21 @@ GameObject:
   - 23: {fileID: 2304322}
   m_Layer: 0
   m_Name: Cylinder.004
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &127508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 487642}
+  m_Layer: 9
+  m_Name: AttackPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -362,11 +378,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 104082}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 456.99, y: 10, z: 450.85}
+  m_LocalPosition: {x: 67.3, y: 4.134152, z: 184.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 485682}
   - {fileID: 471726}
+  - {fileID: 487642}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &414378
@@ -489,7 +506,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 172690}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.34, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 404084}
@@ -585,11 +602,23 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 196344}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.54, z: 2.182}
+  m_LocalPosition: {x: 0, y: 2.2, z: 2.182}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 410342}
   m_RootOrder: 0
+--- !u!4 &487642
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 127508}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 410342}
+  m_RootOrder: 2
 --- !u!4 &496146
 Transform:
   m_ObjectHideFlags: 1
@@ -1223,6 +1252,18 @@ MonoBehaviour:
   AttackRangeSphere: {fileID: 13558374}
   Spawner: {fileID: 11489116}
   ShipMove: {fileID: 11408002}
+--- !u!114 &11452446
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac02ff5093ce0ef4fa7ee46f960af3f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Pivot: {fileID: 127508}
 --- !u!114 &11452790
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1320,7 +1361,7 @@ CapsuleCollider:
   m_Radius: 0.82
   m_Height: 4.85
   m_Direction: 2
-  m_Center: {x: 0, y: 1.22, z: 0}
+  m_Center: {x: 0, y: 0.83, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
