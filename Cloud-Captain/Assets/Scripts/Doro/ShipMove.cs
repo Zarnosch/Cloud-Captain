@@ -47,7 +47,6 @@ public class ShipMove : MonoBehaviour {
 		minRange = new Vector3 (m_targetPosition.x - m_range, 0, m_targetPosition.z - m_range);
 		maxRange = new Vector3 (m_targetPosition.x + m_range, 0, m_targetPosition.z + m_range);
 
-		oldTarget = m_targetPosition;
 		reachedTarget = true;
 
 		rigBody = gameObject.GetComponent<Rigidbody> ();
@@ -60,20 +59,27 @@ public class ShipMove : MonoBehaviour {
 	}
 
 	void FixedUpdate (){
+		
+		moveShip(new Vector3 (-20,0,-10));
+	}
 
-		moveShip (targetPosition);
+
+	public void moveShip (Vector3 target){
+
+		reachedTarget = false;
+		move (target);
 
 	}
 
-	public void moveShip(Vector3 targetPosition){
+	void move(Vector3 targetPosition){
 
-		//rigBody.isKinematic = false;
+		rigBody.isKinematic = false;
         
 		m_targetPosition = targetPosition;
 		m_currentPosition = rigBody.transform.position;
 		m_targetPosition.y = shipHighY;
 
-		if (!reachedTarget) {
+	
 			// currentPosition is NOT in the range of the targetPositon
 			if (!isInRangeX () || !isInRangeZ ()) {
 
@@ -86,21 +92,12 @@ public class ShipMove : MonoBehaviour {
 			if (isInRangeX () && isInRangeZ ()) { 
 
 				reachedTarget = true;
-				oldTarget = m_targetPosition;
-
-                rigBody.transform.Rotate(0, 180, 0);
 
 				rigBody.angularVelocity = new Vector3 (0, 0, 0);
-				//rigBody.isKinematic = true;
+				rigBody.isKinematic = true;
 
 			}
-		}
-
-		if (reachedTarget) {
-			if (!oldTarget.Equals(m_targetPosition)) {
-				reachedTarget = false;
-			} 
-		}
+		
 	}
 
 	bool isInRangeX (){
