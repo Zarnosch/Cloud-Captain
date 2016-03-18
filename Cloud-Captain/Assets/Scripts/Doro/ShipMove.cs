@@ -6,6 +6,7 @@ public class ShipMove : MonoBehaviour {
 	public float speed;
 	public float range;
 	public Vector3 targetPosition;
+	public float shipHighY;
 
 	private Vector3 minRange;
 	private Vector3 maxRange;
@@ -69,6 +70,7 @@ public class ShipMove : MonoBehaviour {
 		rigBody.isKinematic = false;
 		m_targetPosition = targetPosition;
 		m_currentPosition = rigBody.transform.position;
+		m_targetPosition.y = shipHighY;
 
 		if (!reachedTarget) {
 			// currentPosition is NOT in the range of the targetPositon
