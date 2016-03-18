@@ -46,16 +46,6 @@ public class PlayerManager : MonoBehaviour
         return resources;
     }
 
-    public void SelectedListAdd(GameObject g)
-    {
-        selectedUnits.Add(g);
-    }
-
-    public void SelectedListClear()
-    {
-        selectedUnits.Clear();
-    }
-
 
 
 }

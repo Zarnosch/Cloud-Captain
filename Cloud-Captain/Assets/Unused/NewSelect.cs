@@ -14,8 +14,6 @@ public class NewSelect : MonoBehaviour
 	public bool newListEntry = false;
     public bool newListIsEmpty = false;
 
-	PlayerManager playerInstance;
-
 	public GameObject figurePrefab;
 	GameObject figurePrefabClone;
 
@@ -32,14 +30,14 @@ public class NewSelect : MonoBehaviour
 
 	private int selectPlane;
 
+    public Methods methods;
 
 
 
-
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
 	{
-		playerInstance = PlayerManager.Instance;
+        methods = gameObject.GetComponent<Methods>();
 
 		selectPlane = LayerMask.NameToLayer ("SelectPlane");
 
@@ -68,11 +66,11 @@ public class NewSelect : MonoBehaviour
         if (flaechenInhalt < flaechenInhaltFuerEinfachenKlick)
         {
             if(firstRay == null || firstRay.transform.gameObject.layer == selectPlane)
-                playerInstance.SelectedListClear();
+                methods.SelectedListClear();
             else
             {
-                playerInstance.SelectedListClear();
-                playerInstance.SelectedListAdd(firstRay.transform.gameObject);
+                methods.SelectedListClear();
+                methods.SelectedListAdd(firstRay.transform.gameObject);
             }
             return;
                 
@@ -131,10 +129,10 @@ public class NewSelect : MonoBehaviour
 		if (newListEntry) {
             if (shipList.Count > 0) {
 
-                playerInstance.selectedUnits.Clear();
+                methods.SelectedListClear();
                 foreach (var item in shipList)
                 {
-                    playerInstance.SelectedListAdd(item);
+                    methods.SelectedListAdd(item);
                 }
 
                 shipList.Clear();
@@ -143,8 +141,8 @@ public class NewSelect : MonoBehaviour
             }
             else if (islandList.Count > 0)
             {
-                playerInstance.SelectedListClear();
-                playerInstance.SelectedListAdd(islandList[0]);
+                methods.SelectedListClear();
+                methods.SelectedListAdd(islandList[0]);
 
                 //shipList.Clear();
                 islandList.Clear();
@@ -152,8 +150,8 @@ public class NewSelect : MonoBehaviour
             }
             else if (buildingList.Count > 0)
             {
-                playerInstance.SelectedListClear();
-                playerInstance.SelectedListAdd(buildingList[0]);
+                methods.SelectedListClear();
+                methods.SelectedListAdd(buildingList[0]);
 
                 //shipList.Clear();
                 //islandList.Clear();
@@ -164,7 +162,7 @@ public class NewSelect : MonoBehaviour
 
         if (newListIsEmpty)
         {
-            playerInstance.SelectedListClear();
+            methods.SelectedListClear();
             newListIsEmpty = false;
         }
 
