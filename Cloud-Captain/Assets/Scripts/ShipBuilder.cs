@@ -94,8 +94,8 @@ public class ShipBuilder : MonoBehaviour
 
             if(curBuildCooldown <= 0.0f)
             {
-                QueueChanged();
                 Instantiate(enqueuedShips.Dequeue().prefab, SpawnPosition.transform.position, Quaternion.identity);
+				QueueChanged();
                 isBuilding = false;
             }
         }

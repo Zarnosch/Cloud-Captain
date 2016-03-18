@@ -19,18 +19,25 @@ public class CameraMovement : MonoBehaviour {
 
 	private Vector2 _cameraRect; // x = Width, y = Height
 	private Vector3 _cameraStartPos;
+	private float edgeWidth;
 	public float cameraMoveMaxSpeed;	//maxspeed for camera movement
 	public float cameraEdgeIncreaseSpeed; //how fast the speed increases at an edge
 	private float cameraHeight;
 	public float cameraHeightInfluence;
 
+	public bool allowMoving;
+	public bool allowScrolling;
+
 	private float wheelMove;
+	private float rangeY;
+	private float minYRange;
+	private float maxYRange;
+
 	public float currentScroll;
 	public float scrollSpeed;
 	public float maxScrollSpeed;
 	public float minY;
 	public float maxY;
-	public float rangeY;
 
 	//------------variable
 	private Vector3 _mouseCurrentPos;
@@ -52,30 +59,51 @@ public class CameraMovement : MonoBehaviour {
 		_cameraRect.y = camera.pixelHeight;
 
 		//set edges starting movement
-		_moveEdgeRight = _cameraRect.x * 0.95f;
-		_moveEdgeLeft = _cameraRect.x * 0.05f;
-		_moveEdgeTop = _cameraRect.y * 0.95f;
-		_moveEdgeBottom = _cameraRect.y * 0.05f;
+		edgeWidth = _cameraRect.x * 0.05f;
+		_moveEdgeRight = _cameraRect.x - edgeWidth;
+		_moveEdgeLeft = edgeWidth;
+		_moveEdgeTop = _cameraRect.y -edgeWidth;
+		_moveEdgeBottom = edgeWidth;
 
+		rangeY = 2 * scrollSpeed;
+		maxYRange = maxY + rangeY;
+		minYRange = minY - rangeY;
 
 	}
 
 	void Update () {
 
-		_mouseCurrentPos = Input.mousePosition;
 		_cameraCurrentPos = camera.transform.position;
+		_mouseCurrentPos = Input.mousePosition;
 
-		_cameraScrollPos = _cameraCurrentPos;
 
+		if( Input.GetKeyDown("p")){
+			allowMoving = !allowMoving;
+		}
+		
+	
+
+		if (allowScrolling) {
+			scroll ();
+		}
+			
+		if (allowMoving) {
+			move ();
+		}
+
+
+	}
+
+	void scroll(){
 		//-----------------------scroll in and out
-
+		_cameraScrollPos = _cameraCurrentPos;
 		wheelMove = Input.GetAxis ("Mouse ScrollWheel");
 
 		// change zoom direction
 		if ( (wheelMove < 0 && currentScroll > 0) || (wheelMove > 0 && currentScroll < 0) ) {
 			currentScroll = 0;
 		}
-				
+
 		currentScroll += wheelMove;
 
 		// regulate max speed
@@ -95,16 +123,20 @@ public class CameraMovement : MonoBehaviour {
 		if ((isInRangeMinY() && wheelMove >= 0) || (isInRangeMaxY() && wheelMove <= 0)){
 			currentScroll = 0;
 		}
-				
+
 		gameObject.transform.Translate(0,0,currentScroll * Time.deltaTime * scrollSpeed);
 
+	}
 
-	
+	void move(){
 
 		//------------Edge Movement
+
+
+		_mouseCurrentPos = Input.mousePosition;
 		_cameraMovePos = camera.transform.position;
 		cameraHeightInfluence = 0.1f;
-		cameraHeight = (camera.farClipPlane * cameraHeightInfluence - camera.nearClipPlane * cameraHeightInfluence);
+		cameraHeight = (camera.nearClipPlane * cameraHeightInfluence - camera.farClipPlane * cameraHeightInfluence);
 		//cameraHeight = 1 +  (maxY - minY) / (_cameraMovePos.y - minY);
 		//cameraHeight = _cameraMovePos;
 		//move right
@@ -136,17 +168,17 @@ public class CameraMovement : MonoBehaviour {
 		if (_cameraMovePos.x <= worldEdgeRight && _cameraMovePos.x >= worldEdgeLeft && _cameraMovePos.z <= worldEdgeTop && _cameraMovePos.z >= worldEdgeBottom) {
 			camera.transform.position = _cameraMovePos;
 		}
-
+			
 
 	}
 
 
 	bool isInRangeMinY (){
-		return ( (_cameraCurrentPos.y > minY - rangeY ) && (_cameraCurrentPos.y < minY + rangeY) );
+		return ( (_cameraCurrentPos.y > minYRange - rangeY ) && (_cameraCurrentPos.y < minYRange + rangeY) );
 	}
 
 	bool isInRangeMaxY (){
-		return ( (_cameraCurrentPos.y > maxY - rangeY ) && (_cameraCurrentPos.y < maxY + rangeY ) );
+		return ( (_cameraCurrentPos.y > maxYRange - rangeY ) && (_cameraCurrentPos.y < maxYRange + rangeY ) );
 	}
 
 

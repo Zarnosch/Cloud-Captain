@@ -14,6 +14,10 @@ public class MapGeneration : MonoBehaviour
     public GameObject MidIsland1;
     public GameObject MidIsland2;
 
+    public GameObject BuildingSite;
+    public GameObject TowerSite;
+    public GameObject SettlementSite;
+
     public float MapHeight;
     public float MapWidth;
     public float MirrorEdgeWidth;
@@ -50,11 +54,7 @@ public class MapGeneration : MonoBehaviour
     {
         while(gameObject.transform.childCount > 0)
         {
-            #if UNITY_EDITOR
-                DestroyImmediate(gameObject.transform.GetChild(0).gameObject);
-            #else
-                Destroy(gameObject.transform.GetChild(i)); 
-            #endif
+            destroyChild(gameObject.transform.GetChild(0));
         }
     }
 
@@ -106,12 +106,8 @@ public class MapGeneration : MonoBehaviour
             Vector3 pos = new Vector3(Random.Range(MapWidth / 2 + MirrorEdgeWidth / 2, MapWidth), 0, Random.Range(0, MapHeight));
             if (!islandCollision(pos, r[0]))
             {
-                GameObject newObj = InternCreate(SmallIsland, pos);
+                InternCreate(SmallIsland, pos);
                 smallIslands.Add(pos);
-
-                if (appendToGameObject)
-                    newObj.transform.SetParent(gameObject.transform);
-
             }
             else
             {
@@ -151,12 +147,8 @@ public class MapGeneration : MonoBehaviour
             Vector3 pos = new Vector3(Random.Range(MapWidth / 2 + MirrorEdgeWidth / 2, MapWidth), 0, Random.Range(0, MapHeight));
             if (!islandCollision(pos, r[2]))
             {
-                GameObject newObj = InternCreate(MidIsland1, pos);
+                InternCreate(MidIsland1, pos);
                 midIslands1.Add(pos);
-
-
-                if (appendToGameObject)
-                    newObj.transform.SetParent(gameObject.transform);
             }
             else
             {
@@ -255,6 +247,8 @@ public class MapGeneration : MonoBehaviour
             }
         }
 
+        SetBuildingSites();
+
         if(notWholeMapCreated) Debug.LogError("Could not create whole map. Check wether there is enough space for all islands.");
     }
 
@@ -276,9 +270,53 @@ public class MapGeneration : MonoBehaviour
             #endif
         }
 
-
-
         return newObj;
+    }
+
+    /// <summary>
+    /// Sets buildingsites in better relation
+    /// </summary>
+    private void SetBuildingSites()
+    {
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            Transform mapChild = gameObject.transform.GetChild(i);
+            if (mapChild.gameObject.layer == 10) // 10 is the layer of islands
+            {
+                for(int j = 0; j < mapChild.transform.childCount; j++)
+                {
+                    Transform child = mapChild.transform.GetChild(0);
+                    if(child.gameObject.layer == 12)
+                    {
+                        GameObject newChild = (GameObject)Instantiate(BuildingSite, child.position, child.rotation);
+                        newChild.transform.SetParent(mapChild);
+                            
+                        destroyChild(child);
+                    }
+                    else if (child.gameObject.layer == 13)
+                    {
+                        GameObject newChild = (GameObject)Instantiate(TowerSite, child.position, child.rotation);
+                        newChild.transform.SetParent(mapChild);
+                        destroyChild(child);
+                    }
+                    else if (child.gameObject.layer == 20)
+                    {
+                        GameObject newChild = (GameObject)Instantiate(SettlementSite, child.position, child.rotation);
+                        newChild.transform.SetParent(mapChild);
+                        destroyChild(child);
+                    }
+                }
+            }
+        }
+    }
+
+    private void destroyChild(Transform child)
+    {
+        #if UNITY_EDITOR
+            DestroyImmediate(child.gameObject);
+        #else
+            Destroy(child.gameObject); 
+        #endif
     }
 
     /// <summary>
