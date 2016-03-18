@@ -85,108 +85,65 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &830842834
-Prefab:
+--- !u!1 &945538621
+GameObject:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 407314, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 407314, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 407314, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 407314, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 407314, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 407314, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 407314, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 407314, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: SmallIsland
-      value: 
-      objectReference: {fileID: 176402, guid: 41b949648b8f76b49b9653c934cc2808, type: 2}
-    - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: BigIsland
-      value: 
-      objectReference: {fileID: 139558, guid: 73f706c5388dacb43982cc70e245de92, type: 2}
-    - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: MidIsland1
-      value: 
-      objectReference: {fileID: 156894, guid: 1655c525e9bd7494489272a0d4fe1595, type: 2}
-    - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: MidIsland2
-      value: 
-      objectReference: {fileID: 117210, guid: cd49dfd88a0796f4d8ce1d878360508a, type: 2}
-    - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: generateLevelOnStart
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: appendToGameObject
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: MapHeight
-      value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: MapWidth
-      value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: MirrorEdgeWidth
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: SmallIslandAmount
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: MidIsland1Amount
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: MidIsland2Amount
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: BigIslandAmount
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: MirrorEdgeIslandsAmount
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-      propertyPath: MaxTries
-      value: 200
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
-  m_IsPrefabParent: 0
+  m_PrefabParentObject: {fileID: 131176, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 945538623}
+  - 114: {fileID: 945538622}
+  m_Layer: 0
+  m_Name: Map
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &945538622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11468112, guid: 658b2e54d68b5474c97e33782b192bf9,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 945538621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bf9feab16e21b64ca363c83706a632f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  generateLevelOnStart: 1
+  appendToGameObject: 1
+  Syncer: {fileID: 0}
+  SmallIsland: {fileID: 176402, guid: 41b949648b8f76b49b9653c934cc2808, type: 2}
+  BigIsland: {fileID: 139558, guid: 73f706c5388dacb43982cc70e245de92, type: 2}
+  MidIsland1: {fileID: 156894, guid: 1655c525e9bd7494489272a0d4fe1595, type: 2}
+  MidIsland2: {fileID: 117210, guid: cd49dfd88a0796f4d8ce1d878360508a, type: 2}
+  BuildingSite: {fileID: 195280, guid: f1070b505dd6460468fe1089e7f18653, type: 2}
+  TowerSite: {fileID: 120426, guid: 7479c7f6fbc1700448fce696e4c703fd, type: 2}
+  SettlementSite: {fileID: 191452, guid: 33e149c83361ca44d8219ae8b830356c, type: 2}
+  MapHeight: 1000
+  MapWidth: 1000
+  MirrorEdgeWidth: 100
+  SmallIslandAmount: 20
+  MidIsland1Amount: 5
+  MidIsland2Amount: 5
+  MirrorEdgeIslandsAmount: 5
+  MaxTries: 200
+  ratio: 5
+--- !u!4 &945538623
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 407314, guid: 658b2e54d68b5474c97e33782b192bf9, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 945538621}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
 --- !u!1 &948554530
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +201,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 100000
+  far clip plane: 10000
   field of view: 83.191376
   orthographic: 0
   orthographic size: 5
@@ -268,7 +225,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 948554530}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: 10547, y: 17277.17, z: 10156}
+  m_LocalPosition: {x: 573, y: 664, z: 517}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
