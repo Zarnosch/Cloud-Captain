@@ -22,28 +22,31 @@ public class CameraMovement : MonoBehaviour {
 	public float cameraMoveMaxSpeed;	//maxspeed for camera movement
 	public float cameraEdgeIncreaseSpeed; //how fast the speed increases at an edge
 
+	private float wheelMove;
+	public float scrollSpeedCurrent;
+	public float scrollSpeedMin;
+	public float scrollSpeedMax;
+	public float currentScroll;
+	public float distance;
+	public float scrollMax;
+	public float minY;
+	public float maxY;
+	public float rangeY;
+	private bool doZoom;
 
 	//------------variable
 	private Vector3 _mouseCurrentPos;
 	private Vector3 _cameraCurrentPos;
 	private Vector3 _cameraMovePos;
+	private Vector3 _cameraScrollPos;
 
-	private float _smoothSpeed;
+	private float _smoothSpeedMove;
+	private float _smoothSpeedScroll;
 
 	Camera camera;
 
 
 	void Start () {
-	
-		//------------------------------- Values for testing
-		Vector3 testStartPos = new Vector3( 0, 1, -10 );
-		float testMaxRight = 10;
-		float testMaxLeft = -10;
-		float testMaxTop = 10;
-		float testMaxBottom = -10;
-		float testSpeed = 0.3f;
-		float testEdgeSpeed = 0.5f;
-		//--------------------------------
 
 		camera = GetComponent<Camera> ();
 
@@ -56,8 +59,7 @@ public class CameraMovement : MonoBehaviour {
 		_moveEdgeTop = _cameraRect.y * 0.95f;
 		_moveEdgeBottom = _cameraRect.y * 0.05f;
 
-		//set camera to startpos
-		//camera.transform.position = _cameraStartPos;
+		doZoom = false;
 
 	}
 
@@ -66,30 +68,77 @@ public class CameraMovement : MonoBehaviour {
 		_mouseCurrentPos = Input.mousePosition;
 		_cameraCurrentPos = camera.transform.position;
 
-		_cameraMovePos = _cameraCurrentPos;
+		_cameraScrollPos = _cameraCurrentPos;
+
+		//scroll in and out
+
+		wheelMove = Input.GetAxis ("Mouse ScrollWheel");
+
+		doZoom = true;
+		if ( doZoom ) {
+			
+
+			Debug.Log (wheelMove);
+
+			// change zoom direction
+			if ( (wheelMove < 0 && currentScroll > 0) || (wheelMove > 0 && currentScroll < 0) ) {
+				currentScroll = 0;
+			}
+				
+			currentScroll += wheelMove;
+
+			if (currentScroll > scrollSpeedMax) {
+				currentScroll = scrollSpeedMax;
+			}
+			if (currentScroll < -scrollSpeedMax) {
+				currentScroll = -scrollSpeedMax;
+			}
+
+			if (wheelMove == 0 && currentScroll > 0) {
+				currentScroll = currentScroll - 0.001f;
+			}
+
+
+			if ((isInRangeMinY() && wheelMove >= 0) || (isInRangeMaxY() && wheelMove <= 0)){
+				currentScroll = 0;
+			}
+
+
+		
+
+			gameObject.transform.Translate(0,0,currentScroll * Time.deltaTime * scrollSpeedCurrent);
+			doZoom = false;
+			//camera.transform.position = _cameraScrollPos;
+		}
+
+
+
+
+		//Edge Movement
+		_cameraMovePos = camera.transform.position;
 
 		//move right
 		if (_mouseCurrentPos.x >= _moveEdgeRight) {
-			_smoothSpeed = (_moveEdgeRight - _mouseCurrentPos.x) *(-cameraEdgeIncreaseSpeed);
-			_cameraMovePos.x += _smoothSpeed * cameraMoveMaxSpeed * Time.deltaTime;
+			_smoothSpeedMove = (_moveEdgeRight - _mouseCurrentPos.x) *(-cameraEdgeIncreaseSpeed);
+			_cameraMovePos.x += _smoothSpeedMove * cameraMoveMaxSpeed * Time.deltaTime;
 		}
 
 		//move left
 		if (_mouseCurrentPos.x <= _moveEdgeLeft) {
-			_smoothSpeed = (_mouseCurrentPos.x - _moveEdgeLeft) *(-cameraEdgeIncreaseSpeed);
-			_cameraMovePos.x -= _smoothSpeed * cameraMoveMaxSpeed * Time.deltaTime;
+			_smoothSpeedMove = (_mouseCurrentPos.x - _moveEdgeLeft) *(-cameraEdgeIncreaseSpeed);
+			_cameraMovePos.x -= _smoothSpeedMove * cameraMoveMaxSpeed * Time.deltaTime;
 		}
 
 		//move up
 		if (_mouseCurrentPos.y >= _moveEdgeTop) {
-			_smoothSpeed = (_moveEdgeTop - _mouseCurrentPos.y) *(-cameraEdgeIncreaseSpeed);
-			_cameraMovePos.z += _smoothSpeed * cameraMoveMaxSpeed * Time.deltaTime;
+			_smoothSpeedMove = (_moveEdgeTop - _mouseCurrentPos.y) *(-cameraEdgeIncreaseSpeed);
+			_cameraMovePos.z += _smoothSpeedMove * cameraMoveMaxSpeed * Time.deltaTime;
 		}
 
 		//move down
 		if (_mouseCurrentPos.y <= _moveEdgeBottom) {
-			_smoothSpeed = (_mouseCurrentPos.y - _moveEdgeBottom) *(-cameraEdgeIncreaseSpeed);
-			_cameraMovePos.z -= _smoothSpeed * cameraMoveMaxSpeed * Time.deltaTime;
+			_smoothSpeedMove = (_mouseCurrentPos.y - _moveEdgeBottom) *(-cameraEdgeIncreaseSpeed);
+			_cameraMovePos.z -= _smoothSpeedMove * cameraMoveMaxSpeed * Time.deltaTime;
 		}
 
 		// proof worldedges
@@ -98,6 +147,15 @@ public class CameraMovement : MonoBehaviour {
 		}
 
 
+	}
+
+
+	bool isInRangeMinY (){
+		return ( (_cameraCurrentPos.y > minY - rangeY ) && (_cameraCurrentPos.y < minY + rangeY) );
+	}
+
+	bool isInRangeMaxY (){
+		return ( (_cameraCurrentPos.y > maxY - rangeY ) && (_cameraCurrentPos.y < maxY + rangeY ) );
 	}
 
 
