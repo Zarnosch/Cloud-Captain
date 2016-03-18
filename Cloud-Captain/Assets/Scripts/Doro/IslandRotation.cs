@@ -3,13 +3,12 @@ using System.Collections;
 
 public class IslandRotation : MonoBehaviour {
 
-	public float speed;
+	public float rotationSpeed;
+	public float maxRotationSpeed;
 
-	private float minSpeed;
-	private float maxSpeed;
-
+	private float currentRotation;
 	private float wheelMove;
-	private Quaternion moveRotation;
+	private Vector3 moveRotation;
 	private Rigidbody rigBody;
 
 	// Use this for initialization
@@ -34,13 +33,29 @@ public class IslandRotation : MonoBehaviour {
 
 		if (Input.GetKey ("left ctrl")) {
 
+			moveRotation = gameObject.transform.eulerAngles;
+
 			wheelMove = Input.GetAxis ("Mouse ScrollWheel");
-			moveRotation = gameObject.transform.rotation;
 
-				//gameObject.transform.Rotate (Vector3.up * Time.deltaTime * wheelMove * speed);
-				//rigBody.AddForce( Vector3.up * wheelMove * speed, ForceMode.Acceleration);
 
-			rigBody.AddTorque( Vector3.up * wheelMove * speed, ForceMode.Acceleration);
+			currentRotation += wheelMove;
+
+			// regulate max speed
+			if (currentRotation > maxRotationSpeed) {
+				currentRotation = maxRotationSpeed;
+			}
+			if (currentRotation < -maxRotationSpeed) {
+				currentRotation = -maxRotationSpeed;
+			}
+
+			// outfading
+			if (wheelMove == 0 ) {
+				currentRotation = currentRotation * 0.9f;
+			}
+
+			moveRotation.y += currentRotation * rotationSpeed;
+
+			gameObject.transform.eulerAngles = moveRotation;
 
 		}
 
