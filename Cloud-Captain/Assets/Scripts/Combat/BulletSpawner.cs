@@ -108,6 +108,7 @@ public class BulletSpawner : MonoBehaviour
 
     public bool Attack(GameObject target)
     {
+
         if (!IsViableTargetObject(target))
         {
             return false;
