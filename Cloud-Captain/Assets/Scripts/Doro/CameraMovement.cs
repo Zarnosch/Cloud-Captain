@@ -69,6 +69,7 @@ public class CameraMovement : MonoBehaviour {
 		maxYRange = maxY + rangeY;
 		minYRange = minY - rangeY;
 
+		allowScrolling = true;
 	}
 
 	void Update () {
