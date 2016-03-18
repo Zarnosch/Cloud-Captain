@@ -94,8 +94,9 @@ public class ShipBuilder : MonoBehaviour
 
             if(curBuildCooldown <= 0.0f)
             {
-                Instantiate(enqueuedShips.Dequeue().prefab, SpawnPosition.transform.position, Quaternion.identity);
-				QueueChanged();
+                GameObject newShip = (GameObject) Instantiate(enqueuedShips.Dequeue().prefab, SpawnPosition.transform.position, Quaternion.identity);
+               
+                QueueChanged();
                 isBuilding = false;
             }
         }
@@ -106,6 +107,11 @@ public class ShipBuilder : MonoBehaviour
 
             float reduction = 1.0f - buildReduction;
             curBuildCooldown = enqueuedShips.Peek().buildTime - (enqueuedShips.Peek().buildTime * reduction);
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            BuildShipNoCost(BuildManager.ShipType.Scout);
         }
 
     }
@@ -153,6 +159,7 @@ public class ShipBuilder : MonoBehaviour
             return 0.0f;
 
     }
+
 
 
 }

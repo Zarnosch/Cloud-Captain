@@ -194,7 +194,7 @@ public static class Setting
     ### Costs to produce one engine
     **/
     public static readonly Res COST_RES_ENGINE = new Res(250, 750, 0);
-
+    public const float MACHINE_PRODUCE_TIME = 10.0f;
 
     /********************************************* Supply */
 

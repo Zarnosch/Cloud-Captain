@@ -29,6 +29,8 @@ public abstract class Upgrade : MonoBehaviour
 
         this.UsedUpgrades = new EUpgrade[GetNumMaxUpgrades()];
         this.AvaibleUpgrades = GetAvaibleUpgrades();
+
+
     }
 
 

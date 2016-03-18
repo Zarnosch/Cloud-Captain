@@ -146,48 +146,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
---- !u!1001 &946466363
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 423558, guid: 497a832252362f749a9ee65cc7fc07a7, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 91.39456
-      objectReference: {fileID: 0}
-    - target: {fileID: 423558, guid: 497a832252362f749a9ee65cc7fc07a7, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 2.5233128
-      objectReference: {fileID: 0}
-    - target: {fileID: 423558, guid: 497a832252362f749a9ee65cc7fc07a7, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 148.86644
-      objectReference: {fileID: 0}
-    - target: {fileID: 423558, guid: 497a832252362f749a9ee65cc7fc07a7, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 423558, guid: 497a832252362f749a9ee65cc7fc07a7, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 423558, guid: 497a832252362f749a9ee65cc7fc07a7, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 423558, guid: 497a832252362f749a9ee65cc7fc07a7, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 423558, guid: 497a832252362f749a9ee65cc7fc07a7, type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 497a832252362f749a9ee65cc7fc07a7, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &997516264
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,12 +308,13 @@ MonoBehaviour:
   cameraMoveMaxSpeed: 2
   cameraEdgeIncreaseSpeed: 1
   cameraHeightInfluence: 1
+  allowMoving: 0
+  allowScrolling: 0
   currentScroll: 1
   scrollSpeed: 100
   maxScrollSpeed: 200
   minY: 0
   maxY: 100
-  rangeY: 5
 --- !u!114 &1911020876
 MonoBehaviour:
   m_ObjectHideFlags: 0
