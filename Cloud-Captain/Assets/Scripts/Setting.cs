@@ -14,13 +14,24 @@ public static class Setting
 		Scouter, SettleShip, SmallShip, MediumShip, BigShip
 	}
 
-    
-    
+    // Buildings buildable on building area
+	public static readonly BuildManager.BuildingObject[] BUILDABLE_BUILDINGS = new BuildManager.BuildingObject[] { 
+		BuildManager.BuildingObject.PowerPlant, 
+		BuildManager.BuildingObject.Mine,
+		BuildManager.BuildingObject.Shipyard, 
+		BuildManager.BuildingObject.Workshop 
+	};
+
+	// Buildings buildable on tower
+	public static readonly BuildManager.BuildingObject[] BUILDABLE_TOWER = new BuildManager.BuildingObject[] { 
+		BuildManager.BuildingObject.TeslaTower, 
+		BuildManager.BuildingObject.ArtilleryTower 
+	};
     
     /**
     #### Max upgrade slots for Buildings
     **/
-    public const int MAX_SLOTS_TOWER = 6;
+    public const int MAX_SLOTS_TOWER = 4;
 
     public const int MAX_SLOTS_NEXUS = 2;
 
