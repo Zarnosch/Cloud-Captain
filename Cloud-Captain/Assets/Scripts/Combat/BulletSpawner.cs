@@ -193,7 +193,14 @@ public class BulletSpawner : MonoBehaviour
     {
         spawnedBullet.SetSecondaryParameter(SecondaryRange, SecondaryDamage);
 
-        spawnedBullet.StartBullet(target.transform, BulletSpawnTransform, MinDistance, sphereCollider.radius, BulletSpeed, BulletDamage);
+        GameObject realTarget = target;
+
+        AttackPivot pivot = target.GetComponent<AttackPivot>();
+
+        if (pivot)
+            realTarget = pivot.Pivot;
+
+        spawnedBullet.StartBullet(realTarget.transform, BulletSpawnTransform, MinDistance, sphereCollider.radius, BulletSpeed, BulletDamage);
 
     }
 
