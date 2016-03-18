@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
 
 
     [ReadOnly]
-    public Res resources = new Res(10, 10, 10);
+    public Res resources = new Res(0, 0, 0);
 
 	// Use this for initialization
 	void Awake () 

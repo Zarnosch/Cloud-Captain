@@ -13,6 +13,8 @@ public class BallisticBullet : ABulletBehavior {
     private float totalTimeToTarget;
     private float curFlightTime;
 
+    public ParticleSystem ParticleSystem;
+
 
     protected override void OnSpawn()
     {
@@ -38,6 +40,7 @@ public class BallisticBullet : ABulletBehavior {
         curFlightTime += Time.deltaTime;
 
         bulletRoot.transform.LookAt(bulletRoot.transform.position + myBody.velocity);
+
 
         if(curFlightTime > totalTimeToTarget * 2.0f)
         {
@@ -86,6 +89,15 @@ public class BallisticBullet : ABulletBehavior {
             GameObject obj = (GameObject)Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
             obj.GetComponent<SphereCollider>().radius = secondaryRange;
             obj.GetComponent<Damager>().Damage = secondaryDamage;
+
+            if (ParticleSystem)
+            {
+                ParticleSystem.loop = false;
+                ParticleSystem.Stop();
+                ParticleSystem.gameObject.transform.SetParent(null, true);
+                Destroy(ParticleSystem.gameObject, 5.0f);
+            }
+             
         }
     }
 
