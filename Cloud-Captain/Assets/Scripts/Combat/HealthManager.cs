@@ -16,7 +16,8 @@ public class HealthManager : MonoBehaviour
     public int maxHealth;
 
     private bool died = false;
-
+    private GameObject healthBarGameObject;
+    private WorldSpaceBar healthBar;
 
     void Start()
     {
@@ -24,6 +25,20 @@ public class HealthManager : MonoBehaviour
             RootObject = gameObject;
 
         health = maxHealth;
+
+        
+        if (!healthBarGameObject)
+        {
+            healthBarGameObject = (GameObject)Instantiate(BuildManager.Instance.HealthbarPrefab);
+
+            healthBarGameObject.transform.position = gameObject.transform.position + new Vector3(0.0f, -5.0f, 0.0f);
+
+            healthBarGameObject.transform.SetParent(this.gameObject.transform);
+
+            healthBar = healthBarGameObject.GetComponent<WorldSpaceBar>();
+			healthBar.SetPercent (GetHealthPercent());
+        }
+
     }
 
     public int GetCurHealth()
@@ -62,6 +77,8 @@ public class HealthManager : MonoBehaviour
 
             else if (health > maxHealth)
                 health = maxHealth;
+
+            healthBar.SetPercent(GetHealthPercent());
         }
     }
 
