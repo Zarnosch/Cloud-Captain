@@ -883,8 +883,9 @@ MonoBehaviour:
   cameraMoveSpeed: 0.3
   cameraEdgeIncreaseSpeed: 0.2
   cameraHeightInfluence: 0.001
-  allowMoving: 1
+  moveByTouchingEdges: 1
   allowScrolling: 1
+  moveByDragAndDrop: 1
   currentScroll: 0
   scrollSpeed: 100
   maxScrollSpeed: 100
@@ -906,3 +907,4 @@ MonoBehaviour:
     Matter: 0
     Energy: 0
     Engine: 0
+  UIManager: {fileID: 0}

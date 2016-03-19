@@ -21,17 +21,22 @@ public class CameraMovement : MonoBehaviour {
 	private Vector3 _cameraStartPos;
 	private float edgeWidth;
 	public float cameraMoveSpeed = 2f;	//maxspeed for camera movement
-	public float cameraEdgeIncreaseSpeed = 0.2f; //how fast the speed increases at an edge
+	public float cameraEdgeIncreaseSpeed = 1f; //how fast the speed increases at an edge
 	private float cameraHeight;
 	public float cameraHeightInfluence = 1f;
+	private float changeX;
+	private float changeY;
+	public float maxSpeed = 4f ;
 
-	public bool allowMoving;
-	public bool allowScrolling;
+	public bool moveByTouchingEdges = true;
+	public bool allowScrolling = true;
+	public bool moveByDragAndDrop = false;
 
 	private float wheelMove;
 	private float rangeY;
 	private float minYRange;
 	private float maxYRange;
+	private float moveX;
 
 	public float currentScroll;
 	public float scrollSpeed = 1f;
@@ -70,8 +75,6 @@ public class CameraMovement : MonoBehaviour {
 		maxYRange = maxY + rangeY;
 		minYRange = minY - rangeY;
 
-		allowMoving = true;
-		allowScrolling = true;
 	}
 
 	void Update () {
@@ -79,16 +82,19 @@ public class CameraMovement : MonoBehaviour {
 		_cameraCurrentPos = camera.transform.position;
 
 		if( Input.GetKeyDown("p")){
-			allowMoving = !allowMoving;
+			moveByTouchingEdges = !moveByTouchingEdges;
 		}
 
 		if (allowScrolling) {
 			scroll ();
 		}
 			
-		if (allowMoving) {
+		if (moveByTouchingEdges) {
 			move ();
-			//movingByWheel ();
+		}
+
+		if (moveByDragAndDrop) {
+			movingByWheel ();
 		}
 
 
@@ -175,16 +181,37 @@ public class CameraMovement : MonoBehaviour {
 
 	void movingByWheel(){
 
-		if (Input.GetKeyDown ("Mouse Wheel")) {
-			_mouseCurrentPos = Input.mousePosition;
-			Debug.Log ("GetKeyDown");
+		if (Input.GetMouseButtonDown (2)) {
+			_mouseStartPos = Input.mousePosition;
 		}
+			
+		if (Input.GetMouseButton(2)) {
+			_mouseCurrentPos = Input.mousePosition;
+			_cameraMovePos = _cameraCurrentPos;
+			changeX = (_mouseStartPos.x - _mouseCurrentPos.x) * cameraMoveSpeed * 0.01f;
+			changeY = (_mouseStartPos.y - _mouseCurrentPos.y) * cameraMoveSpeed * 0.01f;
 
-		if (Input.GetKey ("Mouse Wheel")) {
-			Debug.Log ("GetKey");
-			_mouseCurrentPos = Input.mousePosition;
-			//_cameraMovePos = (
+			if (changeX > maxSpeed){
+				changeX = maxSpeed;
+			}
+			if (changeY > maxSpeed) {
+				changeY = maxSpeed;
+			}
+
+			if (changeX < -maxSpeed){
+				changeX = -maxSpeed;
+			}
+			if (changeY < -maxSpeed) {
+				changeY = -maxSpeed;
+			}
+
+
+
+			_cameraMovePos.x -= changeX;
+			_cameraMovePos.z -= changeY;
+			camera.transform.position = _cameraMovePos;
 		}
+			
 
 	}
 
