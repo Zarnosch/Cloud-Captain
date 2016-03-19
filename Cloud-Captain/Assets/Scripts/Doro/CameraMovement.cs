@@ -59,15 +59,15 @@ public class CameraMovement : MonoBehaviour {
 	private float _smoothSpeedMove;
 	private float _smoothSpeedScroll;
 
-	Camera camera;
+	Camera myCamera;
 
 
 	void Start () {
 
-		camera = GetComponent<Camera> ();
+		myCamera = GetComponent<Camera> ();
 
-		_cameraRect.x = camera.pixelWidth;
-		_cameraRect.y = camera.pixelHeight;
+		_cameraRect.x = myCamera.pixelWidth;
+		_cameraRect.y = myCamera.pixelHeight;
 
 		//set edges starting movement
 		edgeWidth = _cameraRect.x * 0.05f;
@@ -84,7 +84,7 @@ public class CameraMovement : MonoBehaviour {
 
 	void Update () {
 
-		_cameraCurrentPos = camera.transform.position;
+		_cameraCurrentPos = myCamera.transform.position;
 
 		if( Input.GetKeyDown("p")){
 			moveByTouchingEdges = !moveByTouchingEdges;
@@ -154,7 +154,7 @@ public class CameraMovement : MonoBehaviour {
 
 
 		_mouseCurrentPos = Input.mousePosition;
-		_cameraMovePos = camera.transform.position;
+		_cameraMovePos = myCamera.transform.position;
 
 		cameraHeight = _cameraMovePos.y * cameraHeightInfluence;
 		//cameraHeight = (camera.nearClipPlane * cameraHeightInfluence - camera.farClipPlane * cameraHeightInfluence);
@@ -187,7 +187,7 @@ public class CameraMovement : MonoBehaviour {
 
 		// proof worldedges
 		if (_cameraMovePos.x <= worldEdgeRight && _cameraMovePos.x >= worldEdgeLeft && _cameraMovePos.z <= worldEdgeTop && _cameraMovePos.z >= worldEdgeBottom) {
-			camera.transform.position = _cameraMovePos;
+			myCamera.transform.position = _cameraMovePos;
 		}
 			
 
@@ -224,7 +224,7 @@ public class CameraMovement : MonoBehaviour {
 			_cameraMovePos.x += changeX * drag;
 			_cameraMovePos.z += changeY * drag;
 
-			camera.transform.position = _cameraMovePos;
+			myCamera.transform.position = _cameraMovePos;
 		}
 			
 
