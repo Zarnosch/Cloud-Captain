@@ -3,8 +3,8 @@ using System.Collections;
 
 public class ShipMove : MonoBehaviour {
 
-	public float speed;
-	public float range;
+	public float speed = 5;
+	public float range = 10;
 	public Vector3 targetPosition;
 	public float shipHighY;
 
@@ -105,7 +105,7 @@ public class ShipMove : MonoBehaviour {
 	}
 
     void move(){
-
+		
 		//rigBody.isKinematic = false;
         
 		//m_targetPosition = targetPosition;
@@ -123,7 +123,7 @@ public class ShipMove : MonoBehaviour {
 
 			// currentPosition is in the range of the targetPosition
 			if (isInRangeX () && isInRangeZ ()) { 
-
+				Debug.Log ("Range");
 				reachedTarget = true;
 
 				rigBody.angularVelocity = new Vector3 (0, 0, 0);
@@ -135,18 +135,21 @@ public class ShipMove : MonoBehaviour {
 
 	bool isInRangeX (){
 
-        float xDist = targetPosition.x - gameObject.transform.position.x;
+        //float xDist = targetPosition.x - gameObject.transform.position.x;
 
-        return xDist < range;
+        //return xDist < range;
 
 		//return ( (m_currentPosition.x > minRange.x) && (m_currentPosition.x < maxRange.x) );
+		return m_currentPosition.x < minRange.x;
 	}
 
 	bool isInRangeZ (){
         //return ( (m_currentPosition.z > minRange.z) && (m_currentPosition.z < maxRange.z) );
-        float zDist = targetPosition.z - gameObject.transform.position.z;
+		return m_currentPosition.z > minRange.z;
 
-        return zDist < range;
+		//float zDist = targetPosition.z - gameObject.transform.position.z;
+
+        //return zDist < range;
     }
 
 
