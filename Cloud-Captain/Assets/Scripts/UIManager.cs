@@ -38,9 +38,7 @@ public class UIManager : MonoBehaviour {
         {
             return;
         }
-
-        //NOTE: Kai
-        //TODO: sometimes gObjType is null. -> Execption, probably not intended
+			
         GameobjectType gObjType = selectedObj.GetComponent<GameobjectType>();
 
         if (!gObjType)
@@ -49,8 +47,6 @@ public class UIManager : MonoBehaviour {
         Setting.ObjectType objType = gObjType.ObjectType;
 
         Upgrade upgradeComponent = selectedObj.GetComponent<Upgrade> ();
-		HealthManager healthStats = selectedObj.GetComponent<HealthManager> ();
-		ShipMove shipMoveComponent = selectedObj.GetComponent<ShipMove> ();
 		ShipBuilder shipBuilderComponent = selectedObj.GetComponent<ShipBuilder> ();
 
 		Upgrade.EUpgrade[] availUpgrades = new Upgrade.EUpgrade[0];
@@ -67,33 +63,7 @@ public class UIManager : MonoBehaviour {
 		activeObjPane.GetComponent<RectTransform> ().offsetMin = new Vector2(0, 0);
 		PaneManager paneManagerComponent = activeObjPane.GetComponent<PaneManager> ();
 
-		// set stats
-		paneManagerComponent.Name.text = objType.ToString();
-		paneManagerComponent.Life.text = healthStats.GetCurHealth().ToString() + " / " + healthStats.GetMaxHealth().ToString();
-
-		// show movement speed for all ships
-		if (objType == Setting.ObjectType.BigShip || objType == Setting.ObjectType.MediumShip || objType == Setting.ObjectType.Scouter || objType == Setting.ObjectType.SmallShip) {
-			paneManagerComponent.StatsMoveSpeed.text = shipMoveComponent.speed.ToString();
-		} else {
-			paneManagerComponent.StatsMoveSpeed.gameObject.transform.parent.gameObject.SetActive (false);
-		}
-
-		// set Range and Damage for all tower and ships
-		if (objType != Setting.ObjectType.Mine && objType != Setting.ObjectType.Nexus && objType != Setting.ObjectType.PowerPlant &&
-			objType != Setting.ObjectType.Settlement && objType != Setting.ObjectType.Shipyard && objType != Setting.ObjectType.Workshop && objType != Setting.ObjectType.SettleShip) {
-
-			BulletSpawner bulletSpawnComponent = selectedObj.GetComponent<BulletSpawnerReference> ().Attacker;
-
-			paneManagerComponent.StatsReach.text = bulletSpawnComponent.GetAttackRange ().ToString ();	
-			paneManagerComponent.StatsDmg.text = bulletSpawnComponent.BulletDamage.ToString();
-		} else {
-			paneManagerComponent.StatsReach.gameObject.transform.parent.gameObject.SetActive (false);
-			paneManagerComponent.StatsDmg.gameObject.transform.parent.gameObject.SetActive (false);
-
-			if (objType == Setting.ObjectType.SettleShip) {
-				paneManagerComponent.UpgradePane.SetActive (false);
-			}
-		}
+		SetUIText (objType);
 
 		if (objType == Setting.ObjectType.Settlement) {
 
@@ -147,9 +117,43 @@ public class UIManager : MonoBehaviour {
 
 		Transform upgradePane = paneManagerComponent.UpgradePane.transform;
 		if (upgradeComponent) {
-			UpdateUpgrades (availUpgrades, installedUpgrades, upgradePane);
+			UpdateUpgrades (availUpgrades, installedUpgrades, upgradePane, objType);
 		}
 
+	}
+
+	public void SetUIText(Setting.ObjectType objType) {
+		PaneManager paneManagerComponent = activeObjPane.GetComponent<PaneManager> ();
+		HealthManager healthStats = selectedObj.GetComponent<HealthManager> ();
+		ShipMove shipMoveComponent = selectedObj.GetComponent<ShipMove> ();
+
+		// set stats
+		paneManagerComponent.Name.text = objType.ToString();
+		paneManagerComponent.Life.text = healthStats.GetCurHealth().ToString() + " / " + healthStats.GetMaxHealth().ToString();
+
+		// show movement speed for all ships
+		if (objType == Setting.ObjectType.BigShip || objType == Setting.ObjectType.MediumShip || objType == Setting.ObjectType.Scouter || objType == Setting.ObjectType.SmallShip) {
+			paneManagerComponent.StatsMoveSpeed.text = shipMoveComponent.speed.ToString();
+		} else {
+			paneManagerComponent.StatsMoveSpeed.gameObject.transform.parent.gameObject.SetActive (false);
+		}
+
+		// set Range and Damage for all tower and ships
+		if (objType != Setting.ObjectType.Mine && objType != Setting.ObjectType.Nexus && objType != Setting.ObjectType.PowerPlant &&
+			objType != Setting.ObjectType.Settlement && objType != Setting.ObjectType.Shipyard && objType != Setting.ObjectType.Workshop && objType != Setting.ObjectType.SettleShip) {
+
+			BulletSpawner bulletSpawnComponent = selectedObj.GetComponent<BulletSpawnerReference> ().Attacker;
+
+			paneManagerComponent.StatsReach.text = bulletSpawnComponent.GetAttackRange ().ToString ();	
+			paneManagerComponent.StatsDmg.text = bulletSpawnComponent.BulletDamage.ToString();
+		} else {
+			paneManagerComponent.StatsReach.gameObject.transform.parent.gameObject.SetActive (false);
+			paneManagerComponent.StatsDmg.gameObject.transform.parent.gameObject.SetActive (false);
+
+			if (objType == Setting.ObjectType.SettleShip) {
+				paneManagerComponent.UpgradePane.SetActive (false);
+			}
+		}
 	}
 
 	public void BuildQueuePanelUpdate(GameObject updatedObj) {
@@ -177,7 +181,7 @@ public class UIManager : MonoBehaviour {
 		parentShipYard.BuildShipNoCost (buildShipType);
 	}
 
-	public void UpgradeSelected(int values, GameObject clickedButton, Transform parent)
+	public void UpgradeSelected(int values, GameObject clickedButton, Transform parent, Setting.ObjectType objType)
 	{
 		if (values > 0) {
 			Upgrade.EUpgrade[] availUpgrades = selectedObj.GetComponent<Upgrade> ().AvaibleUpgrades;
@@ -187,11 +191,12 @@ public class UIManager : MonoBehaviour {
 
 			selectedObj.GetComponent<Upgrade> ().LevelUp (selectedUpgrade);
 
-			UpdateUpgrades (availUpgrades, installedUpgrades, parent);	
+			UpdateUpgrades (availUpgrades, installedUpgrades, parent, objType);
+			SetUIText (objType);
 		}
 	}
 
-	public void UpdateUpgrades(Upgrade.EUpgrade[] availUpgrades, Upgrade.EUpgrade[] installedUpgrades, Transform upgradePane)
+	public void UpdateUpgrades(Upgrade.EUpgrade[] availUpgrades, Upgrade.EUpgrade[] installedUpgrades, Transform upgradePane, Setting.ObjectType objType)
 	{
 		foreach (Transform child in upgradePane) {
 			Destroy (child.gameObject);
@@ -211,7 +216,7 @@ public class UIManager : MonoBehaviour {
 					upgrades.Add (upgrade.ToString ());
 				}
 				uDropDown.GetComponent<Dropdown> ().AddOptions(upgrades);
-				uDropDown.GetComponent<Dropdown> ().onValueChanged.AddListener( (eventData) => { UpgradeSelected(eventData, uDropDown, upgradePane); });
+				uDropDown.GetComponent<Dropdown> ().onValueChanged.AddListener( (eventData) => { UpgradeSelected(eventData, uDropDown, upgradePane, objType); });
 			}
 		}
 	}
