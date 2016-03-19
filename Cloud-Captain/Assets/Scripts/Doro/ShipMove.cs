@@ -4,7 +4,7 @@ using System.Collections;
 public class ShipMove : MonoBehaviour {
 
 	public float speed = 5;
-	public float range = 10;
+	public float range = 5;
 	public Vector3 targetPosition;
 	public float shipHighY;
 
@@ -139,13 +139,13 @@ public class ShipMove : MonoBehaviour {
 
         //return xDist < range;
 
-		//return ( (m_currentPosition.x > minRange.x) && (m_currentPosition.x < maxRange.x) );
-		return m_currentPosition.x < minRange.x;
+		return ( (m_currentPosition.x > m_targetPosition.x-range) && (m_currentPosition.x < m_targetPosition.x+range) );
+		//return m_currentPosition.x < minRange.x;
 	}
 
 	bool isInRangeZ (){
-        //return ( (m_currentPosition.z > minRange.z) && (m_currentPosition.z < maxRange.z) );
-		return m_currentPosition.z > minRange.z;
+		return ( (m_currentPosition.z > m_targetPosition.z-range) && (m_currentPosition.z < m_targetPosition.z+range) );
+		//return m_currentPosition.z > minRange.z;
 
 		//float zDist = targetPosition.z - gameObject.transform.position.z;
 
