@@ -16,6 +16,7 @@ public class Repairer : MonoBehaviour
     private List<HealthManager> shipsHealthInRange = new List<HealthManager>();
     private List<HealthManager> damagedShips = new List<HealthManager>();
 
+
     private HealthManager currentFocus;
 
     [ReadOnly]
@@ -65,7 +66,7 @@ public class Repairer : MonoBehaviour
 
             else
             {
-                damagedShips.Remove(currentFocus);
+                OnObjectRemoved(currentFocus);
                 currentFocus = null;
             }
 
@@ -94,7 +95,10 @@ public class Repairer : MonoBehaviour
                 health.OnHealthChanged.AddListener(OnHealthChanged);
 
                 if (health.IsDamaged())
-                    damagedShips.Add(health);
+                {
+                    OnObjectAdded(health);
+                }
+         
             }
 
         }
@@ -110,7 +114,10 @@ public class Repairer : MonoBehaviour
             if (health)
             {
                 if (health.IsDamaged())
-                    damagedShips.Remove(health);
+                {
+                    OnObjectRemoved(health);
+                }
+               
 
                 shipsHealthInRange.Remove(health);
                 health.OnHealthChanged.RemoveListener(OnHealthChanged);
@@ -124,16 +131,34 @@ public class Repairer : MonoBehaviour
     {
         if(delta < 0)
         {
-            if(!damagedShips.Contains(health))
-                damagedShips.Add(health);
+            if (!damagedShips.Contains(health))
+            {
+                OnObjectAdded(health);
+            }
+               
         }
 
         else if(delta > 0)
         {
             if (health.GetCurHealth() + delta >= health.GetMaxHealth())
             {
-                damagedShips.Remove(health);
+                OnObjectRemoved(health);   
             }
         }
+    }
+
+    void OnObjectAdded(HealthManager health)
+    {
+        damagedShips.Add(health);
+
+        health.StartHealParticles();
+    
+    }
+
+    void OnObjectRemoved(HealthManager health)
+    {
+        damagedShips.Remove(health);
+
+        health.EndHealParticles();
     }
 }
