@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine.Events;
@@ -33,6 +33,12 @@ public class UIManager : MonoBehaviour {
 
 	public void ShowUpgadePanel() 
 	{
+        if(!selectedObj)
+        {
+            return;
+        }
+
+
 		Setting.ObjectType objType = selectedObj.GetComponent<GameobjectType> ().ObjectType;
 
 		Upgrade upgradeComponent = selectedObj.GetComponent<Upgrade> ();
@@ -180,11 +186,23 @@ public class UIManager : MonoBehaviour {
 
 	public void OpenPanelForObject(GameObject obj)
 	{
+		if (activeObjPane != null) {
+			Destroy (activeObjPane.gameObject);
+		}
 		selectedObj = obj;
 		if (selectedObj.layer == 12 || selectedObj.layer == 13) {
 			ShowBuilPanel ();
-		} else {
+        }
+        else if (selectedObj.layer != LayerMask.NameToLayer("Islands"))
+        {
 			ShowUpgadePanel ();		
+		}
+	}
+
+	public void HidePanel() {
+		selectedObj = null;
+		if (activeObjPane != null) {
+			Destroy (activeObjPane.gameObject);
 		}
 	}
 

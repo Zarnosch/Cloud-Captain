@@ -20,12 +20,13 @@ public class Methods : MonoBehaviour {
         GameObject newInstance = Instantiate(PlayerSelectItem, g.transform.position, Quaternion.identity) as GameObject;
         newInstance.transform.parent = g.transform;
 
+		PlayerManager.Instance.UIManager.OpenPanelForObject (g);
+
         playerInstance.selectedUnits.Add(g);
     }
 
     public void SelectedListClear()
     {
-
         foreach (var item in playerInstance.selectedUnits)
         {
             foreach (Transform kidlette in item.transform)
