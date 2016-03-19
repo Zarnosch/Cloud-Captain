@@ -39,6 +39,19 @@ public class PlayerManager : MonoBehaviour
 
     public void ChangeResource(int matter, int energy, int engine)
     {
+
+        if (BuildManager.Instance.NoCostMode)
+        {
+            if (matter < 0)
+                matter = 0;
+
+            if (energy < 0)
+                energy = 0;
+
+            if (engine < 0)
+                engine = 0;
+        }
+
         resources.Matter += matter;
         resources.Matter = Mathf.Clamp(resources.Matter, 0, Setting.MAX_RES);
 
@@ -47,6 +60,7 @@ public class PlayerManager : MonoBehaviour
 
         resources.Engine += engine;
         resources.Engine = Mathf.Clamp(resources.Engine, 0, Setting.MAX_RES);
+
     }
 
     public Res GetResources()
@@ -117,7 +131,7 @@ public class PlayerManager : MonoBehaviour
 
         else
         {
-            if (resources.IsEnough(Setting.COST_RES_ENGINE))
+            if (PlayerManager.Instance.EnoughResource(Setting.COST_RES_ENGINE))
             {
                 if(workshops.Count  > 0)
                 {
@@ -132,7 +146,10 @@ public class PlayerManager : MonoBehaviour
                     }
 
                     lowProducer.ProduceMachine();
-                    ChangeResource(Setting.COST_RES_ENGINE * -1);
+
+                    if(!BuildManager.Instance.NoCostMode)
+                        ChangeResource(Setting.COST_RES_ENGINE * -1);
+
                     return true;
                 }
                              
@@ -141,5 +158,18 @@ public class PlayerManager : MonoBehaviour
 
         return false;
 
+    }
+
+    public bool EnoughResource(Res res)
+    {
+        return EnoughResource(res.Matter, res.Energy, res.Engine);
+    }
+
+    public bool EnoughResource(int matter, int energy, int engine)
+    {
+        if (BuildManager.Instance.NoCostMode)
+            return true;
+        else
+            return resources.Matter >= matter && resources.Energy >= energy && resources.Engine >= engine;
     }
 }

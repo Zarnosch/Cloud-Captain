@@ -27,10 +27,7 @@ public struct Res
         return string.Concat("Matter: ", Matter, ", Energy: ", Energy, ", Engine: ", Engine);
     }
 
-    public bool IsEnough(Res other)
-    {
-        return this.Matter >= other.Matter && this.Energy >= other.Energy && this.Engine >= other.Engine;
-    }
+
 
     public static Res operator *(Res left, int right)
     {

@@ -81,10 +81,9 @@ public class BuildManager : MonoBehaviour
     {
         BuildingInfo info = GetBuildingInfo(obj);
 
-        if (PlayerManager.Instance.GetResources().IsEnough(info.price) || noCostMode)
+        if (PlayerManager.Instance.EnoughResource(info.price))
         {
           
-            if(!noCostMode)
                 PlayerManager.Instance.ChangeResource(info.price * -1);
 
             return (GameObject)Instantiate(info.prefab, position.position, position.rotation);

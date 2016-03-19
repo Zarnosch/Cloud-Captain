@@ -294,7 +294,7 @@ public class UIManager : MonoBehaviour {
             GameObject newObj = BuildManager.Instance.TryPlaceBuilding(buildType, selectedObj.transform);
 
 			if (newObj) {
-				Debug.Log ("foo");
+				//Debug.Log ("foo");
 				islandRef.island.AddBuilding(newObj, selectedObj);
 				HidePanel ();
 			}

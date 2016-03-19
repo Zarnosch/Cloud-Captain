@@ -122,7 +122,7 @@ public class ShipMove : MonoBehaviour {
 
 			// currentPosition is in the range of the targetPosition
 			if (isInRangeX () && isInRangeZ ()) { 
-				Debug.Log ("Range");
+				//Debug.Log ("Range");
 				reachedTarget = true;
 
 				rigBody.angularVelocity = new Vector3 (0, 0, 0);
