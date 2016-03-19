@@ -27,11 +27,16 @@ public class CameraMovement : MonoBehaviour {
 	private float changeX;
 	private float changeY;
 	public float maxSpeed = 4f ;
+	private float drag = -1f;
 
 	public bool moveByTouchingEdges = true;
 	public bool allowScrolling = true;
 	public bool moveByDragAndDrop = false;
+	public bool invertedDragAndDrop = true;
 
+
+
+	//scroll
 	private float wheelMove;
 	private float rangeY;
 	private float minYRange;
@@ -85,6 +90,14 @@ public class CameraMovement : MonoBehaviour {
 			moveByTouchingEdges = !moveByTouchingEdges;
 		}
 
+		if (invertedDragAndDrop) {
+			drag = -1f;
+		}
+
+		if (!invertedDragAndDrop) {
+			drag = 1f;
+		}
+
 		if (allowScrolling) {
 			scroll ();
 		}
@@ -95,8 +108,9 @@ public class CameraMovement : MonoBehaviour {
 
 		if (moveByDragAndDrop) {
 			movingByWheel ();
-		}
 
+		}
+			
 
 	}
 
@@ -181,6 +195,7 @@ public class CameraMovement : MonoBehaviour {
 
 	void movingByWheel(){
 
+
 		if (Input.GetMouseButtonDown (2)) {
 			_mouseStartPos = Input.mousePosition;
 		}
@@ -188,8 +203,8 @@ public class CameraMovement : MonoBehaviour {
 		if (Input.GetMouseButton(2)) {
 			_mouseCurrentPos = Input.mousePosition;
 			_cameraMovePos = _cameraCurrentPos;
-			changeX = (_mouseStartPos.x - _mouseCurrentPos.x) * cameraMoveSpeed * 0.01f;
-			changeY = (_mouseStartPos.y - _mouseCurrentPos.y) * cameraMoveSpeed * 0.01f;
+			changeX = (_mouseStartPos.x - _mouseCurrentPos.x) * (-cameraMoveSpeed) * 0.01f;
+			changeY = (_mouseStartPos.y - _mouseCurrentPos.y) * (-cameraMoveSpeed) * 0.01f;
 
 			if (changeX > maxSpeed){
 				changeX = maxSpeed;
@@ -204,11 +219,11 @@ public class CameraMovement : MonoBehaviour {
 			if (changeY < -maxSpeed) {
 				changeY = -maxSpeed;
 			}
+				
 
+			_cameraMovePos.x += changeX * drag;
+			_cameraMovePos.z += changeY * drag;
 
-
-			_cameraMovePos.x -= changeX;
-			_cameraMovePos.z -= changeY;
 			camera.transform.position = _cameraMovePos;
 		}
 			
