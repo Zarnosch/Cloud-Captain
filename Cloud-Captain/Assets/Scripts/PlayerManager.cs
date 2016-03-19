@@ -17,6 +17,8 @@ public class PlayerManager : MonoBehaviour
     [ReadOnly]
     public Res resources = new Res(0, 0, 0);
 
+	public UIManager UIManager;
+
     // Use this for initialization
     void Awake()
     {

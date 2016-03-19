@@ -180,11 +180,21 @@ public class UIManager : MonoBehaviour {
 
 	public void OpenPanelForObject(GameObject obj)
 	{
+		if (activeObjPane != null) {
+			Destroy (activeObjPane.gameObject);
+		}
 		selectedObj = obj;
 		if (selectedObj.layer == 12 || selectedObj.layer == 13) {
 			ShowBuilPanel ();
 		} else {
 			ShowUpgadePanel ();		
+		}
+	}
+
+	public void HidePanel() {
+		selectedObj = null;
+		if (activeObjPane != null) {
+			Destroy (activeObjPane.gameObject);
 		}
 	}
 

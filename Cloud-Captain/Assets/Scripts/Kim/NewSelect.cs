@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -66,9 +67,13 @@ public class NewSelect : MonoBehaviour
         float flaechenInhalt = Mathf.Abs(f.x - s.x) * Mathf.Abs(f.z - s.z);
         if (flaechenInhalt < flaechenInhaltFuerEinfachenKlick)
         {
-            if(firstRay == null || firstRay.transform.gameObject.layer == selectPlane)
-                methods.SelectedListClear();
-            else
+			if (firstRay == null || firstRay.transform.gameObject.layer == selectPlane) {
+				if (!EventSystem.current.IsPointerOverGameObject()) {
+					PlayerManager.Instance.UIManager.HidePanel ();	
+					methods.SelectedListClear();
+				}
+			}
+			else
             {
                 methods.SelectedListClear();
                 methods.SelectedListAdd(firstRay.transform.gameObject);
@@ -173,7 +178,7 @@ public class NewSelect : MonoBehaviour
 				Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
 				Vector3 second = new Vector3 (0, 0, 0);
 				RaycastHit[] hits = Physics.RaycastAll (ray);
-				foreach (var item in hits) {
+				foreach (var item in hits) {					
 					if (item.transform.gameObject.layer == selectPlane)
 						second = item.point;
 				}
