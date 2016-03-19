@@ -307,6 +307,11 @@ public static class Setting
 
     public const float NEXUS_UPGRADE_HEALTH_INCREASE    = 1.05f;
 
+    /// <summary>Used for both: energy and matter </summary>
+    public const float NEXUS_RESSOURCE_PRODUCE_TIME     = 5.0f;
+    public const int NEXUS_ENERGY_PRODUCE_AMOUNT        = 5;
+    public const int NEXUS_MATTER_PRODUCE_AMOUNT        = 5;
+
     #endregion
 
     #region SHIPYARD
