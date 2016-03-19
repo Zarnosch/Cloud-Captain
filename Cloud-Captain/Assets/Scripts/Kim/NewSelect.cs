@@ -86,7 +86,7 @@ public class NewSelect : MonoBehaviour
 			}
 			else
             {
-				Debug.Log (LayerMask.LayerToName(firstRay.transform.gameObject.layer));
+				//Debug.Log (LayerMask.LayerToName(firstRay.transform.gameObject.layer));
                 methods.SelectedListClear();
                 methods.SelectedListAdd(firstRay.transform.gameObject);
             }
@@ -210,7 +210,7 @@ public class NewSelect : MonoBehaviour
 			if (Physics.Raycast(ray, out hit, 1000f, rayMaskInInt))
             {
                 firstRay = hit.collider;
-				Debug.Log (firstRay.transform.gameObject.name);
+				//Debug.Log (firstRay.transform.gameObject.name);
             }
 
             RaycastHit[] hits = Physics.RaycastAll (ray);
