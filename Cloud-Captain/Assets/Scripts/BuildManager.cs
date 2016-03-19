@@ -39,6 +39,8 @@ public class BuildManager : MonoBehaviour
 
     public GameObject ProgressbarPrefab;
 
+    public GameObject HealthFeedbackParticlePrefab;
+
     #endregion
 
     #region Ships

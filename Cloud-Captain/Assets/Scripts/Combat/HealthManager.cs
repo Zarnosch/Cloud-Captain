@@ -19,6 +19,8 @@ public class HealthManager : MonoBehaviour
     private GameObject healthBarGameObject;
     private WorldSpaceBar healthBar;
 
+    private GameObject healthParticleSystem;
+
     void Start()
     {
         if (RootObject == null)
@@ -38,7 +40,7 @@ public class HealthManager : MonoBehaviour
             healthBar = healthBarGameObject.GetComponent<WorldSpaceBar>();
 			healthBar.SetPercent (GetHealthPercent());
 
-            TryActivate();
+            TryActivateHealthBar();
         }
 
     }
@@ -80,7 +82,7 @@ public class HealthManager : MonoBehaviour
             else if (health > maxHealth)
                 health = maxHealth;
 
-            TryActivate();
+            TryActivateHealthBar();
             healthBar.SetPercent(GetHealthPercent());
         }
     }
@@ -102,17 +104,48 @@ public class HealthManager : MonoBehaviour
         this.health = health;
     }
 
-    private void TryActivate()
+    private void TryActivateHealthBar()
     {
-        if (!IsDamaged())
-        {
-            if (healthBarGameObject.activeSelf)
-                healthBarGameObject.SetActive(false);
-        }
+        if (!healthBarGameObject)
+            return;
 
-        else if (!healthBarGameObject.activeSelf)
+        else
         {
-            healthBarGameObject.SetActive(true);
+            if (!IsDamaged())
+            {
+                if (healthBarGameObject.activeSelf)
+                    healthBarGameObject.SetActive(false);
+            }
+
+            else if (!healthBarGameObject.activeSelf)
+            {
+                healthBarGameObject.SetActive(true);
+            }
         }
     }
+
+
+    public void StartHealParticles()
+    {
+        if (!healthParticleSystem)
+        {
+
+            healthParticleSystem = (GameObject)Instantiate(BuildManager.Instance.HealthFeedbackParticlePrefab);
+            healthParticleSystem.transform.SetParent(RootObject.transform);
+            healthParticleSystem.transform.position = gameObject.transform.position;
+        }
+
+
+        else if (!healthParticleSystem.activeSelf)
+            healthParticleSystem.SetActive(true);
+    }
+
+
+    public void EndHealParticles()
+    {
+        if (healthParticleSystem)
+            healthParticleSystem.SetActive(false);
+    }
+
+
 }
