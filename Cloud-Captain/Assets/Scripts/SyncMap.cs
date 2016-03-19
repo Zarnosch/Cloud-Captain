@@ -34,7 +34,7 @@ public class SyncMap : MonoBehaviour
 
                 Vector3 startPos = Generation.bigIslandPos;
                 startPos.y = Movement.gameObject.transform.position.y;
-                startPos.z -= Camera.main.transform.forward.z * ;
+                startPos.z -= 10.0f;// Camera.main.transform.forward.z * ;
                 Movement.gameObject.transform.position = startPos; // new Vector3(center.x, movementHeight, center.z);
             }
 
