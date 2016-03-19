@@ -64,6 +64,8 @@ public static class Setting
     public const float SHIP_UPGRADE_REPAIR_COOLDOWN_INCREASE    = 1.05f;
     public const float SHIP_UPGRADE_REPAIR_AMOUNT_INCREASE      = 1.05f;
 
+    public const float SHIP_BULLET_SPREAD_RADIUS                = 1.0f;
+
     #endregion
 
     #region SETTLESHIP
@@ -72,7 +74,9 @@ public static class Setting
 
     public const int MAX_HEALTH_SETTLESHIP = 750;
     public const float MAX_SPEED_SETTLESHIP = 9f;
-    public const float MAX_RANGE_SETTLESHIP = 0f;
+
+    /// <summary>Used to determine the range for building settlements on islands: </summary>
+    public const float MAX_RANGE_SETTLESHIP = 10.0f;
     public const int MAX_DMG_SETTLESHIP = 0;
     public const float SETTLESHIP_BUILD_TIME = 100.0f;
 

@@ -17,6 +17,7 @@ GameObject:
   - 114: {fileID: 11428480}
   - 114: {fileID: 11495732}
   - 114: {fileID: 11464796}
+  - 114: {fileID: 11488884}
   m_Layer: 9
   m_Name: SettleShip
   m_TagString: Player
@@ -110,7 +111,6 @@ MonoBehaviour:
   speed: 5
   range: 2
   targetPosition: {x: 0, y: 0, z: 0}
-  shipHighY: 10
   reachedTarget: 0
 --- !u!114 &11442834
 MonoBehaviour:
@@ -136,6 +136,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 9
+--- !u!114 &11488884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9604220fc94004b4fb84b629ac474bd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11495732
 MonoBehaviour:
   m_ObjectHideFlags: 1

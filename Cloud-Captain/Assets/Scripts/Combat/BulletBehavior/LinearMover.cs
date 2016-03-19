@@ -11,7 +11,10 @@ public class LinearMover : ABulletBehavior
     {
         myBody = GetComponent<Rigidbody>();
 
-        Vector3 direction = targetTransform.position - transform.position;
+        Vector3 targetPos = targetTransform.position;
+        targetPos += Random.insideUnitSphere * Setting.SHIP_BULLET_SPREAD_RADIUS;
+
+        Vector3 direction = targetPos - transform.position;
         direction.Normalize();
 
         myBody.AddForce(direction * bulletSpeed, ForceMode.VelocityChange);
