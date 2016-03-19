@@ -306,8 +306,10 @@ public class UIManager : MonoBehaviour {
 				HidePanel ();	
 			}
         }
+	}
 
-
+	public void ProduceMashine() {
+		PlayerManager.Instance.TryProduceMachine ();
 	}
 
 	void Update() {
