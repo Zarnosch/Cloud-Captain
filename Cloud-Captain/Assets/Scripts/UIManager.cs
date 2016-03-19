@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour {
 	public Text MassText;
 	public Text EnergyText;
 	public Text MashineText;
+	public Text ResourceWarning;
 
 	[Header("Build Pane")]
 	public GameObject BuildPanePrefab;
@@ -181,21 +182,6 @@ public class UIManager : MonoBehaviour {
 		parentShipYard.BuildShipNoCost (buildShipType);
 	}
 
-	public void UpgradeSelected(int values, GameObject clickedButton, Transform parent, Setting.ObjectType objType)
-	{
-		if (values > 0) {
-			Upgrade.EUpgrade[] availUpgrades = selectedObj.GetComponent<Upgrade> ().AvaibleUpgrades;
-			Upgrade.EUpgrade[] installedUpgrades = selectedObj.GetComponent<Upgrade> ().UsedUpgrades;
-
-			Upgrade.EUpgrade selectedUpgrade = availUpgrades [values - 1];
-
-			selectedObj.GetComponent<Upgrade> ().LevelUp (selectedUpgrade);
-
-			UpdateUpgrades (availUpgrades, installedUpgrades, parent, objType);
-			SetUIText (objType);
-		}
-	}
-
 	public void UpdateUpgrades(Upgrade.EUpgrade[] availUpgrades, Upgrade.EUpgrade[] installedUpgrades, Transform upgradePane, Setting.ObjectType objType)
 	{
 		foreach (Transform child in upgradePane) {
@@ -221,12 +207,29 @@ public class UIManager : MonoBehaviour {
 		}
 	}
 
+	public void UpgradeSelected(int values, GameObject clickedButton, Transform parent, Setting.ObjectType objType)
+	{
+		if (values > 0) {
+			Upgrade.EUpgrade[] availUpgrades = selectedObj.GetComponent<Upgrade> ().AvaibleUpgrades;
+			Upgrade.EUpgrade[] installedUpgrades = selectedObj.GetComponent<Upgrade> ().UsedUpgrades;
+
+			Upgrade.EUpgrade selectedUpgrade = availUpgrades [values - 1];
+
+			selectedObj.GetComponent<Upgrade> ().LevelUp (selectedUpgrade);
+
+			UpdateUpgrades (availUpgrades, installedUpgrades, parent, objType);
+			SetUIText (objType);
+		}
+	}
+
 	public void OpenPanelForObject(GameObject obj)
 	{
 		HidePanel ();
 
 		selectedObj = obj;
-		if (selectedObj.layer == 12 || selectedObj.layer == 13) {
+		IslandReference islandRef = selectedObj.GetComponent<IslandReference>();
+
+		if ((selectedObj.layer == 12 || selectedObj.layer == 13) && ((islandRef && islandRef.island.Nexus) || BuildManager.Instance.BuildAnywhere)) {
 			ShowBuilPanel ();
         }
         else if (selectedObj.layer != LayerMask.NameToLayer("Islands"))
@@ -294,27 +297,30 @@ public class UIManager : MonoBehaviour {
 
         IslandReference islandRef = selectedObj.GetComponent<IslandReference>();
 
-        if((islandRef && islandRef.island.Nexus) || BuildManager.Instance.BuildAnywhere)
-        {
-            GameObject newObj = BuildManager.Instance.TryPlaceBuilding(buildType, selectedObj.transform);
+        GameObject newObj = BuildManager.Instance.TryPlaceBuilding(buildType, selectedObj.transform);
 
-			if (newObj) {
-				//Debug.Log ("foo");
-				islandRef.island.AddBuilding(newObj, selectedObj);
-				HidePanel ();
-			}
-             
-        } else {
-            //TODO: necessary?
-            GameObject buildBuilding = BuildManager.Instance.TryPlaceBuilding(buildType, selectedObj.transform);
-			if (buildBuilding) {
-				HidePanel ();	
-			}
-        }
+		if (newObj) {
+			islandRef.island.AddBuilding (newObj, selectedObj);
+			HidePanel ();
+		} else {
+			ShowResourceWarning ();
+		}
 	}
 
 	public void ProduceMashine() {
-		PlayerManager.Instance.TryProduceMachine ();
+		bool didProduce = PlayerManager.Instance.TryProduceMachine ();
+		if (!didProduce) {
+			ShowResourceWarning ();
+		}
+	}
+
+	private void ShowResourceWarning() {
+		ResourceWarning.gameObject.SetActive (true);
+		Invoke ("HideResourceWarning", 1);
+	}
+
+	private void HideResourceWarning() {
+		ResourceWarning.gameObject.SetActive (false);
 	}
 
 	void Update() {
