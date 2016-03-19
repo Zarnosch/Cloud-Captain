@@ -214,7 +214,7 @@ public static class Setting
     #region POWER_PLANT
     /********************************************* POWER_PLANT */
 
-    public static readonly Res POWERPLANT_REST_COST                     = new Res(200, 200, 0);
+    public static readonly Res POWERPLANT_REST_COST                     = new Res(0, 0, 0);
 
     public const int POWER_PLANT_DEFAULT_HEALTH                         = 150;
     public const float POWER_PLANT_DEFAULT_ENERGY_GAIN_COOLDOWN         = 5.0f;
