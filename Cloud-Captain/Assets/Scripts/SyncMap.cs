@@ -29,12 +29,9 @@ public class SyncMap : MonoBehaviour
                 Movement.worldEdgeBottom = -Generation.MapHeight * MapBorderIncrease;
                 Movement.worldEdgeTop = Generation.MapHeight * (1.0f + MapBorderIncrease);
 
-                float movementHeight = Movement.gameObject.transform.position.y;
-
-
                 Vector3 startPos = Generation.bigIslandPos;
                 startPos.y = Movement.gameObject.transform.position.y;
-                startPos.z -= 10.0f;// Camera.main.transform.forward.z * ;
+                startPos.z -= 15.0f;
                 Movement.gameObject.transform.position = startPos; // new Vector3(center.x, movementHeight, center.z);
             }
 

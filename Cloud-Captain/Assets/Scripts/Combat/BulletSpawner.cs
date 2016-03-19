@@ -6,6 +6,10 @@ using System;
 [RequireComponent(typeof(SphereCollider))]
 public class BulletSpawner : MonoBehaviour 
 {
+    //prefab gameobject to instantiates bullets:
+    private static Dictionary<GameObject, Queue<ABulletBehavior>> bulletPool = new Dictionary<GameObject, Queue<ABulletBehavior>>();
+
+
     public enum TargetType { Buildings, Ships, Both }
     public enum SpawnMode { Instantiate, ReUse }
 
@@ -142,11 +146,6 @@ public class BulletSpawner : MonoBehaviour
                     SendValuesToBullet(target);
                 }
 
-                if (RotateBulletToTarget)
-                {
-                    spawnedBullet.transform.LookAt(target.transform);
-                }
-
                 BulletSpawned.Invoke();
             }
 
@@ -178,9 +177,22 @@ public class BulletSpawner : MonoBehaviour
     {
         if (BulletPrefab)
         {
-            GameObject spawnedObject = (GameObject)Instantiate(BulletPrefab, BulletSpawnTransform.position, Quaternion.identity);
-            spawnedBullet = spawnedObject.GetComponent<ABulletBehavior>();
-            spawnedBullet.tag = gameObject.tag;
+            spawnedBullet = TryGetFromPool(BulletPrefab);
+
+
+            if (spawnedBullet == null)
+            {
+                GameObject tmpGameObject = (GameObject)Instantiate(BulletPrefab);
+                spawnedBullet = tmpGameObject.GetComponent<ABulletBehavior>();
+                spawnedBullet.Prefab = BulletPrefab;
+            }
+
+            spawnedBullet.bulletRoot.SetActive(true);
+
+#if UNITY_EDITOR
+            spawnedBullet.bulletRoot.hideFlags = HideFlags.None;
+#endif
+
             Debug.Assert(spawnedBullet != null, "A spawned bullet needs an ABulletBehavior script!");
 
             if (AttachBulletToSpawner)
@@ -189,10 +201,31 @@ public class BulletSpawner : MonoBehaviour
 
     }
 
+    private ABulletBehavior TryGetFromPool(GameObject prefab)
+    {
+        ABulletBehavior tmpBulletBehave = null;
+
+        Queue<ABulletBehavior> pool = null;
+
+        if (bulletPool.TryGetValue(prefab, out pool))
+        {
+            if (pool.Count > 0)
+            {
+                tmpBulletBehave = pool.Dequeue();
+            }
+
+        }
+
+        else
+        {
+            bulletPool.Add(BulletPrefab, new Queue<ABulletBehavior>());
+        }
+
+        return tmpBulletBehave;
+    }
+
     private void SendValuesToBullet(GameObject target)
     {
-        spawnedBullet.SetSecondaryParameter(SecondaryRange, SecondaryDamage);
-
         GameObject realTarget = target;
 
         AttackPivot pivot = target.GetComponent<AttackPivot>();
@@ -200,8 +233,24 @@ public class BulletSpawner : MonoBehaviour
         if (pivot)
             realTarget = pivot.Pivot;
 
-        spawnedBullet.StartBullet(realTarget.transform, BulletSpawnTransform, MinDistance, sphereCollider.radius, BulletSpeed, BulletDamage);
+        spawnedBullet.bulletRoot.transform.position = BulletSpawnTransform.position;
+        spawnedBullet.bulletRoot.tag = gameObject.tag;
+
+        if (RotateBulletToTarget)
+            spawnedBullet.transform.LookAt(target.transform);
+
+        spawnedBullet.StartBullet(this, realTarget.transform, BulletSpawnTransform, MinDistance, sphereCollider.radius, BulletSpeed, BulletDamage, SecondaryRange, SecondaryDamage);
     }
 
+    public void DestroyBullet(ABulletBehavior bullet)
+    {
+        bullet.bulletRoot.SetActive(false);
+
+#if UNITY_EDITOR
+        bullet.bulletRoot.hideFlags = HideFlags.HideInHierarchy;
+#endif
+
+        bulletPool[bullet.Prefab].Enqueue(bullet);
+    }
 
 }

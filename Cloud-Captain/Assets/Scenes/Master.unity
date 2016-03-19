@@ -1327,7 +1327,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 147368353}
-  m_LocalRotation: {x: 0.6553855, y: -0.0913816, z: 0.07455878, w: 0.7460298}
+  m_LocalRotation: {x: 0.65538543, y: -0.091381595, z: 0.07455877, w: 0.74602973}
   m_LocalPosition: {x: -0.0024700118, y: -0.00017999232, z: 0.0020339964}
   m_LocalScale: {x: 0.00008333334, y: 0.000083333296, z: 0.00008333332}
   m_Children: []
@@ -3965,7 +3965,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 498905311}
-  m_LocalRotation: {x: 0.6846659, y: 0.006090889, z: -0.022612756, w: 0.7284808}
+  m_LocalRotation: {x: 0.68466586, y: 0.0060908883, z: -0.022612754, w: 0.72848076}
   m_LocalPosition: {x: -0.0028699904, y: -0.012209944, z: -0.0009899917}
   m_LocalScale: {x: 0.000100000005, y: 0.00009999998, z: 0.00010000002}
   m_Children: []
@@ -10191,7 +10191,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1477984661}
-  m_LocalRotation: {x: 0.7803072, y: 0.06859235, z: 0.018243698, w: 0.6213557}
+  m_LocalRotation: {x: 0.78030723, y: 0.068592355, z: 0.0182437, w: 0.6213558}
   m_LocalPosition: {x: 0.010440012, y: 0.0021099886, z: -0.00444}
   m_LocalScale: {x: 0.000100000005, y: 0.00009999999, z: 0.00010000001}
   m_Children: []
@@ -14429,7 +14429,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1758459084}
-  m_LocalRotation: {x: 0.6562037, y: -0.1309814, z: 0.10036433, w: 0.73632044}
+  m_LocalRotation: {x: 0.6562036, y: -0.13098139, z: 0.10036431, w: 0.7363204}
   m_LocalPosition: {x: -0.005299991, y: 0.015940022, z: 0.002518998}
   m_LocalScale: {x: 0.00009999999, y: 0.00009999998, z: 0.00009999998}
   m_Children: []
@@ -15640,7 +15640,7 @@ Transform:
   - {fileID: 1258383176}
   - {fileID: 997516265}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &1925256361
 GameObject:
   m_ObjectHideFlags: 0
@@ -16709,7 +16709,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 406102, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11427812, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
       propertyPath: UIManager

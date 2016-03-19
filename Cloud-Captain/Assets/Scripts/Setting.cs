@@ -64,7 +64,10 @@ public static class Setting
     public const float SHIP_UPGRADE_REPAIR_COOLDOWN_INCREASE    = 1.05f;
     public const float SHIP_UPGRADE_REPAIR_AMOUNT_INCREASE      = 1.05f;
 
-    public const float SHIP_BULLET_SPREAD_RADIUS                = 1.0f;
+    //When a ship is shooting, its target position will be randomly offseted by these values:
+    public const float SHIP_BULLET_OFFSET_HORIZONTAL            = 2.0f;
+    public const float SHIP_BULLET_OFFSET_VERTICAL              = 1.0f;
+
 
     #endregion
 
@@ -119,7 +122,7 @@ public static class Setting
 
     #endregion
 
-    #region BISSHIP
+    #region BIGSHIP
 
     public const int MAX_SLOTS_BIGSHIP = 6;
 
@@ -288,6 +291,7 @@ public static class Setting
     public const int WORKSHOP_DEFAULT_HEALTH                        = 250;
     public const float WORKSHOP_DEFAULT_REPAIR_COOLDOWN             = 0.5f;
     public const int WORKSHOP_DEFAULT_REPAIR_AMOUNT                 = 1;
+    public const float WORKSHOP_DEFAULT_REPAIR_RADIUS               = 10.0f;
 
     public const float WORKSHOP_UPGRADE_REPAIR_AMOUNT_INCREASE      = 1.05f;
     public const float WORKSHOP_UPGRADE_REPAIR_COOLDOWN_INCREASE    = 1.05f;
