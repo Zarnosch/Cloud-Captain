@@ -9,6 +9,11 @@ public class NewSelect : MonoBehaviour
     public float flaechenInhaltFuerEinfachenKlick = 5;
 	public float selectionHeightInEachDirection = 50;
 
+	//public string[] rayMask = {"SelectPlane", "Buildings","Ships","Buildingsite", "Towersite", "SettlementSite"};
+	[ReadOnly]
+	public string[] rayMask;
+	private int rayMaskInInt;
+
 	public List<GameObject> buildingList = new List<GameObject>();
 	public List<GameObject> islandList = new List<GameObject>();
 	public List<GameObject> shipList = new List<GameObject>();
@@ -39,6 +44,7 @@ public class NewSelect : MonoBehaviour
     // Use this for initialization
     void Start ()
 	{
+
         methods = gameObject.GetComponent<Methods>();
 
 		selectPlane = LayerMask.NameToLayer ("SelectPlane");
@@ -46,6 +52,10 @@ public class NewSelect : MonoBehaviour
 		building = LayerMask.NameToLayer ("Buildings");
 		ship = LayerMask.NameToLayer ("Ships");
 		island = LayerMask.NameToLayer ("Islands");
+
+		rayMask = new string[]{"SelectPlane", "Buildings","Ships","Buildingsite", "Towersite", "SettlementSite"};
+		rayMaskInInt = (LayerMask.GetMask (rayMask));
+		//Debug.Log (rayMaskInInt);
 	}
 
 	void ErstelleRect (Vector3 f, Vector3 s)
@@ -71,10 +81,12 @@ public class NewSelect : MonoBehaviour
 				if (!EventSystem.current.IsPointerOverGameObject()) {
 					PlayerManager.Instance.UIManager.HidePanel ();	
 					methods.SelectedListClear();
+					//Debug.Log (firstRay.transform.gameObject);
 				}
 			}
 			else
             {
+				Debug.Log (LayerMask.LayerToName(firstRay.transform.gameObject.layer));
                 methods.SelectedListClear();
                 methods.SelectedListAdd(firstRay.transform.gameObject);
             }
@@ -194,9 +206,11 @@ public class NewSelect : MonoBehaviour
 
             // Single RayCast
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+
+			if (Physics.Raycast(ray, out hit, 1000f, rayMaskInInt))
             {
                 firstRay = hit.collider;
+				Debug.Log (firstRay.transform.gameObject.name);
             }
 
             RaycastHit[] hits = Physics.RaycastAll (ray);

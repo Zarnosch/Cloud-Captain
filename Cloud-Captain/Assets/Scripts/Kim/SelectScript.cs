@@ -49,10 +49,6 @@ public class SelectScript : MonoBehaviour {
             newSelect.buildingList.Add(coll.gameObject);
             newSelect.newListEntry = true;
         }
-        else if (coll.gameObject.layer == island) {
-            newSelect.islandList.Add (coll.gameObject);
-			newSelect.newListEntry = true;
-		}
 		else if (coll.gameObject.layer == ship) {
             newSelect.shipList.Add (coll.gameObject);
 			newSelect.newListEntry = true;
