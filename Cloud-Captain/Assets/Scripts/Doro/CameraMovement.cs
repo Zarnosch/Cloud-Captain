@@ -20,7 +20,7 @@ public class CameraMovement : MonoBehaviour {
 	private Vector2 _cameraRect; // x = Width, y = Height
 	private Vector3 _cameraStartPos;
 	private float edgeWidth;
-	public float cameraMoveSpeed = 0.4f;	//maxspeed for camera movement
+	public float cameraMoveSpeed = 2f;	//maxspeed for camera movement
 	public float cameraEdgeIncreaseSpeed = 0.2f; //how fast the speed increases at an edge
 	private float cameraHeight;
 	public float cameraHeightInfluence = 1f;
@@ -41,6 +41,7 @@ public class CameraMovement : MonoBehaviour {
 
 	//------------variable
 	private Vector3 _mouseCurrentPos;
+	private Vector3 _mouseStartPos;
 	private Vector3 _cameraCurrentPos;
 	private Vector3 _cameraMovePos;
 	private Vector3 _cameraScrollPos;
@@ -65,7 +66,7 @@ public class CameraMovement : MonoBehaviour {
 		_moveEdgeTop = _cameraRect.y -edgeWidth;
 		_moveEdgeBottom = edgeWidth;
 
-		rangeY = 2 * scrollSpeed;
+		rangeY = scrollSpeed;
 		maxYRange = maxY + rangeY;
 		minYRange = minY - rangeY;
 
@@ -87,6 +88,7 @@ public class CameraMovement : MonoBehaviour {
 			
 		if (allowMoving) {
 			move ();
+			//movingByWheel ();
 		}
 
 
@@ -141,26 +143,26 @@ public class CameraMovement : MonoBehaviour {
 		//move right
 		if (_mouseCurrentPos.x >= _moveEdgeRight) {
 			_smoothSpeedMove = (_moveEdgeRight - _mouseCurrentPos.x) * (-cameraEdgeIncreaseSpeed) * cameraHeight;
-			_cameraMovePos.x += _smoothSpeedMove * cameraMoveSpeed * Time.deltaTime;
+			_cameraMovePos.x += Mathf.Sqrt(_smoothSpeedMove) * cameraMoveSpeed * Time.deltaTime;
 		}
 
 		//move left
 		if (_mouseCurrentPos.x <= _moveEdgeLeft) {
 			//_smoothSpeedMove = (_mouseCurrentPos.x - _moveEdgeLeft) *(-cameraEdgeIncreaseSpeed);
 			_smoothSpeedMove = (_mouseCurrentPos.x - _moveEdgeLeft) *(-cameraEdgeIncreaseSpeed) * cameraHeight;
-			_cameraMovePos.x -= _smoothSpeedMove * cameraMoveSpeed * Time.deltaTime;
+			_cameraMovePos.x -= Mathf.Sqrt(_smoothSpeedMove) * cameraMoveSpeed * Time.deltaTime;
 		}
 
 		//move up
 		if (_mouseCurrentPos.y >= _moveEdgeTop) {
 			_smoothSpeedMove = (_moveEdgeTop - _mouseCurrentPos.y) *(-cameraEdgeIncreaseSpeed) * cameraHeight;
-			_cameraMovePos.z += _smoothSpeedMove * cameraMoveSpeed * Time.deltaTime;
+			_cameraMovePos.z += Mathf.Sqrt(_smoothSpeedMove) * cameraMoveSpeed * Time.deltaTime;
 		}
 
 		//move down
 		if (_mouseCurrentPos.y <= _moveEdgeBottom) {
 			_smoothSpeedMove = (_mouseCurrentPos.y - _moveEdgeBottom) *(-cameraEdgeIncreaseSpeed) * cameraHeight;
-			_cameraMovePos.z -= _smoothSpeedMove * cameraMoveSpeed * Time.deltaTime;
+			_cameraMovePos.z -= Mathf.Sqrt(_smoothSpeedMove) * cameraMoveSpeed * Time.deltaTime;
 		}
 
 		// proof worldedges
@@ -171,6 +173,20 @@ public class CameraMovement : MonoBehaviour {
 
 	}
 
+	void movingByWheel(){
+
+		if (Input.GetKeyDown ("Mouse Wheel")) {
+			_mouseCurrentPos = Input.mousePosition;
+			Debug.Log ("GetKeyDown");
+		}
+
+		if (Input.GetKey ("Mouse Wheel")) {
+			Debug.Log ("GetKey");
+			_mouseCurrentPos = Input.mousePosition;
+			//_cameraMovePos = (
+		}
+
+	}
 
 	bool isInRangeMinY (){
 		return ( (_cameraCurrentPos.y > minYRange - rangeY ) && (_cameraCurrentPos.y < minYRange + rangeY) );
