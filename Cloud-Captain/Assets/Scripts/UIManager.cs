@@ -30,6 +30,7 @@ public class UIManager : MonoBehaviour {
 	public GameObject selectedObj;
 
 	private GameObject activeObjPane;
+	private GameObject buildPaneInst;
 
 	public void ShowUpgadePanel() 
 	{
@@ -192,9 +193,7 @@ public class UIManager : MonoBehaviour {
 
 	public void OpenPanelForObject(GameObject obj)
 	{
-		if (activeObjPane != null) {
-			Destroy (activeObjPane.gameObject);
-		}
+		HidePanel ();
 
 		selectedObj = obj;
 		if (selectedObj.layer == 12 || selectedObj.layer == 13) {
@@ -211,10 +210,13 @@ public class UIManager : MonoBehaviour {
 		if (activeObjPane != null) {
 			Destroy (activeObjPane.gameObject);
 		}
+		if (buildPaneInst != null) {
+			Destroy (buildPaneInst.gameObject);
+		}
 	}
 
 	public void ShowBuilPanel() {
-		GameObject buildPaneInst = Instantiate (BuildPanePrefab);
+		buildPaneInst = Instantiate (BuildPanePrefab);
 		buildPaneInst.transform.SetParent (InteractionPane.transform);
 		buildPaneInst.GetComponent<RectTransform> ().offsetMax = new Vector2(0, 0);
 		buildPaneInst.GetComponent<RectTransform> ().offsetMin = new Vector2(0, 0);
