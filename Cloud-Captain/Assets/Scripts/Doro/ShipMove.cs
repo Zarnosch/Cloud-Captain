@@ -13,7 +13,9 @@ public class ShipMove : MonoBehaviour {
 	private Vector3 oldTarget;
 	[ReadOnly]
 	public bool reachedTarget;
+	private bool isTargetObject;
 
+	private GameObject targetObject;
 	private Rigidbody rigBody;
 
 	// values from settings
@@ -50,6 +52,9 @@ public class ShipMove : MonoBehaviour {
 
 		reachedTarget = true;
 
+		targetObject = null;
+		isTargetObject = false;
+
 		rigBody = gameObject.GetComponent<Rigidbody> ();
 		rigBody.velocity = new Vector3(0,0,0);
 	}
@@ -60,20 +65,44 @@ public class ShipMove : MonoBehaviour {
 	}
 
 	void FixedUpdate (){
-		if(!reachedTarget)
-        //moveShip(new Vector3 (-20,0,-10));
-        	move();
+
+
+		if (!reachedTarget && !isTargetObject) {
+			//moveShip(new Vector3 (-20,0,-10));
+			move ();
+		}
+
+		if (!reachedTarget && isTargetObject) {
+			if (targetObject == null) {
+				isTargetObject = false;
+				m_targetPosition = m_currentPosition;
+			} else {
+				m_targetPosition = targetObject.transform.position;
+				m_targetPosition.y = shipHighY;
+				move ();
+			}
+		}
+
     }
 
 
 	public void moveShip (Vector3 target)
-    {
-
+	{
 		reachedTarget = false;
+		isTargetObject = false;
         //move (target);
 		m_targetPosition = target;
         m_targetPosition.y = shipHighY;
     }
+
+	public void moveShip (GameObject obj)
+	{
+		reachedTarget = false;
+		isTargetObject = true;
+		targetObject = obj;
+		m_targetPosition = obj.transform.position;
+		m_targetPosition.y = shipHighY;
+	}
 
     void move(){
 
