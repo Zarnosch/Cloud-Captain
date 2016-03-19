@@ -322,7 +322,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22433612, guid: 191b42d571874428bad7345e6ead7361, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 22433612, guid: 191b42d571874428bad7345e6ead7361, type: 2}
       propertyPath: m_AnchoredPosition.x
@@ -410,7 +410,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 448704, guid: 661aac9aef3023445921f8ad18a2cf3c, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11418914, guid: 661aac9aef3023445921f8ad18a2cf3c, type: 2}
       propertyPath: Movement
@@ -459,8 +459,10 @@ MonoBehaviour:
   cameraMoveSpeed: 0.4
   cameraEdgeIncreaseSpeed: 0.3
   cameraHeightInfluence: 1
-  allowMoving: 0
+  maxSpeed: 4
+  moveByTouchingEdges: 1
   allowScrolling: 0
+  moveByDragAndDrop: 0
   currentScroll: 1
   scrollSpeed: 100
   maxScrollSpeed: 200
@@ -566,7 +568,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 406102, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11427812, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
       propertyPath: UIManager
