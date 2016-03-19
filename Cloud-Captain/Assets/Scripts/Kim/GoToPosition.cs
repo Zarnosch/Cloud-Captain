@@ -39,7 +39,7 @@ public class GoToPosition : MonoBehaviour {
 								RaycastHit hit;
 
 								if (Physics.Raycast (ray, out hit, 1000f, rayMaskInInt)) {
-									
+									//Debug.Log ("Test");
 									selected.gameObject.GetComponent<ShipMove> ().moveShip (hit.collider.transform.gameObject);
 									return;
 									//Debug.Log (firstRay.transform.gameObject.name);
