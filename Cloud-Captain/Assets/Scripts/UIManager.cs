@@ -30,6 +30,7 @@ public class UIManager : MonoBehaviour {
 	public GameObject selectedObj;
 
 	private GameObject activeObjPane;
+	private GameObject buildPaneInst;
 
 	public void ShowUpgadePanel() 
 	{
@@ -74,7 +75,7 @@ public class UIManager : MonoBehaviour {
 
 		// set Range and Damage for all tower and ships
 		if (objType != Setting.ObjectType.Mine && objType != Setting.ObjectType.Nexus && objType != Setting.ObjectType.PowerPlant &&
-		    objType != Setting.ObjectType.Settlement && objType != Setting.ObjectType.Shipyard && objType != Setting.ObjectType.Workshop) {
+			objType != Setting.ObjectType.Settlement && objType != Setting.ObjectType.Shipyard && objType != Setting.ObjectType.Workshop && objType != Setting.ObjectType.SettleShip) {
 
 			BulletSpawner bulletSpawnComponent = selectedObj.GetComponent<BulletSpawnerReference> ().Attacker;
 
@@ -192,9 +193,8 @@ public class UIManager : MonoBehaviour {
 
 	public void OpenPanelForObject(GameObject obj)
 	{
-		if (activeObjPane != null) {
-			Destroy (activeObjPane.gameObject);
-		}
+		HidePanel ();
+
 		selectedObj = obj;
 		if (selectedObj.layer == 12 || selectedObj.layer == 13) {
 			ShowBuilPanel ();
@@ -210,15 +210,16 @@ public class UIManager : MonoBehaviour {
 		if (activeObjPane != null) {
 			Destroy (activeObjPane.gameObject);
 		}
+		if (buildPaneInst != null) {
+			Destroy (buildPaneInst.gameObject);
+		}
 	}
 
 	public void ShowBuilPanel() {
-		GameObject buildPaneInst = Instantiate (BuildPanePrefab);
+		buildPaneInst = Instantiate (BuildPanePrefab);
 		buildPaneInst.transform.SetParent (InteractionPane.transform);
 		buildPaneInst.GetComponent<RectTransform> ().offsetMax = new Vector2(0, 0);
 		buildPaneInst.GetComponent<RectTransform> ().offsetMin = new Vector2(0, 0);
-
-		//selectedObj.layer = 12;
 
 		if (selectedObj.layer == 12) // 12 Building 
 		{
@@ -267,14 +268,18 @@ public class UIManager : MonoBehaviour {
         {
             GameObject newObj = BuildManager.Instance.TryPlaceBuilding(buildType, selectedObj.transform);
 
-            if(newObj)
-                islandRef.island.AddBuilding(newObj, selectedObj);
-        }
-
-        else
-        {
+			if (newObj) {
+				Debug.Log ("foo");
+				islandRef.island.AddBuilding(newObj, selectedObj);
+				HidePanel ();
+			}
+             
+        } else {
             //TODO: necessary?
-            BuildManager.Instance.TryPlaceBuilding(buildType, selectedObj.transform);
+            GameObject buildBuilding = BuildManager.Instance.TryPlaceBuilding(buildType, selectedObj.transform);
+			if (buildBuilding) {
+				HidePanel ();	
+			}
         }
 
 
