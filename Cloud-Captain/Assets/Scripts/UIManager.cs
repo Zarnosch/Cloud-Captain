@@ -53,8 +53,13 @@ public class UIManager : MonoBehaviour {
 		ShipMove shipMoveComponent = selectedObj.GetComponent<ShipMove> ();
 		ShipBuilder shipBuilderComponent = selectedObj.GetComponent<ShipBuilder> ();
 
-		var availUpgrades = upgradeComponent.AvaibleUpgrades;
-		var installedUpgrades = upgradeComponent.UsedUpgrades;
+		Upgrade.EUpgrade[] availUpgrades = new Upgrade.EUpgrade[0];
+		Upgrade.EUpgrade[] installedUpgrades =  new Upgrade.EUpgrade[0];
+
+		if (upgradeComponent) {
+			availUpgrades = upgradeComponent.AvaibleUpgrades;
+			installedUpgrades = upgradeComponent.UsedUpgrades;	
+		}
 
 		activeObjPane = Instantiate (SelectedPanelPrefab);
 		activeObjPane.transform.SetParent (InteractionPane.transform);
@@ -84,6 +89,23 @@ public class UIManager : MonoBehaviour {
 		} else {
 			paneManagerComponent.StatsReach.gameObject.transform.parent.gameObject.SetActive (false);
 			paneManagerComponent.StatsDmg.gameObject.transform.parent.gameObject.SetActive (false);
+
+			if (objType == Setting.ObjectType.SettleShip) {
+				paneManagerComponent.UpgradePane.SetActive (false);
+			}
+		}
+
+		if (objType == Setting.ObjectType.Settlement) {
+
+			var actionsPane = paneManagerComponent.ActionsPane;
+
+			Button evolveButton = Instantiate (BuildButton);
+			evolveButton.transform.SetParent (actionsPane.transform);
+			evolveButton.GetComponentInChildren<Text> ().text = "Upgrade to Nexus";
+			evolveButton.onClick.AddListener (() => {
+				selectedObj.GetComponent<UpgradeToNexus>().TryUpgrade();
+			});
+
 		}
 
 		// build stuff
@@ -124,7 +146,10 @@ public class UIManager : MonoBehaviour {
 		}
 
 		Transform upgradePane = paneManagerComponent.UpgradePane.transform;
-		UpdateUpgrades (availUpgrades, installedUpgrades, upgradePane);
+		if (upgradeComponent) {
+			UpdateUpgrades (availUpgrades, installedUpgrades, upgradePane);
+		}
+
 	}
 
 	public void BuildQueuePanelUpdate(GameObject updatedObj) {
