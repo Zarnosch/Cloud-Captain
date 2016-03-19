@@ -14980,6 +14980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generateLevelOnStart: 0
   appendToGameObject: 1
+  WaterfallOn: 1
   Syncer: {fileID: 11418914}
   SmallIsland: {fileID: 176402, guid: 41b949648b8f76b49b9653c934cc2808, type: 2}
   BigIsland: {fileID: 139558, guid: 73f706c5388dacb43982cc70e245de92, type: 2}
@@ -14988,6 +14989,7 @@ MonoBehaviour:
   BuildingSite: {fileID: 195280, guid: f1070b505dd6460468fe1089e7f18653, type: 2}
   TowerSite: {fileID: 120426, guid: 7479c7f6fbc1700448fce696e4c703fd, type: 2}
   SettlementSite: {fileID: 191452, guid: 33e149c83361ca44d8219ae8b830356c, type: 2}
+  Waterfall: {fileID: 0}
   MapHeight: 600
   MapWidth: 600
   MirrorEdgeWidth: 20

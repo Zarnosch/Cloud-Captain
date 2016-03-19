@@ -111,6 +111,10 @@ Material:
         second: 0.078125
       data:
         first:
+          name: _InvFade
+        second: 1
+      data:
+        first:
           name: _Parallax
         second: 0.005
       data:
@@ -120,7 +124,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: 0
+        second: 1
       data:
         first:
           name: _BumpScale
@@ -144,11 +148,7 @@ Material:
       data:
         first:
           name: _Metallic
-        second: 0
-      data:
-        first:
-          name: _InvFade
-        second: 1
+        second: 0.429
     m_Colors:
       data:
         first:

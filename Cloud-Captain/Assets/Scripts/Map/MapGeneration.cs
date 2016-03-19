@@ -326,23 +326,27 @@ public class MapGeneration : MonoBehaviour
 
     private void generateWaterfall()
     {
+        int x = (int)(MapWidth * 0.1f);     //for the corners
+        int y = (int)(MapHeight * 0.1f);    //for the corners
+        float h = 50;    //height
+        float s = (MapHeight + MapWidth) / 2f * 0.2f;
         GameObject water;
-        for (int i = -50; i < MapWidth+50; i += (int)Waterfall.transform.lossyScale.x * 7)
+        for (int i = -x; i < MapWidth+x*3; i += (int)Waterfall.transform.lossyScale.x * 7)
         {
-            water = (GameObject)Instantiate(Waterfall, new Vector3(-50, 50, i), Quaternion.Euler(10, -90, 0));
+            water = (GameObject)Instantiate(Waterfall, new Vector3(-s, h, i), Quaternion.Euler(0, -90, 0));
             if (appendToGameObject)
                 water.transform.SetParent(gameObject.transform);
-            water = (GameObject)Instantiate(Waterfall, new Vector3(MapWidth + 50, 50, i), Quaternion.Euler(10, 90, 0));
+            water = (GameObject)Instantiate(Waterfall, new Vector3(MapWidth+s, h, i), Quaternion.Euler(0, 90, 0));
             if (appendToGameObject)
                 water.transform.SetParent(gameObject.transform);
         }
         
-        for (int i = -50; i < MapHeight+50; i += (int)Waterfall.transform.lossyScale.x * 7)
+        for (int i = -y; i < MapHeight+y*3; i += (int)Waterfall.transform.lossyScale.x * 7)
         {
-            water = (GameObject)Instantiate(Waterfall, new Vector3(i, 50, MapHeight+50), Quaternion.Euler(10, 0, 0));
+            water = (GameObject)Instantiate(Waterfall, new Vector3(i, h, MapHeight+s), Quaternion.Euler(0, 0, 0));
             if (appendToGameObject)
                 water.transform.SetParent(gameObject.transform);
-            water = (GameObject)Instantiate(Waterfall, new Vector3(i, 50, -50), Quaternion.Euler(10, 180, 0));
+            water = (GameObject)Instantiate(Waterfall, new Vector3(i, h, -s), Quaternion.Euler(0, 180, 0));
             if (appendToGameObject)
                 water.transform.SetParent(gameObject.transform);
         }
