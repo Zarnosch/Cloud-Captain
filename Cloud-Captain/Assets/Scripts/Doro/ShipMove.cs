@@ -3,14 +3,6 @@ using System.Collections;
 
 public class ShipMove : MonoBehaviour {
 
-	public float speed = 5;
-	public float range = 10;
-	public Vector3 targetPosition;
-	public float shipHighY;
-
-	private Vector3 minRange;
-	private Vector3 maxRange;
-	private Vector3 oldTarget;
 	[ReadOnly]
 	public bool reachedTarget;
 	private bool isTargetObject;
@@ -19,36 +11,14 @@ public class ShipMove : MonoBehaviour {
 	private Rigidbody rigBody;
 
 	// values from settings
-	private Vector3 m_currentPosition;
-	private Vector3 m_targetPosition;
-	private float m_range;
-	private float m_speed;
-
-	// properties
-	public Vector3 M_currentPosition { get; set; }
-	public Vector3 M_targetPosition { get; set; }
-	public float M_range {
-		get {
-			return m_range;
-		}
-		set {
-			m_range = value;
-			minRange = new Vector3 (m_targetPosition.x - m_range, 0, m_targetPosition.z - m_range);
-			maxRange = new Vector3 (m_targetPosition.x + m_range, 0, m_targetPosition.z + m_range);
-		}
-	}
-	public float M_speed{ get; set; }
-
+	private Vector3 currentPosition;
+	public Vector3 targetPosition = new Vector3 (0,0,0);
+	public float range = 1;
+	public float speed = 5;
+	public float shipHighY = 5;
 
 	// Use this for initialization
 	void Start () {
-
-		m_speed = speed;
-		m_targetPosition = new Vector3(0,0,0);
-		m_range = range;
-
-		minRange = new Vector3 (m_targetPosition.x - m_range, 0, m_targetPosition.z - m_range);
-		maxRange = new Vector3 (m_targetPosition.x + m_range, 0, m_targetPosition.z + m_range);
 
 		reachedTarget = true;
 
@@ -66,19 +36,17 @@ public class ShipMove : MonoBehaviour {
 
 	void FixedUpdate (){
 
-
 		if (!reachedTarget && !isTargetObject) {
-			//moveShip(new Vector3 (-20,0,-10));
 			move ();
 		}
 
 		if (!reachedTarget && isTargetObject) {
 			if (targetObject == null) {
 				isTargetObject = false;
-				m_targetPosition = m_currentPosition;
+				targetPosition = currentPosition;
 			} else {
-				m_targetPosition = targetObject.transform.position;
-				m_targetPosition.y = shipHighY;
+				targetPosition = targetObject.transform.position;
+				targetPosition.y = shipHighY;
 				move ();
 			}
 		}
@@ -90,34 +58,32 @@ public class ShipMove : MonoBehaviour {
 	{
 		reachedTarget = false;
 		isTargetObject = false;
-        //move (target);
-		m_targetPosition = target;
-        m_targetPosition.y = shipHighY;
+
+		targetPosition = target;
+        targetPosition.y = shipHighY;
     }
 
 	public void moveShip (GameObject obj)
 	{
 		reachedTarget = false;
 		isTargetObject = true;
+
 		targetObject = obj;
-		m_targetPosition = obj.transform.position;
-		m_targetPosition.y = shipHighY;
+		targetPosition = obj.transform.position;
+		targetPosition.y = shipHighY;
 	}
 
     void move(){
 		
 		//rigBody.isKinematic = false;
         
-		//m_targetPosition = targetPosition;
-		m_currentPosition = rigBody.transform.position;
-		//m_targetPosition.y = shipHighY;
+		currentPosition = rigBody.transform.position;
 
-	
 			// currentPosition is NOT in the range of the targetPositon
 			if (!isInRangeX () || !isInRangeZ ()) {
 
-				gameObject.transform.LookAt (m_targetPosition);
-				rigBody.MovePosition (transform.position + transform.forward * Time.deltaTime * m_speed);
+				gameObject.transform.LookAt (targetPosition);
+				rigBody.MovePosition (transform.position + transform.forward * Time.deltaTime * speed);
 
 			}
 
@@ -128,34 +94,26 @@ public class ShipMove : MonoBehaviour {
 
 				rigBody.angularVelocity = new Vector3 (0, 0, 0);
 				//rigBody.isKinematic = true;
-
 			}
 		
 	}
 
 	bool isInRangeX (){
 
-        //float xDist = targetPosition.x - gameObject.transform.position.x;
+		return ( (currentPosition.x > minRange.x) && (currentPosition.x < maxRange.x) );
 
-        //return xDist < range;
-
-		//return ( (m_currentPosition.x > minRange.x) && (m_currentPosition.x < maxRange.x) );
-		return m_currentPosition.x < minRange.x;
 	}
 
 	bool isInRangeZ (){
-        //return ( (m_currentPosition.z > minRange.z) && (m_currentPosition.z < maxRange.z) );
-		return m_currentPosition.z > minRange.z;
+		
+        return ( (currentPosition.z > minRange.z) && (currentPosition.z < maxRange.z) );
 
-		//float zDist = targetPosition.z - gameObject.transform.position.z;
-
-        //return zDist < range;
     }
 
 
 	void OnCollisionEnter(Collision collision) {
 
-		rigBody.MovePosition(transform.position + transform.right * Time.deltaTime * m_speed );
+		rigBody.MovePosition(transform.position + transform.right * Time.deltaTime * speed );
 
 	}
 
