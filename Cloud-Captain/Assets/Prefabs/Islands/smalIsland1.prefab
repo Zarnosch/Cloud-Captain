@@ -120,6 +120,7 @@ GameObject:
   - 54: {fileID: 5460784}
   - 65: {fileID: 6589444}
   - 64: {fileID: 6429876}
+  - 114: {fileID: 11440452}
   m_Layer: 10
   m_Name: smalIsland1
   m_TagString: Neutral
@@ -617,6 +618,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 20, y: 2.2204453e-16, z: 20}
   m_Center: {x: 0, y: -0.0000038146973, z: 0.0000076293945}
+--- !u!114 &11440452
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 176402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4b3d828e4d34e44d9755f3cf207c880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  containingBuildings: []
+  buildSides: []
+  Type: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

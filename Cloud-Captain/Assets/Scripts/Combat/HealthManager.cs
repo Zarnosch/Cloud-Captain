@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 
 [RequireComponent(typeof(Collider))]
 public class HealthManager : MonoBehaviour 
@@ -76,7 +77,7 @@ public class HealthManager : MonoBehaviour
             {
                 died = true;
                 health = 0;
-                OnZeroHealth.Invoke(this);
+                MyOnZeroHealth();
             }
 
             else if (health > maxHealth)
@@ -84,6 +85,20 @@ public class HealthManager : MonoBehaviour
 
             TryActivateHealthBar();
             healthBar.SetPercent(GetHealthPercent());
+        }
+    }
+
+    private void MyOnZeroHealth()
+    {
+        OnZeroHealth.Invoke(this);
+
+
+        if (this.gameObject.layer == LayerMask.NameToLayer("Buildings"))
+        {
+            IslandReference reference = RootObject.GetComponent<IslandReference>();
+
+            if (reference && reference.island)
+                reference.island.RemoveBuilding(RootObject);
         }
     }
 

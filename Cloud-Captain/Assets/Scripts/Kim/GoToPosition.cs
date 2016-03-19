@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class GoToPosition : MonoBehaviour {
@@ -56,11 +56,18 @@ public class GoToPosition : MonoBehaviour {
 					if (item.transform.gameObject.layer == selectPlane) {
 						//Debug.Log(item.point);
 						foreach (var selected in playerInstance.selectedUnits) {
-							//Debug.Log (item.point);
-							//Debug.Log(selected.name);
-							selected.gameObject.GetComponent<ShipMove> ().moveShip (item.point);
-							//selected.gameObject.GetComponent<ShipMove>().moveShip(new Vector3(20,20,20));
-						}
+                            //Debug.Log (item.point);
+                            //Debug.Log(selected.name);
+
+                            ShipMove shipMove = selected.gameObject.GetComponent<ShipMove>();
+
+                            //NOTE: Kai
+                            //TODO: this is also called for buildings, since buildings dont have ShipMove -> Execption, , probably not intended
+                            if (shipMove)
+                                shipMove.moveShip(item.point);
+
+                            //selected.gameObject.GetComponent<ShipMove>().moveShip(new Vector3(20,20,20));
+                        }
 					}
 				}
 			}

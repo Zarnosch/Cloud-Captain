@@ -10,6 +10,17 @@ public class BuildManager : MonoBehaviour
 
     public static BuildManager Instance { get; private set; }
 
+    [SerializeField]
+    private bool noCostMode = false;
+    [SerializeField]
+    private bool instantBuild = false;
+    [SerializeField]
+    private bool buildAnywhere = false;
+
+    public bool NoCostMode { get { return noCostMode; } }
+    public bool InstantBuild { get { return instantBuild; } }
+    public bool BuildAnywhere { get { return buildAnywhere; } }
+
     #region Building prefabs
 
     [SerializeField]
@@ -66,26 +77,26 @@ public class BuildManager : MonoBehaviour
         Instance = this;
     }
 
-    public bool TryPlaceBuilding(BuildingObject obj, Transform position)
+    public GameObject TryPlaceBuilding(BuildingObject obj, Transform position)
     {
         BuildingInfo info = GetBuildingInfo(obj);
 
-        if (PlayerManager.Instance.GetResources().IsEnough(info.price))
+        if (PlayerManager.Instance.GetResources().IsEnough(info.price) || noCostMode)
         {
-            Instantiate(info.prefab, position.position, position.rotation);
-            PlayerManager.Instance.ChangeResource(info.price * -1);
+          
+            if(!noCostMode)
+                PlayerManager.Instance.ChangeResource(info.price * -1);
 
-            return true;
+            return (GameObject)Instantiate(info.prefab, position.position, position.rotation); ;
         }
 
-        return false;
+        return null;
     }
 
-    public bool TryPlaceBuildingNoCost(BuildingObject obj, Transform position)
+    public GameObject TryPlaceBuildingNoCost(BuildingObject obj, Transform position)
     {
-        BuildingInfo info = GetBuildingInfo(obj);
-        Instantiate(info.prefab, position.position, position.rotation);
-        return true;
+        BuildingInfo info = GetBuildingInfo(obj);  
+        return (GameObject)Instantiate(info.prefab, position.position, position.rotation);
     }
 
     public BuildingInfo GetBuildingInfo(BuildingObject obj)

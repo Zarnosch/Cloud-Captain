@@ -84,9 +84,11 @@ public class ShipBuilder : MonoBehaviour
             if (cost)
                 price = info.price;
 
-            if (PlayerManager.Instance.GetResources().IsEnough(price))
+            if (PlayerManager.Instance.GetResources().IsEnough(price) || BuildManager.Instance.NoCostMode)
             {
-                PlayerManager.Instance.ChangeResource(price * -1);
+                if(!BuildManager.Instance.NoCostMode)
+                    PlayerManager.Instance.ChangeResource(price * -1);
+
                 enqueuedShips.Enqueue(info);
                 QueueChanged();
             }
@@ -114,7 +116,7 @@ public class ShipBuilder : MonoBehaviour
 
             progressBar.SetPercent(GetCurrentBuildPercent());
 
-            if(curBuildCooldown <= 0.0f)
+            if(curBuildCooldown <= 0.0f || BuildManager.Instance.InstantBuild)
             {
                 GameObject newShip = (GameObject) Instantiate(enqueuedShips.Dequeue().prefab, SpawnPosition.transform.position, Quaternion.identity);
                

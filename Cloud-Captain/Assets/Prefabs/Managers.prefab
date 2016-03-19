@@ -45,6 +45,7 @@ MonoBehaviour:
     Matter: 0
     Energy: 0
     Engine: 0
+  UIManager: {fileID: 0}
 --- !u!114 &11458910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -56,6 +57,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec3e69988262344a8aac96de80b9528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noCostMode: 1
+  instantBuild: 1
+  buildAnywhere: 1
   TeslaTowerPrefab: {fileID: 177658, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
   ArtilleryTowerPrefab: {fileID: 174490, guid: 4008410c56221554399a846d52cbfb2f, type: 2}
   PowerPlantPrefab: {fileID: 146210, guid: d4b02e630335696498534fb644ae4223, type: 2}
@@ -68,6 +72,8 @@ MonoBehaviour:
     type: 2}
   HealthbarPrefab: {fileID: 168310, guid: 0d8af72026b95bf439a41a963517833c, type: 2}
   ProgressbarPrefab: {fileID: 168310, guid: ffcc01e14241e5245a160509235a03c7, type: 2}
+  HealthFeedbackParticlePrefab: {fileID: 140386, guid: cd38b9283507310438489ca2320ce8eb,
+    type: 2}
   SettleShipPrefab: {fileID: 194744, guid: 7f5c937f942f2d440a6f4082905d40a9, type: 2}
   ScoutShipPrefab: {fileID: 104082, guid: 5866fd42ab6a30f47850e5ca6c8878cf, type: 2}
   SmallShipPrefab: {fileID: 115076, guid: 569210a660558eb498ef41c3c28b8d63, type: 2}

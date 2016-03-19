@@ -38,10 +38,16 @@ public class UIManager : MonoBehaviour {
             return;
         }
 
+        //NOTE: Kai
+        //TODO: sometimes gObjType is null. -> Execption, probably not intended
+        GameobjectType gObjType = selectedObj.GetComponent<GameobjectType>();
 
-		Setting.ObjectType objType = selectedObj.GetComponent<GameobjectType> ().ObjectType;
+        if (!gObjType)
+            return;
 
-		Upgrade upgradeComponent = selectedObj.GetComponent<Upgrade> ();
+        Setting.ObjectType objType = gObjType.ObjectType;
+
+        Upgrade upgradeComponent = selectedObj.GetComponent<Upgrade> ();
 		HealthManager healthStats = selectedObj.GetComponent<HealthManager> ();
 		ShipMove shipMoveComponent = selectedObj.GetComponent<ShipMove> ();
 		ShipBuilder shipBuilderComponent = selectedObj.GetComponent<ShipBuilder> ();
@@ -212,7 +218,7 @@ public class UIManager : MonoBehaviour {
 		buildPaneInst.GetComponent<RectTransform> ().offsetMax = new Vector2(0, 0);
 		buildPaneInst.GetComponent<RectTransform> ().offsetMin = new Vector2(0, 0);
 
-		selectedObj.layer = 12;
+		//selectedObj.layer = 12;
 
 		if (selectedObj.layer == 12) // 12 Building 
 		{
@@ -254,7 +260,24 @@ public class UIManager : MonoBehaviour {
 	}
 
 	public void BuildBuilding(GameObject selectedObj, BuildManager.BuildingObject buildType) {
-		BuildManager.Instance.TryPlaceBuilding (buildType, selectedObj.transform);
+
+        IslandReference islandRef = selectedObj.GetComponent<IslandReference>();
+
+        if((islandRef && islandRef.island.Nexus) || BuildManager.Instance.BuildAnywhere)
+        {
+            GameObject newObj = BuildManager.Instance.TryPlaceBuilding(buildType, selectedObj.transform);
+
+            if(newObj)
+                islandRef.island.AddBuilding(newObj, selectedObj);
+        }
+
+        else
+        {
+            //TODO: necessary?
+            BuildManager.Instance.TryPlaceBuilding(buildType, selectedObj.transform);
+        }
+
+
 	}
 
 	void Update() {
