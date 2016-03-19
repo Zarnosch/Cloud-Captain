@@ -87,7 +87,7 @@ public class BuildManager : MonoBehaviour
             if(!noCostMode)
                 PlayerManager.Instance.ChangeResource(info.price * -1);
 
-            return (GameObject)Instantiate(info.prefab, position.position, position.rotation); ;
+            return (GameObject)Instantiate(info.prefab, position.position, position.rotation);
         }
 
         return null;

@@ -1,22 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &146996
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 434506}
-  - 135: {fileID: 13513540}
-  - 114: {fileID: 11489040}
-  m_Layer: 14
-  m_Name: Canon
-  m_TagString: Player
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1 &194744
 GameObject:
   m_ObjectHideFlags: 0
@@ -48,23 +31,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.08, y: 0, z: -11.4}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 434506}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
---- !u!4 &434506
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 146996}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 275.92154, y: -3.2908381e-16, z: 314.82062}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 418440}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!23 &2395456
 MeshRenderer:
@@ -79,8 +49,8 @@ MeshRenderer:
   - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
+  m_UseLightProbes: 0
+  m_ReflectionProbeUsage: 0
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
@@ -140,7 +110,7 @@ MonoBehaviour:
   speed: 5
   range: 2
   targetPosition: {x: 0, y: 0, z: 0}
-  shipHighY: 0
+  shipHighY: 10
   reachedTarget: 0
 --- !u!114 &11442834
 MonoBehaviour:
@@ -153,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8cef80ee603f0249b801feedb616199, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Attacker: {fileID: 11489040}
+  Attacker: {fileID: 0}
 --- !u!114 &11464796
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,33 +136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 9
---- !u!114 &11489040
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 146996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b6d20ebefaf05d4da037ea253ffe9ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetType: 2
-  spawnMode: 0
-  AttachBulletToSpawner: 0
-  attackCooldown: 0.125
-  BulletPrefab: {fileID: 134878, guid: 85617d89f77cdd644a23d2bb1603bcc5, type: 2}
-  BulletSpawnTransform: {fileID: 418440}
-  RotateBulletToTarget: 1
-  MinDistance: 0
-  BulletSpawned:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: VoidEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  BulletDamage: 0
-  BulletSpeed: 0
-  SecondaryDamage: 0
-  SecondaryRange: 0
 --- !u!114 &11495732
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -208,8 +151,8 @@ MonoBehaviour:
   UsedUpgrades: 
   Type: 9
   Health: {fileID: 11498936}
-  AttackRangeSphere: {fileID: 13513540}
-  Spawner: {fileID: 11489040}
+  AttackRangeSphere: {fileID: 0}
+  Spawner: {fileID: 0}
   ShipMove: {fileID: 11428480}
 --- !u!114 &11498936
 MonoBehaviour:
@@ -245,18 +188,6 @@ MonoBehaviour:
     m_TypeName: HealthEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   health: -1
   maxHealth: 0
---- !u!135 &13513540
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 146996}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 14.78
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

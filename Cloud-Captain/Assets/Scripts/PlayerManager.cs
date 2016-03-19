@@ -12,7 +12,8 @@ public class PlayerManager : MonoBehaviour
     private List<GameobjectType> ownedUnits = new List<GameobjectType>();
     private List<GameobjectType> ownedBuildings = new List<GameobjectType>();
     private List<MachineProducer> workshops = new List<MachineProducer>();
-    private List<GameobjectType> islands = new List<GameobjectType>();
+
+    private List<GameObject> controlledIslands = new List<GameObject>();
 
     [ReadOnly]
     public Res resources = new Res(0, 0, 0);
@@ -68,6 +69,12 @@ public class PlayerManager : MonoBehaviour
                 workshops.Add(producer);
         }
 
+        if(type.ObjectType == Setting.ObjectType.Nexus)
+        {
+            IslandReference island = type.gameObject.GetComponent<IslandReference>();
+            controlledIslands.Add(island.island.gameObject);
+        }
+
         ownedBuildings.Add(type);
     }
 
@@ -83,17 +90,10 @@ public class PlayerManager : MonoBehaviour
         {
             AddOwnedBuilding(gameobjectType);
         }
+    
 
-        else if (gameobjectType.gameObject.layer == LayerMask.NameToLayer("Islands"))
-        {
-            AddOwnedIsland(gameobjectType);
-        }
     }
 
-    private void AddOwnedIsland(GameobjectType gameobjectType)
-    {
-        islands.Add(gameobjectType);
-    }
 
     public bool TryProduceMachine()
     {

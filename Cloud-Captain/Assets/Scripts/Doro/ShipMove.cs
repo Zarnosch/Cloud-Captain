@@ -6,7 +6,6 @@ public class ShipMove : MonoBehaviour {
 	public float speed = 5;
 	public float range = 5;
 	public Vector3 targetPosition;
-	public float shipHighY;
 
 	private Vector3 minRange;
 	private Vector3 maxRange;
@@ -78,7 +77,7 @@ public class ShipMove : MonoBehaviour {
 				m_targetPosition = m_currentPosition;
 			} else {
 				m_targetPosition = targetObject.transform.position;
-				m_targetPosition.y = shipHighY;
+				m_targetPosition.y = Setting.SHIP_FLIGHT_HEIGHT;
 				move ();
 			}
 		}
@@ -92,7 +91,7 @@ public class ShipMove : MonoBehaviour {
 		isTargetObject = false;
         //move (target);
 		m_targetPosition = target;
-        m_targetPosition.y = shipHighY;
+        m_targetPosition.y = Setting.SHIP_FLIGHT_HEIGHT;
     }
 
 	public void moveShip (GameObject obj)
@@ -101,7 +100,7 @@ public class ShipMove : MonoBehaviour {
 		isTargetObject = true;
 		targetObject = obj;
 		m_targetPosition = obj.transform.position;
-		m_targetPosition.y = shipHighY;
+		m_targetPosition.y = Setting.SHIP_FLIGHT_HEIGHT;
 	}
 
     void move(){
