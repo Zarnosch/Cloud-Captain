@@ -44,9 +44,11 @@ public class Methods : MonoBehaviour {
 
     void Update()
     {
-        foreach (var item in playerInstance.selectedUnits)
+
+        for (int i = playerInstance.selectedUnits.Count - 1; i >= 0; i--)
         {
-            //if()
+            if (playerInstance.selectedUnits[i] == null)
+            playerInstance.selectedUnits.RemoveAt(i);
         }
     }
         
