@@ -27,6 +27,7 @@ public class ShipMove : MonoBehaviour {
 
 		rigBody = gameObject.GetComponent<Rigidbody> ();
 		rigBody.velocity = new Vector3(0,0,0);
+
 	}
 
 	// Update is called once per frame
@@ -34,13 +35,23 @@ public class ShipMove : MonoBehaviour {
 
 	}
 
+
+
 	void FixedUpdate (){
 
 		if (!reachedTarget && !isTargetObject) {
+
+			//float count = gameObject.GetComponent<PlayerManager> ().selectedUnits.Count;
+			//Debug.Log (count);
 			move ();
+
 		}
 
 		if (!reachedTarget && isTargetObject) {
+
+			//float count = gameObject.GetComponent<PlayerManager> ().selectedUnits.Count;
+			//Debug.Log (count);
+
 			if (targetObject == null) {
 				isTargetObject = false;
 				targetPosition = currentPosition;
@@ -50,6 +61,7 @@ public class ShipMove : MonoBehaviour {
 				targetPosition.y = Setting.SHIP_FLIGHT_HEIGHT;
 				move ();
 			}
+
 		}
 
     }
@@ -82,7 +94,7 @@ public class ShipMove : MonoBehaviour {
 		targetPosition = obj.transform.position;
 		targetPosition.y = Setting.SHIP_FLIGHT_HEIGHT;
 
-		usedRange = targetObject.GetComponent<BulletSpawnerReference> ().Attacker.GetAttackRange() + standardRange;
+		usedRange = targetObject.GetComponent<BulletSpawnerReference> ().Attacker.GetAttackRange() - standardRange;
 
 	}
 
