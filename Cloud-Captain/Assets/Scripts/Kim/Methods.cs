@@ -13,6 +13,7 @@ public class Methods : MonoBehaviour {
     private int towerSite;
     private int settlementSite;
 
+    private int ship;
     private int selectPlane;
 
     PlayerManager playerInstance;
@@ -23,6 +24,8 @@ public class Methods : MonoBehaviour {
         buildingSite = LayerMask.NameToLayer("Buildingsite");
         towerSite = LayerMask.NameToLayer("Towersite");
         settlementSite = LayerMask.NameToLayer("SettlementSite");
+
+        ship = LayerMask.NameToLayer("Ships");
     }
 
 
@@ -39,12 +42,26 @@ public class Methods : MonoBehaviour {
         }       
         else
         {
-            GameObject newInstance = Instantiate(PlayerSelectItem, g.transform.position, Quaternion.identity) as GameObject;
-            newInstance.transform.parent = g.transform;
+            if(g.layer == ship)
+            {
+                g.GetComponentInChildren<HoldSelectedEnemy>().isSelected = true;
+                GameObject newInstance = Instantiate(PlayerSelectItem, g.transform.position, Quaternion.identity) as GameObject;
+                newInstance.transform.parent = g.transform;
 
-            PlayerManager.Instance.UIManager.OpenPanelForObject(g);
+                PlayerManager.Instance.UIManager.OpenPanelForObject(g);
 
-            playerInstance.selectedUnits.Add(g);
+                playerInstance.selectedUnits.Add(g);
+            }
+            else
+            {
+                GameObject newInstance = Instantiate(PlayerSelectItem, g.transform.position, Quaternion.identity) as GameObject;
+                newInstance.transform.parent = g.transform;
+
+                PlayerManager.Instance.UIManager.OpenPanelForObject(g);
+
+                playerInstance.selectedUnits.Add(g);
+            }
+            
         }
         
         
@@ -54,6 +71,7 @@ public class Methods : MonoBehaviour {
     {
         foreach (var item in playerInstance.selectedUnits)
         {
+            item.GetComponentInChildren<HoldSelectedEnemy>().isSelected = false;
             foreach (Transform kidlette in item.transform)
             {
                 //print("kid: " + kidlette.name);

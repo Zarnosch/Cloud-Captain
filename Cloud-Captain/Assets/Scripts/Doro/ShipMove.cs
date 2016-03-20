@@ -17,6 +17,8 @@ public class ShipMove : MonoBehaviour {
 
 	private float usedRange;
 
+    public float RangeForSettleShips = 30;
+
 	// Use this for initialization
 	void Start () {
 
@@ -94,7 +96,10 @@ public class ShipMove : MonoBehaviour {
 		targetPosition = obj.transform.position;
 		targetPosition.y = Setting.SHIP_FLIGHT_HEIGHT;
 
-		usedRange = targetObject.GetComponent<BulletSpawnerReference> ().Attacker.GetAttackRange() - standardRange;
+        if (targetObject.name == "SettleShip")
+            usedRange = RangeForSettleShips;
+        else
+            usedRange = targetObject.GetComponent<BulletSpawnerReference> ().Attacker.GetAttackRange() - standardRange;
 
 	}
 
