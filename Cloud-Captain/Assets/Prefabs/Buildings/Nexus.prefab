@@ -294,7 +294,7 @@ MonoBehaviour:
   AvaibleUpgrades: 
   UsedUpgrades: 
   Health: {fileID: 11441156}
-  Producer: {fileID: 0}
+  Producer: {fileID: 11424092}
 --- !u!114 &11483750
 MonoBehaviour:
   m_ObjectHideFlags: 1

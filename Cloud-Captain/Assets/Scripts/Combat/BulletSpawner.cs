@@ -93,7 +93,10 @@ public class BulletSpawner : MonoBehaviour
 
     private GameObject ChangeTarget()
     {
-        return potentialTargetsInArea[UnityEngine.Random.Range(0, potentialTargetsInArea.Count)];
+        if (potentialTargetsInArea.Count == 0)
+            return null;
+        else
+            return potentialTargetsInArea[UnityEngine.Random.Range(0, potentialTargetsInArea.Count)];
     }
 
     private bool IsViableTargetObject(GameObject target)
