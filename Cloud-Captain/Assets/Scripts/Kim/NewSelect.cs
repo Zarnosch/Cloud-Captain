@@ -75,9 +75,13 @@ public class NewSelect : MonoBehaviour
 		} else
 			z = (f.z + s.z) / 2;
         float flaechenInhalt = Mathf.Abs(f.x - s.x) * Mathf.Abs(f.z - s.z);
+
+        // Here the raycast for selecting a single object is thrown (e.g. for the "sites")
         if (flaechenInhalt < flaechenInhaltFuerEinfachenKlick)
         {
-			if (firstRay == null || firstRay.transform.gameObject.layer == selectPlane) {
+
+
+			if (firstRay == null || firstRay.transform.gameObject.layer == selectPlane || firstRay.transform.gameObject.tag != "Player") {
 				if (!EventSystem.current.IsPointerOverGameObject()) {
 					PlayerManager.Instance.UIManager.HidePanel ();	
 					methods.SelectedListClear();
