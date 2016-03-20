@@ -103,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb40d46b13708841a4d44928cd31d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Prefab: {fileID: 0}
   KillOnImpact: 1
   OnImpact:
     m_PersistentCalls:
@@ -124,7 +125,7 @@ MonoBehaviour:
   bulletSpeed: 0
   secondaryRange: 0
   secondaryDamage: 0
-  lifeTime: 5
+  bulletRoot: {fileID: 134878}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

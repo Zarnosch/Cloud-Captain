@@ -5,6 +5,9 @@ using System.Collections;
 public abstract class ABulletBehavior : MonoBehaviour
 {
 
+    [HideInInspector]
+    public GameObject Prefab;
+
     public bool KillOnImpact = false;
 
     public TransformEvent OnImpact;
@@ -18,23 +21,19 @@ public abstract class ABulletBehavior : MonoBehaviour
     [ReadOnly]
     public int secondaryDamage;
 
-    protected GameObject bulletRoot;
+    public GameObject bulletRoot;
     protected Transform spawnTransform;
 
     protected float minDistance;
     protected float maxDistance;
     protected Transform targetTransform;
+    protected BulletSpawner bulletSpawner;
 
 
-    public void SetSecondaryParameter(float range, int damage)
+    public void StartBullet(BulletSpawner bulletSpawner, Transform targetTransform, Transform spawnPoint, float minDist, float maxDist, float speed, int bulletDamage, float secondaryRange, int secondaryDamage)
     {
-        this.secondaryRange = range;
-        this.secondaryDamage = damage;
-    }
+        this.bulletSpawner = bulletSpawner;
 
-
-    public void StartBullet(Transform targetTransform, Transform spawnPoint, float minDist, float maxDist, float speed, int bulletDamage)
-    {
         if (bulletRoot == null)
             bulletRoot = gameObject;
 
@@ -44,6 +43,8 @@ public abstract class ABulletBehavior : MonoBehaviour
         this.maxDistance = maxDist;
         this.bulletSpeed = speed;
         this.damage = bulletDamage;
+        this.secondaryRange = secondaryRange;
+        this.secondaryDamage = secondaryDamage;
 
         OnSpawn();
     }
@@ -62,7 +63,7 @@ public abstract class ABulletBehavior : MonoBehaviour
 
             if (KillOnImpact)
             {
-                Destroy(bulletRoot);
+                this.bulletSpawner.DestroyBullet(this);
             }
         }
 
@@ -77,7 +78,7 @@ public abstract class ABulletBehavior : MonoBehaviour
 
                 if (KillOnImpact)
                 {
-                    Destroy(bulletRoot);
+                    this.bulletSpawner.DestroyBullet(this);
                 }
 
 

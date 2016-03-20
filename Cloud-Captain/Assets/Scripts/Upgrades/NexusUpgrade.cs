@@ -6,6 +6,7 @@ public class NexusUpgrade : Upgrade
 {
     //TODO: movementspeed, shild
     public HealthManager Health;
+    public RessourceProducer Producer;
 
     public override int GetNumMaxUpgrades()
     {
@@ -20,7 +21,13 @@ public class NexusUpgrade : Upgrade
     protected override void OnAwake()
     {
         Health.maxHealth = Setting.NEXUS_DEFAULT_HEALTH;
-    }
+
+        Producer.TimeToResGainCooldown = Setting.NEXUS_RESSOURCE_PRODUCE_TIME;
+        Producer.Res = new Res(Setting.NEXUS_MATTER_PRODUCE_AMOUNT, Setting.NEXUS_ENERGY_PRODUCE_AMOUNT, 0);
+        Producer.ResGain = 1;
+
+
+}
 
     protected override void OnUpgrade(EUpgrade upgrade)
     {

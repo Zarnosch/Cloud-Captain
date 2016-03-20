@@ -6,6 +6,7 @@ public class WorkshopUpgrade : Upgrade {
 
     public HealthManager Health;
     public Repairer Repairer;
+    public SphereCollider RepairRadiusSphere;
 
     protected override EUpgrade[] GetAvaibleUpgrades()
     {
@@ -19,6 +20,8 @@ public class WorkshopUpgrade : Upgrade {
         Repairer.healAmount = Setting.WORKSHOP_DEFAULT_REPAIR_AMOUNT;
 
         Repairer.maxHealCooldown = Setting.WORKSHOP_DEFAULT_REPAIR_COOLDOWN;
+
+        RepairRadiusSphere.radius = Setting.WORKSHOP_DEFAULT_REPAIR_RADIUS;
     }
 
     public override int GetNumMaxUpgrades()

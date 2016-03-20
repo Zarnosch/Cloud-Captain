@@ -41,13 +41,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39bf1a6325e3d4847b5f66e65f565609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 2
+  Prefab: {fileID: 0}
   KillOnImpact: 0
   OnImpact:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: TransformEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  damage: 0
+  bulletSpeed: 0
+  secondaryRange: 0
+  secondaryDamage: 0
+  bulletRoot: {fileID: 161148}
   LineWidth: 0.33
   CapsulePercentLineWidth: 0.25
 --- !u!120 &12069210

@@ -21,6 +21,8 @@ public class BallisticBullet : ABulletBehavior {
 
         myBody = GetComponent<Rigidbody>();
 
+        myBody.velocity = Vector3.zero;
+
         Vector3 toTarget = targetTransform.position - spawnTransform.position;
         float totalDistance = toTarget.magnitude;
         toTarget.y = 0.0f;
@@ -33,6 +35,7 @@ public class BallisticBullet : ABulletBehavior {
         Vector3 result = CalculateBestThrowSpeed(spawnTransform.position, targetTransform.position, totalTimeToTarget);
 
         myBody.AddForce(result, ForceMode.VelocityChange);
+        curFlightTime = 0.0f;
     }
 
     void Update()

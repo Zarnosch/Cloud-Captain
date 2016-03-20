@@ -9,10 +9,17 @@ public class PlayerManager : MonoBehaviour
     public List<GameObject> selectedUnits = new List<GameObject>();
 
 
+    [SerializeField]
+    [ReadOnly]
     private List<GameobjectType> ownedUnits = new List<GameobjectType>();
+    [SerializeField]
+    [ReadOnly]
     private List<GameobjectType> ownedBuildings = new List<GameobjectType>();
+    [SerializeField]
+    [ReadOnly]
     private List<MachineProducer> workshops = new List<MachineProducer>();
-
+    [SerializeField]
+    [ReadOnly]
     private List<GameObject> controlledIslands = new List<GameObject>();
 
     [ReadOnly]

@@ -58,7 +58,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 288.51328, y: -56, z: 161.1623}
+  m_LocalPosition: {x: 476.00247, y: 3.524478, z: 392.26242}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 457954}
@@ -181,6 +181,7 @@ MonoBehaviour:
   UsedUpgrades: 
   Health: {fileID: 11407746}
   Repairer: {fileID: 11475014}
+  RepairRadiusSphere: {fileID: 13527386}
 --- !u!114 &11475014
 MonoBehaviour:
   m_ObjectHideFlags: 1

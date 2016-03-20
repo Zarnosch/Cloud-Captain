@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5301e59aaaecf7943a6f0fe0d948e79a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Prefab: {fileID: 0}
   KillOnImpact: 1
   OnImpact:
     m_PersistentCalls:
@@ -171,6 +172,7 @@ MonoBehaviour:
   bulletSpeed: 0
   secondaryRange: 0
   secondaryDamage: 0
+  bulletRoot: {fileID: 134878}
   ExplosionPrefab: {fileID: 147614, guid: 2391abbb72b2edc48b2136c743b46a1c, type: 2}
   ParticleSystem: {fileID: 19814486}
 --- !u!114 &11473920
