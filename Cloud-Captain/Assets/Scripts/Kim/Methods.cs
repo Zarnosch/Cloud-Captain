@@ -16,6 +16,8 @@ public class Methods : MonoBehaviour {
     private int ship;
     private int selectPlane;
 
+    private float shipHeight = 0.0f;
+
     PlayerManager playerInstance;
     void Start () {
         playerInstance = PlayerManager.Instance;
@@ -26,6 +28,9 @@ public class Methods : MonoBehaviour {
         settlementSite = LayerMask.NameToLayer("SettlementSite");
 
         ship = LayerMask.NameToLayer("Ships");
+
+        shipHeight = Setting.SHIP_FLIGHT_HEIGHT;
+
     }
 
 
@@ -45,9 +50,10 @@ public class Methods : MonoBehaviour {
             if(g.layer == ship)
             {
                 g.GetComponentInChildren<HoldSelectedEnemy>().isSelected = true;
-                GameObject newInstance = Instantiate(PlayerSelectItem, g.transform.position, Quaternion.identity) as GameObject;
+                //GameObject newInstance = Instantiate(PlayerSelectItem, new Vector3(g.transform.position.x, selectPlaneHeight, transform.position.z), Quaternion.identity) as GameObject;
+                //GameObject newInstance = Instantiate(PlayerSelectItem, g.transform.position, Quaternion.identity) as GameObject;
+                GameObject newInstance = Instantiate(PlayerSelectItem, g.transform.position - new Vector3(0, shipHeight, 0), Quaternion.identity) as GameObject;
                 newInstance.transform.parent = g.transform;
-
                 PlayerManager.Instance.UIManager.OpenPanelForObject(g);
 
                 playerInstance.selectedUnits.Add(g);
@@ -71,7 +77,8 @@ public class Methods : MonoBehaviour {
     {
         foreach (var item in playerInstance.selectedUnits)
         {
-            item.GetComponentInChildren<HoldSelectedEnemy>().isSelected = false;
+            if(item.layer == ship)
+                item.GetComponentInChildren<HoldSelectedEnemy>().isSelected = false;
             foreach (Transform kidlette in item.transform)
             {
                 //print("kid: " + kidlette.name);

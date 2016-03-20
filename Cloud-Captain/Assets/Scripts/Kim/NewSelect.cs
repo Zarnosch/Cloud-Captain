@@ -44,7 +44,6 @@ public class NewSelect : MonoBehaviour
     // Use this for initialization
     void Start ()
 	{
-
         methods = gameObject.GetComponent<Methods>();
 
 		selectPlane = LayerMask.NameToLayer ("SelectPlane");

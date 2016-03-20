@@ -7,11 +7,15 @@ public class HoldSelectedEnemy : MonoBehaviour {
     public GameObject EnemySelectItem;
     private GameObject selectRingHolder = null;
 
+    private int ship;
+    private float shipHeight = 0.0f;
+
     public bool isSelected = false;
 	// Use this for initialization
 	void Start () {
-	    
-	}
+        ship = LayerMask.NameToLayer("Ships");
+        shipHeight = Setting.SHIP_FLIGHT_HEIGHT;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -35,9 +39,19 @@ public class HoldSelectedEnemy : MonoBehaviour {
         if (selectRingHolder != null)
             Destroy(selectRingHolder);
         this.Enemy = Enemy;
-        GameObject newInstance = Instantiate(EnemySelectItem, Enemy.transform.position, Quaternion.identity) as GameObject;
-        newInstance.transform.parent = Enemy.transform;
-        selectRingHolder = newInstance;
+        if(Enemy.layer == ship)
+        {
+            GameObject newInstance = Instantiate(EnemySelectItem, Enemy.transform.position - new Vector3(0, shipHeight, 0), Quaternion.identity) as GameObject;
+            newInstance.transform.parent = Enemy.transform;
+            selectRingHolder = newInstance;
+        }
+        else
+        {
+            GameObject newInstance = Instantiate(EnemySelectItem, Enemy.transform.position, Quaternion.identity) as GameObject;
+            newInstance.transform.parent = Enemy.transform;
+            selectRingHolder = newInstance;
+        }
+        
     }
 
     public void clearEnemyTarget()

@@ -346,4 +346,14 @@ public static class Setting
     public const float HEALTH_BAR_OFFSET_Y = -2.0f;
     public const float HEALTH_BAR_OFFSET_Z = 0.0f;
 
+    #region SELECTING
+
+    /********************************************* SelectPlanes */
+    /**
+    ### Height of the select plane
+    **/
+    public const float SELECTPLANE_HEIGHT = 0.0f;
+
+    #endregion
+
 }
