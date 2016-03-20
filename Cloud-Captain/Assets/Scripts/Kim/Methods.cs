@@ -41,6 +41,14 @@ public class Methods : MonoBehaviour {
         }
         playerInstance.selectedUnits.Clear();
     }
+
+    void Update()
+    {
+        foreach (var item in playerInstance.selectedUnits)
+        {
+            //if()
+        }
+    }
         
 
 

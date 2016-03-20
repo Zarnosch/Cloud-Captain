@@ -81,7 +81,7 @@ public class NewSelect : MonoBehaviour
         {
 
 
-			if (firstRay == null || firstRay.transform.gameObject.layer == selectPlane || firstRay.transform.gameObject.tag != "Player") {
+			if (firstRay == null || firstRay.transform.gameObject.layer == selectPlane) {
 				if (!EventSystem.current.IsPointerOverGameObject()) {
 					PlayerManager.Instance.UIManager.HidePanel ();	
 					methods.SelectedListClear();
@@ -90,9 +90,12 @@ public class NewSelect : MonoBehaviour
 			}
 			else
             {
-				//Debug.Log (LayerMask.LayerToName(firstRay.transform.gameObject.layer));
-                methods.SelectedListClear();
-                methods.SelectedListAdd(firstRay.transform.gameObject);
+                //Debug.Log (LayerMask.LayerToName(firstRay.transform.gameObject.layer));
+                if (firstRay.transform.gameObject.tag != "Enemy")
+                {
+                    methods.SelectedListClear();
+                    methods.SelectedListAdd(firstRay.transform.gameObject);
+                }
             }
             return;
                 
