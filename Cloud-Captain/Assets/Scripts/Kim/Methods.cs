@@ -8,21 +8,46 @@ public class Methods : MonoBehaviour {
 
     private int selectedHighlight;
 
+
+    private int buildingSite;
+    private int towerSite;
+    private int settlementSite;
+
+    private int selectPlane;
+
     PlayerManager playerInstance;
     void Start () {
         playerInstance = PlayerManager.Instance;
         selectedHighlight = LayerMask.NameToLayer("SelectChooser");
+
+        buildingSite = LayerMask.NameToLayer("Buildingsite");
+        towerSite = LayerMask.NameToLayer("Towersite");
+        settlementSite = LayerMask.NameToLayer("SettlementSite");
     }
 
 
     public void SelectedListAdd(GameObject g)
     {
-        GameObject newInstance = Instantiate(PlayerSelectItem, g.transform.position, Quaternion.identity) as GameObject;
-        newInstance.transform.parent = g.transform;
+        if(g.layer == buildingSite || g.layer == towerSite || g.layer == settlementSite)
+        {
+            GameObject newInstance = Instantiate(PlayerSelectItem, g.transform.position+new Vector3(0,0.6f,0), Quaternion.identity) as GameObject;
+            newInstance.transform.parent = g.transform;
 
-		PlayerManager.Instance.UIManager.OpenPanelForObject (g);
+            PlayerManager.Instance.UIManager.OpenPanelForObject(g);
 
-        playerInstance.selectedUnits.Add(g);
+            playerInstance.selectedUnits.Add(g);
+        }       
+        else
+        {
+            GameObject newInstance = Instantiate(PlayerSelectItem, g.transform.position, Quaternion.identity) as GameObject;
+            newInstance.transform.parent = g.transform;
+
+            PlayerManager.Instance.UIManager.OpenPanelForObject(g);
+
+            playerInstance.selectedUnits.Add(g);
+        }
+        
+        
     }
 
     public void SelectedListClear()
