@@ -9,10 +9,18 @@ public class PlayerManager : MonoBehaviour
     public List<GameObject> selectedUnits = new List<GameObject>();
 
 
+    [SerializeField]
+    [ReadOnly]
     private List<GameobjectType> ownedUnits = new List<GameobjectType>();
+    [SerializeField]
+    [ReadOnly]
     private List<GameobjectType> ownedBuildings = new List<GameobjectType>();
+    [SerializeField]
+    [ReadOnly]
     private List<MachineProducer> workshops = new List<MachineProducer>();
-    private List<GameobjectType> islands = new List<GameobjectType>();
+    [SerializeField]
+    [ReadOnly]
+    private List<GameObject> controlledIslands = new List<GameObject>();
 
     [ReadOnly]
     public Res resources = new Res(0, 0, 0);
@@ -38,6 +46,19 @@ public class PlayerManager : MonoBehaviour
 
     public void ChangeResource(int matter, int energy, int engine)
     {
+
+        if (BuildManager.Instance.NoCostMode)
+        {
+            if (matter < 0)
+                matter = 0;
+
+            if (energy < 0)
+                energy = 0;
+
+            if (engine < 0)
+                engine = 0;
+        }
+
         resources.Matter += matter;
         resources.Matter = Mathf.Clamp(resources.Matter, 0, Setting.MAX_RES);
 
@@ -46,6 +67,7 @@ public class PlayerManager : MonoBehaviour
 
         resources.Engine += engine;
         resources.Engine = Mathf.Clamp(resources.Engine, 0, Setting.MAX_RES);
+
     }
 
     public Res GetResources()
@@ -68,6 +90,12 @@ public class PlayerManager : MonoBehaviour
                 workshops.Add(producer);
         }
 
+        if(type.ObjectType == Setting.ObjectType.Nexus)
+        {
+            IslandReference island = type.gameObject.GetComponent<IslandReference>();
+            controlledIslands.Add(island.island.gameObject);
+        }
+
         ownedBuildings.Add(type);
     }
 
@@ -83,17 +111,10 @@ public class PlayerManager : MonoBehaviour
         {
             AddOwnedBuilding(gameobjectType);
         }
+    
 
-        else if (gameobjectType.gameObject.layer == LayerMask.NameToLayer("Islands"))
-        {
-            AddOwnedIsland(gameobjectType);
-        }
     }
 
-    private void AddOwnedIsland(GameobjectType gameobjectType)
-    {
-        islands.Add(gameobjectType);
-    }
 
     public bool TryProduceMachine()
     {
@@ -117,7 +138,7 @@ public class PlayerManager : MonoBehaviour
 
         else
         {
-            if (resources.IsEnough(Setting.COST_RES_ENGINE))
+            if (PlayerManager.Instance.EnoughResource(Setting.COST_RES_ENGINE))
             {
                 if(workshops.Count  > 0)
                 {
@@ -132,7 +153,10 @@ public class PlayerManager : MonoBehaviour
                     }
 
                     lowProducer.ProduceMachine();
-                    ChangeResource(Setting.COST_RES_ENGINE * -1);
+
+                    if(!BuildManager.Instance.NoCostMode)
+                        ChangeResource(Setting.COST_RES_ENGINE * -1);
+
                     return true;
                 }
                              
@@ -141,5 +165,18 @@ public class PlayerManager : MonoBehaviour
 
         return false;
 
+    }
+
+    public bool EnoughResource(Res res)
+    {
+        return EnoughResource(res.Matter, res.Energy, res.Engine);
+    }
+
+    public bool EnoughResource(int matter, int energy, int engine)
+    {
+        if (BuildManager.Instance.NoCostMode)
+            return true;
+        else
+            return resources.Matter >= matter && resources.Energy >= energy && resources.Engine >= engine;
     }
 }

@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour {
 	public Text MassText;
 	public Text EnergyText;
 	public Text MashineText;
+	public Text ResourceWarning;
 
 	[Header("Build Pane")]
 	public GameObject BuildPanePrefab;
@@ -30,6 +31,7 @@ public class UIManager : MonoBehaviour {
 	public GameObject selectedObj;
 
 	private GameObject activeObjPane;
+	private GameObject buildPaneInst;
 
 	public void ShowUpgadePanel() 
 	{
@@ -37,9 +39,7 @@ public class UIManager : MonoBehaviour {
         {
             return;
         }
-
-        //NOTE: Kai
-        //TODO: sometimes gObjType is null. -> Execption, probably not intended
+			
         GameobjectType gObjType = selectedObj.GetComponent<GameobjectType>();
 
         if (!gObjType)
@@ -48,12 +48,15 @@ public class UIManager : MonoBehaviour {
         Setting.ObjectType objType = gObjType.ObjectType;
 
         Upgrade upgradeComponent = selectedObj.GetComponent<Upgrade> ();
-		HealthManager healthStats = selectedObj.GetComponent<HealthManager> ();
-		ShipMove shipMoveComponent = selectedObj.GetComponent<ShipMove> ();
 		ShipBuilder shipBuilderComponent = selectedObj.GetComponent<ShipBuilder> ();
 
-		var availUpgrades = upgradeComponent.AvaibleUpgrades;
-		var installedUpgrades = upgradeComponent.UsedUpgrades;
+		Upgrade.EUpgrade[] availUpgrades = new Upgrade.EUpgrade[0];
+		Upgrade.EUpgrade[] installedUpgrades =  new Upgrade.EUpgrade[0];
+
+		if (upgradeComponent) {
+			availUpgrades = upgradeComponent.AvaibleUpgrades;
+			installedUpgrades = upgradeComponent.UsedUpgrades;	
+		}
 
 		activeObjPane = Instantiate (SelectedPanelPrefab);
 		activeObjPane.transform.SetParent (InteractionPane.transform);
@@ -61,28 +64,19 @@ public class UIManager : MonoBehaviour {
 		activeObjPane.GetComponent<RectTransform> ().offsetMin = new Vector2(0, 0);
 		PaneManager paneManagerComponent = activeObjPane.GetComponent<PaneManager> ();
 
-		// set stats
-		paneManagerComponent.Name.text = objType.ToString();
-		paneManagerComponent.Life.text = healthStats.GetCurHealth().ToString() + " / " + healthStats.GetMaxHealth().ToString();
+		SetUIText (objType);
 
-		// show movement speed for all ships
-		if (objType == Setting.ObjectType.BigShip || objType == Setting.ObjectType.MediumShip || objType == Setting.ObjectType.Scouter || objType == Setting.ObjectType.SmallShip) {
-			paneManagerComponent.StatsMoveSpeed.text = shipMoveComponent.speed.ToString();
-		} else {
-			paneManagerComponent.StatsMoveSpeed.gameObject.transform.parent.gameObject.SetActive (false);
-		}
+		if (objType == Setting.ObjectType.Settlement) {
 
-		// set Range and Damage for all tower and ships
-		if (objType != Setting.ObjectType.Mine && objType != Setting.ObjectType.Nexus && objType != Setting.ObjectType.PowerPlant &&
-		    objType != Setting.ObjectType.Settlement && objType != Setting.ObjectType.Shipyard && objType != Setting.ObjectType.Workshop) {
+			var actionsPane = paneManagerComponent.ActionsPane;
 
-			BulletSpawner bulletSpawnComponent = selectedObj.GetComponent<BulletSpawnerReference> ().Attacker;
+			Button evolveButton = Instantiate (BuildButton);
+			evolveButton.transform.SetParent (actionsPane.transform);
+			evolveButton.GetComponentInChildren<Text> ().text = "Upgrade to Nexus";
+			evolveButton.onClick.AddListener (() => {
+				selectedObj.GetComponent<UpgradeToNexus>().TryUpgrade();
+			});
 
-			paneManagerComponent.StatsReach.text = bulletSpawnComponent.GetAttackRange ().ToString ();	
-			paneManagerComponent.StatsDmg.text = bulletSpawnComponent.BulletDamage.ToString();
-		} else {
-			paneManagerComponent.StatsReach.gameObject.transform.parent.gameObject.SetActive (false);
-			paneManagerComponent.StatsDmg.gameObject.transform.parent.gameObject.SetActive (false);
 		}
 
 		// build stuff
@@ -123,7 +117,44 @@ public class UIManager : MonoBehaviour {
 		}
 
 		Transform upgradePane = paneManagerComponent.UpgradePane.transform;
-		UpdateUpgrades (availUpgrades, installedUpgrades, upgradePane);
+		if (upgradeComponent) {
+			UpdateUpgrades (availUpgrades, installedUpgrades, upgradePane, objType);
+		}
+
+	}
+
+	public void SetUIText(Setting.ObjectType objType) {
+		PaneManager paneManagerComponent = activeObjPane.GetComponent<PaneManager> ();
+		HealthManager healthStats = selectedObj.GetComponent<HealthManager> ();
+		ShipMove shipMoveComponent = selectedObj.GetComponent<ShipMove> ();
+
+		// set stats
+		paneManagerComponent.Name.text = objType.ToString();
+		paneManagerComponent.Life.text = healthStats.GetCurHealth().ToString() + " / " + healthStats.GetMaxHealth().ToString();
+
+		// show movement speed for all ships
+		if (objType == Setting.ObjectType.BigShip || objType == Setting.ObjectType.MediumShip || objType == Setting.ObjectType.Scouter || objType == Setting.ObjectType.SmallShip) {
+			paneManagerComponent.StatsMoveSpeed.text = shipMoveComponent.speed.ToString();
+		} else {
+			paneManagerComponent.StatsMoveSpeed.gameObject.transform.parent.gameObject.SetActive (false);
+		}
+
+		// set Range and Damage for all tower and ships
+		if (objType != Setting.ObjectType.Mine && objType != Setting.ObjectType.Nexus && objType != Setting.ObjectType.PowerPlant &&
+			objType != Setting.ObjectType.Settlement && objType != Setting.ObjectType.Shipyard && objType != Setting.ObjectType.Workshop && objType != Setting.ObjectType.SettleShip) {
+
+			BulletSpawner bulletSpawnComponent = selectedObj.GetComponent<BulletSpawnerReference> ().Attacker;
+
+			paneManagerComponent.StatsReach.text = bulletSpawnComponent.GetAttackRange ().ToString ();	
+			paneManagerComponent.StatsDmg.text = bulletSpawnComponent.BulletDamage.ToString();
+		} else {
+			paneManagerComponent.StatsReach.gameObject.transform.parent.gameObject.SetActive (false);
+			paneManagerComponent.StatsDmg.gameObject.transform.parent.gameObject.SetActive (false);
+
+			if (objType == Setting.ObjectType.SettleShip) {
+				paneManagerComponent.UpgradePane.SetActive (false);
+			}
+		}
 	}
 
 	public void BuildQueuePanelUpdate(GameObject updatedObj) {
@@ -151,21 +182,7 @@ public class UIManager : MonoBehaviour {
 		parentShipYard.BuildShipNoCost (buildShipType);
 	}
 
-	public void UpgradeSelected(int values, GameObject clickedButton, Transform parent)
-	{
-		if (values > 0) {
-			Upgrade.EUpgrade[] availUpgrades = selectedObj.GetComponent<Upgrade> ().AvaibleUpgrades;
-			Upgrade.EUpgrade[] installedUpgrades = selectedObj.GetComponent<Upgrade> ().UsedUpgrades;
-
-			Upgrade.EUpgrade selectedUpgrade = availUpgrades [values - 1];
-
-			selectedObj.GetComponent<Upgrade> ().LevelUp (selectedUpgrade);
-
-			UpdateUpgrades (availUpgrades, installedUpgrades, parent);	
-		}
-	}
-
-	public void UpdateUpgrades(Upgrade.EUpgrade[] availUpgrades, Upgrade.EUpgrade[] installedUpgrades, Transform upgradePane)
+	public void UpdateUpgrades(Upgrade.EUpgrade[] availUpgrades, Upgrade.EUpgrade[] installedUpgrades, Transform upgradePane, Setting.ObjectType objType)
 	{
 		foreach (Transform child in upgradePane) {
 			Destroy (child.gameObject);
@@ -185,18 +202,34 @@ public class UIManager : MonoBehaviour {
 					upgrades.Add (upgrade.ToString ());
 				}
 				uDropDown.GetComponent<Dropdown> ().AddOptions(upgrades);
-				uDropDown.GetComponent<Dropdown> ().onValueChanged.AddListener( (eventData) => { UpgradeSelected(eventData, uDropDown, upgradePane); });
+				uDropDown.GetComponent<Dropdown> ().onValueChanged.AddListener( (eventData) => { UpgradeSelected(eventData, uDropDown, upgradePane, objType); });
 			}
+		}
+	}
+
+	public void UpgradeSelected(int values, GameObject clickedButton, Transform parent, Setting.ObjectType objType)
+	{
+		if (values > 0) {
+			Upgrade.EUpgrade[] availUpgrades = selectedObj.GetComponent<Upgrade> ().AvaibleUpgrades;
+			Upgrade.EUpgrade[] installedUpgrades = selectedObj.GetComponent<Upgrade> ().UsedUpgrades;
+
+			Upgrade.EUpgrade selectedUpgrade = availUpgrades [values - 1];
+
+			selectedObj.GetComponent<Upgrade> ().LevelUp (selectedUpgrade);
+
+			UpdateUpgrades (availUpgrades, installedUpgrades, parent, objType);
+			SetUIText (objType);
 		}
 	}
 
 	public void OpenPanelForObject(GameObject obj)
 	{
-		if (activeObjPane != null) {
-			Destroy (activeObjPane.gameObject);
-		}
+		HidePanel ();
+
 		selectedObj = obj;
-		if (selectedObj.layer == 12 || selectedObj.layer == 13) {
+		IslandReference islandRef = selectedObj.GetComponent<IslandReference>();
+
+		if ((selectedObj.layer == 12 || selectedObj.layer == 13) && ((islandRef && islandRef.island.Nexus) || BuildManager.Instance.BuildAnywhere)) {
 			ShowBuilPanel ();
         }
         else if (selectedObj.layer != LayerMask.NameToLayer("Islands"))
@@ -210,15 +243,16 @@ public class UIManager : MonoBehaviour {
 		if (activeObjPane != null) {
 			Destroy (activeObjPane.gameObject);
 		}
+		if (buildPaneInst != null) {
+			Destroy (buildPaneInst.gameObject);
+		}
 	}
 
 	public void ShowBuilPanel() {
-		GameObject buildPaneInst = Instantiate (BuildPanePrefab);
+		buildPaneInst = Instantiate (BuildPanePrefab);
 		buildPaneInst.transform.SetParent (InteractionPane.transform);
 		buildPaneInst.GetComponent<RectTransform> ().offsetMax = new Vector2(0, 0);
 		buildPaneInst.GetComponent<RectTransform> ().offsetMin = new Vector2(0, 0);
-
-		//selectedObj.layer = 12;
 
 		if (selectedObj.layer == 12) // 12 Building 
 		{
@@ -263,21 +297,30 @@ public class UIManager : MonoBehaviour {
 
         IslandReference islandRef = selectedObj.GetComponent<IslandReference>();
 
-        if((islandRef && islandRef.island.Nexus) || BuildManager.Instance.BuildAnywhere)
-        {
-            GameObject newObj = BuildManager.Instance.TryPlaceBuilding(buildType, selectedObj.transform);
+        GameObject newObj = BuildManager.Instance.TryPlaceBuilding(buildType, selectedObj.transform);
 
-            if(newObj)
-                islandRef.island.AddBuilding(newObj, selectedObj);
-        }
+		if (newObj) {
+			islandRef.island.AddBuilding (newObj, selectedObj);
+			HidePanel ();
+		} else {
+			ShowResourceWarning ();
+		}
+	}
 
-        else
-        {
-            //TODO: necessary?
-            BuildManager.Instance.TryPlaceBuilding(buildType, selectedObj.transform);
-        }
+	public void ProduceMashine() {
+		bool didProduce = PlayerManager.Instance.TryProduceMachine ();
+		if (!didProduce) {
+			ShowResourceWarning ();
+		}
+	}
 
+	private void ShowResourceWarning() {
+		ResourceWarning.gameObject.SetActive (true);
+		Invoke ("HideResourceWarning", 1);
+	}
 
+	private void HideResourceWarning() {
+		ResourceWarning.gameObject.SetActive (false);
 	}
 
 	void Update() {

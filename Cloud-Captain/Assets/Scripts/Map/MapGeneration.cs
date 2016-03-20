@@ -44,6 +44,10 @@ public class MapGeneration : MonoBehaviour
 
     private GameObject rootObject;
 
+    [SerializeField]
+    [ReadOnly]
+    public Vector3 bigIslandPos;
+
     // To check if Map is allready generated
     bool allreadyGenerated;
 
@@ -132,6 +136,7 @@ public class MapGeneration : MonoBehaviour
             {
                 InternCreate(BigIsland, pos);
                 bigIslands.Add(pos);
+                bigIslandPos = pos;
             }
             else
             {

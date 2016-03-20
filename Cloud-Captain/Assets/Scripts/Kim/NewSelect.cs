@@ -44,7 +44,6 @@ public class NewSelect : MonoBehaviour
     // Use this for initialization
     void Start ()
 	{
-
         methods = gameObject.GetComponent<Methods>();
 
 		selectPlane = LayerMask.NameToLayer ("SelectPlane");
@@ -75,8 +74,12 @@ public class NewSelect : MonoBehaviour
 		} else
 			z = (f.z + s.z) / 2;
         float flaechenInhalt = Mathf.Abs(f.x - s.x) * Mathf.Abs(f.z - s.z);
+
+        // Here the raycast for selecting a single object is thrown (e.g. for the "sites")
         if (flaechenInhalt < flaechenInhaltFuerEinfachenKlick)
         {
+
+
 			if (firstRay == null || firstRay.transform.gameObject.layer == selectPlane) {
 				if (!EventSystem.current.IsPointerOverGameObject()) {
 					PlayerManager.Instance.UIManager.HidePanel ();	
@@ -86,9 +89,12 @@ public class NewSelect : MonoBehaviour
 			}
 			else
             {
-				//Debug.Log (LayerMask.LayerToName(firstRay.transform.gameObject.layer));
-                methods.SelectedListClear();
-                methods.SelectedListAdd(firstRay.transform.gameObject);
+                //Debug.Log (LayerMask.LayerToName(firstRay.transform.gameObject.layer));
+                if (firstRay.transform.gameObject.tag != "Enemy")
+                {
+                    methods.SelectedListClear();
+                    methods.SelectedListAdd(firstRay.transform.gameObject);
+                }
             }
             return;
                 

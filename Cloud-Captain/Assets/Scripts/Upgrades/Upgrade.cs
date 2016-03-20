@@ -50,7 +50,7 @@ public abstract class Upgrade : MonoBehaviour
         if (IsUpgradeAvaible(upgrade) && GetNumUsedUpgrades() < GetNumMaxUpgrades())
         {
             //not enough engines:
-            if (PlayerManager.Instance.GetResources().Engine >= cost)
+            if (PlayerManager.Instance.EnoughResource(0, 0, cost))
             {
                 PlayerManager.Instance.ChangeResource(0, 0, -cost);
                 OnUpgrade(upgrade);

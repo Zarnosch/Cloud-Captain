@@ -84,10 +84,9 @@ public class ShipBuilder : MonoBehaviour
             if (cost)
                 price = info.price;
 
-            if (PlayerManager.Instance.GetResources().IsEnough(price) || BuildManager.Instance.NoCostMode)
+            if (PlayerManager.Instance.EnoughResource(price))
             {
-                if(!BuildManager.Instance.NoCostMode)
-                    PlayerManager.Instance.ChangeResource(price * -1);
+                PlayerManager.Instance.ChangeResource(price * -1);
 
                 enqueuedShips.Enqueue(info);
                 QueueChanged();
@@ -133,10 +132,6 @@ public class ShipBuilder : MonoBehaviour
             curBuildCooldown = enqueuedShips.Peek().buildTime - (enqueuedShips.Peek().buildTime * reduction);
         }
 
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            BuildShipNoCost(BuildManager.ShipType.Scout);
-        }
 
     }
 

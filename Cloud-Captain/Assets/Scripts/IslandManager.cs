@@ -19,6 +19,14 @@ public class IslandManager : MonoBehaviour
 
     private Dictionary<GameObject, GameObject> buildingBuildSideConnection = new Dictionary<GameObject, GameObject>();
 
+    public GameObject GetSettlementSite()
+    {
+        if (settlementSite)
+            return settlementSite;
+        else
+            return null;
+    }
+
     // Use this for initialization
     void Start()
     {

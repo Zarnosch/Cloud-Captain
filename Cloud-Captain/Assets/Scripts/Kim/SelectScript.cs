@@ -45,18 +45,23 @@ public class SelectScript : MonoBehaviour {
 	}
 
 	void OnTriggerStay(Collider coll){
-        if (coll.gameObject.layer == building){
-            newSelect.buildingList.Add(coll.gameObject);
-            newSelect.newListEntry = true;
+        if (coll.gameObject.tag != "Enemy")
+        {
+            if (coll.gameObject.layer == building)
+            {
+                newSelect.buildingList.Add(coll.gameObject);
+                newSelect.newListEntry = true;
+            }
+            else if (coll.gameObject.layer == ship)
+            {
+                newSelect.shipList.Add(coll.gameObject);
+                newSelect.newListEntry = true;
+            }
         }
-		else if (coll.gameObject.layer == ship) {
-            newSelect.shipList.Add (coll.gameObject);
-			newSelect.newListEntry = true;
-		}
         //Debug.Log(LayerMask.NameToLayer("SelectPlane"));
-		//Debug.Log(coll.gameObject.layer);
-//		Debug.Log (newSelect);
-		Destroy (gameObject);
+        //Debug.Log(coll.gameObject.layer);
+        //		Debug.Log (newSelect);
+        Destroy (gameObject);
 
 	}
 

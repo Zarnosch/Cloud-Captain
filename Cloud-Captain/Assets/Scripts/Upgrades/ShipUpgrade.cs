@@ -37,13 +37,21 @@ public class ShipUpgrade : Upgrade
     protected override void OnAwake()
     {
         FillBaseValues();
+        //needed because settler doesnt have a spawner:
+        if (Spawner)
+        {
+            Spawner.BulletDamage = baseAttackDamage;
+            Spawner.BulletSpeed = Setting.SHIP_BULLET_SPEED;
+        }
 
-        Spawner.BulletDamage = baseAttackDamage;
-        Spawner.BulletSpeed = Setting.SHIP_BULLET_SPEED;
+        if(AttackRangeSphere)
+            AttackRangeSphere.radius = baseAttackRange;
 
-        AttackRangeSphere.radius = baseAttackRange;
-        Health.maxHealth = baseHealth;
-        ShipMove.speed = baseMoveSpeed;
+        if(Health)
+            Health.maxHealth = baseHealth;
+
+        if(ShipMove)
+            ShipMove.speed = baseMoveSpeed;
 
         gameObject.transform.position = new Vector3(gameObject.transform.position.x, Setting.SHIP_FLIGHT_HEIGHT, gameObject.transform.position.z);
     }
@@ -141,10 +149,18 @@ public class ShipUpgrade : Upgrade
             baseAttackRange = Setting.MAX_RANGE_BIGSHIP;
         }
 
-        else
+        else if(Type == Setting.ObjectType.SettleShip)
         {
-            Debug.Assert(false);
+
+            slots = Setting.MAX_SLOTS_SETTLESHIP;
+            baseHealth = Setting.MAX_HEALTH_SETTLESHIP;
+            baseAttackDamage = Setting.MAX_DMG_SETTLESHIP;
+            baseMoveSpeed = Setting.MAX_SPEED_SETTLESHIP;
+            baseAttackRange = Setting.MAX_RANGE_SETTLESHIP;
         }
+
+        else
+            Debug.Assert(false);
     }
 
 }

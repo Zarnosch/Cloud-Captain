@@ -8,27 +8,77 @@ public class Methods : MonoBehaviour {
 
     private int selectedHighlight;
 
+
+    private int buildingSite;
+    private int towerSite;
+    private int settlementSite;
+
+    private int ship;
+    private int selectPlane;
+
+    private float shipHeight = 0.0f;
+
     PlayerManager playerInstance;
     void Start () {
         playerInstance = PlayerManager.Instance;
         selectedHighlight = LayerMask.NameToLayer("SelectChooser");
+
+        buildingSite = LayerMask.NameToLayer("Buildingsite");
+        towerSite = LayerMask.NameToLayer("Towersite");
+        settlementSite = LayerMask.NameToLayer("SettlementSite");
+
+        ship = LayerMask.NameToLayer("Ships");
+
+        shipHeight = Setting.SHIP_FLIGHT_HEIGHT;
+
     }
 
 
     public void SelectedListAdd(GameObject g)
     {
-        GameObject newInstance = Instantiate(PlayerSelectItem, g.transform.position, Quaternion.identity) as GameObject;
-        newInstance.transform.parent = g.transform;
+        if(g.layer == buildingSite || g.layer == towerSite || g.layer == settlementSite)
+        {
+            GameObject newInstance = Instantiate(PlayerSelectItem, g.transform.position+new Vector3(0,0.6f,0), Quaternion.identity) as GameObject;
+            newInstance.transform.parent = g.transform;
 
-		PlayerManager.Instance.UIManager.OpenPanelForObject (g);
+            PlayerManager.Instance.UIManager.OpenPanelForObject(g);
 
-        playerInstance.selectedUnits.Add(g);
+            playerInstance.selectedUnits.Add(g);
+        }       
+        else
+        {
+            if(g.layer == ship)
+            {
+                g.GetComponentInChildren<HoldSelectedEnemy>().isSelected = true;
+                //GameObject newInstance = Instantiate(PlayerSelectItem, new Vector3(g.transform.position.x, selectPlaneHeight, transform.position.z), Quaternion.identity) as GameObject;
+                //GameObject newInstance = Instantiate(PlayerSelectItem, g.transform.position, Quaternion.identity) as GameObject;
+                GameObject newInstance = Instantiate(PlayerSelectItem, g.transform.position - new Vector3(0, shipHeight, 0), Quaternion.identity) as GameObject;
+                newInstance.transform.parent = g.transform;
+                PlayerManager.Instance.UIManager.OpenPanelForObject(g);
+
+                playerInstance.selectedUnits.Add(g);
+            }
+            else
+            {
+                GameObject newInstance = Instantiate(PlayerSelectItem, g.transform.position, Quaternion.identity) as GameObject;
+                newInstance.transform.parent = g.transform;
+
+                PlayerManager.Instance.UIManager.OpenPanelForObject(g);
+
+                playerInstance.selectedUnits.Add(g);
+            }
+            
+        }
+        
+        
     }
 
     public void SelectedListClear()
     {
         foreach (var item in playerInstance.selectedUnits)
         {
+            if(item.layer == ship)
+                item.GetComponentInChildren<HoldSelectedEnemy>().isSelected = false;
             foreach (Transform kidlette in item.transform)
             {
                 //print("kid: " + kidlette.name);
@@ -40,6 +90,16 @@ public class Methods : MonoBehaviour {
             //gameObject.GetComponentInChildren<DestroyThis>().DestroyThisObject();
         }
         playerInstance.selectedUnits.Clear();
+    }
+
+    void Update()
+    {
+
+        for (int i = playerInstance.selectedUnits.Count - 1; i >= 0; i--)
+        {
+            if (playerInstance.selectedUnits[i] == null)
+            playerInstance.selectedUnits.RemoveAt(i);
+        }
     }
         
 

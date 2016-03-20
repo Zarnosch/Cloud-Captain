@@ -64,6 +64,11 @@ public static class Setting
     public const float SHIP_UPGRADE_REPAIR_COOLDOWN_INCREASE    = 1.05f;
     public const float SHIP_UPGRADE_REPAIR_AMOUNT_INCREASE      = 1.05f;
 
+    //When a ship is shooting, its target position will be randomly offseted by these values:
+    public const float SHIP_BULLET_OFFSET_HORIZONTAL            = 2.0f;
+    public const float SHIP_BULLET_OFFSET_VERTICAL              = 1.0f;
+
+
     #endregion
 
     #region SETTLESHIP
@@ -72,7 +77,9 @@ public static class Setting
 
     public const int MAX_HEALTH_SETTLESHIP = 750;
     public const float MAX_SPEED_SETTLESHIP = 9f;
-    public const float MAX_RANGE_SETTLESHIP = 0f;
+
+    /// <summary>Used to determine the range for building settlements on islands: </summary>
+    public const float MAX_RANGE_SETTLESHIP = 10.0f;
     public const int MAX_DMG_SETTLESHIP = 0;
     public const float SETTLESHIP_BUILD_TIME = 100.0f;
 
@@ -115,7 +122,7 @@ public static class Setting
 
     #endregion
 
-    #region BISSHIP
+    #region BIGSHIP
 
     public const int MAX_SLOTS_BIGSHIP = 6;
 
@@ -284,6 +291,7 @@ public static class Setting
     public const int WORKSHOP_DEFAULT_HEALTH                        = 250;
     public const float WORKSHOP_DEFAULT_REPAIR_COOLDOWN             = 0.5f;
     public const int WORKSHOP_DEFAULT_REPAIR_AMOUNT                 = 1;
+    public const float WORKSHOP_DEFAULT_REPAIR_RADIUS               = 10.0f;
 
     public const float WORKSHOP_UPGRADE_REPAIR_AMOUNT_INCREASE      = 1.05f;
     public const float WORKSHOP_UPGRADE_REPAIR_COOLDOWN_INCREASE    = 1.05f;
@@ -298,6 +306,11 @@ public static class Setting
     public const int NEXUS_DEFAULT_HEALTH               = 1500;
 
     public const float NEXUS_UPGRADE_HEALTH_INCREASE    = 1.05f;
+
+    /// <summary>Used for both: energy and matter </summary>
+    public const float NEXUS_RESSOURCE_PRODUCE_TIME     = 5.0f;
+    public const int NEXUS_ENERGY_PRODUCE_AMOUNT        = 5;
+    public const int NEXUS_MATTER_PRODUCE_AMOUNT        = 5;
 
     #endregion
 
@@ -332,5 +345,15 @@ public static class Setting
     public const float HEALTH_BAR_OFFSET_X = 0.0f;
     public const float HEALTH_BAR_OFFSET_Y = -2.0f;
     public const float HEALTH_BAR_OFFSET_Z = 0.0f;
+
+    #region SELECTING
+
+    /********************************************* SelectPlanes */
+    /**
+    ### Height of the select plane
+    **/
+    public const float SELECTPLANE_HEIGHT = 0.0f;
+
+    #endregion
 
 }

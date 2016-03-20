@@ -31,7 +31,8 @@ public class GoToPosition : MonoBehaviour {
 				foreach (var item in hits) {
 
 					if (item.transform.gameObject.tag == "Enemy") {
-						if (playerInstance.selectedUnits [0].layer == ship) {
+
+                        if (playerInstance.selectedUnits [0].layer == ship) {
 							
 							foreach (var selected in playerInstance.selectedUnits) {
 							
@@ -39,9 +40,11 @@ public class GoToPosition : MonoBehaviour {
 								RaycastHit hit;
 
 								if (Physics.Raycast (ray, out hit, 1000f, rayMaskInInt)) {
-									//Debug.Log ("Test");
-									selected.gameObject.GetComponent<ShipMove> ().moveShip (hit.collider.transform.gameObject);
-									return;
+                                    //Debug.Log ("Test");
+                                    selected.gameObject.GetComponent<ShipMove> ().moveShip (hit.collider.transform.gameObject);
+                                    selected.gameObject.GetComponentInChildren<HoldSelectedEnemy>().newEnemyTarget(hit.collider.transform.gameObject);
+
+                                    return;
 									//Debug.Log (firstRay.transform.gameObject.name);
 								}
 								//selected.gameObject.GetComponent<ShipMove> ().moveShip (item.point);
@@ -58,7 +61,7 @@ public class GoToPosition : MonoBehaviour {
 						foreach (var selected in playerInstance.selectedUnits) {
                             //Debug.Log (item.point);
                             //Debug.Log(selected.name);
-
+                            selected.gameObject.GetComponentInChildren<HoldSelectedEnemy>().clearEnemyTarget();
                             ShipMove shipMove = selected.gameObject.GetComponent<ShipMove>();
 
                             //NOTE: Kai

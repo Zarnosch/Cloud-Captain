@@ -43,13 +43,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectorPlaneHeight: 56
   flaechenInhaltFuerEinfachenKlick: 5
+  selectionHeightInEachDirection: 50
+  rayMask: []
   buildingList: []
   islandList: []
   shipList: []
   newListEntry: 0
   newListIsEmpty: 0
   figurePrefab: {fileID: 135060, guid: 3e7a36a32d541464c8a715ffbf3c4b0f, type: 2}
-  preFigurePrefab: {fileID: 135514, guid: 1250fa6b3f97f57459296165c29aff26, type: 2}
+  preFigurePrefab: {fileID: 133382, guid: 8d15e1f93b654404dbfa79e67be704b1, type: 2}
   methods: {fileID: 0}
 --- !u!114 &11440086
 MonoBehaviour:
@@ -62,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ff945abcb0db494a8bb774b1b66615d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rayMask: []
 --- !u!114 &11460854
 MonoBehaviour:
   m_ObjectHideFlags: 1

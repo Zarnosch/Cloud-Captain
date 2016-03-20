@@ -25,7 +25,7 @@ public class MachineProducer : MonoBehaviour
         {
             curTime -= Time.deltaTime;
 
-            if (curTime <= 0.0f)
+            if (curTime <= 0.0f || BuildManager.Instance.InstantBuild)
             {
                 curTime = Setting.MACHINE_PRODUCE_TIME;
                 NumMachinesInQueue--;
