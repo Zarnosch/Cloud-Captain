@@ -109,7 +109,7 @@ public class ShipBuilder : MonoBehaviour
     void Update()
     {
 
-        if (isBuilding)
+        if (isBuilding && enqueuedShips.Count > 0)
         {
             curBuildCooldown -= Time.deltaTime;
 

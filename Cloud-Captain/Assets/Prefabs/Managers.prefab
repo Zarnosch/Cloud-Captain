@@ -41,6 +41,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedUnits: []
+  ownedUnits: []
+  ownedBuildings: []
+  workshops: []
+  controlledIslands: []
   resources:
     Matter: 0
     Energy: 0
@@ -74,11 +78,11 @@ MonoBehaviour:
   ProgressbarPrefab: {fileID: 168310, guid: ffcc01e14241e5245a160509235a03c7, type: 2}
   HealthFeedbackParticlePrefab: {fileID: 140386, guid: cd38b9283507310438489ca2320ce8eb,
     type: 2}
-  SettleShipPrefab: {fileID: 194744, guid: 7f5c937f942f2d440a6f4082905d40a9, type: 2}
-  ScoutShipPrefab: {fileID: 104082, guid: 5866fd42ab6a30f47850e5ca6c8878cf, type: 2}
-  SmallShipPrefab: {fileID: 115076, guid: 569210a660558eb498ef41c3c28b8d63, type: 2}
-  MediumShipPrefab: {fileID: 179826, guid: 81c653c89a5284949bf363d8fea8426f, type: 2}
-  BigShipPrefab: {fileID: 161800, guid: e278dd879da5e5847b3145cfc9165123, type: 2}
+  SettleShipPrefab: {fileID: 104800, guid: 7f5c937f942f2d440a6f4082905d40a9, type: 2}
+  ScoutShipPrefab: {fileID: 144948, guid: 5866fd42ab6a30f47850e5ca6c8878cf, type: 2}
+  SmallShipPrefab: {fileID: 123004, guid: 569210a660558eb498ef41c3c28b8d63, type: 2}
+  MediumShipPrefab: {fileID: 153790, guid: 81c653c89a5284949bf363d8fea8426f, type: 2}
+  BigShipPrefab: {fileID: 168748, guid: e278dd879da5e5847b3145cfc9165123, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -16849,18 +16849,6 @@ Prefab:
       propertyPath: UIManager
       value: 
       objectReference: {fileID: 1148263826}
-    - target: {fileID: 11458910, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
-      propertyPath: buildAnywhere
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11458910, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
-      propertyPath: instantBuild
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11458910, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
-      propertyPath: noCostMode
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
   m_IsPrefabParent: 0
