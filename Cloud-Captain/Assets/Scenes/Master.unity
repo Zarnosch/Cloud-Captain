@@ -7868,8 +7868,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ac173145f35ac4499d80a43cd3edcb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bump: {fileID: 2100000, guid: e467fa8bac4e0264eb91acbd7fb965c2, type: 2}
-  offset: {x: 0, y: 0}
+  Mat1: {fileID: 0}
+  Mat2: {fileID: 0}
+  BumpScale1: 0
+  BumpScale2: 0
+  offset1: {x: 0, y: 0}
+  offset2: {x: 0, y: 0}
+  LerpTime: 0
+  Infade: 0
+  LerpSpeed: 0.0001
+  BumpScaleSpeed: 0.005
+  MaxBumpScale: 0.65
+  MinBumpScale: 0.1
+  FastOff: 0.00007
+  SlowOff: 0.00007
 --- !u!33 &1134951566
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13609,6 +13621,14 @@ Prefab:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 465086, guid: 81c653c89a5284949bf363d8fea8426f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 465086, guid: 81c653c89a5284949bf363d8fea8426f, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.69
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 81c653c89a5284949bf363d8fea8426f, type: 2}
   m_IsPrefabParent: 0
@@ -16849,6 +16869,38 @@ Prefab:
       propertyPath: UIManager
       value: 
       objectReference: {fileID: 1148263826}
+    - target: {fileID: 11458910, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
+      propertyPath: buildAnywhere
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11458910, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
+      propertyPath: instantBuild
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11458910, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
+      propertyPath: noCostMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11458910, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
+      propertyPath: SettleShipPrefab
+      value: 
+      objectReference: {fileID: 104800, guid: 7f5c937f942f2d440a6f4082905d40a9, type: 2}
+    - target: {fileID: 11458910, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
+      propertyPath: SmallShipPrefab
+      value: 
+      objectReference: {fileID: 123004, guid: 569210a660558eb498ef41c3c28b8d63, type: 2}
+    - target: {fileID: 11458910, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
+      propertyPath: ScoutShipPrefab
+      value: 
+      objectReference: {fileID: 144948, guid: 5866fd42ab6a30f47850e5ca6c8878cf, type: 2}
+    - target: {fileID: 11458910, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
+      propertyPath: MediumShipPrefab
+      value: 
+      objectReference: {fileID: 153790, guid: 81c653c89a5284949bf363d8fea8426f, type: 2}
+    - target: {fileID: 11458910, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
+      propertyPath: BigShipPrefab
+      value: 
+      objectReference: {fileID: 168748, guid: e278dd879da5e5847b3145cfc9165123, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
   m_IsPrefabParent: 0
