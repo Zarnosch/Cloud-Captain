@@ -267,7 +267,6 @@ GameObject:
   - 114: {fileID: 11410306}
   - 114: {fileID: 11412864}
   - 114: {fileID: 11461814}
-  - 114: {fileID: 11453742}
   m_Layer: 9
   m_Name: MediumShip
   m_TagString: Player
@@ -1814,7 +1813,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eda929f2e4aa3f418b26b31978a23da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RootObject: {fileID: 0}
+  RootObject: {fileID: 153790}
+  AttackTransform: {fileID: 143860}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1837,6 +1837,7 @@ MonoBehaviour:
     m_TypeName: HealthEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   health: -1
   maxHealth: 0
+  Invincible: 0
 --- !u!114 &11410306
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1852,6 +1853,7 @@ MonoBehaviour:
   targetPosition: {x: 0, y: 0, z: 0}
   standardRange: 2
   speed: 5
+  RangeForSettleShips: 30
 --- !u!114 &11412864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1897,18 +1899,6 @@ MonoBehaviour:
   BulletSpeed: 0
   SecondaryDamage: 0
   SecondaryRange: 0
---- !u!114 &11453742
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 153790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac02ff5093ce0ef4fa7ee46f960af3f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pivot: {fileID: 143860}
 --- !u!114 &11461814
 MonoBehaviour:
   m_ObjectHideFlags: 1

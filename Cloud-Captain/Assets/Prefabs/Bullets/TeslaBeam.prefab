@@ -53,7 +53,9 @@ MonoBehaviour:
   secondaryRange: 0
   secondaryDamage: 0
   bulletRoot: {fileID: 161148}
-  LineWidth: 0.33
+  MinLineWidth: 1
+  MaxLineWidth: 3
+  LineWidthChangeSpeed: 5
   CapsulePercentLineWidth: 0.25
 --- !u!120 &12069210
 LineRenderer:

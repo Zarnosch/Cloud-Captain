@@ -6,15 +6,18 @@ using System;
 public class HealthManager : MonoBehaviour 
 {
     public GameObject RootObject;
- 
-
+    public GameObject AttackTransform;
     public HealthChangedEvent OnHealthChanged;
     public HealthEvent OnZeroHealth;
+    
 
     [ReadOnly]
     public int health = -1;
     [ReadOnly]
     public int maxHealth;
+
+    
+    public bool Invincible = false;
 
     private bool died = false;
     private GameObject healthBarGameObject;
@@ -26,6 +29,9 @@ public class HealthManager : MonoBehaviour
     {
         if (RootObject == null)
             RootObject = gameObject;
+
+        if (AttackTransform == null)
+            AttackTransform = gameObject;
 
         health = maxHealth;
 
@@ -71,6 +77,16 @@ public class HealthManager : MonoBehaviour
         if (delta != 0)
         {
             OnHealthChanged.Invoke(this, delta);
+         
+
+            if(delta < 0)
+            {
+                GameObject.Instantiate(BuildManager.Instance.HitEffectPrefab, AttackTransform.transform.position, Quaternion.identity);
+
+                if (Invincible)
+                    delta = 0;
+            }
+
             health += delta;
 
             if (health <= 0 && !died)

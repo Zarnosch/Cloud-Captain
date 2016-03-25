@@ -52,6 +52,10 @@ public class BuildManager : MonoBehaviour
 
     public GameObject HealthFeedbackParticlePrefab;
 
+    public GameObject HitEffectPrefab;
+
+    public GameObject ExplosionPrefab;
+
     #endregion
 
     #region Ships

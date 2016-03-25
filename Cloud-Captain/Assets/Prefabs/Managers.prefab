@@ -61,9 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eec3e69988262344a8aac96de80b9528, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noCostMode: 0
-  instantBuild: 0
-  buildAnywhere: 0
+  noCostMode: 1
+  instantBuild: 1
+  buildAnywhere: 1
   TeslaTowerPrefab: {fileID: 177658, guid: e85f5458027e3d84fb0b83938a050d21, type: 2}
   ArtilleryTowerPrefab: {fileID: 174490, guid: 4008410c56221554399a846d52cbfb2f, type: 2}
   PowerPlantPrefab: {fileID: 146210, guid: d4b02e630335696498534fb644ae4223, type: 2}
@@ -78,6 +78,9 @@ MonoBehaviour:
   ProgressbarPrefab: {fileID: 168310, guid: ffcc01e14241e5245a160509235a03c7, type: 2}
   HealthFeedbackParticlePrefab: {fileID: 140386, guid: cd38b9283507310438489ca2320ce8eb,
     type: 2}
+  HitEffectPrefab: {fileID: 178050, guid: 65ec7f1506ee8e84a8d059aa6abb10b7, type: 2}
+  SmookingTrailPrefab: {fileID: 130776, guid: a6d2263f91c9f6749922df8096909a8a, type: 2}
+  ExplosionPrefab: {fileID: 147614, guid: 2391abbb72b2edc48b2136c743b46a1c, type: 2}
   SettleShipPrefab: {fileID: 104800, guid: 7f5c937f942f2d440a6f4082905d40a9, type: 2}
   ScoutShipPrefab: {fileID: 144948, guid: 5866fd42ab6a30f47850e5ca6c8878cf, type: 2}
   SmallShipPrefab: {fileID: 123004, guid: 569210a660558eb498ef41c3c28b8d63, type: 2}

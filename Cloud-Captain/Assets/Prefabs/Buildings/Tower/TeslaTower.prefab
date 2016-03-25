@@ -81,7 +81,6 @@ GameObject:
   - 114: {fileID: 11476702}
   - 114: {fileID: 11465750}
   - 114: {fileID: 11489566}
-  - 114: {fileID: 11422744}
   m_Layer: 8
   m_Name: TeslaTower
   m_TagString: Player
@@ -91,7 +90,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &182704
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
@@ -136,11 +135,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182704}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.848, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.48106822, y: 0.48106834, z: 0.48106834}
   m_Children: []
-  m_Father: {fileID: 484072}
+  m_Father: {fileID: 460498}
   m_RootOrder: 0
 --- !u!4 &460498
 Transform:
@@ -151,7 +150,8 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0.39199996, z: 0}
   m_LocalScale: {x: 0.7271287, y: 0.7271287, z: 0.7271287}
-  m_Children: []
+  m_Children:
+  - {fileID: 423848}
   m_Father: {fileID: 496614}
   m_RootOrder: 1
 --- !u!4 &484072
@@ -161,10 +161,9 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 177658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 69.2, y: 0.11, z: 154.33}
+  m_LocalPosition: {x: 485.70905, y: 3.8369336, z: 402.88965}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 423848}
   - {fileID: 496614}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -182,7 +181,7 @@ Transform:
   - {fileID: 460498}
   - {fileID: 405322}
   m_Father: {fileID: 484072}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!23 &2314750
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -297,18 +296,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &11422744
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 177658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac02ff5093ce0ef4fa7ee46f960af3f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pivot: {fileID: 182704}
 --- !u!114 &11424348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -350,6 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RootObject: {fileID: 177658}
+  AttackTransform: {fileID: 153062}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -372,6 +360,7 @@ MonoBehaviour:
     m_TypeName: HealthEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   health: -1
   maxHealth: 0
+  Invincible: 1
 --- !u!114 &11476702
 MonoBehaviour:
   m_ObjectHideFlags: 1

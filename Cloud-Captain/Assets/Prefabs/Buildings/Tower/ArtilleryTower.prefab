@@ -114,7 +114,6 @@ GameObject:
   - 114: {fileID: 11475858}
   - 114: {fileID: 11439360}
   - 135: {fileID: 13570304}
-  - 114: {fileID: 11427866}
   m_Layer: 8
   m_Name: ArtilleryTower
   m_TagString: Player
@@ -247,7 +246,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 174490}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 85, y: 3.1, z: 159.6}
+  m_LocalPosition: {x: 486.52988, y: 3.5300598, z: 405.08112}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 454348}
@@ -512,18 +511,6 @@ MonoBehaviour:
   BulletSpeed: 0
   SecondaryDamage: 0
   SecondaryRange: 0
---- !u!114 &11427866
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 174490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac02ff5093ce0ef4fa7ee46f960af3f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pivot: {fileID: 155324}
 --- !u!114 &11434554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -559,7 +546,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eda929f2e4aa3f418b26b31978a23da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RootObject: {fileID: 0}
+  RootObject: {fileID: 174490}
+  AttackTransform: {fileID: 155324}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -582,6 +570,7 @@ MonoBehaviour:
     m_TypeName: HealthEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   health: -1
   maxHealth: 0
+  Invincible: 0
 --- !u!114 &11475858
 MonoBehaviour:
   m_ObjectHideFlags: 1

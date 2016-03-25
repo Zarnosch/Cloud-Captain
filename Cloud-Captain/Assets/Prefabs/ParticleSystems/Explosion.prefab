@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fceb1c04a645c134185f1ae6af0fbaa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartAwake: 0
-  RemoveOnEnd: 0
-  ObjectToRemove: {fileID: 0}
+  StartAwake: 1
+  RemoveOnEnd: 1
+  ObjectToRemove: {fileID: 197840}
 --- !u!198 &19808768
 ParticleSystem:
   m_ObjectHideFlags: 1

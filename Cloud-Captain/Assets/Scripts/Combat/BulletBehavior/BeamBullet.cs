@@ -6,7 +6,11 @@ using System;
 [RequireComponent(typeof(CapsuleCollider))]
 public class BeamBullet : ABulletBehavior 
 {
-    public float LineWidth = 0.33f;
+    public float MinLineWidth = 0.33f;
+    public float MaxLineWidth = 1.0f;
+    public float LineWidthChangeSpeed = 10.0f;
+
+    private float lineWidth = 0.33f;
 
     [Range(0.0f, 1.0f)]
     public float CapsulePercentLineWidth = 1.0f;
@@ -18,7 +22,7 @@ public class BeamBullet : ABulletBehavior
 
     private bool reEnableCollider = true;
 
-
+    private float time;
 
     protected override void OnSpawn()
     {
@@ -31,11 +35,11 @@ public class BeamBullet : ABulletBehavior
         if (myCollider == null)
             myCollider = GetComponent<CapsuleCollider>();
 
-        myCollider.radius = (LineWidth / 2.0f) * CapsulePercentLineWidth;
+   
         myCollider.center = Vector3.zero;
         myCollider.direction = 2;
 
-        lineRenderer.SetWidth(LineWidth, LineWidth);
+        SetLineWidth(lineWidth);
 
         lineRenderer.SetPosition(0, spawnTransform.position);
         lineRenderer.SetPosition(1, targetTransform.position);
@@ -46,6 +50,13 @@ public class BeamBullet : ABulletBehavior
         damage = Setting.TESLA_TOWER_DEFAULT_DAMAGE_PER_ATTACK;
     }
 
+    void SetLineWidth(float newWidth)
+    {
+        lineWidth = newWidth;
+
+        myCollider.radius = (lineWidth / 2.0f) * CapsulePercentLineWidth;
+        lineRenderer.SetWidth(lineWidth, lineWidth);
+    }
 
     void Update()
     {
@@ -54,6 +65,8 @@ public class BeamBullet : ABulletBehavior
             lineRenderer.SetPosition(0, spawnTransform.position);
             lineRenderer.SetPosition(1, targetTransform.position);
 
+            time += Time.deltaTime * LineWidthChangeSpeed;
+            SetLineWidth((Mathf.Sin(time) * 0.5f + 1.0f + MinLineWidth) * (MaxLineWidth - MinLineWidth));
 
             if (myCollider.enabled)
                 UpdateCapsule();
@@ -71,7 +84,6 @@ public class BeamBullet : ABulletBehavior
     {
         if (targetTransform && reEnableCollider)
         {
-
             myCollider.enabled = true;
             reEnableCollider = false;
 

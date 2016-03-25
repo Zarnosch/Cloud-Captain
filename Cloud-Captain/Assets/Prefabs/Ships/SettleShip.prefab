@@ -33,7 +33,6 @@ GameObject:
   - 114: {fileID: 11492512}
   - 114: {fileID: 11435144}
   - 114: {fileID: 11419030}
-  - 114: {fileID: 11489412}
   m_Layer: 9
   m_Name: SettleShip
   m_TagString: Player
@@ -763,7 +762,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eda929f2e4aa3f418b26b31978a23da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RootObject: {fileID: 0}
+  RootObject: {fileID: 104800}
+  AttackTransform: {fileID: 197166}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -786,6 +786,7 @@ MonoBehaviour:
     m_TypeName: HealthEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   health: -1
   maxHealth: 0
+  Invincible: 0
 --- !u!114 &11435144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -814,18 +815,6 @@ MonoBehaviour:
   standardRange: 2
   speed: 5
   RangeForSettleShips: 30
---- !u!114 &11489412
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 104800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac02ff5093ce0ef4fa7ee46f960af3f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pivot: {fileID: 197166}
 --- !u!114 &11492512
 MonoBehaviour:
   m_ObjectHideFlags: 1

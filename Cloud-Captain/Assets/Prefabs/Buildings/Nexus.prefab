@@ -28,7 +28,6 @@ GameObject:
   - 114: {fileID: 11452964}
   - 114: {fileID: 11486982}
   - 114: {fileID: 11483750}
-  - 114: {fileID: 11402880}
   - 114: {fileID: 11424092}
   m_Layer: 8
   m_Name: Nexus
@@ -119,7 +118,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 122860}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 242.63274, y: -4.1274356e-16, z: 318.58832}
+  m_LocalPosition: {x: 491.12622, y: 3.295589, z: 406.89792}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 418844}
@@ -216,18 +215,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130312}
   m_Mesh: {fileID: 4300000, guid: b98b90c8beb1dd241a95d865446755b4, type: 3}
---- !u!114 &11402880
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac02ff5093ce0ef4fa7ee46f960af3f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pivot: {fileID: 120650}
 --- !u!114 &11424092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -258,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RootObject: {fileID: 122860}
+  AttackTransform: {fileID: 120650}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -280,6 +268,7 @@ MonoBehaviour:
     m_TypeName: HealthEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   health: -1
   maxHealth: 0
+  Invincible: 0
 --- !u!114 &11452964
 MonoBehaviour:
   m_ObjectHideFlags: 1

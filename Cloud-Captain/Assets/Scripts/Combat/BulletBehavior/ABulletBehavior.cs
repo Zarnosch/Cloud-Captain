@@ -76,6 +76,7 @@ public abstract class ABulletBehavior : MonoBehaviour
                 health.ChangeHealth(-damage);
                 OnImpact.Invoke(bulletRoot.transform);
 
+
                 if (KillOnImpact)
                 {
                     this.bulletSpawner.DestroyBullet(this);

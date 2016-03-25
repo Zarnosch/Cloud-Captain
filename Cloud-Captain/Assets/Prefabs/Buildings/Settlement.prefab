@@ -63,7 +63,6 @@ GameObject:
   - 114: {fileID: 11461380}
   - 114: {fileID: 11489200}
   - 114: {fileID: 11436288}
-  - 114: {fileID: 11499588}
   m_Layer: 8
   m_Name: Settlement
   m_TagString: Player
@@ -171,7 +170,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 160286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.70768, y: 2.6823921, z: 10.575001}
+  m_LocalPosition: {x: 486.35608, y: 3.506885, z: 405.2382}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400490}
@@ -438,6 +437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RootObject: {fileID: 160286}
+  AttackTransform: {fileID: 167090}
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -460,6 +460,7 @@ MonoBehaviour:
     m_TypeName: HealthEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   health: -1
   maxHealth: 0
+  Invincible: 0
 --- !u!114 &11489200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -472,18 +473,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 1
---- !u!114 &11499588
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 160286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac02ff5093ce0ef4fa7ee46f960af3f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pivot: {fileID: 167090}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

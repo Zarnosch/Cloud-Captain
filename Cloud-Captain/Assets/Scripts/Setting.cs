@@ -252,7 +252,7 @@ public static class Setting
     public static readonly Res TESLA_TOWER_RES_COST                 = new Res(100, 100, 0);
 
     public const float TESLA_TOWER_DEFAULT_ATTACK_COOLDOWN          = 0.5f;
-    public const float TESLA_TOWER_DEFAULT_ATTACK_RADIUS            = 7.0f;
+    public const float TESLA_TOWER_DEFAULT_ATTACK_RADIUS            = 30.0f;
     public const int TESLA_TOWER_DEFAULT_DAMAGE_PER_ATTACK          = 2;
     public const int TESLA_TOWER_DEFAULT_HEALTH                     = 2;
 

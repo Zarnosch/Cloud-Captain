@@ -7,8 +7,6 @@ using System;
 public class BallisticBullet : ABulletBehavior {
 
 
-    public GameObject ExplosionPrefab;
-
     private Rigidbody myBody;
     private float totalTimeToTarget;
     private float curFlightTime;
@@ -89,17 +87,11 @@ public class BallisticBullet : ABulletBehavior {
         else
         {
             //spawn explosion:
-            GameObject obj = (GameObject)Instantiate(ExplosionPrefab, transform.position, Quaternion.identity);
+            GameObject obj = (GameObject)Instantiate(BuildManager.Instance.ExplosionPrefab, transform.position, Quaternion.identity);
             obj.GetComponent<SphereCollider>().radius = secondaryRange;
             obj.GetComponent<Damager>().Damage = secondaryDamage;
 
-            if (ParticleSystem)
-            {
-                ParticleSystem.loop = false;
-                ParticleSystem.Stop();
-                ParticleSystem.gameObject.transform.SetParent(null, true);
-                Destroy(ParticleSystem.gameObject, 5.0f);
-            }
+          
              
         }
     }

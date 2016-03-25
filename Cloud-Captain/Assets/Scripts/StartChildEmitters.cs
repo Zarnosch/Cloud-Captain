@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public class StartEmitters : MonoBehaviour {
+public class StartChildEmitters : MonoBehaviour {
 
     public bool StartAwake = true;
     public bool RemoveOnEnd = false;
@@ -12,17 +12,18 @@ public class StartEmitters : MonoBehaviour {
 
     void Start()
     {
-        if(StartAwake)
-            Play();
-
         if (ObjectToRemove == null)
             ObjectToRemove = gameObject;
+
+        if (StartAwake)
+            Play();
     }
 
     public void Play()
     {
 
         float longestTime = 0.0f;
+
         for (int i = 0; i < gameObject.transform.childCount; i++)
         {
             ParticleSystem system = gameObject.transform.GetChild(i).GetComponent<ParticleSystem>();

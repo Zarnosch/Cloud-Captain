@@ -231,10 +231,10 @@ public class BulletSpawner : MonoBehaviour
     {
         GameObject realTarget = target;
 
-        AttackPivot pivot = target.GetComponent<AttackPivot>();
+        HealthManager healthManager = target.GetComponent<HealthManager>();
 
-        if (pivot)
-            realTarget = pivot.Pivot;
+        if (healthManager)
+            realTarget = healthManager.AttackTransform;
 
         spawnedBullet.bulletRoot.transform.position = BulletSpawnTransform.position;
         spawnedBullet.bulletRoot.tag = gameObject.tag;
