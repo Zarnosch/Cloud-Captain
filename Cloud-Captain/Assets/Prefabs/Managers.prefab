@@ -79,8 +79,8 @@ MonoBehaviour:
   HealthFeedbackParticlePrefab: {fileID: 140386, guid: cd38b9283507310438489ca2320ce8eb,
     type: 2}
   HitEffectPrefab: {fileID: 178050, guid: 65ec7f1506ee8e84a8d059aa6abb10b7, type: 2}
-  SmookingTrailPrefab: {fileID: 130776, guid: a6d2263f91c9f6749922df8096909a8a, type: 2}
   ExplosionPrefab: {fileID: 147614, guid: 2391abbb72b2edc48b2136c743b46a1c, type: 2}
+  ShieldPrefab: {fileID: 139938, guid: e40ae857a776bbd4fbc2fd8868f392f2, type: 2}
   SettleShipPrefab: {fileID: 104800, guid: 7f5c937f942f2d440a6f4082905d40a9, type: 2}
   ScoutShipPrefab: {fileID: 144948, guid: 5866fd42ab6a30f47850e5ca6c8878cf, type: 2}
   SmallShipPrefab: {fileID: 123004, guid: 569210a660558eb498ef41c3c28b8d63, type: 2}

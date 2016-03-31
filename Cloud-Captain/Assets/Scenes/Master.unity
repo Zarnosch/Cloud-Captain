@@ -16725,7 +16725,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 406102, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 11427812, guid: 487183b077b60b44792f0f9d25e43e0b, type: 2}
       propertyPath: UIManager

@@ -15,7 +15,7 @@ public class NexusUpgrade : Upgrade
 
     protected override EUpgrade[] GetAvaibleUpgrades()
     {
-        return new EUpgrade[] { EUpgrade.Life, EUpgrade.Shild, EUpgrade.MovementSpeed };
+        return new EUpgrade[] { EUpgrade.Life, EUpgrade.Shield, EUpgrade.MovementSpeed };
     }
 
     protected override void OnAwake()
@@ -33,7 +33,7 @@ public class NexusUpgrade : Upgrade
     {
         switch (upgrade)
         {
-            case EUpgrade.Shild:
+            case EUpgrade.Shield:
                 break;
             case EUpgrade.Life:
                 IncreaseHealth(Health, Setting.NEXUS_UPGRADE_HEALTH_INCREASE);

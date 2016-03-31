@@ -62,13 +62,27 @@ public abstract class ABulletBehavior : MonoBehaviour
             OnImpact.Invoke(bulletRoot.transform);
 
             if (KillOnImpact)
-            {
                 this.bulletSpawner.DestroyBullet(this);
-            }
         }
 
+        //AKA: other object dont belongs to own objects (Player <-> Enemy)
         else if (other.tag != bulletRoot.tag)
         {
+
+            Shield shield = other.GetComponent<Shield>();
+
+            if (shield != null)
+            {
+                if (shield.IsShieldActive)
+                {
+                    shield.OnImpact(bulletRoot.transform.position, damage);
+
+                    if (KillOnImpact)
+                        this.bulletSpawner.DestroyBullet(this);
+                }
+
+            }
+
             HealthManager health = other.GetComponent<HealthManager>();
 
             if (health != null)
@@ -76,15 +90,14 @@ public abstract class ABulletBehavior : MonoBehaviour
                 health.ChangeHealth(-damage);
                 OnImpact.Invoke(bulletRoot.transform);
 
-
                 if (KillOnImpact)
-                {
                     this.bulletSpawner.DestroyBullet(this);
-                }
-
-
+                
             }
+
+         
         }
+
 
       
 

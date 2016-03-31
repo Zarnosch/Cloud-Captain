@@ -14,7 +14,7 @@ public class ShipyardUpgrade : Upgrade
 
     protected override EUpgrade[] GetAvaibleUpgrades()
     {
-        return new EUpgrade[] { EUpgrade.Life, EUpgrade.ProductionSpeed, EUpgrade.Shild };
+        return new EUpgrade[] { EUpgrade.Life, EUpgrade.ProductionSpeed, EUpgrade.Shield };
     }
 
     protected override void OnAwake()
@@ -26,7 +26,7 @@ public class ShipyardUpgrade : Upgrade
     {
         switch (upgrade)
         {
-            case EUpgrade.Shild:
+            case EUpgrade.Shield:
                 break;
             case EUpgrade.Life:
 

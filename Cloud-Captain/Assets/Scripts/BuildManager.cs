@@ -56,6 +56,8 @@ public class BuildManager : MonoBehaviour
 
     public GameObject ExplosionPrefab;
 
+    public GameObject ShieldPrefab;
+
     #endregion
 
     #region Ships

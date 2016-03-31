@@ -56,7 +56,9 @@ public static class Setting
     public const float SHIP_DAMAGE_INCREASE = 1.05f;
     public const float SHIP_HEALTH_INCREASE = 1.05f;
     public const float SHIP_SPEED_INCREASE = 1.1f;
-    public const float SHIP_SHILD_INCREASE = 1.1f;
+
+    public const float SHIP_SHIELD_COOLDOWN = 5.0f;
+    public const float SHIP_SHIELD_INCREASE = 1.1f;
 
 
     public const float SHIP_DEFAULT_REPAIR_COOLDOWN             = 5.0f;
@@ -96,6 +98,9 @@ public static class Setting
     public const int MAX_DMG_SCOUTER = 10;
     public const float SCOUTER_BUILD_TIME = 2.0f;
 
+    public const float SHIELD_RADIUS_SCOUTER = 20.0f;
+    public const int SHIELD_HEALTH_SCOUTER = 400;
+
     #endregion
 
     #region SMALLSHIP
@@ -107,6 +112,9 @@ public static class Setting
     public const float MAX_RANGE_SMALLSHIP = 60f;
     public const int MAX_DMG_SMALLSHIP = 40;
     public const float SMALLSHIP_BUILD_TIME = 100.0f;
+
+    public const float SHIELD_RADIUS_SMALLSHIP = 20.0f;
+    public const int SHIELD_HEALTH_SMALLSHIP = 400;
 
     #endregion
 
@@ -120,6 +128,9 @@ public static class Setting
     public const int MAX_DMG_MEDIUMSHIP = 60;
     public const float MEDIUMSHIP_BUILD_TIME = 100.0f;
 
+    public const float SHIELD_RADIUS_MEDIUMSHIP = 20.0f;
+    public const int SHIELD_HEALTH_MEDIUMSHIP = 400;
+
     #endregion
 
     #region BIGSHIP
@@ -132,6 +143,8 @@ public static class Setting
     public const int MAX_DMG_BIGSHIP = 100;
     public const float BIGSHIP_BUILD_TIME = 100.0f;
 
+    public const float SHIELD_RADIUS_BIGSHIP = 20.0f;
+    public const int SHIELD_HEALTH_BIGSHIP = 400;
     #endregion
 
     #endregion

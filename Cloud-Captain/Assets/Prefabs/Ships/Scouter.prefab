@@ -231,7 +231,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 429960}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: AttackPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -638,7 +638,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 144948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 467.72696, y: -3.1054345e-15, z: 439.85632}
+  m_LocalPosition: {x: 416.33377, y: -1.0010849e-15, z: 345.08487}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 491066}
@@ -1340,6 +1340,7 @@ MonoBehaviour:
   AttackRangeSphere: {fileID: 13562428}
   Spawner: {fileID: 11406804}
   ShipMove: {fileID: 11487458}
+  ShieldRoot: {fileID: 159334}
 --- !u!114 &11471764
 MonoBehaviour:
   m_ObjectHideFlags: 1

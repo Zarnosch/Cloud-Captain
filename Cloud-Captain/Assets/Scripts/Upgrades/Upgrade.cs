@@ -8,7 +8,7 @@ public abstract class Upgrade : MonoBehaviour
         /// <summary>Dont uses this as a upgrade.</summary>
         None,
 
-        Shild, Range, Life, ShipRepair, BuildingRepair, MovementSpeed, ProductionSpeed, Damage
+        Shield, Range, Life, ShipRepair, BuildingRepair, MovementSpeed, ProductionSpeed, Damage
     }
 
     /// <summary>Which upgrades can be used on a given object?</summary>

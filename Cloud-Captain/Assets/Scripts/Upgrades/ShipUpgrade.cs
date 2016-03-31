@@ -10,18 +10,21 @@ public class ShipUpgrade : Upgrade
     public SphereCollider AttackRangeSphere;
     public BulletSpawner Spawner;
     public ShipMove ShipMove;
+    public GameObject ShieldRoot;
 
 
     private int baseAttackDamage;
     private int baseHealth;
     private int slots;
 
-
     private float baseMoveSpeed;
     private float baseAttackRange;
 
-    private Repairer repairer;
+    private float baseShieldRadius;
+    private int baseShieldHealth;
 
+    private Repairer repairer;
+    private Shield shield;
 
 
     public override int GetNumMaxUpgrades()
@@ -31,7 +34,7 @@ public class ShipUpgrade : Upgrade
 
     protected override EUpgrade[] GetAvaibleUpgrades()
     {
-        return new EUpgrade[] { EUpgrade.Damage, EUpgrade.Life, EUpgrade.MovementSpeed, EUpgrade.Range, EUpgrade.Shild, EUpgrade.BuildingRepair };
+        return new EUpgrade[] { EUpgrade.Damage, EUpgrade.Life, EUpgrade.MovementSpeed, EUpgrade.Range, EUpgrade.Shield, EUpgrade.BuildingRepair, EUpgrade.Shield };
     }
 
     protected override void OnAwake()
@@ -60,7 +63,19 @@ public class ShipUpgrade : Upgrade
     {
         switch (upgrade)
         {
-            case EUpgrade.Shild:
+            case EUpgrade.Shield:
+                if (GetNumUpgrades(EUpgrade.Shield) == 0)
+                {
+                    GameObject shieldObj = (GameObject)Instantiate(BuildManager.Instance.ShieldPrefab, ShieldRoot.transform.position, Quaternion.identity);
+                    this.shield = shieldObj.GetComponent<Shield>();
+                    shieldObj.transform.SetParent(ShieldRoot.transform);
+                    InitShield();
+                }
+
+                else
+                {
+                    ImproveShield();
+                }
                 break;
 
             case EUpgrade.Range:
@@ -99,6 +114,19 @@ public class ShipUpgrade : Upgrade
         }
     }
 
+    private void InitShield()
+    {
+        this.shield.SetRadius(baseShieldRadius);
+        this.shield.SetMaxHealth(baseShieldHealth);
+
+        this.shield.Init();
+    }
+
+    private void ImproveShield()
+    {
+        this.shield.MultHealth(Setting.SHIP_SHIELD_INCREASE);
+    }
+
     private void ImproveRepairer()
     {
         ReduceFloat(ref this.repairer.maxHealCooldown, Setting.SHIP_UPGRADE_REPAIR_COOLDOWN_INCREASE);
@@ -120,6 +148,9 @@ public class ShipUpgrade : Upgrade
             baseAttackDamage = Setting.MAX_DMG_SCOUTER;
             baseMoveSpeed = Setting.MAX_SPEED_SCOUTER;
             baseAttackRange = Setting.MAX_RANGE_SCOUTER;
+
+            baseShieldHealth = Setting.SHIELD_HEALTH_SCOUTER;
+            baseShieldRadius = Setting.SHIELD_RADIUS_SCOUTER;
         }
 
         else if (Type == Setting.ObjectType.SmallShip)
@@ -129,6 +160,9 @@ public class ShipUpgrade : Upgrade
             baseAttackDamage = Setting.MAX_DMG_SMALLSHIP;
             baseMoveSpeed = Setting.MAX_SPEED_SMALLSHIP;
             baseAttackRange = Setting.MAX_RANGE_SMALLSHIP;
+
+            baseShieldHealth = Setting.SHIELD_HEALTH_SMALLSHIP;
+            baseShieldRadius = Setting.SHIELD_RADIUS_SMALLSHIP;
         }
 
         else if (Type == Setting.ObjectType.MediumShip)
@@ -138,6 +172,9 @@ public class ShipUpgrade : Upgrade
             baseAttackDamage = Setting.MAX_DMG_MEDIUMSHIP;
             baseMoveSpeed = Setting.MAX_SPEED_MEDIUMSHIP;
             baseAttackRange = Setting.MAX_RANGE_MEDIUMSHIP;
+
+            baseShieldHealth = Setting.SHIELD_HEALTH_MEDIUMSHIP;
+            baseShieldRadius = Setting.SHIELD_RADIUS_MEDIUMSHIP;
         }
 
         else if (Type == Setting.ObjectType.BigShip)
@@ -147,6 +184,9 @@ public class ShipUpgrade : Upgrade
             baseAttackDamage = Setting.MAX_DMG_BIGSHIP;
             baseMoveSpeed = Setting.MAX_SPEED_BIGSHIP;
             baseAttackRange = Setting.MAX_RANGE_BIGSHIP;
+
+            baseShieldHealth = Setting.SHIELD_HEALTH_BIGSHIP;
+            baseShieldRadius = Setting.SHIELD_RADIUS_BIGSHIP;
         }
 
         else if(Type == Setting.ObjectType.SettleShip)
