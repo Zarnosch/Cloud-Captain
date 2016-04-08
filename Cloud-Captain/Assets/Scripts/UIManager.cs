@@ -173,7 +173,7 @@ public class UIManager : MonoBehaviour {
 				
 				var queuedShip = Instantiate (UpgradeText);
 				queuedShip.transform.SetParent(paneRef.BuildQueue.transform);
-				queuedShip.GetComponent<Text> ().text = buildable.prefab.GetComponent<GameobjectType> ().ObjectType.ToString ();
+				queuedShip.GetComponent<Text> ().text = buildable.GetPrefab().GetComponent<GameobjectType> ().ObjectType.ToString ();
 			}
 		}
 	}

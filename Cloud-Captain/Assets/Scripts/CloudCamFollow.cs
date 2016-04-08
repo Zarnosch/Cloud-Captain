@@ -5,11 +5,11 @@ public class CloudCamFollow : MonoBehaviour {
 
     public Camera Cam;
 
-    private float yVal;
+   // private float yVal;
 
     void Start()
     {
-        yVal = gameObject.transform.position.y;
+        //yVal = gameObject.transform.position.y;
     }
 
 	// Update is called once per frame

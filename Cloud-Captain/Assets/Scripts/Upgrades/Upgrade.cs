@@ -29,8 +29,6 @@ public abstract class Upgrade : MonoBehaviour
 
         this.UsedUpgrades = new EUpgrade[GetNumMaxUpgrades()];
         this.AvaibleUpgrades = GetAvaibleUpgrades();
-
-
     }
 
 
@@ -126,7 +124,7 @@ public abstract class Upgrade : MonoBehaviour
         cooldown = cooldown - (reduction * cooldown);
     }
 
-    protected int GetNumUpgrades(EUpgrade upgrade)
+    protected int GetNumUpgradesOfType(EUpgrade upgrade)
     {
         int num = 0;
 

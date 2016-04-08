@@ -2,11 +2,10 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-[ExecuteInEditMode]
 public class BuildManager : MonoBehaviour
 {
-    public enum BuildingObject { TeslaTower, ArtilleryTower, PowerPlant, Mine, Workshop, Shipyard, Nexus, Settlement }
-    public enum ShipType { Settler, Scout, Small, Medium, Big }
+    public enum BuildingObject { TeslaTower, ArtilleryTower, PowerPlant, Mine, Workshop, Shipyard, Nexus, Settlement,   Count }
+    public enum ShipType { Settler, Scout, Small, Medium, Big, Count}
 
     public static BuildManager Instance { get; private set; }
 
@@ -39,6 +38,8 @@ public class BuildManager : MonoBehaviour
     private GameObject NexusPrefab;
     [SerializeField]
     private GameObject SettlementPrefab;
+
+    private BuildingInfo[] buildingInfos;
 
     #endregion
 
@@ -73,6 +74,8 @@ public class BuildManager : MonoBehaviour
     [SerializeField]
     private GameObject BigShipPrefab;
 
+    private ShipInfo[] shipInfos;
+
     #endregion
 
 
@@ -81,18 +84,21 @@ public class BuildManager : MonoBehaviour
         Debug.Assert(!Instance, "Only one BuildManager script is allowed in the scene!");
 
         Instance = this;
+
+        buildingInfos = new BuildingInfo[(int)BuildingObject.Count];
+        shipInfos = new ShipInfo[(int)ShipType.Count];
     }
 
     public GameObject TryPlaceBuilding(BuildingObject obj, Transform position)
     {
         BuildingInfo info = GetBuildingInfo(obj);
 
-        if (PlayerManager.Instance.EnoughResource(info.price))
+        if (PlayerManager.Instance.EnoughResource(info.GetPrice()))
         {
-          
-                PlayerManager.Instance.ChangeResource(info.price * -1);
 
-            return (GameObject)Instantiate(info.prefab, position.position, position.rotation);
+            PlayerManager.Instance.ChangeResource(info.GetPrice() * -1);
+
+            return (GameObject)Instantiate(info.GetPrefab(), position.position, position.rotation);
         }
 
         return null;
@@ -101,14 +107,21 @@ public class BuildManager : MonoBehaviour
     public GameObject TryPlaceBuildingNoCost(BuildingObject obj, Transform position)
     {
         BuildingInfo info = GetBuildingInfo(obj);  
-        return (GameObject)Instantiate(info.prefab, position.position, position.rotation);
+        return (GameObject)Instantiate(info.GetPrefab(), position.position, position.rotation);
     }
 
     public BuildingInfo GetBuildingInfo(BuildingObject obj)
     {
+        if (buildingInfos[(int)obj] == null)
+            buildingInfos[(int)obj] = CreateBuildingInfo(obj);
+
+        return buildingInfos[(int)obj];      
+    }
+
+    private BuildingInfo CreateBuildingInfo(BuildingObject obj)
+    {
         switch (obj)
         {
-
             case BuildingObject.ArtilleryTower:
                 return new BuildingInfo(Setting.ARTILLERY_TOWER_RES_COST, ArtilleryTowerPrefab);
 
@@ -134,21 +147,31 @@ public class BuildManager : MonoBehaviour
                 return new BuildingInfo(Setting.SETTLEMENT_RES_COST, SettlementPrefab);
 
             default:
+                Debug.Assert(false);
                 return new BuildingInfo();
-
         }
     }
 
+    
+
     public ShipInfo GetShipInfo(ShipType type)
+    {
+        if (shipInfos[(int)type] == null)
+            shipInfos[(int)type] = CreateShipInfo(type);
+
+        return shipInfos[(int)type];
+    }
+
+    private ShipInfo CreateShipInfo(ShipType type)
     {
         switch (type)
         {
             case ShipType.Scout:
                 return new ShipInfo(Setting.COST_RES_SCOUTER, ScoutShipPrefab, Setting.SCOUTER_BUILD_TIME);
-   
+
             case ShipType.Small:
                 return new ShipInfo(Setting.COST_RES_SMALLSHIP, SmallShipPrefab, Setting.SMALLSHIP_BUILD_TIME);
-   
+
             case ShipType.Medium:
                 return new ShipInfo(Setting.COST_RES_MEDIUMSHIP, MediumShipPrefab, Setting.MEDIUMSHIP_BUILD_TIME);
 
@@ -159,17 +182,31 @@ public class BuildManager : MonoBehaviour
                 return new ShipInfo(Setting.COST_RES_SETTLESHIP, SettleShipPrefab, Setting.SETTLESHIP_BUILD_TIME);
 
             default:
+                Debug.Assert(false);
                 return new ShipInfo();
 
         }
     }
 
  
-
-    public struct BuildingInfo
+    public class BuildingInfo
     {
-        public GameObject prefab;
-        public Res price;
+        private GameObject prefab;
+        private Res price;
+
+        public GameObject GetPrefab()
+        {
+            return prefab;
+        }
+
+        public Res GetPrice()
+        {
+            return price;
+        }
+
+        public BuildingInfo()
+        {
+        }
 
         public BuildingInfo(Res price, GameObject prefab)
         {
@@ -178,12 +215,31 @@ public class BuildManager : MonoBehaviour
         }
     }
 
-    public struct ShipInfo
+    public class ShipInfo
     {
-        public GameObject prefab;
-        public Res price;
-        public float buildTime;
+        private GameObject prefab;
+        private Res price;
+        private float buildTime;
         
+        public GameObject GetPrefab()
+        {
+            return prefab;
+        }
+
+        public Res GetPrice()
+        {
+            return price;
+        }
+
+        public float GetBuildtime()
+        {
+            return buildTime;
+        }
+
+        public ShipInfo()
+        {
+        }
+
         public ShipInfo(Res price, GameObject prefab, float buildTime)
         {
             this.prefab = prefab;

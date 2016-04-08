@@ -64,7 +64,7 @@ public class ShipUpgrade : Upgrade
         switch (upgrade)
         {
             case EUpgrade.Shield:
-                if (GetNumUpgrades(EUpgrade.Shield) == 0)
+                if (GetNumUpgradesOfType(EUpgrade.Shield) == 0)
                 {
                     GameObject shieldObj = (GameObject)Instantiate(BuildManager.Instance.ShieldPrefab, ShieldRoot.transform.position, Quaternion.identity);
                     this.shield = shieldObj.GetComponent<Shield>();
@@ -88,7 +88,7 @@ public class ShipUpgrade : Upgrade
                 break;
             case EUpgrade.BuildingRepair:
 
-                if (GetNumUpgrades(EUpgrade.BuildingRepair) == 0)
+                if (GetNumUpgradesOfType(EUpgrade.BuildingRepair) == 0)
                 {
                     GameObject repairer = (GameObject)Instantiate(BuildManager.Instance.BuildingRepairerPrefab, gameObject.transform.position, Quaternion.identity);
                     this.repairer = repairer.GetComponent<Repairer>();

@@ -5,8 +5,6 @@ using System;
 
 public class ShipBuilder : MonoBehaviour
 {
-
-
     public BuildManager.ShipType[] BuildableShips;
     public Transform SpawnPosition;
 
@@ -18,6 +16,7 @@ public class ShipBuilder : MonoBehaviour
 
     private bool isBuilding = false;
  
+    [HideInInspector]
     public Queue<BuildManager.ShipInfo> enqueuedShips = new Queue<BuildManager.ShipInfo>();
 
     private Action<GameObject> queueChanged;
@@ -82,7 +81,7 @@ public class ShipBuilder : MonoBehaviour
             Res price = new Res(0, 0, 0);
 
             if (cost)
-                price = info.price;
+                price = info.GetPrice();
 
             if (PlayerManager.Instance.EnoughResource(price))
             {
@@ -117,7 +116,8 @@ public class ShipBuilder : MonoBehaviour
 
             if(curBuildCooldown <= 0.0f || BuildManager.Instance.InstantBuild)
             {
-                GameObject newShip = (GameObject) Instantiate(enqueuedShips.Dequeue().prefab, SpawnPosition.transform.position, Quaternion.identity);
+                //GameObject newShip = 
+                Instantiate(enqueuedShips.Dequeue().GetPrefab(), SpawnPosition.transform.position, Quaternion.identity);
                
                 QueueChanged();
                 isBuilding = false;
@@ -129,9 +129,14 @@ public class ShipBuilder : MonoBehaviour
             isBuilding = true;
 
             float reduction = 1.0f - buildReduction;
-            curBuildCooldown = enqueuedShips.Peek().buildTime - (enqueuedShips.Peek().buildTime * reduction);
+            curBuildCooldown = enqueuedShips.Peek().GetBuildtime() - (enqueuedShips.Peek().GetBuildtime() * reduction);
         }
 
+        else
+        {
+            Debug.Log("Error?!");
+            isBuilding = false;
+        }
 
     }
 
@@ -162,7 +167,7 @@ public class ShipBuilder : MonoBehaviour
 
         if(enqueuedShips.Count > 0)
         {
-            return curBuildCooldown / enqueuedShips.Peek().buildTime;
+            return curBuildCooldown / enqueuedShips.Peek().GetBuildtime();
         }
 
         else
