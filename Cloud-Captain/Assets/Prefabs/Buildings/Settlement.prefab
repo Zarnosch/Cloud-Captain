@@ -63,6 +63,7 @@ GameObject:
   - 114: {fileID: 11461380}
   - 114: {fileID: 11489200}
   - 114: {fileID: 11436288}
+  - 54: {fileID: 5484036}
   m_Layer: 8
   m_Name: Settlement
   m_TagString: Player
@@ -402,6 +403,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130448}
   m_Mesh: {fileID: 4300004, guid: a84738397c6e3b04a8f7c5fb48e55c47, type: 3}
+--- !u!54 &5484036
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160286}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!65 &6544368
 BoxCollider:
   m_ObjectHideFlags: 1

@@ -17,7 +17,7 @@ public class ShipBuilder : MonoBehaviour
     private bool isBuilding = false;
  
     [HideInInspector]
-    public Queue<BuildManager.ShipInfo> enqueuedShips = new Queue<BuildManager.ShipInfo>();
+    public Queue<BuildManager.UnitBuildInfo> enqueuedShips = new Queue<BuildManager.UnitBuildInfo>();
 
     private Action<GameObject> queueChanged;
 
@@ -76,12 +76,12 @@ public class ShipBuilder : MonoBehaviour
     {
         if (CanBuild(type))
         {
-            BuildManager.ShipInfo info = BuildManager.Instance.GetShipInfo(type);
+            BuildManager.UnitBuildInfo info = BuildManager.Instance.GetUnitInfo(type.ConvertToObjectType());
 
             Res price = new Res(0, 0, 0);
 
             if (cost)
-                price = info.GetPrice();
+                price = info.Price;
 
             if (PlayerManager.Instance.EnoughResource(price))
             {
@@ -117,7 +117,7 @@ public class ShipBuilder : MonoBehaviour
             if(curBuildCooldown <= 0.0f || BuildManager.Instance.InstantBuild)
             {
                 //GameObject newShip = 
-                Instantiate(enqueuedShips.Dequeue().GetPrefab(), SpawnPosition.transform.position, Quaternion.identity);
+                Instantiate(enqueuedShips.Dequeue().Prefab, SpawnPosition.transform.position, Quaternion.identity);
                
                 QueueChanged();
                 isBuilding = false;
@@ -129,12 +129,11 @@ public class ShipBuilder : MonoBehaviour
             isBuilding = true;
 
             float reduction = 1.0f - buildReduction;
-            curBuildCooldown = enqueuedShips.Peek().GetBuildtime() - (enqueuedShips.Peek().GetBuildtime() * reduction);
+            curBuildCooldown = enqueuedShips.Peek().BuildTime - (enqueuedShips.Peek().BuildTime * reduction);
         }
 
         else
         {
-            Debug.Log("Error?!");
             isBuilding = false;
         }
 
@@ -167,7 +166,7 @@ public class ShipBuilder : MonoBehaviour
 
         if(enqueuedShips.Count > 0)
         {
-            return curBuildCooldown / enqueuedShips.Peek().GetBuildtime();
+            return curBuildCooldown / enqueuedShips.Peek().BuildTime;
         }
 
         else

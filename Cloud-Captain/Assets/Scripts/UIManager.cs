@@ -88,20 +88,20 @@ public class UIManager : MonoBehaviour {
 				bB.transform.SetParent(paneManagerComponent.ActionsPane.transform);
 				bB.GetComponentInChildren<Text> ().text = buildable.ToString ();
 				switch (buildable) {
-					case BuildManager.ShipType.Settler:
-						bB.onClick.AddListener (() => { BuildShip(shipBuilderComponent, BuildManager.ShipType.Settler); });
+					case BuildManager.ShipType.SettleShip:
+						bB.onClick.AddListener (() => { BuildShip(shipBuilderComponent, BuildManager.ShipType.SettleShip); });
 						break;
-					case BuildManager.ShipType.Scout:
-						bB.onClick.AddListener (() => { BuildShip(shipBuilderComponent, BuildManager.ShipType.Scout); });
+					case BuildManager.ShipType.Scouter:
+						bB.onClick.AddListener (() => { BuildShip(shipBuilderComponent, BuildManager.ShipType.Scouter); });
 						break;
-					case BuildManager.ShipType.Small:
-						bB.onClick.AddListener (() => { BuildShip(shipBuilderComponent, BuildManager.ShipType.Small); });
+					case BuildManager.ShipType.SmallShip:
+						bB.onClick.AddListener (() => { BuildShip(shipBuilderComponent, BuildManager.ShipType.SmallShip); });
 						break;
-					case BuildManager.ShipType.Medium:
-						bB.onClick.AddListener (() => { BuildShip(shipBuilderComponent, BuildManager.ShipType.Medium); });
+					case BuildManager.ShipType.MediumShip:
+						bB.onClick.AddListener (() => { BuildShip(shipBuilderComponent, BuildManager.ShipType.MediumShip); });
 						break;
-					case BuildManager.ShipType.Big:
-						bB.onClick.AddListener (() => { BuildShip(shipBuilderComponent, BuildManager.ShipType.Big); });
+					case BuildManager.ShipType.BigShip:
+						bB.onClick.AddListener (() => { BuildShip(shipBuilderComponent, BuildManager.ShipType.BigShip); });
 						break;
 					default:
 						Debug.LogError ("This should not happen!");
@@ -167,19 +167,19 @@ public class UIManager : MonoBehaviour {
 				Destroy (child.gameObject);
 			}
 
-			BuildManager.ShipInfo[] shipsInQueue = selectedObj.GetComponent<ShipBuilder> ().enqueuedShips.ToArray ();
+			BuildManager.UnitBuildInfo[] shipsInQueue = selectedObj.GetComponent<ShipBuilder> ().enqueuedShips.ToArray ();
 
 			foreach (var buildable in shipsInQueue) {
 				
 				var queuedShip = Instantiate (UpgradeText);
 				queuedShip.transform.SetParent(paneRef.BuildQueue.transform);
-				queuedShip.GetComponent<Text> ().text = buildable.GetPrefab().GetComponent<GameobjectType> ().ObjectType.ToString ();
+				queuedShip.GetComponent<Text> ().text = buildable.Prefab.GetComponent<GameobjectType> ().ObjectType.ToString ();
 			}
 		}
 	}
 
 	public void BuildShip(ShipBuilder parentShipYard, BuildManager.ShipType buildShipType) {
-		parentShipYard.BuildShipNoCost (buildShipType);
+		parentShipYard.BuildShip (buildShipType);
 	}
 
 	public void UpdateUpgrades(Upgrade.EUpgrade[] availUpgrades, Upgrade.EUpgrade[] installedUpgrades, Transform upgradePane, Setting.ObjectType objType)

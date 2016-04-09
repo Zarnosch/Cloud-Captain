@@ -15,7 +15,7 @@ public static class Setting
 	}
 
     // Buildings buildable on building area
-	public static readonly BuildManager.BuildingObject[] BUILDABLE_BUILDINGS = new BuildManager.BuildingObject[] { 
+    public static readonly BuildManager.BuildingObject[] BUILDABLE_BUILDINGS = new BuildManager.BuildingObject[] { 
 		BuildManager.BuildingObject.PowerPlant, 
 		BuildManager.BuildingObject.Mine,
 		BuildManager.BuildingObject.Shipyard, 
@@ -369,4 +369,64 @@ public static class Setting
 
     #endregion
 
+
+    public static ObjectType ConvertToObjectType(this BuildManager.BuildingObject type)
+    {
+        switch (type)
+        {
+            case BuildManager.BuildingObject.TeslaTower:
+                return ObjectType.TeslaTower;
+
+            case BuildManager.BuildingObject.ArtilleryTower:
+                return ObjectType.ArtilleryTower;
+
+            case BuildManager.BuildingObject.PowerPlant:
+                return ObjectType.PowerPlant;
+
+            case BuildManager.BuildingObject.Mine:
+                return ObjectType.Mine;
+
+            case BuildManager.BuildingObject.Workshop:
+                return ObjectType.Workshop;
+
+            case BuildManager.BuildingObject.Shipyard:
+                return ObjectType.Shipyard;
+
+            case BuildManager.BuildingObject.Nexus:
+                return ObjectType.Nexus;
+
+            case BuildManager.BuildingObject.Settlement:
+                return ObjectType.Settlement;
+
+            default:
+                Debug.Assert(false);
+                return ObjectType.ArtilleryTower;
+        }
+    }
+
+    public static ObjectType ConvertToObjectType(this BuildManager.ShipType type)
+    {
+        switch (type)
+        {
+            case BuildManager.ShipType.SettleShip:
+                return ObjectType.SettleShip;
+
+            case BuildManager.ShipType.Scouter:
+                return ObjectType.Scouter;
+
+            case BuildManager.ShipType.SmallShip:
+                return ObjectType.SmallShip;
+
+            case BuildManager.ShipType.MediumShip:
+                return ObjectType.MediumShip;
+
+            case BuildManager.ShipType.BigShip:
+                return ObjectType.BigShip;
+
+            default:
+                Debug.Assert(false);
+                return ObjectType.SettleShip;
+
+        }
+    }
 }
