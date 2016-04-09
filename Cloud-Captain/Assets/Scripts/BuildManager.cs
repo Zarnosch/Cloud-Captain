@@ -23,6 +23,8 @@ public class BuildManager : MonoBehaviour
 
     #region Building prefabs
 
+    [Header("Building Prefabs")]
+
     [SerializeField]
     private GameObject TeslaTowerPrefab;
     [SerializeField]
@@ -47,6 +49,8 @@ public class BuildManager : MonoBehaviour
 
     #region Misc Prefabs
 
+    [Header("Misc Prefabs")]
+
     public GameObject BuildingRepairerPrefab;
 
     public GameObject HealthbarPrefab;
@@ -64,6 +68,8 @@ public class BuildManager : MonoBehaviour
     #endregion
 
     #region Ships
+
+    [Header("Ship Prefab")]
 
     [SerializeField]
     private GameObject SettleShipPrefab;
@@ -150,19 +156,19 @@ public class BuildManager : MonoBehaviour
             //Ships:
 
             case Setting.ObjectType.Scouter:
-                return new UnitBuildInfo(Setting.COST_RES_SCOUTER, ScoutShipPrefab, Setting.SCOUTER_BUILD_TIME, type);
+                return new UnitBuildInfo(Setting.COST_RES_SCOUTER, ScoutShipPrefab, Setting.SCOUTER_BUILD_TIME, Setting.COST_SUPPLY_SCOUTER, type);
 
             case Setting.ObjectType.SettleShip:
-                return new UnitBuildInfo(Setting.COST_RES_SETTLESHIP, SettleShipPrefab, Setting.SETTLESHIP_BUILD_TIME, type);
+                return new UnitBuildInfo(Setting.COST_RES_SETTLESHIP, SettleShipPrefab, Setting.SETTLESHIP_BUILD_TIME, Setting.COST_SUPPLY_SETTLESHIP, type);
 
             case Setting.ObjectType.SmallShip:
-                return new UnitBuildInfo(Setting.COST_RES_SMALLSHIP, SmallShipPrefab, Setting.SMALLSHIP_BUILD_TIME, type);
+                return new UnitBuildInfo(Setting.COST_RES_SMALLSHIP, SmallShipPrefab, Setting.SMALLSHIP_BUILD_TIME, Setting.COST_SUPPLY_SMALLSHIP, type);
 
             case Setting.ObjectType.MediumShip:
-                return new UnitBuildInfo(Setting.COST_RES_MEDIUMSHIP, MediumShipPrefab, Setting.MEDIUMSHIP_BUILD_TIME, type);
+                return new UnitBuildInfo(Setting.COST_RES_MEDIUMSHIP, MediumShipPrefab, Setting.MEDIUMSHIP_BUILD_TIME, Setting.COST_SUPPLY_MEDIUMSHIP, type);
 
             case Setting.ObjectType.BigShip:
-                return new UnitBuildInfo(Setting.COST_RES_BIGSHIP, BigShipPrefab, Setting.BIGSHIP_BUILD_TIME, type);
+                return new UnitBuildInfo(Setting.COST_RES_BIGSHIP, BigShipPrefab, Setting.BIGSHIP_BUILD_TIME, Setting.COST_SUPPLY_BIGSHIP, type);
 
             default:
                 Debug.Assert(false);

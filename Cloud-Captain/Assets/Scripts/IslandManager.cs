@@ -54,7 +54,7 @@ public class IslandManager : MonoBehaviour
         else
         {
             buildingBuildSideConnection.Add(obj, buildingSide);
-            GameobjectType type = obj.GetComponent<GameobjectType>();
+            GameObjectType type = obj.GetComponent<GameObjectType>();
 
             if (type.ObjectType == Setting.ObjectType.Nexus)
                 this.Nexus = obj;
@@ -77,7 +77,7 @@ public class IslandManager : MonoBehaviour
     {
         Debug.Assert(obj.layer == LayerMask.NameToLayer("Buildings"));
 
-        GameobjectType type = obj.GetComponent<GameobjectType>();
+        GameObjectType type = obj.GetComponent<GameObjectType>();
 
         if (type && containingBuildings.Contains(obj))
         {

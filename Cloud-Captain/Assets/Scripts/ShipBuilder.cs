@@ -83,9 +83,10 @@ public class ShipBuilder : MonoBehaviour
             if (cost)
                 price = info.Price;
 
-            if (PlayerManager.Instance.EnoughResource(price))
+            if (PlayerManager.Instance.EnoughResource(price) && PlayerManager.Instance.EnoughSupply(info.SupplyCost))
             {
                 PlayerManager.Instance.ChangeResource(price * -1);
+                PlayerManager.Instance.ChangeSupply(info.SupplyCost);
 
                 enqueuedShips.Enqueue(info);
                 QueueChanged();
@@ -116,9 +117,9 @@ public class ShipBuilder : MonoBehaviour
 
             if(curBuildCooldown <= 0.0f || BuildManager.Instance.InstantBuild)
             {
-                //GameObject newShip = 
-                Instantiate(enqueuedShips.Dequeue().Prefab, SpawnPosition.transform.position, Quaternion.identity);
-               
+                GameObject newShip = (GameObject)Instantiate(enqueuedShips.Dequeue().Prefab, SpawnPosition.transform.position, Quaternion.identity);
+                newShip.GetComponent<GameObjectType>().paidSupplyCost = true;
+
                 QueueChanged();
                 isBuilding = false;
             }

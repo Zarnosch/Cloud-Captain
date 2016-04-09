@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour {
             return;
         }
 			
-        GameobjectType gObjType = selectedObj.GetComponent<GameobjectType>();
+        GameObjectType gObjType = selectedObj.GetComponent<GameObjectType>();
 
         if (!gObjType)
             return;
@@ -173,7 +173,7 @@ public class UIManager : MonoBehaviour {
 				
 				var queuedShip = Instantiate (UpgradeText);
 				queuedShip.transform.SetParent(paneRef.BuildQueue.transform);
-				queuedShip.GetComponent<Text> ().text = buildable.Prefab.GetComponent<GameobjectType> ().ObjectType.ToString ();
+				queuedShip.GetComponent<Text> ().text = buildable.Prefab.GetComponent<GameObjectType> ().ObjectType.ToString ();
 			}
 		}
 	}
@@ -324,8 +324,8 @@ public class UIManager : MonoBehaviour {
 	}
 
 	void Update() {
-		MassText.text = PlayerManager.Instance.GetResources ().Matter.ToString();
-		EnergyText.text = PlayerManager.Instance.GetResources ().Energy.ToString();
-		MashineText.text = PlayerManager.Instance.GetResources ().Engine.ToString();
+		MassText.text = PlayerManager.Instance.GetCurrentResources ().Matter.ToString();
+		EnergyText.text = PlayerManager.Instance.GetCurrentResources ().Energy.ToString();
+		MashineText.text = PlayerManager.Instance.GetCurrentResources ().Engine.ToString();
 	}
 }

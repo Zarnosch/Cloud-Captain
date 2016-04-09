@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -8,35 +9,53 @@ public class PlayerManager : MonoBehaviour
 
     public List<GameObject> selectedUnits = new List<GameObject>();
 
-
-    [SerializeField]
     [ReadOnly]
-    private List<GameobjectType> ownedUnits = new List<GameobjectType>();
     [SerializeField]
+    private List<GameObjectType> ownedUnits = new List<GameObjectType>();
     [ReadOnly]
-    private List<GameobjectType> ownedBuildings = new List<GameobjectType>();
     [SerializeField]
+    private List<GameObjectType> ownedBuildings = new List<GameObjectType>();
     [ReadOnly]
-    private List<MachineProducer> workshops = new List<MachineProducer>();
     [SerializeField]
+    private List<MachineProducer> ownedWorkshops = new List<MachineProducer>();
     [ReadOnly]
+    [SerializeField]
     private List<GameObject> controlledIslands = new List<GameObject>();
 
     [ReadOnly]
-    public Res resources = new Res(0, 0, 0);
+    [SerializeField]
+    private Res resources = new Res(0, 0, 0);
+    public Res GetCurrentResources() { return resources; }
 
-	public UIManager UIManager;
+    [ReadOnly]
+    [SerializeField]
+    private int currentSupply;
+    public int GetCurrentSupply() { return currentSupply; }
+
+    [ReadOnly]
+    [SerializeField]
+    private int supplyLimit;
+    public int GetSupplyLimi() { return supplyLimit; }
+
+
+    public UIManager UIManager;
 
     // Use this for initialization
     void Awake()
     {
-        Debug.Assert(!Instance, "Only one PlayerManager script is allowed in one scene!");
+        if(Instance != null)
+        {
+            Debug.Log("Multiple PlayerManagers detected, removing: " + this.gameObject.name);
+            Destroy(this.gameObject);
+            return;
+        }
 
         Instance = this;
 
         resources.Energy = Setting.START_ENERGY_AMOUNT;
         resources.Matter = Setting.START_MATTER_AMOUNT;
         resources.Engine = Setting.START_ENGINE_AMOUNT;
+        supplyLimit = Setting.SUPPLY_MAX_START;
     }
 
     public void ChangeResource(Res res)
@@ -46,7 +65,6 @@ public class PlayerManager : MonoBehaviour
 
     public void ChangeResource(int matter, int energy, int engine)
     {
-
         if (BuildManager.Instance.NoCostMode)
         {
             if (matter < 0)
@@ -67,41 +85,54 @@ public class PlayerManager : MonoBehaviour
 
         resources.Engine += engine;
         resources.Engine = Mathf.Clamp(resources.Engine, 0, Setting.MAX_RES);
-
     }
 
-    public Res GetResources()
+    public void ChangeSupply(int supplyCost)
     {
-        return resources;
+        this.currentSupply += supplyCost;
+
+        //using asserts instead of clamp here, since it should be an error to have more or less supply than the limit
+        Debug.Assert(this.currentSupply <= supplyLimit);
+        Debug.Assert(this.currentSupply >= 0);
     }
 
-    public void AddOwnedShip(GameobjectType type)
+    public bool EnoughSupply(int supplyCost)
+    {
+        return this.currentSupply + supplyCost <= this.supplyLimit;
+    }
+
+    private void AddOwnedShip(GameObjectType type)
     {
         ownedUnits.Add(type);
     }
 
-    public void AddOwnedBuilding(GameobjectType type)
+    private void AddOwnedBuilding(GameObjectType type)
     {
         if (type.ObjectType == Setting.ObjectType.Workshop)
         {
             MachineProducer producer = type.gameObject.GetComponent<MachineProducer>();
 
             if (producer)
-                workshops.Add(producer);
+                ownedWorkshops.Add(producer);
         }
 
-        if(type.ObjectType == Setting.ObjectType.Nexus)
+        if (type.ObjectType == Setting.ObjectType.Nexus)
         {
             IslandReference island = type.gameObject.GetComponent<IslandReference>();
             controlledIslands.Add(island.island.gameObject);
+
+            if (controlledIslands.Count >= 2)
+                this.supplyLimit += Setting.SUPPLY_PLUS_PER_NEXUS;
         }
 
         ownedBuildings.Add(type);
     }
 
-
-    public void AddBuiltObject(GameobjectType gameobjectType)
+    public void AddUnit(GameObjectType gameobjectType, bool paidSupply)
     {
+        if (!paidSupply)
+            ChangeSupply(BuildManager.Instance.GetUnitInfo(gameobjectType.ObjectType).SupplyCost);
+
         if (gameobjectType.gameObject.layer == LayerMask.NameToLayer("Ships"))
         {
             AddOwnedShip(gameobjectType);
@@ -111,44 +142,86 @@ public class PlayerManager : MonoBehaviour
         {
             AddOwnedBuilding(gameobjectType);
         }
-    
-
     }
 
+    public void RemoveUnit(GameObjectType gameobjectType)
+    {
+        this.ChangeSupply(-BuildManager.Instance.GetUnitInfo(gameobjectType.ObjectType).SupplyCost);
+
+        if (gameobjectType.gameObject.layer == LayerMask.NameToLayer("Ships"))
+        {
+           RemoveOwnedShip(gameobjectType);
+        }
+
+        else if (gameobjectType.gameObject.layer == LayerMask.NameToLayer("Buildings"))
+        {
+           RemoveOwnedBuilding(gameobjectType);
+        }
+    }
+
+    private void RemoveOwnedBuilding(GameObjectType type)
+    {
+        if (type.ObjectType == Setting.ObjectType.Workshop)
+        {
+            MachineProducer producer = type.gameObject.GetComponent<MachineProducer>();
+
+            if (producer)
+                ownedWorkshops.Remove(producer);
+        }
+
+        if (type.ObjectType == Setting.ObjectType.Nexus)
+        {
+            IslandReference island = type.gameObject.GetComponent<IslandReference>();
+            controlledIslands.Remove(island.island.gameObject);
+
+            if(controlledIslands.Count >= 1)
+                this.supplyLimit -= Setting.SUPPLY_PLUS_PER_NEXUS;
+        }
+
+        ownedBuildings.Remove(type);
+    }
+
+    private void RemoveOwnedShip(GameObjectType type)
+    {
+        ownedUnits.Remove(type);
+    }
 
     public bool TryProduceMachine()
     {
         return TryProduceMachineIntern(Setting.COST_RES_ENGINE);
     }
 
-    public bool TryProduceMachineNoCost()
+    public void ProduceMachineNoCost(int amount)
     {
-        return TryProduceMachineIntern(Res.Zero);
+        for (int i = 0; i < amount; i++)
+        {
+            TryProduceMachineIntern(Res.Zero);
+        }
     }
 
     public bool HasWorkshops()
     {
-        return workshops.Count > 0;
+        return ownedWorkshops.Count > 0;
     }
 
     private bool TryProduceMachineIntern(Res cost)
     {
-        if (this.workshops.Count == 0)
+        if (this.ownedWorkshops.Count == 0)
             return false;
 
         else
         {
             if (PlayerManager.Instance.EnoughResource(Setting.COST_RES_ENGINE))
             {
-                if(workshops.Count  > 0)
+                if(ownedWorkshops.Count  > 0)
                 {
-                    MachineProducer lowProducer = workshops[0];
+                    MachineProducer lowProducer = ownedWorkshops[0];
 
-                    for (int i = 1; i < workshops.Count; i++)
+                    for (int i = 1; i < ownedWorkshops.Count; i++)
                     {
-                        if (workshops[i].NumMachinesInQueue < lowProducer.NumMachinesInQueue)
+                        if (ownedWorkshops[i].NumMachinesInQueue < lowProducer.NumMachinesInQueue)
                         {
-                            lowProducer = workshops[i];
+                            lowProducer = ownedWorkshops[i];
                         }
                     }
 
