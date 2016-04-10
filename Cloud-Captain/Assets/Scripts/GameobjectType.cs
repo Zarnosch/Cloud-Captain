@@ -13,7 +13,6 @@ public class GameObjectType : MonoBehaviour
         PlayerManager.Instance.AddUnit(this, paidSupplyCost);
     }
 
-
     void OnDestroy()
     {
         PlayerManager.Instance.RemoveUnit(this);

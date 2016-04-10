@@ -27,9 +27,9 @@ GameObject:
   - 114: {fileID: 11441156}
   - 114: {fileID: 11452964}
   - 114: {fileID: 11486982}
-  - 114: {fileID: 11483750}
   - 114: {fileID: 11424092}
   - 54: {fileID: 5457592}
+  - 114: {fileID: 11447424}
   m_Layer: 8
   m_Name: Nexus
   m_TagString: Player
@@ -285,6 +285,19 @@ MonoBehaviour:
   health: -1
   maxHealth: 0
   Invincible: 0
+--- !u!114 &11447424
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 122860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ea4ab5cc38a4a6ea75b990e749cc74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectType: 0
+  paidSupplyCost: 0
 --- !u!114 &11452964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -300,18 +313,6 @@ MonoBehaviour:
   UsedUpgrades: 
   Health: {fileID: 11441156}
   Producer: {fileID: 11424092}
---- !u!114 &11483750
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 122860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30ea4ab5cc38a4a6ea75b990e749cc74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObjectType: 0
 --- !u!114 &11486982
 MonoBehaviour:
   m_ObjectHideFlags: 1
