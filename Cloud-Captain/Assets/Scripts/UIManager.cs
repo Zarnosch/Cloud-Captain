@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour {
             return;
         }
 			
-        GameObjectType gObjType = selectedObj.GetComponent<GameObjectType>();
+        GameobjectType gObjType = selectedObj.GetComponent<GameobjectType>();
 
         if (!gObjType)
             return;
@@ -173,7 +173,7 @@ public class UIManager : MonoBehaviour {
 				
 				var queuedShip = Instantiate (UpgradeText);
 				queuedShip.transform.SetParent(paneRef.BuildQueue.transform);
-				queuedShip.GetComponent<Text> ().text = buildable.Prefab.GetComponent<GameObjectType> ().ObjectType.ToString ();
+				queuedShip.GetComponent<Text> ().text = buildable.Prefab.GetComponent<GameobjectType> ().ObjectType.ToString ();
 			}
 		}
 	}

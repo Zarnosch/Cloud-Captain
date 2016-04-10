@@ -11,10 +11,10 @@ public class PlayerManager : MonoBehaviour
 
     [ReadOnly]
     [SerializeField]
-    private List<GameObjectType> ownedUnits = new List<GameObjectType>();
+    private List<GameobjectType> ownedUnits = new List<GameobjectType>();
     [ReadOnly]
     [SerializeField]
-    private List<GameObjectType> ownedBuildings = new List<GameObjectType>();
+    private List<GameobjectType> ownedBuildings = new List<GameobjectType>();
     [ReadOnly]
     [SerializeField]
     private List<MachineProducer> ownedWorkshops = new List<MachineProducer>();
@@ -101,12 +101,12 @@ public class PlayerManager : MonoBehaviour
         return this.currentSupply + supplyCost <= this.supplyLimit;
     }
 
-    private void AddOwnedShip(GameObjectType type)
+    private void AddOwnedShip(GameobjectType type)
     {
         ownedUnits.Add(type);
     }
 
-    private void AddOwnedBuilding(GameObjectType type)
+    private void AddOwnedBuilding(GameobjectType type)
     {
         if (type.ObjectType == Setting.ObjectType.Workshop)
         {
@@ -128,7 +128,7 @@ public class PlayerManager : MonoBehaviour
         ownedBuildings.Add(type);
     }
 
-    public void AddUnit(GameObjectType gameobjectType, bool paidSupply)
+    public void AddUnit(GameobjectType gameobjectType, bool paidSupply)
     {
         if (!paidSupply)
             ChangeSupply(BuildManager.Instance.GetUnitInfo(gameobjectType.ObjectType).SupplyCost);
@@ -144,7 +144,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void RemoveUnit(GameObjectType gameobjectType)
+    public void RemoveUnit(GameobjectType gameobjectType)
     {
         this.ChangeSupply(-BuildManager.Instance.GetUnitInfo(gameobjectType.ObjectType).SupplyCost);
 
@@ -159,7 +159,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    private void RemoveOwnedBuilding(GameObjectType type)
+    private void RemoveOwnedBuilding(GameobjectType type)
     {
         if (type.ObjectType == Setting.ObjectType.Workshop)
         {
@@ -181,7 +181,7 @@ public class PlayerManager : MonoBehaviour
         ownedBuildings.Remove(type);
     }
 
-    private void RemoveOwnedShip(GameObjectType type)
+    private void RemoveOwnedShip(GameobjectType type)
     {
         ownedUnits.Remove(type);
     }

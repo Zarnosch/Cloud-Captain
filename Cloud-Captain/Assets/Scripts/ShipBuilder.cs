@@ -118,7 +118,7 @@ public class ShipBuilder : MonoBehaviour
             if(curBuildCooldown <= 0.0f || BuildManager.Instance.InstantBuild)
             {
                 GameObject newShip = (GameObject)Instantiate(enqueuedShips.Dequeue().Prefab, SpawnPosition.transform.position, Quaternion.identity);
-                newShip.GetComponent<GameObjectType>().paidSupplyCost = true;
+                newShip.GetComponent<GameobjectType>().paidSupplyCost = true;
 
                 QueueChanged();
                 isBuilding = false;

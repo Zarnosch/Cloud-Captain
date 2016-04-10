@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class GameObjectType : MonoBehaviour
+public class GameobjectType : MonoBehaviour
 {
 	public Setting.ObjectType ObjectType;
 
