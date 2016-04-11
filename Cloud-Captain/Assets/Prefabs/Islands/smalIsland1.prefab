@@ -121,6 +121,7 @@ GameObject:
   - 65: {fileID: 6589444}
   - 64: {fileID: 6429876}
   - 114: {fileID: 11440452}
+  - 114: {fileID: 11440476}
   m_Layer: 10
   m_Name: smalIsland1
   m_TagString: Neutral
@@ -632,6 +633,38 @@ MonoBehaviour:
   containingBuildings: []
   buildSides: []
   Type: 0
+--- !u!114 &11440476
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 176402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 65
+    i1: 185
+    i2: 73
+    i3: 100
+    i4: 139
+    i5: 143
+    i6: 118
+    i7: 180
+    i8: 155
+    i9: 150
+    i10: 83
+    i11: 201
+    i12: 52
+    i13: 204
+    i14: 40
+    i15: 8
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

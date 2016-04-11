@@ -181,6 +181,7 @@ GameObject:
   - 114: {fileID: 11414504}
   - 114: {fileID: 11451854}
   - 54: {fileID: 5480218}
+  - 114: {fileID: 11462410}
   m_Layer: 8
   m_Name: Mine
   m_TagString: Player
@@ -719,6 +720,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 3
+  paidSupplyCost: 0
+--- !u!114 &11462410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 183948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 147
+    i1: 125
+    i2: 64
+    i3: 161
+    i4: 208
+    i5: 219
+    i6: 127
+    i7: 148
+    i8: 40
+    i9: 40
+    i10: 57
+    i11: 194
+    i12: 17
+    i13: 129
+    i14: 236
+    i15: 251
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

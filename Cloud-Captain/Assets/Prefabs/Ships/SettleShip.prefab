@@ -33,6 +33,8 @@ GameObject:
   - 114: {fileID: 11492512}
   - 114: {fileID: 11435144}
   - 114: {fileID: 11419030}
+  - 114: {fileID: 11466694}
+  - 114: {fileID: 11495234}
   m_Layer: 9
   m_Name: SettleShip
   m_TagString: Player
@@ -799,6 +801,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 9
+  paidSupplyCost: 0
+--- !u!114 &11466694
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 127
+    i1: 92
+    i2: 147
+    i3: 127
+    i4: 148
+    i5: 47
+    i6: 45
+    i7: 68
+    i8: 10
+    i9: 111
+    i10: 64
+    i11: 130
+    i12: 144
+    i13: 93
+    i14: 64
+    i15: 169
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &11471356
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -834,6 +869,26 @@ MonoBehaviour:
   Spawner: {fileID: 0}
   ShipMove: {fileID: 11471356}
   ShieldRoot: {fileID: 0}
+--- !u!114 &11495234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -86,6 +86,7 @@ GameObject:
   - 65: {fileID: 6504434}
   - 64: {fileID: 6448914}
   - 114: {fileID: 11468822}
+  - 114: {fileID: 11449618}
   m_Layer: 10
   m_Name: MidIsland1
   m_TagString: Neutral
@@ -770,6 +771,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 40, y: 2.2204453e-16, z: 40}
   m_Center: {x: 0, y: -0.0000038146973, z: 0.0000076293945}
+--- !u!114 &11449618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 156894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 22
+    i1: 85
+    i2: 197
+    i3: 37
+    i4: 233
+    i5: 189
+    i6: 116
+    i7: 148
+    i8: 72
+    i9: 146
+    i10: 114
+    i11: 160
+    i12: 212
+    i13: 254
+    i14: 21
+    i15: 149
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &11468822
 MonoBehaviour:
   m_ObjectHideFlags: 1

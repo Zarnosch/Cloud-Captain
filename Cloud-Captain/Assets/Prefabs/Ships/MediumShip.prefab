@@ -267,6 +267,8 @@ GameObject:
   - 114: {fileID: 11410306}
   - 114: {fileID: 11412864}
   - 114: {fileID: 11461814}
+  - 114: {fileID: 11429264}
+  - 114: {fileID: 11473896}
   m_Layer: 9
   m_Name: MediumShip
   m_TagString: Player
@@ -1900,6 +1902,38 @@ MonoBehaviour:
   BulletSpeed: 0
   SecondaryDamage: 0
   SecondaryRange: 0
+--- !u!114 &11429264
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 129
+    i1: 198
+    i2: 83
+    i3: 200
+    i4: 154
+    i5: 82
+    i6: 132
+    i7: 148
+    i8: 155
+    i9: 243
+    i10: 99
+    i11: 216
+    i12: 254
+    i13: 168
+    i14: 66
+    i15: 111
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &11461814
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1912,6 +1946,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 11
+  paidSupplyCost: 0
 --- !u!114 &11464458
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1938,6 +1973,26 @@ MonoBehaviour:
   Enemy: {fileID: 0}
   EnemySelectItem: {fileID: 156142, guid: 3347623ac05ca6e47851ad016e8d848d, type: 2}
   isSelected: 0
+--- !u!114 &11473896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!135 &13553582
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -43,12 +43,14 @@ MonoBehaviour:
   selectedUnits: []
   ownedUnits: []
   ownedBuildings: []
-  workshops: []
+  ownedWorkshops: []
   controlledIslands: []
   resources:
     Matter: 0
     Energy: 0
     Engine: 0
+  currentSupply: 0
+  supplyLimit: 0
   UIManager: {fileID: 0}
 --- !u!114 &11458910
 MonoBehaviour:

@@ -122,6 +122,7 @@ GameObject:
   - 65: {fileID: 6528402}
   - 64: {fileID: 6447212}
   - 114: {fileID: 11447068}
+  - 114: {fileID: 11430498}
   m_Layer: 10
   m_Name: bigIsland1
   m_TagString: Neutral
@@ -1150,6 +1151,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 40, y: 2.2204453e-16, z: 40}
   m_Center: {x: 0, y: -0.0000038146973, z: 0.0000076293945}
+--- !u!114 &11430498
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 115
+    i1: 247
+    i2: 6
+    i3: 197
+    i4: 56
+    i5: 141
+    i6: 172
+    i7: 180
+    i8: 57
+    i9: 130
+    i10: 204
+    i11: 112
+    i12: 226
+    i13: 69
+    i14: 222
+    i15: 146
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &11447068
 MonoBehaviour:
   m_ObjectHideFlags: 1

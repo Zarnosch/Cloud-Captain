@@ -2,8 +2,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.Networking;
 
-public class BuildManager : MonoBehaviour
+public class BuildManager : NetworkBehaviour
 {
     public enum BuildingObject { TeslaTower, ArtilleryTower, PowerPlant, Mine, Workshop, Shipyard, Nexus, Settlement }
     public enum ShipType { SettleShip, Scouter, SmallShip, MediumShip, BigShip }
@@ -111,7 +112,9 @@ public class BuildManager : MonoBehaviour
     public GameObject TryPlaceBuildingNoCost(BuildingObject obj, Transform position)
     {
         UnitBuildInfo info = GetUnitInfo(obj.ConvertToObjectType());
-        return (GameObject)Instantiate(info.Prefab, position.position, position.rotation);
+        GameObject temp = (GameObject)Instantiate(info.Prefab, position.position, position.rotation);
+        NetworkServer.Spawn(temp);
+        return temp;
     }
 
 

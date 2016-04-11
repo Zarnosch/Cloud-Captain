@@ -68,6 +68,7 @@ GameObject:
   - 65: {fileID: 6559882}
   - 64: {fileID: 6472708}
   - 114: {fileID: 11464202}
+  - 114: {fileID: 11491102}
   m_Layer: 10
   m_Name: MidIsland2
   m_TagString: Neutral
@@ -860,6 +861,38 @@ MonoBehaviour:
   containingBuildings: []
   buildSides: []
   Type: 1
+--- !u!114 &11491102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 117210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 205
+    i1: 73
+    i2: 223
+    i3: 216
+    i4: 138
+    i5: 7
+    i6: 150
+    i7: 244
+    i8: 216
+    i9: 206
+    i10: 29
+    i11: 135
+    i12: 131
+    i13: 96
+    i14: 80
+    i15: 138
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

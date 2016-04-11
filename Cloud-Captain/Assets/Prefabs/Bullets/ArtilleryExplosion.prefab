@@ -27,6 +27,7 @@ GameObject:
   - 4: {fileID: 446014}
   - 135: {fileID: 13529436}
   - 114: {fileID: 11471954}
+  - 114: {fileID: 11447418}
   m_Layer: 11
   m_Name: ArtilleryExplosion
   m_TagString: Player
@@ -132,6 +133,38 @@ MonoBehaviour:
   StartAwake: 1
   RemoveOnEnd: 1
   ObjectToRemove: {fileID: 147614}
+--- !u!114 &11447418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 35
+    i1: 145
+    i2: 171
+    i3: 187
+    i4: 114
+    i5: 178
+    i6: 237
+    i7: 196
+    i8: 139
+    i9: 33
+    i10: 54
+    i11: 199
+    i12: 67
+    i13: 180
+    i14: 106
+    i15: 28
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &11471954
 MonoBehaviour:
   m_ObjectHideFlags: 1

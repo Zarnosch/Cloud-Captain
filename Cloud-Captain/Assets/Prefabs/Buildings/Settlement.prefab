@@ -64,6 +64,7 @@ GameObject:
   - 114: {fileID: 11489200}
   - 114: {fileID: 11436288}
   - 54: {fileID: 5484036}
+  - 114: {fileID: 11420966}
   m_Layer: 8
   m_Name: Settlement
   m_TagString: Player
@@ -430,6 +431,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.2670732, y: 4.1004577, z: 8.278889}
   m_Center: {x: -0.020051956, y: 2.4084256, z: 1.2001133}
+--- !u!114 &11420966
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 71
+    i1: 193
+    i2: 202
+    i3: 194
+    i4: 122
+    i5: 141
+    i6: 113
+    i7: 164
+    i8: 169
+    i9: 117
+    i10: 56
+    i11: 158
+    i12: 33
+    i13: 127
+    i14: 121
+    i15: 199
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &11436288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -489,6 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 1
+  paidSupplyCost: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

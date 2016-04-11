@@ -2,8 +2,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.Networking;
 
-public class ShipBuilder : MonoBehaviour
+public class ShipBuilder : NetworkBehaviour
 {
     public BuildManager.ShipType[] BuildableShips;
     public Transform SpawnPosition;
@@ -118,6 +119,7 @@ public class ShipBuilder : MonoBehaviour
             if(curBuildCooldown <= 0.0f || BuildManager.Instance.InstantBuild)
             {
                 GameObject newShip = (GameObject)Instantiate(enqueuedShips.Dequeue().Prefab, SpawnPosition.transform.position, Quaternion.identity);
+                NetworkServer.Spawn(newShip);
                 newShip.GetComponent<GameobjectType>().paidSupplyCost = true;
 
                 QueueChanged();

@@ -64,6 +64,7 @@ GameObject:
   - 114: {fileID: 11413668}
   - 114: {fileID: 11481978}
   - 54: {fileID: 5494154}
+  - 114: {fileID: 11421432}
   m_Layer: 8
   m_Name: PowerPlant
   m_TagString: Player
@@ -465,6 +466,38 @@ MonoBehaviour:
     Matter: 0
     Energy: 0
     Engine: 0
+--- !u!114 &11421432
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 212
+    i1: 176
+    i2: 46
+    i3: 99
+    i4: 3
+    i5: 53
+    i6: 105
+    i7: 100
+    i8: 152
+    i9: 83
+    i10: 79
+    i11: 182
+    i12: 68
+    i13: 174
+    i14: 66
+    i15: 35
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &11447812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -526,6 +559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectType: 2
+  paidSupplyCost: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
