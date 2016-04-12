@@ -13,7 +13,15 @@ public class RessourceProducer : MonoBehaviour
     [ReadOnly]
     public Res Res;
 
+    public float GetEnergyPerSecond()
+    {
+        return (float)(Res.Energy * ResGain) / TimeToResGainCooldown;
+    }
 
+    public float GetMatterPerSecond()
+    {
+        return (float)(Res.Matter * ResGain) / TimeToResGainCooldown;
+    }
 
     void Start()
     {

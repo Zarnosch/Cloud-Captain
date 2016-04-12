@@ -9,6 +9,8 @@ public class PlayerManager : MonoBehaviour
 
     public List<GameObject> selectedUnits = new List<GameObject>();
 
+
+    [Header("Owned buildings and units")]
     [ReadOnly]
     [SerializeField]
     private List<GameobjectType> ownedUnits = new List<GameobjectType>();
@@ -20,8 +22,13 @@ public class PlayerManager : MonoBehaviour
     private List<MachineProducer> ownedWorkshops = new List<MachineProducer>();
     [ReadOnly]
     [SerializeField]
+    private List<RessourceProducer> ownedResourceProducer = new List<RessourceProducer>();
+    [ReadOnly]
+    [SerializeField]
     private List<GameObject> controlledIslands = new List<GameObject>();
 
+
+    [Header("Resources and supply")]
     [ReadOnly]
     [SerializeField]
     private Res resources = new Res(0, 0, 0);
@@ -36,6 +43,16 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private int supplyLimit;
     public int GetSupplyLimi() { return supplyLimit; }
+
+    [ReadOnly]
+    [SerializeField]
+    private float energyPerSecond;
+    public float GetEnergyPerSecond() { return energyPerSecond; }
+
+    [ReadOnly]
+    [SerializeField]
+    private float matterPerSecond;
+    public float GetMatterPerSecond() { return matterPerSecond; }
 
 
     public UIManager UIManager;
@@ -116,16 +133,49 @@ public class PlayerManager : MonoBehaviour
                 ownedWorkshops.Add(producer);
         }
 
-        if (type.ObjectType == Setting.ObjectType.Nexus)
+        else if (type.ObjectType == Setting.ObjectType.Nexus)
         {
             IslandReference island = type.gameObject.GetComponent<IslandReference>();
             controlledIslands.Add(island.island.gameObject);
 
             if (controlledIslands.Count >= 2)
                 this.supplyLimit += Setting.SUPPLY_PLUS_PER_NEXUS;
+
+            CheckForRessourceProducer(type.gameObject, false);
+        }
+        else if (type.ObjectType == Setting.ObjectType.Mine || type.ObjectType == Setting.ObjectType.PowerPlant)
+        {
+            CheckForRessourceProducer(type.gameObject, false);
         }
 
         ownedBuildings.Add(type);
+    }
+
+    private void CalculateResourcesPerSecond()
+    {
+        this.energyPerSecond = 0.0f;
+        this.matterPerSecond = 0.0f;
+
+        for (int i = 0; i < ownedResourceProducer.Count; i++)
+        {
+            this.energyPerSecond += ownedResourceProducer[i].GetEnergyPerSecond();
+            this.matterPerSecond += ownedResourceProducer[i].GetMatterPerSecond();
+        }
+    }
+
+    private void CheckForRessourceProducer(GameObject gameObject, bool remove)
+    {
+        RessourceProducer resourceProducer = gameObject.GetComponent<RessourceProducer>();
+
+        if (resourceProducer)
+        {
+            if(remove)
+                this.ownedResourceProducer.Remove(resourceProducer);
+            else
+                this.ownedResourceProducer.Add(resourceProducer);
+
+            CalculateResourcesPerSecond();
+        }
     }
 
     public void AddUnit(GameobjectType gameobjectType, bool paidSupply)
@@ -169,13 +219,20 @@ public class PlayerManager : MonoBehaviour
                 ownedWorkshops.Remove(producer);
         }
 
-        if (type.ObjectType == Setting.ObjectType.Nexus)
+        else if (type.ObjectType == Setting.ObjectType.Nexus)
         {
             IslandReference island = type.gameObject.GetComponent<IslandReference>();
             controlledIslands.Remove(island.island.gameObject);
 
             if(controlledIslands.Count >= 1)
                 this.supplyLimit -= Setting.SUPPLY_PLUS_PER_NEXUS;
+
+            CheckForRessourceProducer(type.gameObject, true);
+        }
+
+        else if (type.ObjectType == Setting.ObjectType.Mine || type.ObjectType == Setting.ObjectType.PowerPlant)
+        {
+            CheckForRessourceProducer(type.gameObject, true);
         }
 
         ownedBuildings.Remove(type);
