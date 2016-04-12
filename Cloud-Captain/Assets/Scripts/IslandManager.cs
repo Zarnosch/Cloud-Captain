@@ -38,7 +38,7 @@ public class IslandManager : MonoBehaviour
         if (Type == IslandType.Big && settlementSite)
         {
       
-            AddBuilding(BuildManager.Instance.TryPlaceBuildingNoCost(BuildManager.BuildingObject.Nexus, settlementSite.transform), settlementSite);
+            AddBuilding(BuildManager.Instance.PlaceBuildingNoCost(BuildManager.BuildingObject.Nexus, settlementSite.transform), settlementSite);
         }
 
 

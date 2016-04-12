@@ -83,6 +83,8 @@ public class UIManager : MonoBehaviour {
 		if (objType == Setting.ObjectType.Nexus || objType == Setting.ObjectType.Shipyard) {
 			BuildManager.ShipType[] buildableShips = shipBuilderComponent.BuildableShips;
 
+            //TODO: BuildShip now returns an enum, containing information about if the buiilding was successfull and if not, why it wasnt
+
 			foreach (var buildable in buildableShips) {
 				Button bB = Instantiate (BuildButton);
 				bB.transform.SetParent(paneManagerComponent.ActionsPane.transform);
@@ -297,9 +299,11 @@ public class UIManager : MonoBehaviour {
 
         IslandReference islandRef = selectedObj.GetComponent<IslandReference>();
 
-        GameObject newObj = BuildManager.Instance.TryPlaceBuilding(buildType, selectedObj.transform);
+        //TODO: result might contain information about missing resources:
+        BuildBuildingFeedback result = BuildManager.Instance.TryPlaceBuilding(buildType, selectedObj.transform);
+        GameObject newObj = result.BuiltObject;
 
-		if (newObj) {
+        if (newObj) {
 			islandRef.island.AddBuilding (newObj, selectedObj);
 			HidePanel ();
 		} else {
@@ -308,7 +312,11 @@ public class UIManager : MonoBehaviour {
 	}
 
 	public void ProduceMashine() {
-		bool didProduce = PlayerManager.Instance.TryProduceMachine ();
+
+        ProduceMachineFeedback result = PlayerManager.Instance.TryProduceMachine();
+        //TODO: TryProduceMachine gives not an enum if the building was sucessfull and if not, why it wasnt
+        bool didProduce = (result == ProduceMachineFeedback.Success);
+
 		if (!didProduce) {
 			ShowResourceWarning ();
 		}

@@ -15,11 +15,19 @@ public class BuildSettlement : MonoBehaviour
 
                 if (dist < Setting.MAX_RANGE_SETTLESHIP)
                 {
-                    GameObject settlement = BuildManager.Instance.TryPlaceBuilding(BuildManager.BuildingObject.Settlement, where.transform);
-                    island.AddBuilding(settlement, where);
-                    Destroy(gameObject);
 
-                    return true;
+                    BuildBuildingFeedback result = BuildManager.Instance.TryPlaceBuilding(BuildManager.BuildingObject.Settlement, where.transform);
+                    GameObject settlement = result.BuiltObject;
+
+                    if (settlement)
+                    {
+                        island.AddBuilding(settlement, where);
+                        Destroy(gameObject);
+                        return true;
+                    }
+
+                    return false;
+           
                 }
             }
         }

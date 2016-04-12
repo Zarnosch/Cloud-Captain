@@ -95,27 +95,27 @@ public class BuildManager : MonoBehaviour
         unitInfos = new UnitBuildInfo[Enum.GetNames(typeof(Setting.ObjectType)).Length];
     }
 
-    public GameObject TryPlaceBuilding(BuildingObject obj, Transform position)
+    public BuildBuildingFeedback TryPlaceBuilding(BuildingObject obj, Transform position)
     {
-        UnitBuildInfo info = GetUnitInfo(obj.ConvertToObjectType());
+        UnitBuildInfo info = GetUnitBuildInfo(obj.ConvertToObjectType());
 
         if (PlayerManager.Instance.EnoughResource(info.Price))
         {
             PlayerManager.Instance.ChangeResource(info.Price * -1);
-            return (GameObject)Instantiate(info.Prefab, position.position, position.rotation);
+            return new BuildBuildingFeedback((GameObject)Instantiate(info.Prefab, position.position, position.rotation), Res.Zero);
         }
 
-        return null;
+        return new BuildBuildingFeedback(null, PlayerManager.Instance.GetMissingResources(info.Price));
     }
 
-    public GameObject TryPlaceBuildingNoCost(BuildingObject obj, Transform position)
+    public GameObject PlaceBuildingNoCost(BuildingObject obj, Transform position)
     {
-        UnitBuildInfo info = GetUnitInfo(obj.ConvertToObjectType());
+        UnitBuildInfo info = GetUnitBuildInfo(obj.ConvertToObjectType());
         return (GameObject)Instantiate(info.Prefab, position.position, position.rotation);
     }
 
 
-    public UnitBuildInfo GetUnitInfo(Setting.ObjectType type)
+    public UnitBuildInfo GetUnitBuildInfo(Setting.ObjectType type)
     {
         if (unitInfos[(int)type] == null)
             unitInfos[(int)type] = CreateUnitInfo(type);

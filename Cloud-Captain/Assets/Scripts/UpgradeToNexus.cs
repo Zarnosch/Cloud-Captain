@@ -7,7 +7,9 @@ public class UpgradeToNexus : MonoBehaviour {
 
     public bool TryUpgrade()
     {
-        if (BuildManager.Instance.TryPlaceBuilding(BuildManager.BuildingObject.Nexus, gameObject.transform))
+
+        BuildBuildingFeedback result = BuildManager.Instance.TryPlaceBuilding(BuildManager.BuildingObject.Nexus, gameObject.transform);
+        if (result.WasSuccessfull())
         {
 
             DeleteMe();

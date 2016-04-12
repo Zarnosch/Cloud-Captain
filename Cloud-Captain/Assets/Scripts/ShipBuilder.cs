@@ -62,36 +62,51 @@ public class ShipBuilder : MonoBehaviour
     }
 
 
-    public void BuildShip(BuildManager.ShipType type)
+    public BuildShipFeedback BuildShip(BuildManager.ShipType type)
     {
-        InternBuildShip(type, true);
+        return InternBuildShip(type, true);
     }
 
-    public void BuildShipNoCost(BuildManager.ShipType type)
+    public BuildShipFeedback BuildShipNoCost(BuildManager.ShipType type)
     {
-        InternBuildShip(type, false);
+        return InternBuildShip(type, false);
     }
 
-    private void InternBuildShip(BuildManager.ShipType type, bool cost)
+    private BuildShipFeedback InternBuildShip(BuildManager.ShipType type, bool cost)
     {
         if (CanBuild(type))
         {
-            BuildManager.UnitBuildInfo info = BuildManager.Instance.GetUnitInfo(type.ConvertToObjectType());
+            BuildManager.UnitBuildInfo info = BuildManager.Instance.GetUnitBuildInfo(type.ConvertToObjectType());
 
             Res price = new Res(0, 0, 0);
 
             if (cost)
                 price = info.Price;
 
-            if (PlayerManager.Instance.EnoughResource(price) && PlayerManager.Instance.EnoughSupply(info.SupplyCost))
+            if (PlayerManager.Instance.EnoughResource(price))
             {
-                PlayerManager.Instance.ChangeResource(price * -1);
-                PlayerManager.Instance.ChangeSupply(info.SupplyCost);
 
-                enqueuedShips.Enqueue(info);
-                QueueChanged();
+                if (PlayerManager.Instance.EnoughSupply(info.SupplyCost))
+                {
+                    PlayerManager.Instance.ChangeResource(price * -1);
+                    PlayerManager.Instance.ChangeSupply(info.SupplyCost);
+
+                    enqueuedShips.Enqueue(info);
+                    QueueChanged();
+
+                    return BuildShipFeedback.Success;
+                }
+
+                else
+                    return BuildShipFeedback.NotEnoughSupply;
+
             }
+
+            else
+                return BuildShipFeedback.NotEnoughRessources;
         }
+
+        return BuildShipFeedback.Unknown;
     }
 
     public bool CanBuild(BuildManager.ShipType type)

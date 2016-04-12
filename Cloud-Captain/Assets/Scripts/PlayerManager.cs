@@ -181,7 +181,7 @@ public class PlayerManager : MonoBehaviour
     public void AddUnit(GameobjectType gameobjectType, bool paidSupply)
     {
         if (!paidSupply)
-            ChangeSupply(BuildManager.Instance.GetUnitInfo(gameobjectType.ObjectType).SupplyCost);
+            ChangeSupply(BuildManager.Instance.GetUnitBuildInfo(gameobjectType.ObjectType).SupplyCost);
 
         if (gameobjectType.gameObject.layer == LayerMask.NameToLayer("Ships"))
         {
@@ -196,7 +196,7 @@ public class PlayerManager : MonoBehaviour
 
     public void RemoveUnit(GameobjectType gameobjectType)
     {
-        this.ChangeSupply(-BuildManager.Instance.GetUnitInfo(gameobjectType.ObjectType).SupplyCost);
+        this.ChangeSupply(-BuildManager.Instance.GetUnitBuildInfo(gameobjectType.ObjectType).SupplyCost);
 
         if (gameobjectType.gameObject.layer == LayerMask.NameToLayer("Ships"))
         {
@@ -243,7 +243,7 @@ public class PlayerManager : MonoBehaviour
         ownedUnits.Remove(type);
     }
 
-    public bool TryProduceMachine()
+    public ProduceMachineFeedback TryProduceMachine()
     {
         return TryProduceMachineIntern(Setting.COST_RES_ENGINE);
     }
@@ -261,14 +261,16 @@ public class PlayerManager : MonoBehaviour
         return ownedWorkshops.Count > 0;
     }
 
-    private bool TryProduceMachineIntern(Res cost)
+    private ProduceMachineFeedback TryProduceMachineIntern(Res cost)
     {
         if (this.ownedWorkshops.Count == 0)
-            return false;
+        {
+            return ProduceMachineFeedback.NoWorkshops;
+        }
 
         else
         {
-            if (PlayerManager.Instance.EnoughResource(Setting.COST_RES_ENGINE))
+            if (EnoughResource(Setting.COST_RES_ENGINE))
             {
                 if(ownedWorkshops.Count  > 0)
                 {
@@ -287,19 +289,44 @@ public class PlayerManager : MonoBehaviour
                     if(!BuildManager.Instance.NoCostMode)
                         ChangeResource(Setting.COST_RES_ENGINE * -1);
 
-                    return true;
-                }
-                             
+                    return ProduceMachineFeedback.Success;
+                }                       
             }
+            
         }
 
-        return false;
+        return ProduceMachineFeedback.NotEnoughRessources;
 
     }
 
     public bool EnoughResource(Res res)
     {
         return EnoughResource(res.Matter, res.Energy, res.Engine);
+    }
+
+    public Res GetMissingResources(Res cost)
+    {
+        Res delta = this.resources - cost;
+
+        //if cost was bigger than current ressources, then use the difference as missing resources:
+        //otherwise this ressource is not needed anymore -> set it to 0
+
+        if (delta.Energy < 0)
+            delta.Energy = delta.Energy * -1;
+        else
+            delta.Energy = 0;
+
+        if (delta.Matter < 0)
+            delta.Matter = delta.Matter * -1;
+        else
+            delta.Matter = 0;
+
+        if (delta.Engine < 0)
+            delta.Engine = delta.Engine * -1;
+        else
+            delta.Engine = 0;
+
+        return delta;
     }
 
     public bool EnoughResource(int matter, int energy, int engine)
